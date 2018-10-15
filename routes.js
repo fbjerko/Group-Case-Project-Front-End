@@ -1,6 +1,8 @@
 const routes = require('next-routes')();
 
-// routes
 
+routes
+    .add('/admin', '/admin')
+    .add('/', '/index');
 
-module.exports = routes;
+modeule.exports = routes;
