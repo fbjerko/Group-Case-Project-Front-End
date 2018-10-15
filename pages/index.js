@@ -1,5 +1,7 @@
 import React,  { Component } from "react";
 
+import LayoutGlobal from "../components/LayoutGlobal";
+
 class Index extends Component {
 
 	constructor(props) {
@@ -37,11 +39,28 @@ class Index extends Component {
     render() {
     const { error, isLoaded, persons } = this.state;
     if (error) {
-      return <div>Error: {error.message}</div>;
+      return (
+     
+        <div>
+           <LayoutGlobal/> <h1 >Error: {error.message}</h1>
+
+        
+        </div>
+       );
     } else if (!isLoaded) {
-      return <div>Loading...</div>;
+      return (
+      <div>
+         <LayoutGlobal/> 
+      
+dasdsadsa
+      
+      </div>
+      )
+      ;
     } else {
       return (
+        <div>
+        <LayoutGloval />
         <ul>
           {
             <li key={persons.name}>
@@ -49,6 +68,7 @@ class Index extends Component {
             </li>
           }
         </ul>
+        </div>
       );
     }
   }

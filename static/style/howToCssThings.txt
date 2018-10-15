@@ -1,0 +1,56 @@
+Det er laget et globalt komponent 'LayoutGlobal', som manipulerer headered til dokumentet som blir rendret.
+
+Dette komponentet blir da lagt til i en class (Et view/DOM-side) ved rendering som JSX: <LayoutGlobal/>
+
+Ved å legge til 'LayoutGlobal komponentet tar du da å manipulerer headeren til å inkludere css.
+
+I 'LayoutGlobal' refereres det til css filen 'index.css' i mappa '/static/style/css'
+
+
+Hvis du vil ha en custom css-fil til en spesifikk class, gjør følgelde;
+
+1: Lag et nytt komponent, kall det gjerne noe med Layout*
+2: Kopier inn følgende kode og tilpass;
+
+import React from 'react';
+import Head from "next/head";
+
+
+    export default props => {
+
+        return (
+        
+            <Head>
+                <link rel="stylesheet"
+            type="text/css"
+            href="../static/style/din_custom_css_fil.css"
+            /> 
+            </Head>
+        );
+    };
+
+3: Import komponentet til .js filen til komponentet/klassen;
+    import LayoutName from "../components/LayoutName";
+
+4: Inkluder dette komponentet øverst i render-metoden i komponentet 
+    eller klassen du vil inkludere denne i, som f.eks;
+
+    render() {
+    return (
+      <div>
+          <LayoutName/>
+
+        // Innhold
+
+      </div>
+    );
+  }
+
+
+NOTE: Denne metoden kan også brukes til å sette headern generelt,
+        men da kan dette også inkluderes rett i komponentet/klassen istedet.
+
+
+
+
+
