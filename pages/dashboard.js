@@ -20,9 +20,13 @@ class Dashboard extends Component {
     return (
       <div>
         <LayoutGlobal />
+        <div className="container">
         <h1>Dashboard</h1>
+        
 
-        <IndexReturn/>
+        <IndexReturn
+        />
+        </div>
         
       </div>
     );

@@ -24,16 +24,16 @@ const Login = () => (
       <button
         type="button"
         className="btn"
-        onClick={() => Router.pushRoute("/dashboard")}
+        onClick={() => Router.pushRoute("/admin")}
       >
-        Login Coach
+        Login Admin
       </button>
       <button
         type="button"
         className="btn"
         onClick={() => Router.pushRoute("/dashboard")}
       >
-        Login Player
+        Login User
       </button>
     </form>
   </div>

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Head from "next/head";
 import LayoutGlobal from "../components/LayoutGlobal";
 import Login from "../components/Login";
 import Register from "../components/Register";
@@ -40,7 +41,15 @@ class Index extends Component {
     </li>);
 
     return (
+
       <div>
+         <Head>
+            <link rel="stylesheet"
+          type="text/css"
+          href="../static/style/index.css"
+          /> 
+        </Head>
+        
         <LayoutGlobal />
         <div className = "frontpage-info1">
         <div className="top">  
