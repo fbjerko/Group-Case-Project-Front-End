@@ -10,7 +10,8 @@ class Index extends Component {
     super(props);
     this.state = {
         showLogin: false,
-        showRegister: false
+        showRegister: false,
+        info: ['Tonje', 'Lasse','Fredrik','Karoline']
     };
 
     this._onLoginClick = this._onLoginClick.bind(this);
@@ -31,9 +32,14 @@ class Index extends Component {
     })
 }
 
-  componentDidMount() {}
+  componentDidMount() {
+  }
 
   render() {
+    const infoList = this.state.info.map((inf) =>
+    <li> {inf}
+    </li>);
+
     return (
 
       <div>
@@ -45,6 +51,22 @@ class Index extends Component {
         </Head>
         
         <LayoutGlobal />
+        <div className = "frontpage-info1">
+        <div className="top">  
+        <h2>Matches</h2>
+        </div>
+        <ul>
+          {infoList}
+        </ul>
+        </div>
+        <div className = "frontpage-info2">
+        <div className="top">  
+        <h2>Players</h2>
+        </div>
+        <ul>
+          {infoList}
+        </ul>
+        </div>
         <div className="btn-group">
           <button 
             className="btn-index"
