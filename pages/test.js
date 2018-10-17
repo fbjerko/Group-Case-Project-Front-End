@@ -14,11 +14,7 @@ class TestApi extends Component {
 
 
 	componentDidMount() {
-<<<<<<< HEAD
-    fetch("http://experisfotballmanager-env.qedd2mt7g3.eu-west-2.elasticbeanstalk.com/api/person")
-=======
     fetch("http://localhost:8080/api/person")
->>>>>>> 9b15b1dd9647b44b47f2e2893459b77cde2a5407
       .then(res => res.json())
       .then(
         (result) => {
