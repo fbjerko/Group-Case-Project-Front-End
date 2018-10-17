@@ -1,7 +1,101 @@
 body {
-    background-color: blue;
+    background: url(../images/wallpaper.jpeg) no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+    min-height: 100vh;
+    display: block;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+
+  }
+
+  div.btn-group {
+    
+     position: absolute;
+     top: 0.5rem;
+     right: 1rem;
+
+  }
+
+  button.btn-index {
+ 
+    margin: .3rem;
+    height: 4rem;
+    width: 7rem;
+    border-width: 0.2rem;
+    border-color: black;
+    border-radius: 10%;
+  }
+
+  button.btn-ret {
+
+    margin: auto;
+    margin: .3rem;
+    height: 4rem;
+    width: 7rem;
+    border-width: 0.2rem;
+    border-color: black;
+    border-radius: 10%;
+  }
+
+
+
+
+.form-div {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+    margin: auto;
+    margin-top: 5rem;
+   
 }
 
-#err {
-    color: red;
+/* Add styles to the form container */
+.form-container {
+
+  padding: 1rem;
+  background-color: rgb(255, 255, 255);
+  width: 20rem;
+  border: 1rem;
+  border-radius: 5%;
+  border-color: black;
+}
+
+/* Full-width input fields */
+.form-container input[type=text], .form-container input[type=password] {
+  width: 100%;
+  height: 3rem;;
+  margin: 5px 2px 22px 1px;
+  border: none;
+
+  background: #f1f1f1;
+}
+
+/* When the inputs get focus, do something */
+.form-container input[type=text]:focus, .form-container input[type=password]:focus {
+  background-color: #ddd;
+  
+}
+
+/* Set a style for the submit/login button */
+.form-container .btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 48%;
+  margin: 1%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 2;
 }
