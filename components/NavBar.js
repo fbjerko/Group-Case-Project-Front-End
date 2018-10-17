@@ -7,10 +7,6 @@ const NavBar = () => (
 
     <div>
 
-    <Head>
-   
-    <link rel="stylesheet" type="text/css" href="../static/style/navbar.css" rel="stylesheet" />
-  </Head>
     
     <SideNav
     onSelect={(selected) => {

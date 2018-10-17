@@ -12,6 +12,7 @@
     -o-transition: min-width 0.15s;
     -ms-transition: min-width 0.15s;
     transition: min-width 0.15s;
+    margin-right:1px;
   }
   .sidenav---sidenav---_2tBP.sidenav---collapsed---LQDEv .sidenav---sidenav-nav---3tvij .sidenav---sidenav-navitem---uwIJ- .sidenav---sidenav-subnav---1EN61 {
     display: none;

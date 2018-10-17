@@ -1,23 +1,27 @@
 body {
-    background: url(../images/wallpaper.jpeg) no-repeat center center fixed;
-    background-size: cover;
-    height: 100vh;
-    min-height: 100vh;
-    display: block;
-    flex-direction: column;
-    justify-content: center;
-    margin: auto;
+  background: url(../images/wallpaper.jpeg) no-repeat center center fixed;
+  background-size: cover;
+  height: 100vh;
+  min-height: 100vh;
+  display: block;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+}
 
-  }
+button {
+  margin: auto;
+  margin: 0.3rem;
+  height: 4rem;
+  width: 7rem;
 
+  border-color: black;
+  border-radius: 10%;
+}
 
-  button{
+.logo {
+  display: grid;
 
-    margin: auto;
-    margin: .3rem;
-    height: 4rem;
-    width: 7rem;
-    border-width: 0.2rem;
-    border-color: black;
-    border-radius: 10%;
-  }
+  margin: auto;
+  margin-top: 2rem;
+}

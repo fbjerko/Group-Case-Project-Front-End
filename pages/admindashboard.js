@@ -14,26 +14,23 @@ class Dashboard extends Component {
     };
   }
 
- 
-
   componentDidMount() {}
 
   render() {
     return (
       <div>
-
-        <Head>
-            <link rel="stylesheet"
-          type="text/css"
-          href="../static/style/admin.css"
-          /> 
-        </Head>
-
-        <LayoutGlobal />
-        <h1>Dashboard</h1>
+  <LayoutGlobal />
+    
+       
         <NavBar/>
+        
+        <div className="container">
+        <h1>Dashboard</h1>
+        
 
-        <IndexReturn/>
+        <IndexReturn
+        />
+        </div>
         
       </div>
     );
