@@ -1,78 +1,61 @@
-import React,  { Component } from "react";
-
+import React, { Component } from "react";
 import LayoutGlobal from "../components/LayoutGlobal";
+import Login from "../components/Login";
+import Register from "../components/Register";
+
 
 class Index extends Component {
-
-	constructor(props) {
+  constructor(props) {
     super(props);
     this.state = {
-      error: null,
-      isLoaded: false,
-      persons: []
+        showLogin: false,
+        showRegister: false
     };
+
+    this._onLoginClick = this._onLoginClick.bind(this);
+    this._onRegisterClick = this._onRegisterClick.bind(this);
   }
 
-
-	componentDidMount() {
-    fetch("http://localhost:8080/api/person")
-      .then(res => res.json())
-      .then(
-        (result) => {
-          this.setState({
-            isLoaded: true,
-            persons: result
-          });
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        (error) => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
-        }
-      )
+  _onLoginClick() {
+      this.setState({
+          showLogin : !this.state.showLogin,
+          showRegister: false
+      })
   }
 
-    render() {
-    const { error, isLoaded, persons } = this.state;
-    if (error) {
-      return (
-     
-        <div>
-           <LayoutGlobal/> <h1 >Error: {error.message}</h1>
+  _onRegisterClick() {
+    this.setState({
+        showRegister : !this.state.showRegister,
+        showLogin: false
+    })
+}
 
-        
-        </div>
-       );
-    } else if (!isLoaded) {
-      return (
+  componentDidMount() {}
+
+  render() {
+    return (
       <div>
-         <LayoutGlobal/> 
-      
-dasdsadsa
-      
-      </div>
-      )
-      ;
-    } else {
-      return (
-        <div>
-        <LayoutGloval />
-        <ul>
-          {
-            <li key={persons.name}>
-              {persons.name} {persons.email}
-            </li>
-          }
-        </ul>
-        </div>
-      );
-    }
-  }
+        <LayoutGlobal />
+        <div className="btn-group">
+          <button 
+            className="btn-index"
+            onClick={this._onLoginClick}
+            >
+            Log in</button>
 
+          <button className="btn-index"
+            onClick={this._onRegisterClick}
+            >
+
+            Register</button>
+          </div>
+
+          {this.state.showLogin ? <Login /> : null}
+          {this.state.showRegister ? <Register /> : null}
+        
+      </div>
+    );
+  }
 }
 
 export default Index;
