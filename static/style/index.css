@@ -18,6 +18,36 @@ body {
 
   }
 
+  div.frontpage-info1 {
+    
+    position: absolute;
+    float: left;
+    left: 300px;
+    top: 200px;
+    height: 700px;
+    width: 400px;
+    border:2px solid black;
+  }
+
+  div.frontpage-info2 {
+    
+    position: absolute;
+    right: 500px;
+    top: 200px;
+    float: right;
+    height: 700px;
+    width: 400px;
+    border:2px solid black;
+  }
+  div.top {
+    border-bottom:2px solid black;
+    line-height:20px; vertical-align:middle
+  }
+
+  div.top h2{
+    text-align: center;
+}
+
   button.btn-index {
  
     margin: .3rem;
