@@ -1,51 +1,24 @@
-import SideNav, { Toggle, Nav, NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
-import Head from 'next/head';
+import Head from "next/head";
+import SideNav, { MenuIcon } from "react-simple-sidenav";
 import { Router } from "../routes";
 
-
 const NavBar = () => (
-
-    <div>
-
-    
-    <SideNav
-    onSelect={(selected) => {
-        // Add your code here
-    }}
->
-    <SideNav.Toggle />
-    <SideNav.Nav defaultSelected="home">
-        <NavItem eventKey="home">
-            <NavIcon>
-                <i className="fa fa-fw fa-home" style={{ fontSize: '1.75em' }} />
-            </NavIcon>
-            <NavText>
-                Home
-            </NavText>
-        </NavItem>
-        <NavItem eventKey="charts">
-            <NavIcon>
-                <i className="fa fa-fw fa-line-chart" style={{ fontSize: '1.75em' }} />
-            </NavIcon>
-            <NavText>
-                Charts
-            </NavText>
-            <NavItem eventKey="charts/linechart">
-                <NavText>
-                    Line Chart
-                </NavText>
-            </NavItem>
-            <NavItem eventKey="charts/barchart">
-                <NavText>
-                    Bar Chart
-                </NavText>
-            </NavItem>
-        </NavItem>
-    </SideNav.Nav>
-</SideNav>
-</div>
-
-
+  <div>
+    <div class="sidenav">
+      <a href="#" onClick={() => Router.pushRoute("/admin/users")}>
+        Users
+      </a>
+      <a href="#" onClick={() => Router.pushRoute("/admin/teams")}>
+        Teams
+      </a>
+      <a href="#" onClick={() => Router.pushRoute("/admin/matches")}>
+        Matches
+      </a>
+      <a href="#" onClick={() => Router.pushRoute("/admin/create")}>
+        Create
+      </a>
+    </div>
+  </div>
 );
 
 export default NavBar;

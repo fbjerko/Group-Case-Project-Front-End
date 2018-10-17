@@ -24,7 +24,7 @@ const Login = () => (
       <button
         type="button"
         className="btn"
-        onClick={() => Router.pushRoute("/admindashboard")}
+        onClick={() => Router.pushRoute("/admin")}
       >
         Login Admin
       </button>

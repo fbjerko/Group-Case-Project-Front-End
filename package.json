@@ -19,6 +19,7 @@
     "next": "^5.0.0",
     "next-routes": "^1.4.1",
     "react": "^16.5.2",
-    "react-dom": "^16.3.2"
+    "react-dom": "^16.3.2",
+    "react-simple-sidenav": "^1.0.1"
   }
 }
