@@ -2,9 +2,10 @@ const routes = require('next-routes')();
 
 
 routes
-    .add('/admin', '/admin')
-    .add('/test', '/test')
+    .add('/', '/index')
     .add('/dashboard', '/dashboard')
-    .add('/', '/index');
+    .add('/admindashboard', '/admindashboard')
+    .add('/test', '/test')
+  ;
 
 module.exports = routes;

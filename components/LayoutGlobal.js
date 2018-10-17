@@ -9,7 +9,7 @@ export default props => {
         <Head>
             <link rel="stylesheet"
           type="text/css"
-          href="../static/style/index.css"
+          href="../static/style/global.css"
           /> 
         </Head>
     );

@@ -1,7 +1,16 @@
 import SideNav, { Toggle, Nav, NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
-import { Router } from "../routes"
+import Head from 'next/head';
+import { Router } from "../routes";
 
-const SideNav = () => (
+
+const NavBar = () => (
+
+    <div>
+
+    <Head>
+   
+    <link rel="stylesheet" type="text/css" href="../static/style/navbar.css" rel="stylesheet" />
+  </Head>
     
     <SideNav
     onSelect={(selected) => {
@@ -38,8 +47,9 @@ const SideNav = () => (
         </NavItem>
     </SideNav.Nav>
 </SideNav>
+</div>
 
 
-)
+);
 
-export default SideNav;
+export default NavBar;
