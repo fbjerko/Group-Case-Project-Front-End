@@ -3,7 +3,7 @@ import { Router } from "../routes";
 
 const NavBar = () => (
   <div>
-    <div class="sidenav">
+    <div className="sidenav">
       <a href="#" onClick={() => Router.pushRoute("/admin/users")}>
         Users
       </a>

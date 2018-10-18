@@ -19,6 +19,15 @@ button {
 
 }
 
+.btn-ret {
+  position:absolute;
+  bottom:2vh;
+  right: 46.5%;
+  
+/* Må fikses posisjonen her*/
+  
+}
+
 button:hover {
   background-color: rgb(153, 153, 184);
 }

@@ -10,3 +10,20 @@
    margin-top: 1rem;
     
 }
+
+div.btn-admin-create-top {
+    margin-top: 7vh;
+}
+
+div.btn-admin-create-bottom {
+   
+}
+
+button.btn-create {
+    margin: 2vh;
+
+    height: 10vh;
+    
+}
+
+
