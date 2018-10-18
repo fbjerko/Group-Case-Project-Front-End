@@ -1,18 +1,11 @@
-import React from 'react';
-import {Router} from '../routes'
+import React from "react";
 
+const EditUser = () => (
+  <div className="editform-div" id="myForm">
+    <form className="form-container">
+      <h2>Your account</h2>
 
-const Register = () => (
-
-    
-      <div className="form-div" id="myForm">
-  <form className="form-container">
-    <h2>Register</h2>
-
-     <label for="username"><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" className="username" required/>
-
-    <label for="firstname"><b>First name</b></label>
+   <label for="firstname"><b>First name</b></label>
     <input type="text" placeholder="Enter First name" className="firstname" required/>
 
     <label for="lastname"><b>Last name</b></label>
@@ -27,15 +20,15 @@ const Register = () => (
     <label for="psw-rep"><b>Repeat Password</b></label>
     <input type="password" placeholder="Repeat Password" className="psw-rep" required/>
 
-    <button type="button" 
-            className="btn"
-            onClick={() => Router.pushRoute('/')}
-            >Register</button>
-  
+      <button
+        type="button"
+        className="save-btn"
+        onClick={console.log("Så flink du er til å lagre")}
+      >
+        Save changes
+      </button>
     </form>
-
-    </div>
-    
+  </div>
 );
 
-export default Register;
+export default EditUser;
