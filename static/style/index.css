@@ -1,5 +1,3 @@
-/* Add styles to the form container */
-
 
 div.info-container {
   position: relative;
@@ -9,6 +7,7 @@ div.info-container {
   align-items: center;
   text-align: center;
   margin-top: 10vh;  
+
 }
 
 div.btn-index-menu {
@@ -61,6 +60,51 @@ button.index-menu {
  }
 
  .form-div {
+
+   div.frontpage-info1 {
+  height: 50vh;
+  width: 25vw;
+  border: 2px solid black;
+  margin-left: 1vw;
+}
+
+div.frontpage-info2 {
+  height: 50vh;
+  width: 25vw;
+  border: 2px solid black;
+  margin-left: 1vw;
+}
+div.top {
+  border-bottom: 2px solid black;
+  line-height: 20px;
+  vertical-align: middle;
+}
+
+div.top h2 {
+  text-align: center;
+}
+
+div.btn-group {
+  position: absolute;
+  top: 3.5vh;
+  right: 1vw;
+}
+
+button.btn-index {
+  margin: 0.3vw;
+  height: 6vh;
+  width: 7vw;
+  border-width: 0.1rem;
+  border-color: black;
+}
+
+
+form {
+  border-width: 1rem;
+  border-color: black;
+}
+
+.form-div {
   position: absolute;
   top: 15vh;
   right: 1vw;
@@ -69,21 +113,19 @@ button.index-menu {
   justify-content: center;
   align-items: center;
   text-align: center;
-  margin-top:5vh;
+  margin-top: 5vh;
   z-index: 10;
 }
 
 .form-container {
+  padding: 1vh;
+  background-color: rgb(194, 204, 224);
+  width: 20rem;
+  border: solid;
+  border-width: 0.1rem;
 
- padding: 1vh;
- background-color: rgb(194, 204, 224);
- width: 20rem;
- border: solid;
- border-width: 0.1rem;
- 
- border-color: black;
- z-index: 100;
-
+  border-color: black;
+  z-index: 100;
 }
 
 /* Full-width input fields */
@@ -92,53 +134,36 @@ button.index-menu {
  height: 1.5rem;
  margin: 5px 2px 10px 2px;
  background: #f1f1f1;
+
+.form-container input[type="text"],
+.form-container input[type="password"] {
+  width: 97%;
+  height: 2rem;
+  margin: 5px 2px 10px 2px;
+  background: #f1f1f1;
 }
 
 /* When the inputs get focus, do something */
-.form-container input[type=text]:focus, .form-container input[type=password]:focus {
- background-color: #ddd;
- 
+.form-container input[type="text"]:focus,
+.form-container input[type="password"]:focus {
+  background-color: #ddd;
 }
 
 /* Set a style for the submit/login button */
 .form-container .btn {
- background-color: #4CAF50;
- color: white;
- padding: 16px 20px;
- border: none;
- cursor: pointer;
- width: 48%;
- margin: 1%;
- margin-bottom:10px;
- opacity: 0.8;
+  background-color: #4caf50;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 48%;
+  margin: 1%;
+  margin-bottom: 10px;
+  opacity: 0.8;
 }
 
 /* Add some hover effects to buttons */
-.form-container .btn:hover, .open-button:hover {
- opacity: 2;
+.form-container .btn:hover,
+.open-button:hover {
+  opacity: 2;
 }
-
-div.btn-group {
-    
-  position: absolute;
-  top: 3.5vh;
-  right: 1vw;
-
-}
-
-button.btn-index {
-
- margin: 0.3vw;
- height: 6vh;
-  width: 7vw;
- border-width: 0.1rem;
- border-color: black;
- 
-}
-
-
-
-
-
-
-
