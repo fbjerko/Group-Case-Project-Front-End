@@ -4,7 +4,7 @@ import { Router } from "../routes";
 const Login = () => (
   <div className="form-div" id="myForm">
     <form className="form-container">
-      <h1>Login</h1>
+      <h2>Login</h2>
 
       <label for="email">
         <b>Email</b>
