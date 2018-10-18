@@ -33,7 +33,7 @@ class Create extends Component {
 
           <div className="btn-admin-create-top">
             <button className="btn-create" onClick={this._createUser}>
-              Users
+              Person
             </button>
 
             <button className="btn-create" onClick={this._matches}>
