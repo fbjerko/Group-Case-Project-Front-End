@@ -7,7 +7,7 @@ const Register = () => (
     
       <div className="form-div" id="myForm">
   <form className="form-container">
-    <h1>Register</h1>
+    <h2>Register</h2>
 
     <label for="email"><b>Email</b></label>
     <input type="text" placeholder="Enter Email" className="email" required/>
