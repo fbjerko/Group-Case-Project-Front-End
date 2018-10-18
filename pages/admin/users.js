@@ -7,8 +7,7 @@ class Create extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      players: false,
-
+      createUser: false
     };
 
     this._createUser = this._createUser.bind(this);
@@ -16,16 +15,16 @@ class Create extends Component {
 
   _createUser() {
     this.setState({
-      createUsers: !this.state.createUsers
+      createUser: !this.state.createUser
     });
 
-    console.log(this.state.createUsers + " ");
+    console.log(this.state.createUser + " ");
   }
 
   componentDidMount() {}
 
   render() {
-    if (this.state.createUsers === true) {
+    if (this.state.createUser === true) {
       return (
         <div>
           <LayoutGlobal />
@@ -66,25 +65,11 @@ class Create extends Component {
 
             <div className="btn-admin-create-top">
               <button className="btn-create" onClick={this._createUser}>
-                Person
-              </button>
-
-              <button className="btn-create" onClick={this._matches}>
-                Matches
-              </button>
-
-              <button className="btn-create" onClick={this._teams}>
-                Teams
-              </button>
-
-              <button className="btn-create" onClick={this._teams}>
-                Teams
+                Configure
               </button>
             </div>
 
-          
-
-            {this.state.createUsers ? <CreateUser /> : null}
+            {this.state.createUser ? <CreateUser /> : null}
 
             <IndexReturn />
           </div>

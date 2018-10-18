@@ -11,21 +11,21 @@ class Teams extends Component {
 
     };
 
-    this._createUser = this._createUser.bind(this);
+    this._createTeam = this._createTeam.bind(this);
   }
 
-  _createUser() {
+  _createTeam() {
     this.setState({
-      createUsers: !this.state.createUsers
+      createTeam: !this.state.createTeam
     });
 
-    console.log(this.state.createUsers + " ");
+    console.log(this.state.createTeam + " ");
   }
 
   componentDidMount() {}
 
   render() {
-    if (this.state.createUsers === true) {
+    if (this.state.createTeam === true) {
       return (
         <div>
           <LayoutGlobal />
@@ -34,7 +34,7 @@ class Teams extends Component {
             <h1>Teams</h1>
 
             <div className="btn-admin-create-top">
-              <button className="btn-create" onClick={this._createUser}>
+              <button className="btn-create" onClick={this._createTeam}>
                 Create
               </button>
 
@@ -48,7 +48,7 @@ class Teams extends Component {
             </div>
 
             <div className="btn-admin-create-bottom">
-              <button className="btn-create" onClick={this._createUser}>
+              <button className="btn-create" onClick={this._createTeam}>
                 Back
               </button>
             </div>
@@ -65,26 +65,15 @@ class Teams extends Component {
             <h1>Teams</h1>
 
             <div className="btn-admin-create-top">
-              <button className="btn-create" onClick={this._createUser}>
-                Person
+              <button className="btn-create" onClick={this._createTeam}>
+                Configure
               </button>
 
-              <button className="btn-create" onClick={this._matches}>
-                Matches
-              </button>
-
-              <button className="btn-create" onClick={this._teams}>
-                Teams
-              </button>
-
-              <button className="btn-create" onClick={this._teams}>
-                Teams
-              </button>
             </div>
 
             
 
-            {this.state.createUsers ? <CreateUser /> : null}
+            {this.state.createTeam ? <CreateUser /> : null}
 
             <IndexReturn />
           </div>

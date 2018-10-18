@@ -4,110 +4,79 @@ import IndexReturn from "../../components/IndexReturn";
 import NavBar from "../../components/NavBar";
 
 class Stadiums extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-          players: false,
-    
-        };
-    
-        this._createUser = this._createUser.bind(this);
-      }
-    
-      _createUser() {
-        this.setState({
-          createUsers: !this.state.createUsers
-        });
-    
-        console.log(this.state.createUsers + " ");
-      }
-    
-      componentDidMount() {}
-    
-      render() {
-        if (this.state.createUsers === true) {
-          return (
-            <div>
-              <LayoutGlobal />
-              <NavBar />
-              <div className="container">
-                <h1>Stadums</h1>
-    
-                <div className="btn-admin-create-top">
-                  <button className="btn-create" onClick={this._createUser}>
-                    Create
-                  </button>
-    
-                  <button className="btn-create" onClick={this._matches}>
-                    Update
-                  </button>
-    
-                  <button className="btn-create" onClick={this._teams}>
-                    Delete
-                  </button>
-                </div>
-    
-                <div className="btn-admin-create-bottom">
-                  <button className="btn-create" onClick={this._createUser}>
-                    Back
-                  </button>
-                </div>
-              </div>
+  constructor(props) {
+    super(props);
+    this.state = {
+      createStadium: false
+    };
+
+    this._createStadium = this._createStadium.bind(this);
+  }
+
+  _createStadium() {
+    this.setState({
+      createStadium: !this.state.createStadium
+    });
+
+    console.log(this.state.createStadium + " ");
+  }
+
+  componentDidMount() {}
+
+  render() {
+    if (this.state.createStadium === true) {
+      return (
+        <div>
+          <LayoutGlobal />
+          <NavBar />
+          <div className="container">
+            <h1>Stadiums</h1>
+
+            <div className="btn-admin-create-top">
+              <button className="btn-create" onClick={this._createStadium}>
+                Create
+              </button>
+
+              <button className="btn-create" onClick={this._matches}>
+                Update
+              </button>
+
+              <button className="btn-create" onClick={this._teams}>
+                Delete
+              </button>
             </div>
-          );
-        } else {
-          return (
-            <div>
-              <LayoutGlobal />
-              <NavBar />
-    
-              <div className="container">
-                <h1>Stadiums</h1>
-    
-                <div className="btn-admin-create-top">
-                  <button className="btn-create" onClick={this._createUser}>
-                    Person
-                  </button>
-    
-                  <button className="btn-create" onClick={this._matches}>
-                    Matches
-                  </button>
-    
-                  <button className="btn-create" onClick={this._teams}>
-                    Teams
-                  </button>
-    
-                  <button className="btn-create" onClick={this._teams}>
-                    Teams
-                  </button>
-                </div>
-    
-                <div className="btn-admin-create-bottom">
-                  <button className="btn-create" onClick={this._tables}>
-                    Tables
-                  </button>
-    
-                  <button className="btn-create" onClick={this._matches}>
-                    Matches
-                  </button>
-    
-                  <button className="btn-create" onClick={this._teams}>
-                    Teams
-                  </button>
-    
-                  <button className="btn-create" onClick={this._teams}>
-                    Teams
-                  </button>
-                </div>
-    
-                {this.state.createUsers ? <CreateUser /> : null}
-    
-                <IndexReturn />
-              </div>
+
+            <div className="btn-admin-create-bottom">
+              <button className="btn-create" onClick={this._createStadium}>
+                Back
+              </button>
             </div>
-          );
-        }
-      }
+          </div>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <LayoutGlobal />
+          <NavBar />
+
+          <div className="container">
+            <h1>Stadiums</h1>
+
+            <div className="btn-admin-create-top">
+              <button className="btn-create" onClick={this._createStadium}>
+                Configure
+              </button>
+            </div>
+
+            {this.state.createStadium ? <CreateUser /> : null}
+
+            <IndexReturn />
+          </div>
+        </div>
+      );
+    }
+  }
 }
 
 export default Stadiums;

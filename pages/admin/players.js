@@ -7,25 +7,25 @@ class Players extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      players: false,
+      createPlayer: false,
 
     };
 
-    this._createUser = this._createUser.bind(this);
+    this._createPlayer = this._createPlayer.bind(this);
   }
 
-  _createUser() {
+  _createPlayer() {
     this.setState({
-      createUsers: !this.state.createUsers
+      createPlayer: !this.state.createPlayer
     });
 
-    console.log(this.state.createUsers + " ");
+    console.log(this.state.createPlayer + " ");
   }
 
   componentDidMount() {}
 
   render() {
-    if (this.state.createUsers === true) {
+    if (this.state.createPlayer === true) {
       return (
         <div>
           <LayoutGlobal />
@@ -34,7 +34,7 @@ class Players extends Component {
             <h1>Players</h1>
 
             <div className="btn-admin-create-top">
-              <button className="btn-create" onClick={this._createUser}>
+              <button className="btn-create" onClick={this._createPlayer}>
                 Create
               </button>
 
@@ -48,7 +48,7 @@ class Players extends Component {
             </div>
 
             <div className="btn-admin-create-bottom">
-              <button className="btn-create" onClick={this._createUser}>
+              <button className="btn-create" onClick={this._createPlayer}>
                 Back
               </button>
             </div>
@@ -65,26 +65,16 @@ class Players extends Component {
             <h1>Players</h1>
 
             <div className="btn-admin-create-top">
-              <button className="btn-create" onClick={this._createUser}>
-                Person
+              <button className="btn-create" onClick={this._createPlayer}>
+                Configure
               </button>
 
-              <button className="btn-create" onClick={this._matches}>
-                Matches
-              </button>
-
-              <button className="btn-create" onClick={this._teams}>
-                Teams
-              </button>
-
-              <button className="btn-create" onClick={this._teams}>
-                Teams
-              </button>
+            
             </div>
 
             
 
-            {this.state.createUsers ? <CreateUser /> : null}
+            {this.state.createPlayer ? <CreateUser /> : null}
 
             <IndexReturn />
           </div>
