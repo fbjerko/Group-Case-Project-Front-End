@@ -70,11 +70,11 @@ class Index extends Component {
         <LayoutGlobal />
 
         <div className="btn-group">
-          <button className="btn-index" onClick={this._onLoginClick}>
+          <button className="btn-index-top" onClick={this._onLoginClick}>
             Log in
           </button>
 
-          <button className="btn-index" onClick={this._onRegisterClick}>
+          <button className="btn-index-top" onClick={this._onRegisterClick}>
             Register
           </button>
         </div>

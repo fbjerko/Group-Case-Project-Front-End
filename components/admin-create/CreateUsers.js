@@ -27,7 +27,7 @@ function postPlayer() {
         dateOfBirth: document.getElementById("dateOfBirth").value
       })
   );
-}
+} 
 
  
 

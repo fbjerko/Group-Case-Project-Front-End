@@ -8,7 +8,13 @@ class Create extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      createUsers: false
+      players: false,
+      coach: false,
+      matches: false,
+      teams: false,
+      stadium: false,
+      location: false
+
     };
 
     this._createUser = this._createUser.bind(this);
@@ -16,63 +22,97 @@ class Create extends Component {
 
   _createUser() {
     this.setState({
-      createUsers: true
+      createUsers: !this.state.createUsers
     });
+
+    console.log(this.state.createUsers + " ");
   }
 
   componentDidMount() {}
 
   render() {
-    return (
-      <div>
-        <LayoutGlobal />
-        <NavBar />
+    if (this.state.createUsers === true) {
+      return (
+        <div>
+          <LayoutGlobal />
+          <NavBar />
+          <div className="container">
+            <h1>Edit</h1>
 
-        <div className="container">
-          <h1>Matches</h1>
+            <div className="btn-admin-create-top">
+              <button className="btn-create" onClick={this._createUser}>
+                Create
+              </button>
 
-          <div className="btn-admin-create-top">
-            <button className="btn-create" onClick={this._createUser}>
-              Person
-            </button>
+              <button className="btn-create" onClick={this._matches}>
+                Update
+              </button>
 
-            <button className="btn-create" onClick={this._matches}>
-              Matches
-            </button>
+              <button className="btn-create" onClick={this._teams}>
+                Delete
+              </button>
+            </div>
 
-            <button className="btn-create" onClick={this._teams}>
-              Teams
-            </button>
-
-            <button className="btn-create" onClick={this._teams}>
-              Teams
-            </button>
+            <div className="btn-admin-create-bottom">
+              <button className="btn-create" onClick={this._createUser}>
+                Back
+              </button>
+            </div>
           </div>
-
-          <div className="btn-admin-create-bottom">
-            <button className="btn-create" onClick={this._tables}>
-              Tables
-            </button>
-
-            <button className="btn-create" onClick={this._matches}>
-              Matches
-            </button>
-
-            <button className="btn-create" onClick={this._teams}>
-              Teams
-            </button>
-
-            <button className="btn-create" onClick={this._teams}>
-              Teams
-            </button>
-          </div>
-
-          {this.state.createUsers ? <CreateUser /> : null}
-
-          <IndexReturn />
         </div>
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div>
+          <LayoutGlobal />
+          <NavBar />
+
+          <div className="container">
+            <h1>Edit</h1>
+
+            <div className="btn-admin-create-top">
+              <button className="btn-create" onClick={this._createUser}>
+                Person
+              </button>
+
+              <button className="btn-create" onClick={this._matches}>
+                Matches
+              </button>
+
+              <button className="btn-create" onClick={this._teams}>
+                Teams
+              </button>
+
+              <button className="btn-create" onClick={this._teams}>
+                Teams
+              </button>
+            </div>
+
+            <div className="btn-admin-create-bottom">
+              <button className="btn-create" onClick={this._tables}>
+                Tables
+              </button>
+
+              <button className="btn-create" onClick={this._matches}>
+                Matches
+              </button>
+
+              <button className="btn-create" onClick={this._teams}>
+                Teams
+              </button>
+
+              <button className="btn-create" onClick={this._teams}>
+                Teams
+              </button>
+            </div>
+
+            {this.state.createUsers ? <CreateUser /> : null}
+
+            <IndexReturn />
+          </div>
+        </div>
+      );
+    }
   }
 }
 

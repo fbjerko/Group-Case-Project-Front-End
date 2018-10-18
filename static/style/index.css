@@ -54,9 +54,9 @@ div.btn-group {
   right: 1vw;
 }
 
-button.btn-index {
+button.btn-index-top {
   margin: 0.3vw;
-  height: 6vh;
+  height: 7vh;
   width: 7vw;
   border-width: 0.1rem;
   border-color: black;
