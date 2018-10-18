@@ -1,5 +1,4 @@
-import Head from "next/head";
-import SideNav, { MenuIcon } from "react-simple-sidenav";
+
 import { Router } from "../routes";
 
 const NavBar = () => (
