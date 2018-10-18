@@ -4,22 +4,32 @@ import { Router } from "../../routes";
 function postPlayer() {
   console.log(document.getElementById("firstName").value);
 
-  fetch(
-    "http://experisfotballmanager-env.qedd2mt7g3.eu-west-2.elasticbeanstalk.com/api/person",
-    {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
+  var xhttp = new XMLHttpRequest();
+
+  xhttp.onreadystatechange = function() {
+    if (xhttp.readyState === 4 && xhttp.status === 200) {
+      // Bruker finnes, sjekker passord
+      //alert("User " + username + " has been added");
+      Router.pushRoute("/admin/create");
+    }
+
+    if (xhttp.status !== 200) {
+      console.log("Failed");
+      Router.pushRoute("/admin/create ");
+    }
+  };
+  xhttp.open("POST", "http://localhost:5000/api/person", true);
+  xhttp.setRequestHeader("Content-type", "application/json");
+  xhttp.send(
+    JSON.stringify({
         firstName: document.getElementById("firstName").value,
         lastName: document.getElementById("lastName").value,
         dateOfBirth: document.getElementById("dateOfBirth").value
       })
-    }
   );
 }
+
+ 
 
 const CreateUser = () => (
   <div className="form-div" id="myForm">
