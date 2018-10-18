@@ -3,7 +3,7 @@ import LayoutGlobal from "../../components/LayoutGlobal";
 import IndexReturn from "../../components/IndexReturn";
 import NavBar from "../../components/NavBar";
 
-class Stadiums extends Component {
+class Coaches extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -31,7 +31,7 @@ class Stadiums extends Component {
               <LayoutGlobal />
               <NavBar />
               <div className="container">
-                <h1>Stadums</h1>
+                <h1>Coaches</h1>
     
                 <div className="btn-admin-create-top">
                   <button className="btn-create" onClick={this._createUser}>
@@ -62,7 +62,7 @@ class Stadiums extends Component {
               <NavBar />
     
               <div className="container">
-                <h1>Stadiums</h1>
+                <h1>Coaches</h1>
     
                 <div className="btn-admin-create-top">
                   <button className="btn-create" onClick={this._createUser}>
@@ -82,23 +82,7 @@ class Stadiums extends Component {
                   </button>
                 </div>
     
-                <div className="btn-admin-create-bottom">
-                  <button className="btn-create" onClick={this._tables}>
-                    Tables
-                  </button>
-    
-                  <button className="btn-create" onClick={this._matches}>
-                    Matches
-                  </button>
-    
-                  <button className="btn-create" onClick={this._teams}>
-                    Teams
-                  </button>
-    
-                  <button className="btn-create" onClick={this._teams}>
-                    Teams
-                  </button>
-                </div>
+               
     
                 {this.state.createUsers ? <CreateUser /> : null}
     
@@ -110,4 +94,4 @@ class Stadiums extends Component {
       }
 }
 
-export default Stadiums;
+export default Coaches;

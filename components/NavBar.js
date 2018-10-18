@@ -9,6 +9,9 @@ const NavBar = () => (
       <a href="#" onClick={() => Router.pushRoute("/admin/players")}>
         Players
       </a>
+      <a href="#" onClick={() => Router.pushRoute("/admin/coaches")}>
+        Coaches
+      </a>
       <a href="#" onClick={() => Router.pushRoute("/admin/teams")}>
         Teams
       </a>
