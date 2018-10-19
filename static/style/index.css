@@ -7,7 +7,6 @@ div.info-container {
   align-items: center;
   text-align: center;
   margin-top: 10vh;
-  z-index: -1;
 }
 
 div.btn-index-menu {

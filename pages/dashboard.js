@@ -56,14 +56,14 @@ class Dashboard extends Component {
            <div>
            {this.state.showTeam ? <TeamsInfo /> : null}
 
-             <div className="frontpage-info2">
+             <div className="dashboard-info2">
                <div className="top">
                  <h2>Teams</h2>
                </div>
                <ul>{teamsinfoList}
                </ul>
              </div>
-             <div className="frontpage-info2">
+             <div className="dashboard-info2">
                <div className="top">
                  <h2>Matches</h2>
                </div>
