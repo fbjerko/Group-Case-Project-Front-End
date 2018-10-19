@@ -46,6 +46,11 @@ button.btn-nav {
   background-size: contain;
 }
 
+#btn-teams {
+    background: url(../images/teams.jpg) ;
+  background-size: contain;
+}
+
 button.btn-create {
   margin: 2vh;
   height: 10vh;
