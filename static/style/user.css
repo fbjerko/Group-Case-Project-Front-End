@@ -37,3 +37,19 @@
     height: 30vh;
     width: 10vw;
  }
+
+ div.dashboard-info1 {
+    float: left;
+    height: 50vh;
+    width: 25vw;
+    border:2px solid black;
+    margin-left: 1vw;
+  }
+
+  div.dashboard-info2 {   
+    float: right;
+    height: 50vh;
+    width: 25vw;
+    border:2px solid black;
+    margin-left: 1vw;
+  }
