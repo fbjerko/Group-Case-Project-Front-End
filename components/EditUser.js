@@ -1,9 +1,34 @@
 import React from "react";
 
+function editUser() {
+  console.log(document.getElementById("userName").value);
+
+  var xhttp = new XMLHttpRequest();
+
+  xhttp.open("PUT", "http://localhost:5000/api/user", true);
+  xhttp.setRequestHeader("Content-type", "application/json");
+  xhttp.send(
+    JSON.stringify({
+      userName: document.getElementById("userName").value,
+      email: document.getElementById("email").value,
+      password: document.getElementById("psw").value
+    })
+  );
+
+  var json = JSON.stringify({
+    userName: document.getElementById("userName").value,
+    email: document.getElementById("email").value,
+    password: document.getElementById("psw").value
+  });
+}
+
 const EditUser = () => (
   <div className="editform-div" id="myForm">
     <form className="form-container">
       <h2>Your account</h2>
+
+   <label for="username"><b>Username</b></label>
+    <input type="text" placeholder="Enter User name" id="userName" required />
 
    <label for="firstname"><b>First name</b></label>
     <input type="text" placeholder="Enter First name" className="firstname" required/>
@@ -23,7 +48,7 @@ const EditUser = () => (
       <button
         type="button"
         className="save-btn"
-        onClick={console.log("Så flink du er til å lagre")}
+        onClick={editUser}
       >
         Save changes
       </button>

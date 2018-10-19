@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import LayoutGlobal from "../components/LayoutGlobal";
 import EditUser from "../components/EditUser";
 import TeamsInfo from "../components/TeamsInfo";
+import MatchInfo from "../components/MatchInfo";
 import { Router } from "../routes";
 
 
@@ -11,11 +12,13 @@ class Dashboard extends Component {
     this.state = {
       showEdit: false,
       showTeam: false,
+      showMatchInfo: false,
       userInfo: ["Tonje", "Lasse", "Fredrik", "Karoline"]
     };
 
     this._onEditClick = this._onEditClick.bind(this);
     this._onTeamClick = this._onTeamClick.bind(this);
+    this._onMatchClick = this._onMatchClick.bind(this);
 
   }
 
@@ -32,6 +35,13 @@ class Dashboard extends Component {
       showTeam: !this.state.showTeam,
     });
   }
+
+  _onMatchClick() {
+    this.setState({
+      showMatchInfo: !this.state.showMatchInfo,
+    });
+  }
+
 
   componentDidMount() {}
 
@@ -69,7 +79,7 @@ class Dashboard extends Component {
                </div>
                <ul>{userinfoList}</ul>
                <div id="demo" className="collapse">
-                Maddafacka
+               {this.state.showMatchInfo ? <MatchInfo /> : null}
                 </div>
              </div>
            </div>
