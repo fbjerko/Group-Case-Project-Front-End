@@ -2,13 +2,13 @@ import React, { Component } from "react";
 import LayoutGlobal from "../../components/LayoutGlobal";
 import IndexReturn from "../../components/IndexReturn";
 import NavBar from "../../components/NavBar";
+import AdminReturn from "../../components/AdminReturn";
 
 class Matches extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      createMatches: false,
-
+      createMatches: false
     };
 
     this._createMatches = this._createMatches.bind(this);
@@ -68,8 +68,10 @@ class Matches extends Component {
               <button className="btn-create" onClick={this._createMatches}>
                 Configure
               </button>
+            </div>
 
-             
+            <div className="btn-admin-create-bottom">
+              <AdminReturn/>
             </div>
 
             {this.state.createMatches ? <CreateUser /> : null}

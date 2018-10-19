@@ -10,15 +10,17 @@ function registerUser() {
     if (xhttp.readyState === 4 && xhttp.status === 200) {
 
       Router.pushRoute("/");
-      console.log("User registered");
+      alert("User registered");
+      console.log("USer Register");
+      console.log(json);
     }
 
     if (xhttp.status !== 200) {
-      console.log(json);
+      
       console.log()
     }
   };
-  xhttp.open("POST", "http://localhost:5000/api/person", true);
+  xhttp.open("POST", "http://localhost:5000/api/user", true);
   xhttp.setRequestHeader("Content-type", "application/json");
   xhttp.send(
     JSON.stringify({

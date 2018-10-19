@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import LayoutGlobal from "../../components/LayoutGlobal";
 import IndexReturn from "../../components/IndexReturn";
 import NavBar from "../../components/NavBar";
+import AdminReturn from "../../components/AdminReturn";
 
-class Coaches extends Component {
+class Managers extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -68,7 +69,10 @@ class Coaches extends Component {
                   <button className="btn-create" onClick={this._createCoach}>
                     Configure
                   </button>
-    
+                </div>
+
+                <div className="btn-admin-create-bottom">
+                <AdminReturn />
                 </div>
     
                
@@ -83,4 +87,4 @@ class Coaches extends Component {
       }
 }
 
-export default Coaches;
+export default Managers;

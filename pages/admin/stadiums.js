@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import LayoutGlobal from "../../components/LayoutGlobal";
 import IndexReturn from "../../components/IndexReturn";
 import NavBar from "../../components/NavBar";
+import AdminReturn from "../../components/AdminReturn";
 
 class Stadiums extends Component {
   constructor(props) {
@@ -67,6 +68,10 @@ class Stadiums extends Component {
               <button className="btn-create" onClick={this._createStadium}>
                 Configure
               </button>
+            </div>
+
+            <div className="btn-admin-create-bottom">
+              <AdminReturn/>
             </div>
 
             {this.state.createStadium ? <CreateUser /> : null}

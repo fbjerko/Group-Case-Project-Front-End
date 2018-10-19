@@ -21,9 +21,7 @@ const NavBar = () => (
       <a href="#" onClick={() => Router.pushRoute("/admin/stadiums")}>
         Stadiums
       </a>
-      <a href="#" onClick={() => Router.pushRoute("/admin/create")}>
-        Create
-      </a>
+     
     </div>
   </div>
 );

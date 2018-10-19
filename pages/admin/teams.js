@@ -2,13 +2,13 @@ import React, { Component } from "react";
 import LayoutGlobal from "../../components/LayoutGlobal";
 import IndexReturn from "../../components/IndexReturn";
 import NavBar from "../../components/NavBar";
+import AdminReturn from "../../components/AdminReturn";
 
 class Teams extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      players: false,
-
+      players: false
     };
 
     this._createTeam = this._createTeam.bind(this);
@@ -68,10 +68,11 @@ class Teams extends Component {
               <button className="btn-create" onClick={this._createTeam}>
                 Configure
               </button>
-
             </div>
 
-            
+            <div className="btn-admin-create-bottom">
+              <AdminReturn/>
+            </div>
 
             {this.state.createTeam ? <CreateUser /> : null}
 
