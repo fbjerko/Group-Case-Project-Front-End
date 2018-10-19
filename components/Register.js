@@ -43,8 +43,22 @@ const Register = () => (
       <b>User name</b>
       <input type="text" placeholder="Enter User name" id="userName" required />
 
+<<<<<<< HEAD
       <b>Email</b>
       <input type="text" placeholder="Enter Email" id="email" required />
+=======
+     <label for="username"><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" className="username" required/>
+
+    <label for="firstname"><b>First name</b></label>
+    <input type="text" placeholder="Enter First name" className="firstname" required/>
+
+    <label for="lastname"><b>Last name</b></label>
+    <input type="text" placeholder="Enter Last Name" className="lastname" required/>
+
+    <label for="email"><b>Email</b></label>
+    <input type="text" placeholder="Enter Email" className="email" required/>
+>>>>>>> 373d03e4ca6a85fb612184cfe3c51a34b7764257
 
       <b>Password</b>
       <input type="password" placeholder="Enter Password" id="psw" required />

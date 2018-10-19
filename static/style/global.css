@@ -12,6 +12,7 @@ body {
 button {
   margin: auto;
   margin: 0.3rem;
+<<<<<<< HEAD
   height: 5vh;
   min-height: 1.3cm;
   width: 7vw;
@@ -20,7 +21,14 @@ button {
   border-color: black;
 
 }
+=======
+  height: 4rem;
+  width: 7rem;
+>>>>>>> 373d03e4ca6a85fb612184cfe3c51a34b7764257
 
+  border-color: black;
+  border-radius: 10%;
+=======
 .btn-ret {
   position:absolute;
   bottom:2vh;
@@ -36,7 +44,7 @@ button:hover {
 
 .logo {
   display: grid;
-height: 100%;
+
   margin: auto;
   margin-top: 2rem;
   
