@@ -6,8 +6,8 @@ div.info-container {
   justify-content: center;
   align-items: center;
   text-align: center;
-  margin-top: 10vh;  
-
+  margin-top: 10vh;
+  z-index: -1;
 }
 
 div.btn-index-menu {
@@ -25,43 +25,7 @@ button.index-menu {
   height: 7vh;
 }
 
-  div.frontpage-info1 {
-    
-    
-    float: left;
-    height: 50vh;
-    width: 25vw;
-    border:2px solid black;
-    margin-left: 1vw;
-  }
-
-  div.frontpage-info2 {
-    
-    
-   
-    float: right;
-    height: 50vh;
-    width: 25vw;
-    border:2px solid black;
-    margin-left: 1vw;
-  }
-  div.top {
-    border-bottom:2px solid black;
-    line-height:20px; vertical-align:middle
-  }
-
-  div.top h2{
-    text-align: center;
-}
-
- form {
-   border-width: 1rem;
-   border-color: black;
- }
-
- .form-div {
-
-   div.frontpage-info1 {
+div.frontpage-info1 {
   height: 50vh;
   width: 25vw;
   border: 2px solid black;
@@ -129,12 +93,6 @@ form {
 }
 
 /* Full-width input fields */
-.form-container input[type=text], .form-container input[type=password] {
- width: 97%;
- height: 1.5rem;
- margin: 5px 2px 10px 2px;
- background: #f1f1f1;
-
 .form-container input[type="text"],
 .form-container input[type="password"] {
   width: 97%;
