@@ -6,8 +6,7 @@ div.info-container {
   justify-content: center;
   align-items: center;
   text-align: center;
-  margin-top: 10vh;  
-
+  margin-top: 10vh;
 }
 
 div.btn-index-menu {
@@ -25,43 +24,7 @@ button.index-menu {
   height: 7vh;
 }
 
-  div.frontpage-info1 {
-    
-    
-    float: left;
-    height: 50vh;
-    width: 25vw;
-    border:2px solid black;
-    margin-left: 1vw;
-  }
-
-  div.frontpage-info2 {
-    
-    
-   
-    float: right;
-    height: 50vh;
-    width: 25vw;
-    border:2px solid black;
-    margin-left: 1vw;
-  }
-  div.top {
-    border-bottom:2px solid black;
-    line-height:20px; vertical-align:middle
-  }
-
-  div.top h2{
-    text-align: center;
-}
-
- form {
-   border-width: 1rem;
-   border-color: black;
- }
-
- .form-div {
-
-   div.frontpage-info1 {
+div.frontpage-info1 {
   height: 50vh;
   width: 25vw;
   border: 2px solid black;
@@ -90,9 +53,9 @@ div.btn-group {
   right: 1vw;
 }
 
-button.btn-index {
+button.btn-index-top {
   margin: 0.3vw;
-  height: 6vh;
+  height: 7vh;
   width: 7vw;
   border-width: 0.1rem;
   border-color: black;
@@ -114,31 +77,24 @@ form {
   align-items: center;
   text-align: center;
   margin-top: 5vh;
-  z-index: 10;
+
 }
 
 .form-container {
-  padding: 1vh;
+  padding: 1rem;
   background-color: rgb(194, 204, 224);
-  width: 20rem;
+  width: 27rem;
   border: solid;
   border-width: 0.1rem;
-
   border-color: black;
-  z-index: 100;
+
 }
 
 /* Full-width input fields */
-.form-container input[type=text], .form-container input[type=password] {
- width: 97%;
- height: 1.5rem;
- margin: 5px 2px 10px 2px;
- background: #f1f1f1;
-
 .form-container input[type="text"],
 .form-container input[type="password"] {
   width: 97%;
-  height: 2rem;
+  height: 3rem;
   margin: 5px 2px 10px 2px;
   background: #f1f1f1;
 }

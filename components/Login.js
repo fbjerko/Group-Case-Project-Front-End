@@ -6,14 +6,12 @@ const Login = () => (
     <form className="form-container">
       <h2>Login</h2>
 
-      <label for="email">
-        <b>Email</b>
-      </label>
+      <b>Email</b>
+
       <input type="text" placeholder="Enter Email" className="email" required />
 
-      <label for="psw">
-        <b>Password</b>
-      </label>
+      <b>Password</b>
+
       <input
         type="password"
         placeholder="Enter Password"

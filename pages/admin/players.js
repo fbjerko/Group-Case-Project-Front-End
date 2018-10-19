@@ -3,38 +3,38 @@ import LayoutGlobal from "../../components/LayoutGlobal";
 import IndexReturn from "../../components/IndexReturn";
 import NavBar from "../../components/NavBar";
 
-class Matches extends Component {
+class Players extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      createMatches: false,
+      createPlayer: false,
 
     };
 
-    this._createMatches = this._createMatches.bind(this);
+    this._createPlayer = this._createPlayer.bind(this);
   }
 
-  _createMatches() {
+  _createPlayer() {
     this.setState({
-      createMatches: !this.state.createMatches
+      createPlayer: !this.state.createPlayer
     });
 
-    console.log(this.state.createMatches + " ");
+    console.log(this.state.createPlayer + " ");
   }
 
   componentDidMount() {}
 
   render() {
-    if (this.state.createMatches === true) {
+    if (this.state.createPlayer === true) {
       return (
         <div>
           <LayoutGlobal />
           <NavBar />
           <div className="container">
-            <h1>Matches</h1>
+            <h1>Players</h1>
 
             <div className="btn-admin-create-top">
-              <button className="btn-create" onClick={this._createMatches}>
+              <button className="btn-create" onClick={this._createPlayer}>
                 Create
               </button>
 
@@ -48,7 +48,7 @@ class Matches extends Component {
             </div>
 
             <div className="btn-admin-create-bottom">
-              <button className="btn-create" onClick={this._createMatches}>
+              <button className="btn-create" onClick={this._createPlayer}>
                 Back
               </button>
             </div>
@@ -62,17 +62,19 @@ class Matches extends Component {
           <NavBar />
 
           <div className="container">
-            <h1>Matches</h1>
+            <h1>Players</h1>
 
             <div className="btn-admin-create-top">
-              <button className="btn-create" onClick={this._createMatches}>
+              <button className="btn-create" onClick={this._createPlayer}>
                 Configure
               </button>
 
-             
+            
             </div>
 
-            {this.state.createMatches ? <CreateUser /> : null}
+            
+
+            {this.state.createPlayer ? <CreateUser /> : null}
 
             <IndexReturn />
           </div>
@@ -82,4 +84,4 @@ class Matches extends Component {
   }
 }
 
-export default Matches;
+export default Players;

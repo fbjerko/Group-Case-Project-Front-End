@@ -3,38 +3,37 @@ import LayoutGlobal from "../../components/LayoutGlobal";
 import IndexReturn from "../../components/IndexReturn";
 import NavBar from "../../components/NavBar";
 
-class Matches extends Component {
+class Stadiums extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      createMatches: false,
-
+      createStadium: false
     };
 
-    this._createMatches = this._createMatches.bind(this);
+    this._createStadium = this._createStadium.bind(this);
   }
 
-  _createMatches() {
+  _createStadium() {
     this.setState({
-      createMatches: !this.state.createMatches
+      createStadium: !this.state.createStadium
     });
 
-    console.log(this.state.createMatches + " ");
+    console.log(this.state.createStadium + " ");
   }
 
   componentDidMount() {}
 
   render() {
-    if (this.state.createMatches === true) {
+    if (this.state.createStadium === true) {
       return (
         <div>
           <LayoutGlobal />
           <NavBar />
           <div className="container">
-            <h1>Matches</h1>
+            <h1>Stadiums</h1>
 
             <div className="btn-admin-create-top">
-              <button className="btn-create" onClick={this._createMatches}>
+              <button className="btn-create" onClick={this._createStadium}>
                 Create
               </button>
 
@@ -48,7 +47,7 @@ class Matches extends Component {
             </div>
 
             <div className="btn-admin-create-bottom">
-              <button className="btn-create" onClick={this._createMatches}>
+              <button className="btn-create" onClick={this._createStadium}>
                 Back
               </button>
             </div>
@@ -62,17 +61,15 @@ class Matches extends Component {
           <NavBar />
 
           <div className="container">
-            <h1>Matches</h1>
+            <h1>Stadiums</h1>
 
             <div className="btn-admin-create-top">
-              <button className="btn-create" onClick={this._createMatches}>
+              <button className="btn-create" onClick={this._createStadium}>
                 Configure
               </button>
-
-             
             </div>
 
-            {this.state.createMatches ? <CreateUser /> : null}
+            {this.state.createStadium ? <CreateUser /> : null}
 
             <IndexReturn />
           </div>
@@ -82,4 +79,4 @@ class Matches extends Component {
   }
 }
 
-export default Matches;
+export default Stadiums;

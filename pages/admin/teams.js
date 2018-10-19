@@ -6,25 +6,80 @@ import NavBar from "../../components/NavBar";
 class Teams extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      players: false,
+
+    };
+
+    this._createTeam = this._createTeam.bind(this);
+  }
+
+  _createTeam() {
+    this.setState({
+      createTeam: !this.state.createTeam
+    });
+
+    console.log(this.state.createTeam + " ");
   }
 
   componentDidMount() {}
 
   render() {
-    return (
+    if (this.state.createTeam === true) {
+      return (
         <div>
-        <LayoutGlobal />
+          <LayoutGlobal />
+          <NavBar />
+          <div className="container">
+            <h1>Teams</h1>
 
-        <NavBar />
+            <div className="btn-admin-create-top">
+              <button className="btn-create" onClick={this._createTeam}>
+                Create
+              </button>
 
-        <div className="container">
-          <h1>Teams</h1>
+              <button className="btn-create" onClick={this._matches}>
+                Update
+              </button>
 
-          <IndexReturn />
+              <button className="btn-create" onClick={this._teams}>
+                Delete
+              </button>
+            </div>
+
+            <div className="btn-admin-create-bottom">
+              <button className="btn-create" onClick={this._createTeam}>
+                Back
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div>
+          <LayoutGlobal />
+          <NavBar />
+
+          <div className="container">
+            <h1>Teams</h1>
+
+            <div className="btn-admin-create-top">
+              <button className="btn-create" onClick={this._createTeam}>
+                Configure
+              </button>
+
+            </div>
+
+            
+
+            {this.state.createTeam ? <CreateUser /> : null}
+
+            <IndexReturn />
+          </div>
+        </div>
+      );
+    }
   }
 }
 
