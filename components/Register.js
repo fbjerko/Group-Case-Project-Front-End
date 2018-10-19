@@ -10,7 +10,8 @@ function registerUser() {
     if (xhttp.readyState === 4 && xhttp.status === 200) {
 
       Router.pushRoute("/");
-      console.log("User registered");
+      alert("User registered");
+      console.log("USer Register");
     }
 
     if (xhttp.status !== 200) {
