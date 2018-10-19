@@ -94,20 +94,16 @@ form {
 .form-container input[type="text"],
 .form-container input[type="password"] {
   width: 97%;
-  height: 3rem;
-  margin: 5px 2px 10px 2px;
+  height: 4rem;
+  margin: 10px 2px 10px 2px;
   background: #f1f1f1;
 }
 
-/* When the inputs get focus, do something */
-.form-container input[type="text"]:focus,
-.form-container input[type="password"]:focus {
-  background-color: #ddd;
-}
+
 
 /* Set a style for the submit/login button */
 .form-container .btn {
-  background-color: #4caf50;
+  background-color: #94e085;
   color: white;
   padding: 16px 20px;
   border: none;
