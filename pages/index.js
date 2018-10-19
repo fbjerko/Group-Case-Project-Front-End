@@ -96,6 +96,8 @@ class Index extends Component {
           {this.state.matches ? <IndexInfo matches={this.state.matches}/> : null}
           {this.state.teams ? <IndexInfo teams={this.state.teams}/> : null}
         </div>
+
+        
         {this.state.showLogin ? <Login /> : null}
         {this.state.showRegister ? <Register /> : null}
       </div>
