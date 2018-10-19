@@ -1,51 +1,44 @@
 body {
-  background: url(../images/wallpaper.jpeg) no-repeat center center fixed;
-  background-size: cover;
-  height: 100vh;
-  min-height: 100vh;
-  display: block;
-  flex-direction: column;
-  justify-content: center;
-  margin: auto;
-}
-
-button {
-  margin: auto;
-  margin: 0.3rem;
-<<<<<<< HEAD
-  height: 5vh;
-  min-height: 1.3cm;
-  width: 7vw;
-  min-width: 2cm;
-  background-color: rgb(213, 221, 221);
-  border-color: black;
-
-}
-=======
-  height: 4rem;
-  width: 7rem;
->>>>>>> 373d03e4ca6a85fb612184cfe3c51a34b7764257
-
-  border-color: black;
-  border-radius: 10%;
-=======
-.btn-ret {
-  position:absolute;
-  bottom:2vh;
-  right: 46.5%;
+    background: url(../images/wallpaper.jpeg) no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+    min-height: 100vh;
+    display: block;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+  }
   
-/* Må fikses posisjonen her*/
+  button {
+    margin: auto;
+    margin: 0.3rem;
+    height: 5vh;
+    min-height: 1.3cm;
+    width: 7vw;
+    min-width: 2cm;
+    background-color: rgb(213, 221, 221);
+    border-color: black;
   
-}
-
-button:hover {
-  background-color: rgb(153, 153, 184);
-}
-
-.logo {
-  display: grid;
-
-  margin: auto;
-  margin-top: 2rem;
+  }
   
-}
+  .btn-ret {
+    position:absolute;
+    bottom:2vh;
+    right: 46.5%;
+    
+  /* Må fikses posisjonen her*/
+    
+  }
+  
+  button:hover {
+    background-color: rgb(153, 153, 184);
+  }
+  
+  .logo {
+    display: grid;
+  height: 100%;
+    margin: auto;
+    margin-top: 2rem;
+    
+  }
+  
