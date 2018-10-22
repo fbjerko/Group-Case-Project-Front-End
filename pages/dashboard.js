@@ -86,7 +86,7 @@ class Dashboard extends Component {
            </div>
          </div>
 
-        <div className="logoutUser">
+        <div className="btn-index">
     <button type="button"
     onClick={() => Router.pushRoute("/")}
     > Log out

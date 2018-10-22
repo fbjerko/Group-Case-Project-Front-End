@@ -22,6 +22,9 @@
     margin: auto;
     margin-top: 1rem;
     float: right; 
+    font-weight: bold;
+    font-family: Verdana;
+    font-size: 14px;
  }
 
  .editform-div {
