@@ -16,8 +16,10 @@ button {
   min-height: 1.3cm;
   width: 7vw;
   min-width: 2cm;
+  
   background-color: rgb(213, 221, 221);
   border-color: black;
+  border-radius: 6px;
 }
 
 .btn-ret {
