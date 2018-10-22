@@ -28,7 +28,7 @@ const EditUser = () => (
       <h2>Your account</h2>
 
    <label for="username"><b>Username</b></label>
-    <input type="text" placeholder="Enter User name" id="userName" required />
+    <input type="text" placeholder="Enter User name" className="userName" required />
 
    <label for="firstname"><b>First name</b></label>
     <input type="text" placeholder="Enter First name" className="firstname" required/>

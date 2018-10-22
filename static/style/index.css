@@ -30,7 +30,7 @@ div.frontpage-info1 {
   width: 25vw;
   border: 2px solid black;
   margin-left: 1vw;
-  background-color: lightgray;
+	background-color:#f9f9f9;
 }
 
 div.frontpage-info2 {
@@ -38,7 +38,7 @@ div.frontpage-info2 {
   width: 25vw;
   border: 2px solid black;
   margin-left: 1vw;
-  background-color: lightgray;
+	background-color:#f9f9f9;
 
 }
 div.top {
@@ -107,7 +107,7 @@ form {
 
 /* Set a style for the submit/login button */
 .form-container .btn {
-  background-color: #53eb35;
+	background-color:#f9f9f9;
   color: black;
   padding: 16px 20px;
   border: solid;
@@ -126,7 +126,7 @@ form {
 }
 
 body {
-  background: url(../images/cutefootball.jpg) no-repeat center center fixed;
+  background: url(../images/background.jpg) no-repeat center center fixed;
   background-size: cover;
   height: 100vh;
   min-height: 100vh;

@@ -1,5 +1,5 @@
 body {
-  background: url(../images/wallpaper.jpeg) no-repeat center center fixed;
+  background: url(../images/background.jpg) no-repeat center center fixed;
   background-size: cover;
   height: 100vh;
   min-height: 100vh;
@@ -17,9 +17,7 @@ button {
   width: 7vw;
   min-width: 2cm;
   
-  background-color: rgb(213, 221, 221);
-  border-color: black;
-  border-radius: 6px;
+
 }
 
 .btn-ret {
@@ -30,13 +28,16 @@ button {
   /* Må fikses posisjonen her*/
 }
 
-button:hover {
-  background-color: rgb(153, 153, 184);
-}
 
 .logo {
   display: grid;
   height: 100%;
   margin: auto;
   margin-top: 2rem;
+}
+
+h2 {
+  font-family: Verdana;
+  text-shadow:2px 2px 2px #000000;
+  color: yellow;
 }

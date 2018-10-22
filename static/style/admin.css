@@ -25,7 +25,7 @@ div.btn-admin-nav {
 }
 div.btn-admin-nav {
     width: 100%;
-    margin-top: 5rem;
+    margin-top: 10rem;
 }
 
 button.btn-nav {
@@ -38,20 +38,98 @@ button.btn-nav {
 
 #btn-stadium {
     background: url(../images/stadium.jpg) ;
-  background-size: contain;
+  background-size: 400px 300px;
+  font-family: Verdana;
+  text-shadow:2px 2px 2px #000000;
+  font-size: 50px;
+  color: yellow;
 }
 
 #btn-players {
     background: url(../images/players.jpg) ;
   background-size: contain;
+  font-family: Verdana;
+  text-shadow:2px 2px 2px #000000;
+  font-size: 50px;
+  color: yellow;
 }
 
 #btn-teams {
     background: url(../images/teams.jpg) ;
-  background-size: contain;
+  background-size: 400px 370px;
+  font-family: Verdana;
+  text-shadow:2px 2px 2px #000000;
+  font-size: 50px;
+  color: yellow;
+}
+
+#btn-managers {
+  background: url(../images/managers.jpg) ;
+background-size: 400px 300px;
+font-family: Verdana;
+text-shadow:2px 2px 2px #000000;
+font-size: 50px;
+color: yellow;
+}
+
+#btn-users {
+  background: url(../images/users.jpg) ;
+background-size: 315px 300px;
+font-family: Verdana;
+text-shadow:2px 2px 2px #000000;
+font-size: 50px;
+color: yellow;
+}
+
+#btn-matches {
+  background: url(../images/matches.png) ;
+background-size: 400px 300px;
+font-family: Verdana;
+text-shadow:2px 2px 2px #000000;
+font-size: 50px;
+color: yellow;
 }
 
 button.btn-create {
   margin: 2vh;
   height: 10vh;
+}
+
+.btn-index{
+  -moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f9f9f9), color-stop(1, #e9e9e9));
+	background:-moz-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+	background:-webkit-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+	background:-o-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+	background:-ms-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+	background:linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#e9e9e9',GradientType=0);
+	background-color:#f9f9f9;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:2px solid #dcdcdc;
+	display:inline-block;
+	cursor:pointer;
+	color:#262626;
+	font-family:Verdana;
+	font-size:17px;
+	font-weight:bold;
+	text-decoration:none;
+  text-shadow:0px 0px 0px #ffffff;
+  position: absolute;
+  right: 47%;
+  bottom: 5%;
+}
+.btn-index:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #e9e9e9), color-stop(1, #f9f9f9));
+	background:-moz-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+	background:-webkit-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+	background:-o-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+	background:-ms-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+	background:linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#e9e9e9', endColorstr='#f9f9f9',GradientType=0);
+	background-color:#e9e9e9;
 }
