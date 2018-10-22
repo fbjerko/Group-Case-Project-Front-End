@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import LayoutGlobal from "../components/LayoutGlobal";
 import IndexReturn from "../components/IndexReturn";
-import NavBar from "../components/NavBar";
 import { Router } from "../routes";
 import Players from "./admin/players";
 

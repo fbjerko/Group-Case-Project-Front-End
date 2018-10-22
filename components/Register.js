@@ -195,7 +195,7 @@ const Register = () => (
         
       />
 
-      <button type="button" className="btn" onClick={validate}>
+      <button type="button" className="btn-" onClick={validate}>
         Register
       </button>
     </form>

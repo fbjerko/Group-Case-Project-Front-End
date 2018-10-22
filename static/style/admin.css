@@ -60,10 +60,11 @@ button.btn-nav {
 button.btn-create {
  
   margin: 2vh;
+  margin-bottom: 0.5rem;
   height: 10vh;
 }
 
 .btn-ret-admin {
-
+  margin-top: 0.1rem;
   /* Må fikses posisjonen her*/
 }

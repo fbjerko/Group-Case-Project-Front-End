@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import LayoutGlobal from "../../components/LayoutGlobal";
 import IndexReturn from "../../components/IndexReturn";
-import NavBar from "../../components/NavBar";
+
 import AdminReturn from "../../components/AdminReturn";
 
 class Managers extends Component {
@@ -30,7 +30,7 @@ class Managers extends Component {
           return (
             <div>
               <LayoutGlobal />
-              <NavBar />
+             
               <div className="container">
                 <h1>Coaches</h1>
     
@@ -60,7 +60,7 @@ class Managers extends Component {
           return (
             <div>
               <LayoutGlobal />
-              <NavBar />
+           
     
               <div className="container">
                 <h1>Coaches</h1>
