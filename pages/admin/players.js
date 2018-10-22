@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import LayoutGlobal from "../../components/LayoutGlobal";
 import IndexReturn from "../../components/IndexReturn";
 import AdminReturn from "../../components/AdminReturn";
+import ListPlayers from "../../components/admin-player/ListPlayers";
 
 class Players extends Component {
   constructor(props) {
@@ -68,6 +69,10 @@ class Players extends Component {
                 Configure
               </button>
               <AdminReturn />
+            </div>
+
+            <div className="list-info-admin">
+              <ListPlayers/>
             </div>
 
             <IndexReturn />
