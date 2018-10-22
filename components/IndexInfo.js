@@ -14,24 +14,27 @@ class IndexInfo extends Component {
    
   }
 
+  getPlayersInfo(params) {
+    const Http = new XMLHttpRequest();
+    const url='http://localhost:5000/api/player/all';
+    Http.open("GET", url);
+    Http.send();
+    Http.onreadystatechange=(e)=>{
+    console.log(Http.responseText)
+    
+
+
+    var playerInfo = Http.responseText;
+
+    return JSON.stringify(playerInfo);
+
+
+    }
+    
+  }
   render() {
     const infoList = this.state.info.map(inf => <li> {inf}</li>);
    
-    if(this.props.tables){
-        return (
-            <div className="info-container">
-            <div>
-              <div className="frontpage-info1">
-                <div className="top">
-                  <h2>Tables</h2>
-                </div>
-                <ul>{infoList}</ul>
-              </div>
-            </div>
-          </div>
-        );
-    }
-
     if(this.props.matches){
         return (
             <div className="info-container">
@@ -53,7 +56,7 @@ class IndexInfo extends Component {
             <div>
               <div className="frontpage-info2">
                 <div className="top">
-                  <h2>Teams</h2>
+                  <h2>Players</h2>
                 </div>
                 <ul>{infoList}</ul>
               </div>

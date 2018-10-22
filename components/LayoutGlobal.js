@@ -16,10 +16,6 @@ export default props => {
           type="text/css"
           href="../static/style/admin.css"
           /> 
-           <link rel="stylesheet"
-          type="text/css"
-          href="../static/style/index.css"
-          /> 
             <link rel="stylesheet"
           type="text/css"
           href="../static/style/navbar.css"
