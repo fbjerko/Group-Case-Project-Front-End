@@ -11,7 +11,6 @@ class Index extends Component {
     this.state = {
       showLogin: false,
       showRegister: false,
-      tables: false,
       matches: false,
       teams: false
     };
@@ -20,7 +19,6 @@ class Index extends Component {
     this._onRegisterClick = this._onRegisterClick.bind(this);
     this._matches = this._matches.bind(this);
     this._teams = this._teams.bind(this);
-    this._tables = this._tables.bind(this);
   }
 
   _onLoginClick() {
@@ -45,13 +43,6 @@ class Index extends Component {
     });
   }
 
-  _tables() {
-    this.setState({
-      tables: !this.state.tables,
-      teams: false,
-      matches: false
-    });
-  }
 
   _teams() {
     this.setState({
@@ -80,19 +71,15 @@ class Index extends Component {
         </div>
 
         <div className="btn-index-menu">
-          <button className="myButton" onClick={this._tables}>
-            Tables
-          </button>
 
           <button className="myButton" onClick={this._matches}>
             Matches
           </button>
 
           <button className="myButton" onClick={this._teams}>
-            Teams
+            Players
           </button>
 
-          {this.state.tables ? <IndexInfo tables={this.state.tables}/> : null}
           {this.state.matches ? <IndexInfo matches={this.state.matches}/> : null}
           {this.state.teams ? <IndexInfo teams={this.state.teams}/> : null}
         </div>
