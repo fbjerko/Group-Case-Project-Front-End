@@ -8,11 +8,12 @@ const Login = () => (
 
       <b>Email</b>
 
-      <input type="text" placeholder="Enter Email" className="email" required />
+      <input type="text" id="email" placeholder="Enter Email" className="email" required />
 
       <b>Password</b>
 
       <input
+        id="psw"
         type="password"
         placeholder="Enter Password"
         className="psw"
@@ -22,7 +23,25 @@ const Login = () => (
       <button
         type="button"
         className="btn"
-        onClick={() => Router.pushRoute("/admin")}
+        onClick={() => {
+          fetch('http://localhost:3000/login', {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              password: document.getElementById('psw').value,
+              email: document.getElementById("email").value
+            })
+          }).then((response)=>{
+            
+              if(response.status==200){
+                Router.pushRoute("/admin");
+              }
+            });
+
+          }}
       >
         Login Admin
       </button>
