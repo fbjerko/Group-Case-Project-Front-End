@@ -1,0 +1,55 @@
+.logoutUser {
+    
+    display: column;
+    flex-direction: column;
+    justify-content: left;
+    align-items: left;
+    text-align: center;
+    min-height: 50vh;
+    margin: auto;
+    margin-top: 1rem;
+    float: left;
+     
+ }
+
+ .editUser {
+    display: column;
+    flex-direction: column;
+    justify-content: left;
+    align-items: left;
+    text-align: center;
+    min-height: 50vh;
+    margin: auto;
+    margin-top: 1rem;
+    float: right; 
+ }
+
+ .editform-div {
+
+    position: absolute;
+    right: 0vh;
+ }
+ .showTeams {
+    position: absolute;
+    right: 20vh;
+    border:2px solid black;
+    float: right;
+    height: 30vh;
+    width: 10vw;
+ }
+
+ div.dashboard-info1 {
+    float: left;
+    height: 50vh;
+    width: 25vw;
+    border:2px solid black;
+    margin-left: 1vw;
+  }
+
+  div.dashboard-info2 {   
+    float: right;
+    height: 50vh;
+    width: 25vw;
+    border:2px solid black;
+    margin-left: 1vw;
+  }

@@ -1,0 +1,57 @@
+.container {
+  display: column;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: auto;
+  width: 100%;
+  min-height: 100vh;
+  margin-top: 1rem;
+}
+
+div.btn-admin-create-top {
+width: 100%;
+  margin-top: 7vh;
+}
+
+div.btn-admin-create-bottom {
+    
+}
+
+div.btn-admin-nav {
+    width: 100%;
+    margin-top: 15rem;
+}
+div.btn-admin-nav {
+    width: 100%;
+    margin-top: 5rem;
+}
+
+button.btn-nav {
+    margin: 0.5rem;
+    min-width: 20rem;
+    min-height: 15rem;
+    width: 40rem;
+    height: 30rem;
+  }
+
+#btn-stadium {
+    background: url(../images/stadium.jpg) ;
+  background-size: contain;
+}
+
+#btn-players {
+    background: url(../images/players.jpg) ;
+  background-size: contain;
+}
+
+#btn-teams {
+    background: url(../images/teams.jpg) ;
+  background-size: contain;
+}
+
+button.btn-create {
+  margin: 2vh;
+  height: 10vh;
+}

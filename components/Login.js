@@ -4,16 +4,14 @@ import { Router } from "../routes";
 const Login = () => (
   <div className="form-div" id="myForm">
     <form className="form-container">
-      <h1>Login</h1>
+      <h2>Login</h2>
 
-      <label for="email">
-        <b>Email</b>
-      </label>
+      <b>Email</b>
+
       <input type="text" placeholder="Enter Email" className="email" required />
 
-      <label for="psw">
-        <b>Password</b>
-      </label>
+      <b>Password</b>
+
       <input
         type="password"
         placeholder="Enter Password"
@@ -24,16 +22,16 @@ const Login = () => (
       <button
         type="button"
         className="btn"
-        onClick={() => Router.pushRoute("/dashboard")}
+        onClick={() => Router.pushRoute("/admin")}
       >
-        Login Coach
+        Login Admin
       </button>
       <button
         type="button"
         className="btn"
         onClick={() => Router.pushRoute("/dashboard")}
       >
-        Login Player
+        Login User
       </button>
     </form>
   </div>
