@@ -7,7 +7,7 @@ const AdminReturn = () => (
 
     <button
     type="button"
-    className="btn-admin-create-top"
+    className="btn-ret-admin"
     onClick={() => Router.pushRoute("/admin")}
   >
    Return to Dashboard

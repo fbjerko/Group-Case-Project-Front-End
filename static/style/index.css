@@ -22,6 +22,7 @@ div.btn-index-menu {
 button.index-menu {
   width: 7vw;
   height: 7vh;
+  border-width: 0.1rem;
 }
 
 div.frontpage-info1 {
@@ -107,7 +108,6 @@ form {
   color: black;
   padding: 16px 20px;
   border: solid;
-  border-width: 0.1rem;
   cursor: pointer;
   width: 48%;
   margin: 1%;

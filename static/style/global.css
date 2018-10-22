@@ -16,7 +16,7 @@ button {
   min-height: 1.3cm;
   width: 7vw;
   min-width: 2cm;
-  
+  border-width: 0.1rem;
   background-color: rgb(213, 221, 221);
   border-color: black;
   border-radius: 6px;
@@ -38,5 +38,5 @@ button:hover {
   display: grid;
   height: 100%;
   margin: auto;
-  margin-top: 2rem;
+  margin-top: 4rem;
 }

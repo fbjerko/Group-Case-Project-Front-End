@@ -12,7 +12,13 @@
 
 div.btn-admin-create-top {
 width: 100%;
-  margin-top: 7vh;
+margin-top: 7vh;
+}
+
+div.btn-admin-create-btn {
+  position: absolute;
+  top: 3.5vh;
+  right: 3vw;
 }
 
 div.btn-admin-create-bottom {
@@ -52,6 +58,12 @@ button.btn-nav {
 }
 
 button.btn-create {
+ 
   margin: 2vh;
   height: 10vh;
+}
+
+.btn-ret-admin {
+
+  /* Må fikses posisjonen her*/
 }
