@@ -17,6 +17,7 @@ class Dashboard extends Component {
     this._onEditClick = this._onEditClick.bind(this);
     this._onTeamClick = this._onTeamClick.bind(this);
     this._onMatchClick = this._onMatchClick.bind(this);
+    this._getTeams = this._getTeams.bind(this);
 
   }
 
