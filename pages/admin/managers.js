@@ -65,11 +65,12 @@ class Managers extends Component {
               <div className="container">
                 <h1>Coaches</h1>
     
-                <div className="btn-admin-create-top">
-                  <button className="btn-create" onClick={this._createCoach}>
-                    Configure
-                  </button>
-                </div>
+                <div className="btn-admin-config">
+              <button className="btn-create" onClick={this._createCoach}>
+                Configure
+              </button>
+              <AdminReturn />
+            </div>
 
                 <div className="btn-admin-create-bottom">
                 <AdminReturn />

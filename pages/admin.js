@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import LayoutGlobal from "../components/LayoutGlobal";
 import IndexReturn from "../components/IndexReturn";
 import { Router } from "../routes";
-import Players from "./admin/players";
+
 
 
 
@@ -56,9 +56,7 @@ class Dashboard extends Component {
             </div>
 
              </div>
-        <button type="button" className="btn-index" onClick={() => Router.pushRoute("/")}>
-         Log out
-        </button>
+       <IndexReturn/>
       </div>
     );
   }

@@ -64,7 +64,7 @@ class Players extends Component {
           <div className="container">
             <h1>Players</h1>
 
-            <div className="btn-admin-create-btn">
+            <div className="btn-admin-config">
               <button className="btn-create" onClick={this._createPlayer}>
                 Configure
               </button>
