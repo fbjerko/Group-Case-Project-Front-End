@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import LayoutGlobal from "../../components/LayoutGlobal";
 import IndexReturn from "../../components/IndexReturn";
-import NavBar from "../../components/NavBar";
+
 import AdminReturn from "../../components/AdminReturn";
 
 class Create extends Component {
@@ -29,7 +29,7 @@ class Create extends Component {
       return (
         <div>
           <LayoutGlobal />
-          <NavBar />
+         
           <div className="container">
             <h1>Users</h1>
 
@@ -59,7 +59,7 @@ class Create extends Component {
       return (
         <div>
           <LayoutGlobal />
-          <NavBar />
+        
 
           <div className="container">
             <h1>Users</h1>

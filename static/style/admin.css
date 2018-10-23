@@ -12,7 +12,13 @@
 
 div.btn-admin-create-top {
 width: 100%;
-  margin-top: 7vh;
+margin-top: 7vh;
+}
+
+div.btn-admin-create-btn {
+  position: absolute;
+  top: 3.5vh;
+  right: 3vw;
 }
 
 div.btn-admin-create-bottom {
@@ -91,9 +97,16 @@ color: yellow;
 }
 
 button.btn-create {
+ 
   margin: 2vh;
+  margin-bottom: 0.5rem;
   height: 10vh;
 }
+
+
+.btn-ret-admin {
+  margin-top: 0.1rem;
+  /* Må fikses posisjonen her*/
 
 .btn-index{
   -moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
@@ -132,4 +145,5 @@ button.btn-create {
 	background:linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#e9e9e9', endColorstr='#f9f9f9',GradientType=0);
 	background-color:#e9e9e9;
+
 }

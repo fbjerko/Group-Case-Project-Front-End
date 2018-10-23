@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import LayoutGlobal from "../../components/LayoutGlobal";
 import IndexReturn from "../../components/IndexReturn";
-import NavBar from "../../components/NavBar";
 import AdminReturn from "../../components/AdminReturn";
+import ListPlayers from "../../components/admin-player/ListPlayers";
 
 class Players extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      players: [],
       createPlayer: false
     };
 
@@ -29,7 +30,7 @@ class Players extends Component {
       return (
         <div>
           <LayoutGlobal />
-          <NavBar />
+
           <div className="container">
             <h1>Players</h1>
 
@@ -59,24 +60,24 @@ class Players extends Component {
       return (
         <div>
           <LayoutGlobal />
-          <NavBar />
 
           <div className="container">
             <h1>Players</h1>
 
-            <div className="btn-admin-create-top">
+            <div className="btn-admin-create-btn">
               <button className="btn-create" onClick={this._createPlayer}>
                 Configure
               </button>
+              <AdminReturn />
             </div>
 
-            <div className="btn-admin-create-bottom">
-              <AdminReturn/>
+            <div className="list-info-admin">
+              <ListPlayers/>
             </div>
-
-            {this.state.createPlayer ? <CreateUser /> : null}
 
             <IndexReturn />
+
+            {this.state.createPlayer ? <CreateUser /> : null}
           </div>
         </div>
       );
