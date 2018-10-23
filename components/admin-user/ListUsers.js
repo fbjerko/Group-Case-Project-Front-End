@@ -11,12 +11,12 @@ class ListUsers extends Component {
       activeUser: "",
       displayUser: false
     };
-
+    this.showUser = this.showUser.bind(this);
+    this.closeUser = this.closeUser.bind(this);
    
   }
 
   showUser(id) {
-    console.log("huhuhuhu" + id);
     this.setState({
       activeUser: id,
       displayUser: true
@@ -30,13 +30,10 @@ class ListUsers extends Component {
       })
   }
 
-  async componentDidMount() {
-    // "await fetch(`http://localhost:5000/api/user/all`);"
-    console.log("Hey");
+  async componentWillMount() {
     try {
       const response = await fetch(`http://localhost:5000/api/user/all`);
         const json = await response.json();
-      console.log(json);
       this.setState({
         users: json,
         ready: true
@@ -49,14 +46,14 @@ class ListUsers extends Component {
   render() {
     const users = this.state.users.map(user => {
       return (
-        <li key={user.userId}>
-          <button
+        
+          <button key={user.userId}
             className="btn-admin-player"
             onClick={() => this.showUser(user.userId)}
           >
-            {user.userId + " "}
+            {user.userName + " "}
           </button>
-        </li>
+        
       );
     });
 
@@ -84,10 +81,10 @@ class ListUsers extends Component {
       );
     } else {
       return (
-        <div>
-            <br/>
-          <ul>{users}</ul>
-          <br />
+        <div className="group-admin-get-all">
+            
+          {users}
+         
         </div>
       );
     }

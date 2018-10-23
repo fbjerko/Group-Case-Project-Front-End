@@ -10,9 +10,9 @@ body {
 }
 
 button {
-  font-family:Verdana;
-	font-size:15px;
-	font-weight:bold;
+  font-family: Verdana;
+  font-size: 15px;
+  font-weight: bold;
   margin: auto;
   margin: 0.3rem;
   height: 5vh;
@@ -22,7 +22,6 @@ button {
   border-width: 0.1rem;
   border-color: black;
   border-radius: 6px;
-
 }
 
 button.btn-ret {
@@ -33,7 +32,6 @@ button.btn-ret {
   /* Må fikses posisjonen her*/
 }
 
-
 .logo {
   display: grid;
   height: 100%;
@@ -42,3 +40,16 @@ button.btn-ret {
 }
 
 
+
+h1,
+h2 {
+  color: white;
+  font-family: Verdana;
+  font-weight: bold;
+}
+
+p {
+  color: white;
+  font-size: 150%;
+  font-family: Verdana;
+}

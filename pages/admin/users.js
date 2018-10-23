@@ -20,7 +20,7 @@ class Users extends Component {
       createUser: !this.state.createUser
     });
 
-    console.log(this.state.createUser + " ");
+
   }
 
   componentDidMount() {}

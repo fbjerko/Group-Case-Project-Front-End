@@ -5,41 +5,46 @@ class UserInfo extends Component {
     super(props);
 
     this.state = {
-      playerId: "0",
-      playerInfo: "",
+      userId: "0",
+      userInfo: [],
       ready: false
     };
   }
 
   async componentWillMount() {
-    // "await fetch(`http://localhost:5000/api/user/all`);"
+    
     console.log("Hey");
     try {
       const response = await fetch(
-        `http://localhost:5000/api/player/` + this.props.id
+        `http://localhost:5000/api/user/` + this.props.id
       );
       const json = await response.json();
-      console.log(json);
+      
       this.setState({
-        playerInfo: json + "",
+        userInfo: json ,
         ready: true
       });
+      console.log(json);
     } catch (error) {
       console.log(error);
     }
+
+    
   }
 
   render() {
 
-    const player = this.state.playerInfo
+    const user = this.state.userInfo;
+  
     if (this.state.ready === true) {
       return (
         <div>
-          <h1>ID: {this.props.id}</h1>
-          <br />
-          {player.player + ""}
-          <br />
-          <h2>Her henter vi info om hver enkelt spiller</h2>
+           <p>ID: {user.userId}</p>
+          <p>Username: {user.userName}</p>
+          <p>E-Mail: {user.email}</p>
+          <p>Is Admin: {user.admin + ""}</p>
+          
+
         </div>
       );
     }

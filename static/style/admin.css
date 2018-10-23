@@ -10,6 +10,16 @@
   
 }
 
+div.group-admin-get-all {
+  display: grid;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: auto;
+  margin-top: 5vh;
+}
+
 div.btn-admin-create-top {
 width: 100%;
 margin-top: 6vh;
