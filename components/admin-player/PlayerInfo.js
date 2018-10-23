@@ -30,12 +30,14 @@ class PlayerInfo extends Component {
   }
 
   render() {
+
+    const player = this.state.playerInfo
     if (this.state.ready === true) {
       return (
         <div>
           <h1>ID: {this.props.id}</h1>
           <br />
-          {this.state.playerInfo.person[1] + ""}
+          {player.player + ""}
           <br />
           <h2>Her henter vi info om hver enkelt spiller</h2>
         </div>
