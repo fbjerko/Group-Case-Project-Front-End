@@ -22,7 +22,6 @@ class Dashboard extends Component {
   <LayoutGlobal />
         
         <div className="container">
-        <h1>Dashboard</h1>
        
 
         <div className="btn-admin-nav">
@@ -30,7 +29,7 @@ class Dashboard extends Component {
                 Players
               </button>
 
-              <button className="btn-nav" onClick={() => Router.pushRoute("/admin/managers")}>
+              <button className="btn-nav" id="btn-managers" onClick={() => Router.pushRoute("/admin/managers")}>
                 Managers
               </button>
 
@@ -43,7 +42,7 @@ class Dashboard extends Component {
              <div className="btn-admin-nav-bottom">
               
 
-               <button className="btn-nav" onClick={() => Router.pushRoute("/admin/matches")}>
+               <button className="btn-nav" id="btn-matches" onClick={() => Router.pushRoute("/admin/matches")}>
                 Matches
               </button>
 
@@ -51,18 +50,15 @@ class Dashboard extends Component {
                 Stadiums
               </button>
 
-              <button className="btn-nav" onClick={() => Router.pushRoute("/admin/users")}>
+              <button className="btn-nav" id="btn-users" onClick={() => Router.pushRoute("/admin/users")}>
                 Users
               </button>
             </div>
 
              </div>
-        
-
-        
-       
-        <IndexReturn
-        />
+        <button type="button" className="btn-index" onClick={() => Router.pushRoute("/")}>
+         Log out
+        </button>
       </div>
     );
   }
