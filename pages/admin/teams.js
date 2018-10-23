@@ -77,7 +77,6 @@ class Teams extends Component {
 
             {this.state.createTeam ? <CreateUser /> : null}
 
-            <IndexReturn />
           </div>
         </div>
       );

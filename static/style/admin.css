@@ -10,16 +10,6 @@
   
 }
 
-div.group-admin-get-all {
-  display: grid;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  margin: auto;
-  margin-top: 5vh;
-}
-
 div.btn-admin-create-top {
 width: 100%;
 margin-top: 6vh;
@@ -40,11 +30,29 @@ div.btn-admin-nav {
     margin-top: 5rem;
 }
 
+div.btn-group-admin-get-all {
+  display: grid;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: auto;
+  margin-top: 5vh;
+}
+
+button.btn-admin-get-users {
+
+}
+
+button.btn-admin-get-players {
+  width: 30rem;
+}
+
 
 button.btn-nav {
     margin: 0.5rem;
-    min-width: 20rem;
-    min-height: 15rem;
+    min-width: 25rem;
+    min-height: 18.75rem;
     width: 40rem;
     height: 30rem;
   }

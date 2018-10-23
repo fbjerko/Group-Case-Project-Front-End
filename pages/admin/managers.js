@@ -80,7 +80,7 @@ class Managers extends Component {
     
                 {this.state.createCoach ? <CreateUser /> : null}
     
-                <IndexReturn />
+                
               </div>
             </div>
           );

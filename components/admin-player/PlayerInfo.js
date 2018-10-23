@@ -31,13 +31,13 @@ class PlayerInfo extends Component {
 
   render() {
 
-    const player = this.state.playerInfo
+    const player = this.state.playerInfo;
     if (this.state.ready === true) {
       return (
         <div>
-          <h1>ID: {this.props.id}</h1>
+          <h1>ID: {player.playerId}</h1>
           <br />
-          {player.player + ""}
+          {player[1] + ""}
           <br />
           <h2>Her henter vi info om hver enkelt spiller</h2>
         </div>

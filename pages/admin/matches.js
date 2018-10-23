@@ -75,7 +75,7 @@ class Matches extends Component {
 
             {this.state.createMatches ? <CreateUser /> : null}
 
-            <IndexReturn />
+            
           </div>
         </div>
       );

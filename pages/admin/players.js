@@ -75,7 +75,7 @@ class Players extends Component {
               <ListPlayers/>
             </div>
 
-            <IndexReturn />
+           
 
             {this.state.createPlayer ? <CreateUser /> : null}
           </div>

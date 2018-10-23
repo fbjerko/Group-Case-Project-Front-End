@@ -77,7 +77,7 @@ class Users extends Component {
 
             {this.state.createUser ? <CreateUser /> : null}
 
-            <IndexReturn />
+            
           </div>
         </div>
       );

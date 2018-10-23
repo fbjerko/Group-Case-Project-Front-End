@@ -50,14 +50,14 @@ class ListPlayers extends Component {
   render() {
     const players = this.state.players.map(player => {
       return (
-        <li key={player.playerId}>
-          <button
-            className="btn-admin-player"
-            onClick={() => this.showPlayer(player.playerId)}
+       
+          <button key={player[0]}
+            className="btn-admin-get-players"
+            onClick={() => this.showPlayer(player[0])}
           >
-            {player.playerId + " "}
+            Name: {player[1]} {player[2]} Team: " + {player[3]}
           </button>
-        </li>
+       
       );
     });
 
@@ -85,10 +85,9 @@ class ListPlayers extends Component {
       );
     } else {
       return (
-        <div>
-            <br/>
-          <ul>{players}</ul>
-          <br />
+        <div className="btn-group-admin-get-all">
+          {players}
+          
         </div>
       );
     }

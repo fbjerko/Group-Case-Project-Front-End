@@ -26,8 +26,8 @@ button {
 
 button.btn-ret {
   position: absolute;
-  bottom: 2vh;
-  right: 46.5%;
+  top: 7rem;
+  right: 5vw;
 
   /* Må fikses posisjonen her*/
 }

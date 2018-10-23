@@ -72,7 +72,7 @@ class ListUsers extends Component {
             <UserInfo id={this.state.activeUser} />
           </div>
           <button
-            className="btn-admin-player"
+            className="btn-admin-get-users"
             onClick={this.closeUser}
           >
            Back
@@ -81,7 +81,7 @@ class ListUsers extends Component {
       );
     } else {
       return (
-        <div className="group-admin-get-all">
+        <div className="btn-group-admin-get-all">
             
           {users}
          

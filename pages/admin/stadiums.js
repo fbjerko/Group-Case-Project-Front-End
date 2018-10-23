@@ -76,7 +76,7 @@ class Stadiums extends Component {
 
             {this.state.createStadium ? <CreateUser /> : null}
 
-            <IndexReturn />
+           
           </div>
         </div>
       );
