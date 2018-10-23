@@ -11,7 +11,7 @@ class Dashboard extends Component {
       showTeam: false,
       showMatchInfo: false,
       search: '',
-      userInfo: ["Tonje", "Lasse", "Fredrik", "Karoline"]
+      searchResult: []
     };
 
     this._onEditClick = this._onEditClick.bind(this);
@@ -47,65 +47,63 @@ class Dashboard extends Component {
 
 
   _getTeams(){
-  const Http = new XMLHttpRequest();
-  const url='http://localhost:5000/api/teams/all';
-  Http.open("GET", url);
-  Http.send();
-  Http.onreadystatechange=(e)=>{
-  console.log(Http.responseText)
+    const url='http://localhost:5000/api/teams/all';
+    fetch(url).then(
+      (res)=>res.json().then(
+      (res)=>{
+        if(res.length>0){
+          const searchResult = res.map((team)=>team.name);
+          this.setState({searchResult});
+      }
+      }
+
+      ));
+
+  }
+
   
-
-
-  //var teamInfo = Http.responseText;
-this.setState({
-    userInfo: Http.responseText,
-});
-  }
-
-  }
 
   _getLocations(){
-    const Http = new XMLHttpRequest();
-    const url='http://localhost:5000/api/';
-    Http.open("GET", url);
-    Http.send();
-    Http.onreadystatechange=(e)=>{
-    console.log(Http.responseText)
-    
-  
-  
-    var teamInfo = Http.responseText;
-  
-    return JSON.stringify(teamInfo);
+    const url='http://localhost:5000/api/locations/all';
+    fetch(url).then(
+      (res)=>res.json().then(
+      (res)=>{
+          if(res.length>0){
+            const searchResult = res.map((loc)=>loc.name);
+            this.setState({searchResult});
+          }
+      }
+
+      ));
   
   
     }
   
-  }
+  
 
   _getSeasons(){
-    const Http = new XMLHttpRequest();
-    const url='http://localhost:5000/api/';
-    Http.open("GET", url);
-    Http.send();
-    Http.onreadystatechange=(e)=>{
-    console.log(Http.responseText)
-    
-  
-  
-    var teamInfo = Http.responseText;
-  
-    return JSON.stringify(teamInfo);
+    const url='http://localhost:5000/api/seasons/all';
+    fetch(url).then(
+      (res)=>res.json().then(
+      (res)=>{
+        if(res.length>0){
+          const searchResult = res.map((season)=>season.name);
+          this.setState({searchResult});
+        }
+        
+      }
+
+      ));
   
   
     }
   
-  }
+  
   componentDidMount() {}
 
   render() {
-    const userinfoList = this.state.userInfo.map(userinf => <li key={userinf.toString()}> <button type="button" className="btnDisplay" data-toggle="collapse" data-target="#demo">{userinf}</button></li>);
-    let filtered = this.state.userInfo.filter(
+    const userinfoList = this.state.searchResult.map(userinf => <li key={userinf.toString()}> <button type="button" className="btnDisplay" data-toggle="collapse" data-target="#demo">{userinf}</button></li>);
+    let filtered = this.state.searchResult.filter(
     (userinf) => {
         return userinf.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
     }     
