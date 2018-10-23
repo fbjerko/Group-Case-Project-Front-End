@@ -56,9 +56,10 @@ class Dashboard extends Component {
   
 
 
-  var teamInfo = Http.responseText;
+  //var teamInfo = Http.responseText;
 
-  this.state.userInfo = teamInfo;
+  this.state.userInfo = Http.responseText;
+    console.log(this.state.userInfo);
 
   }
 
