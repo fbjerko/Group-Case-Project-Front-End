@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import LayoutGlobal from "../../components/LayoutGlobal";
 import IndexReturn from "../../components/IndexReturn";
 import AdminReturn from "../../components/AdminReturn";
+import { Router } from "../../routes";
 
 class Matches extends Component {
   constructor(props) {
@@ -33,7 +34,7 @@ class Matches extends Component {
             <h1>Matches</h1>
 
             <div className="btn-admin-create-top">
-              <button className="btn-create" onClick={this._createMatches}>
+              <button className="btn-create" onClick={() => Router.pushRoute("/admin/creatematches")}>
                 Create
               </button>
 
@@ -72,7 +73,7 @@ class Matches extends Component {
             <div className="btn-admin-create-bottom">
               <AdminReturn/>
             </div>
-
+            ;
             {this.state.createMatches ? <CreateUser /> : null}
 
             <IndexReturn />
