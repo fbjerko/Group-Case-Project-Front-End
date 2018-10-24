@@ -6,7 +6,7 @@ class PlayerInfo extends Component {
 
     this.state = {
       playerId: "0",
-      playerInfo: "",
+      playerInfo: [],
       ready: false
     };
   }
@@ -21,7 +21,7 @@ class PlayerInfo extends Component {
       const json = await response.json();
       console.log(json);
       this.setState({
-        playerInfo: json + "",
+        playerInfo: json ,
         ready: true
       });
     } catch (error) {
@@ -35,11 +35,14 @@ class PlayerInfo extends Component {
     if (this.state.ready === true) {
       return (
         <div>
-          <h1>ID: {player.playerId}</h1>
-          <br />
-          {player[1] + ""}
-          <br />
-          <h2>Her henter vi info om hver enkelt spiller</h2>
+          <p>ID: {player.playerId}</p>
+          <p>First Name: {player.person.firstName}</p>
+          <p>Last Name: {player.person.lastName}</p>
+          <p>Date Of Birth: {player.person.dateOfBirth}</p>
+          <p>Country: {player.person.address.country}</p>
+          <p>Team: {player.team.name}</p>
+          
+
         </div>
       );
     }
