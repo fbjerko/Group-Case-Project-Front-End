@@ -47,20 +47,12 @@ class Dashboard extends Component {
 
 
   _getTeams(){
-  const Http = new XMLHttpRequest();
-  const url='http://localhost:5000/api/teams/all';
-  Http.open("GET", url);
-  Http.send();
-  Http.onreadystatechange=(e)=>{
-  console.log(Http.responseText)
-  
 
+    const url='http://localhost:5000/api/teams/all';
+        fetch(url)
+      .then(response => response.json())
+      .then(data => this.setState({ userInfo:data }));
 
-  //var teamInfo = Http.responseText;
-this.setState({
-    userInfo: Http.responseText,
-});
-  }
 
   }
 
