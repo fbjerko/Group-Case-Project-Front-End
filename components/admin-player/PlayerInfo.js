@@ -21,7 +21,7 @@ class PlayerInfo extends Component {
       const json = await response.json();
       console.log(json);
       this.setState({
-        playerInfo: json ,
+        playerInfo: json,
         ready: true
       });
     } catch (error) {
@@ -30,7 +30,6 @@ class PlayerInfo extends Component {
   }
 
   render() {
-
     const player = this.state.playerInfo;
     if (this.state.ready === true) {
       return (
@@ -41,17 +40,16 @@ class PlayerInfo extends Component {
           <p>Date Of Birth: {player.person.dateOfBirth}</p>
           <p>Country: {player.person.address.country}</p>
           <p>Team: {player.team.name}</p>
-          
 
+          <button className="btn-admin-player" onClick={this.props.closePlayer}>
+            Back
+          </button>
         </div>
       );
+    } else {
+      return <div>Loading</div>;
     }
-    else {
-      return(
-        <div>Loading</div>
-      )
-    }
-  } 
+  }
 }
 
 export default PlayerInfo;
