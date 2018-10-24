@@ -160,9 +160,9 @@ class CreatMatches extends Component {
                <h2>Search for teams</h2>
                <input type="text" className="searchTeams" placeholder="Search for team" value={this.state.search} onChange={this.updateSearch.bind(this)}></input>
                </div>
-               Teams <input type="checkbox" id="myCheck"  onClick={this._getTeams}/>
-               Location <input type="checkbox" id="myCheck"  onClick={this._getLocations}/>
-               Season <input type="checkbox" id="myCheck"  onClick={this._getSeasons}/>
+               Teams <input type="radio" name="check" id="myCheck"  onClick={this._getTeams}/>
+               Location <input type="radio" name="check" id="myCheck"  onClick={this._getLocations}/>
+               Season <input type="radio" name="check" id="myCheck"  onClick={this._getSeasons}/>
                <br></br>
                <br></br>
 
