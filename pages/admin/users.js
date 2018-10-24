@@ -3,8 +3,9 @@ import LayoutGlobal from "../../components/LayoutGlobal";
 import IndexReturn from "../../components/IndexReturn";
 
 import AdminReturn from "../../components/AdminReturn";
+import ListUsers from "../../components/admin-user/ListUsers";
 
-class Create extends Component {
+class Users extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -19,7 +20,7 @@ class Create extends Component {
       createUser: !this.state.createUser
     });
 
-    console.log(this.state.createUser + " ");
+
   }
 
   componentDidMount() {}
@@ -29,7 +30,7 @@ class Create extends Component {
       return (
         <div>
           <LayoutGlobal />
-         
+
           <div className="container">
             <h1>Users</h1>
 
@@ -59,24 +60,24 @@ class Create extends Component {
       return (
         <div>
           <LayoutGlobal />
-        
 
           <div className="container">
             <h1>Users</h1>
 
-            <div className="btn-admin-create-top">
+            <div className="btn-admin-config">
               <button className="btn-create" onClick={this._createUser}>
                 Configure
               </button>
+              <AdminReturn />
             </div>
 
-            <div className="btn-admin-create-bottom">
-              <AdminReturn/>
+            <div className="list-info-admin">
+              <ListUsers/>
             </div>
 
             {this.state.createUser ? <CreateUser /> : null}
 
-            <IndexReturn />
+            
           </div>
         </div>
       );
@@ -84,4 +85,4 @@ class Create extends Component {
   }
 }
 
-export default Create;
+export default Users;

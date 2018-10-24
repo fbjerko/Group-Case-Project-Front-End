@@ -64,19 +64,19 @@ class Teams extends Component {
           <div className="container">
             <h1>Teams</h1>
 
-            <div className="btn-admin-create-top">
-              <button className="btn-create" onClick={this._createTeam}>
+            <div className="btn-admin-config">
+              <button className="btn-create" onClick={this._createTeams}>
                 Configure
               </button>
+              <AdminReturn />
             </div>
 
             <div className="btn-admin-create-bottom">
-              <AdminReturn/>
+              
             </div>
 
             {this.state.createTeam ? <CreateUser /> : null}
 
-            <IndexReturn />
           </div>
         </div>
       );

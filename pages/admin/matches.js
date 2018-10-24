@@ -63,19 +63,19 @@ class Matches extends Component {
           <div className="container">
             <h1>Matches</h1>
 
-            <div className="btn-admin-create-top">
+            <div className="btn-admin-config">
               <button className="btn-create" onClick={this._createMatches}>
                 Configure
               </button>
+              <AdminReturn />
             </div>
-
             <div className="btn-admin-create-bottom">
-              <AdminReturn/>
+              
             </div>
 
             {this.state.createMatches ? <CreateUser /> : null}
 
-            <IndexReturn />
+            
           </div>
         </div>
       );

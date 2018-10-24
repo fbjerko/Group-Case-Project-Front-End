@@ -29,7 +29,7 @@ class Stadiums extends Component {
       return (
         <div>
           <LayoutGlobal />
-        
+
           <div className="container">
             <h1>Stadiums</h1>
 
@@ -59,24 +59,24 @@ class Stadiums extends Component {
       return (
         <div>
           <LayoutGlobal />
-          
 
           <div className="container">
             <h1>Stadiums</h1>
 
-            <div className="btn-admin-create-top">
+            <div className="btn-admin-config">
               <button className="btn-create" onClick={this._createStadium}>
                 Configure
               </button>
+              <AdminReturn />
             </div>
 
             <div className="btn-admin-create-bottom">
-              <AdminReturn/>
+             
             </div>
 
             {this.state.createStadium ? <CreateUser /> : null}
 
-            <IndexReturn />
+           
           </div>
         </div>
       );

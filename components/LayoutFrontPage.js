@@ -7,9 +7,11 @@ export default props => {
     return (
         <div>
         <Head>
-           <link rel="stylesheet"
+       
+
+          <link rel="stylesheet"
           type="text/css"
-          href="../static/style/index.css"
+          href="../static/style/global.css"
           /> 
         </Head>
 
