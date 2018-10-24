@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import UserInfo from "./UserInfo";
 
-class ListUsers extends Component {
+class UserList extends Component {
   constructor(props) {
     super(props);
 
@@ -91,15 +91,6 @@ class ListUsers extends Component {
   }
 }
 
-export default ListUsers;
-
-/*
+export default UserList;
 
 
- onClick={this.showPlayer}
-   
-
-
-
-     
-      */

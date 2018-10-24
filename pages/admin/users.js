@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import LayoutGlobal from "../../components/LayoutGlobal";
-import IndexReturn from "../../components/IndexReturn";
-
 import AdminReturn from "../../components/AdminReturn";
-import ListUsers from "../../components/admin-user/ListUsers";
+import UserList from "../../components/admin-user/UserList";
 
 class Users extends Component {
   constructor(props) {
@@ -72,7 +70,7 @@ class Users extends Component {
             </div>
 
             <div className="list-info-admin">
-              <ListUsers/>
+              <UserList/>
             </div>
 
             {this.state.createUser ? <CreateUser /> : null}
