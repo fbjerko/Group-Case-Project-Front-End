@@ -34,11 +34,11 @@ class PlayerList extends Component {
     const players = this.props.players.map(player => {
       return (
         <button
-          key={player.playerId}
+          key={player[0]}
           className="btn-admin-get-players"
-          onClick={() => this.showPlayer(player.playerId)}
+          onClick={() => this.showPlayer(player[0])}
         >
-          Name: {player.person.firstName} {player.person.lastName} Team: " + {player.team.name}
+          Name: {player[1]} {player[2]} Team: " + {player[3]}
         </button>
       );
     });

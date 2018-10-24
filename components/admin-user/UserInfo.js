@@ -43,6 +43,10 @@ class UserInfo extends Component {
           <p>Username: {user.userName}</p>
           <p>E-Mail: {user.email}</p>
           <p>Is Admin: {user.admin + ""}</p>
+
+           <button className="btn-admin-player" onClick={this.props.closeUser}>
+            Back
+          </button>
           
 
         </div>

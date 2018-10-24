@@ -20,7 +20,6 @@ class Players extends Component {
   }
 
   previousPage() {
-  
     if (this.state.currentPage !== 0)
       this.setState(prevState => ({ currentPage: prevState.currentPage - 1 }));
     console.log(this.state.currentPage);
@@ -99,8 +98,6 @@ class Players extends Component {
           <LayoutGlobal />
 
           <div className="container">
-            <h1 />
-
             <div className="btn-admin-config">
               <button className="btn-create" onClick={this._createPlayer}>
                 Configure
@@ -109,15 +106,16 @@ class Players extends Component {
             </div>
 
             <div className="list-info-admin">
-              <ListPlayers players={players} ready={this.state.ready} 
-              nextPage= {this.nextPage}
-              previousPage = {this.previousPage}
+              <ListPlayers
+                players={players}
+                ready={this.state.ready}
+                nextPage={this.nextPage}
+                previousPage={this.previousPage}
               />
             </div>
-            
+
             <h2>Page {this.state.currentPage + 1}</h2>
             {this.state.createPlayer ? <CreateUser /> : null}
-            
           </div>
         </div>
       );
