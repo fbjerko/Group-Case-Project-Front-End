@@ -3,7 +3,7 @@ import LayoutGlobal from "../../components/LayoutGlobal";
 import { Router } from "../../routes";
 
 
-class Dashboard extends Component {
+class CreatMatches extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -11,13 +11,18 @@ class Dashboard extends Component {
       showTeam: false,
       showMatchInfo: false,
       search: '',
-      searchResult: []
+      searchResult: [],
+        selected : '',
+        team1:'',
+        team2:''
     };
 
     this._onEditClick = this._onEditClick.bind(this);
     this._onTeamClick = this._onTeamClick.bind(this);
     this._onMatchClick = this._onMatchClick.bind(this);
     this._getTeams = this._getTeams.bind(this);
+    this.transferSelected = this.transferSelected.bind(this);
+    this.handleChange = this.handleChange.bind(this);
 
   }
 
@@ -25,7 +30,14 @@ class Dashboard extends Component {
       this.setState({search: event.target.value.substr(0,20)});
   }
 
-  
+  handleChange(e){
+      this.setState({selected:e.target.value});
+  }
+
+  transferSelected(){
+      const selected = this.state.selected;
+      this.setState({search:selected});
+  }
 
   _onEditClick() {
     this.setState({
@@ -48,12 +60,21 @@ class Dashboard extends Component {
 
   _getTeams(){
 
-    const url='http://localhost:5000/api/teams/all';
+    const url='http://localhost:5000/api/team/all';
     fetch(url).then(
       (res)=>res.json().then(
       (res)=>{
         if(res.length>0){
-          const searchResult = res.map((team)=>team.name);
+          let searchResult =[];
+
+          for(let team of res){
+            searchResult.push({
+                name:team.name,
+                id:team.teamId
+            });
+          }
+
+
           this.setState({searchResult});
       }
       }
@@ -66,12 +87,19 @@ class Dashboard extends Component {
   
 
   _getLocations(){
-    const url='http://localhost:5000/api/locations/all';
+    const url='http://localhost:5000/api/location/all';
     fetch(url).then(
       (res)=>res.json().then(
       (res)=>{
           if(res.length>0){
-            const searchResult = res.map((loc)=>loc.name);
+              let searchResult =[];
+
+              for(let team of res){
+                  searchResult.push({
+                      name:team.name,
+                      id:team.locationId
+                  });
+              }
             this.setState({searchResult});
           }
       }
@@ -84,12 +112,20 @@ class Dashboard extends Component {
   
 
   _getSeasons(){
-    const url='http://localhost:5000/api/seasons/all';
+    const url='http://localhost:5000/api/season/all';
     fetch(url).then(
       (res)=>res.json().then(
       (res)=>{
         if(res.length>0){
-          const searchResult = res.map((season)=>season.name);
+            let searchResult =[];
+
+            for(let team of res){
+                searchResult.push({
+                    name:team.name,
+                    id:team.seasonId
+                });
+            }
+
           this.setState({searchResult});
         }
         
@@ -104,13 +140,14 @@ class Dashboard extends Component {
   componentDidMount() {}
 
   render() {
-    const userinfoList = this.state.searchResult.map(userinf => <li key={userinf.toString()}> <button type="button" className="btnDisplay" data-toggle="collapse" data-target="#demo">{userinf}</button></li>);
-    let filtered = this.state.searchResult.filter(
-    (userinf) => {
-        return userinf.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
+    //const userinfoList = this.state.searchResult.map(userinf => <li key={userinf.toString()}> <button type="button" className="btnDisplay" data-toggle="collapse" data-target="#demo">{userinf}</button></li>);
+      const  userinfoList = "";
+      let filtered = this.state.searchResult.filter(
+    (team) => {
+        return team.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
     }     
     );
-    const teamsearch = filtered.map(userinf =><option value="value">{userinf}</option>);
+    const teamsearch = filtered.map(team =><option key={team.id} value={team.name}>{team.name}</option>);
 
     
 
@@ -128,13 +165,13 @@ class Dashboard extends Component {
                Season <input type="checkbox" id="myCheck"  onClick={this._getSeasons}/>
                <br></br>
                <br></br>
-               <form className="searchTeamsForm">
-                    <select name="teams" size="10">
+
+                    <select name="teams" size="10" onChange={this.handleChange}>
                     {teamsearch}
                     </select>
                     <br></br>
-                    <input type="submit" value="Select"></input>
-                    </form>
+                    <button type="Submit" onClick={this.transferSelected}>Select</button>
+
                 </div>
              <div className="dashboard-info2">
 
@@ -158,4 +195,4 @@ class Dashboard extends Component {
   }
 }
 
-export default Dashboard;
+export default CreatMatches;
