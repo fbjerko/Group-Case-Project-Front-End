@@ -204,4 +204,29 @@ button.btn-create {
 .btn-ret-admin {
   margin-top: 0.1rem;
   /* Må fikses posisjonen her*/
+
 }
+
+
+  .seasons-container {
+    float: center;
+    height: 50vh;
+    width: 25vw;
+    border:2px solid black;
+    margin-left: 1vw;
+  }
+  div.info-container {
+    position: relative;
+    display: flex;
+    flex-direction: grid;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 10vh;
+    
+  }
+
+
+
+
+
