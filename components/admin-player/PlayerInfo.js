@@ -89,7 +89,7 @@ class PlayerInfo extends Component {
               </tbody>
             </table>
           </div>
-          <button className="btn-admin-player" onClick={this.props.closePlayer}>
+          <button className="btn-admin-player" onClick={this.props.close}>
             Back
           </button>
         </div>

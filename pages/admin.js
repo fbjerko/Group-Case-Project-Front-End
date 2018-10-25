@@ -50,8 +50,8 @@ class Dashboard extends Component {
                 Stadiums
               </button>
 
-              <button className="btn-nav" id="btn-users" onClick={() => Router.pushRoute("/admin/users")}>
-                Users
+              <button className="btn-nav" id="btn-general" onClick={() => Router.pushRoute("/admin/general/users")}>
+                <p>'</p>
               </button>
             </div>
 

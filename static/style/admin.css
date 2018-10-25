@@ -28,6 +28,10 @@ div.btn-admin-nav {
   width: 100%;
   margin-top: 5rem;
 }
+div.btn-admin-nav-bottom {
+  width: 100%;
+ 
+}
 
 div.div-admin-get-all {
   display: grid;
@@ -37,14 +41,14 @@ div.div-admin-get-all {
   text-align: center;
   margin: auto;
   margin-top: 3vh;
-  margin-bottom: 2vh;
+
 }
 
 table {
   color: white;
   font-family: Verdana;
   border-collapse: collapse;
-  margin-top: 2rem;
+  
 }
 
 /* Table for displaying all info about entities admin */
@@ -70,10 +74,17 @@ td.td-admin-get-all {
   cursor: pointer;
 }
 
-/****************************************************/
+td.td-admin-get-all:hover {
+  
+  background-color: rgb(99, 97, 97);
+  opacity: 0.8;
+}
+
+/*******************************************/
 
 
 /* Table for displaying info about single entity */
+/*************************************************************/
 
 table.table-admin-get-one {
   font-size: 150%;
@@ -93,22 +104,24 @@ td.td-admin-get-one {
   padding: 1rem;
   text-align: left;
   width: 50%;
-  cursor: pointer;
+ 
 }
 
-/****************************************************/
+/***************************/
 
 
 
 /* Buttons for admin listing info*/
+/***********************************************************************/
 
 table.table-admin-but {
   font-size: 130%;
   width: 50rem;
   margin: auto;
   margin-top: 2rem;
+  margin-bottom: 3rem;
 }
-/****************************************/
+
 td.td-admin-but {
  
   border: 0.1rem solid rgb(255, 255, 255);
@@ -123,7 +136,7 @@ td.td-admin-but:hover {
   background-color: rgb(99, 97, 97);
   opacity: 0.8;
 }
-/*******************************************************/
+/***********************************/
 
 
 button.btn-admin-get-users {
@@ -177,8 +190,8 @@ button.btn-nav {
   color: yellow;
 }
 
-#btn-users {
-  background: url(../images/users.jpg);
+#btn-general {
+  background: url(../images/general.jpg);
   background-size: 315px 300px;
   font-family: Verdana;
   text-shadow: 2px 2px 2px #000000;
