@@ -1,5 +1,5 @@
 body {
-  background: url(../images/wallpaper.jpeg) no-repeat center center fixed;
+  background: url(../images/background.jpg) no-repeat center center fixed;
   background-size: cover;
   height: 100vh;
   min-height: 100vh;
@@ -10,33 +10,91 @@ body {
 }
 
 button {
+  font-family: Verdana;
+  font-size: 15px;
+  font-weight: bold;
   margin: auto;
   margin: 0.3rem;
   height: 5vh;
   min-height: 1.3cm;
   width: 7vw;
   min-width: 2cm;
-  
-  background-color: rgb(213, 221, 221);
+  border-width: 0.1rem;
   border-color: black;
   border-radius: 6px;
-}
-
-.btn-ret {
-  position: absolute;
-  bottom: 2vh;
-  right: 46.5%;
-
-  /* Må fikses posisjonen her*/
+  -moz-box-shadow: inset 0px 1px 0px 0px #ffffff;
+  -webkit-box-shadow: inset 0px 1px 0px 0px #ffffff;
+  box-shadow: inset 0px 1px 0px 0px #ffffff;
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0.05, #f9f9f9),
+    color-stop(1, #e9e9e9)
+  );
+  background: -moz-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+  background: -webkit-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+  background: -o-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+  background: -ms-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+  background: linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#e9e9e9',GradientType=0);
+  background-color: #f9f9f9;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  border: 2px solid #dcdcdc;
+  display: inline-block;
+  cursor: pointer;
+  color: #262626;
+  font-family: Verdana;
+  font-size: 17px;
+  font-weight: bold;
+  text-decoration: none;
+  text-shadow: 0px 0px 0px #ffffff;
 }
 
 button:hover {
-  background-color: rgb(153, 153, 184);
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0.05, #e9e9e9),
+    color-stop(1, #f9f9f9)
+  );
+  background: -moz-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+  background: -webkit-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+  background: -o-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+  background: -ms-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+  background: linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e9e9e9', endColorstr='#f9f9f9',GradientType=0);
+  background-color: #e9e9e9;
+}
+
+button.btn-ret {
+  position: absolute;
+  top: 7rem;
+  right: 5vw;
+
+  /* Må fikses posisjonen her*/
 }
 
 .logo {
   display: grid;
   height: 100%;
   margin: auto;
-  margin-top: 2rem;
+  margin-top: 6rem;
+}
+
+h1,
+h2 {
+  color: white;
+  font-family: Verdana;
+  font-weight: bold;
+ 
+}
+
+p {
+  color: white;
+  font-size: 150%;
+  font-family: Verdana;
 }

@@ -19,6 +19,7 @@ function registerUser() {
     if (xhttp.status !== 200) {
       
       console.log()
+      console.log(json);
     }
   };
   xhttp.open("POST", "http://localhost:5000/api/user", true);
@@ -27,15 +28,11 @@ function registerUser() {
     JSON.stringify({
       userName: document.getElementById("userName").value,
       email: document.getElementById("email").value,
-      psw: document.getElementById("psw").value
+      password: document.getElementById("psw").value
     })
   );
 
-  var json = JSON.stringify({
-    userName: document.getElementById("userName").value,
-    email: document.getElementById("email").value,
-    psw: document.getElementById("psw").value
-  });
+  
 }
 
 function checkAll() {
@@ -195,7 +192,7 @@ const Register = () => (
         
       />
 
-      <button type="button" className="btn" onClick={validate}>
+      <button type="button" className="btn-" onClick={validate}>
         Register
       </button>
     </form>

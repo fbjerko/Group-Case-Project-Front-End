@@ -46,8 +46,8 @@ class Dashboard extends Component {
   componentDidMount() {}
 
   render() {
-    const userinfoList = this.state.userInfo.map(userinf => <li key={userinf.toString()}> <button type="button" className="btn matches" data-toggle="collapse" data-target="#demo">{userinf}</button></li>);
-    const teamsinfoList = this.state.userInfo.map(teaminf => <li key={teaminf.toString()}> <button type="button" className="btn teams" onClick={this._onTeamClick}>{teaminf}</button></li>);
+    const userinfoList = this.state.userInfo.map(userinf => <li key={userinf.toString()}> <button type="button" className="btnDisplay" data-toggle="collapse" data-target="#demo">{userinf}</button></li>);
+    const teamsinfoList = this.state.userInfo.map(teaminf => <li key={teaminf.toString()}> <button type="button" className="btnDisplay" onClick={this._onTeamClick}>{teaminf}</button></li>);
 
     
 
@@ -86,7 +86,7 @@ class Dashboard extends Component {
            </div>
          </div>
 
-        <div className="logoutUser">
+        <div className="btn-index">
     <button type="button"
     onClick={() => Router.pushRoute("/")}
     > Log out

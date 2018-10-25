@@ -22,12 +22,16 @@
     margin: auto;
     margin-top: 1rem;
     float: right; 
+    font-weight: bold;
+    font-family: Verdana;
+    font-size: 14px;
  }
 
  .editform-div {
 
     position: absolute;
     right: 0vh;
+    z-index: 1;
  }
  .showTeams {
     position: absolute;
@@ -53,3 +57,19 @@
     border:2px solid black;
     margin-left: 1vw;
   }
+
+  div.info-container {
+    position: relative;
+    display: flex;
+    flex-direction: grid;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 10vh;
+    
+  }
+
+  .btnDisplay {
+      width: 40rem;
+  }
+  
