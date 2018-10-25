@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import LayoutGlobal from "../../components/LayoutGlobal";
-import { Router } from "../../routes";
+import LayoutGlobal from "../../../components/LayoutGlobal";
+import { Router } from "../../../routes";
 
 
 class Seasons extends Component {
