@@ -148,7 +148,11 @@ class CreatMatches extends Component {
 
         <div>
             <LayoutGlobal />
-            <SearchField type={'address'}/>
+                <div className="info-container">
+                    <div className="dashboard-info1">
+                        <SearchField type={'player'}/>
+                    </div>
+                </div>
         </div>
 
     );

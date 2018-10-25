@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4e7ac656-d274-4327-975e-2bbed824ab97" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/pages/admin/createlocation.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/admin/createseason.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/admin-create/SearchField.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/admin-create/SearchField.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/admin/creatematches.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin/creatematches.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/admin/matches.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin/matches.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/admin/stadiums.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin/stadiums.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/style/admin.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/style/admin.css" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,33 +22,33 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="js" value="3" />
+          <entry key="js" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JavaScript" value="3" />
+          <entry key="JavaScript" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="js" value="1585" />
+          <entry key="js" value="2162" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JavaScript" value="1585" />
+          <entry key="JavaScript" value="2162" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pages/admin/creatematches.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2774">
-              <caret line="146" lean-forward="true" selection-start-line="146" selection-end-line="146" />
+            <state relative-caret-position="585">
+              <caret line="152" column="50" selection-start-line="152" selection-start-column="50" selection-end-line="152" selection-end-column="50" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -59,13 +56,15 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/components/admin-create/SearchField.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="39" column="23" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="23" />
+            <state relative-caret-position="494">
+              <caret line="73" column="8" selection-start-line="73" selection-start-column="8" selection-end-line="73" selection-end-column="8" />
               <folding>
+                <element signature="n#!!block;n#getData#0;n#SearchField#0" />
                 <element signature="e#298#314#0" />
+                <element signature="e#931#947#0" />
               </folding>
             </state>
           </provider>
@@ -97,8 +96,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/components/admin-create/SearchField.js" />
         <option value="$PROJECT_DIR$/pages/admin/creatematches.js" />
+        <option value="$PROJECT_DIR$/components/admin-create/SearchField.js" />
       </list>
     </option>
   </component>
@@ -168,7 +167,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540451503390" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540454928937" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -196,12 +195,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1540364283404</updated>
-      <workItem from="1540364284831" duration="14498000" />
+      <workItem from="1540364284831" duration="17859000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14498000" />
+    <option name="totallyTimeSpent" value="17859000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
@@ -253,22 +252,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/admin-create/SearchField.js">
+    <entry file="file://$PROJECT_DIR$/components/IndexInfo.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="39" column="23" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="23" />
+        <state>
           <folding>
-            <element signature="e#298#314#0" />
+            <element signature="e#0#41#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pages/admin/creatematches.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2774">
-          <caret line="146" lean-forward="true" selection-start-line="146" selection-end-line="146" />
+        <state relative-caret-position="585">
+          <caret line="152" column="50" selection-start-line="152" selection-start-column="50" selection-end-line="152" selection-end-column="50" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/admin-create/SearchField.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="73" column="8" selection-start-line="73" selection-start-column="8" selection-end-line="73" selection-end-column="8" />
+          <folding>
+            <element signature="n#!!block;n#getData#0;n#SearchField#0" />
+            <element signature="e#298#314#0" />
+            <element signature="e#931#947#0" />
           </folding>
         </state>
       </provider>
