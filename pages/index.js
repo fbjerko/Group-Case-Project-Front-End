@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import Head from "next/head";
-import LayoutFrontPage from "../components/LayoutFrontPage";
+import LayoutGlobal from "../components/LayoutGlobal";
 import Login from "../components/Login";
 import Register from "../components/Register";
 import IndexInfo from "../components/IndexInfo";
@@ -58,25 +57,25 @@ class Index extends Component {
   render() {
     return (
       <div>
-        <LayoutFrontPage />
+        <LayoutGlobal />
 
-        <div className="btn-group">
-          <button className="myButton" onClick={this._onLoginClick}>
+        <div className="btn-group-index-login-reg">
+          <button className="btn-index-login-reg " onClick={this._onLoginClick}>
             Log in
           </button>
 
-          <button className="myButton" onClick={this._onRegisterClick}>
+          <button className="btn-index-login-reg " onClick={this._onRegisterClick}>
             Register
           </button>
         </div>
 
-        <div className="btn-index-menu">
+        <div className="btn-group-index-toggle-info">
 
-          <button className="myButton" onClick={this._matches}>
+          <button className="btn-index-toggle" onClick={this._matches}>
             Matches
           </button>
 
-          <button className="myButton" onClick={this._teams}>
+          <button className="btn-index-toggle" onClick={this._teams}>
             Players
           </button>
 
