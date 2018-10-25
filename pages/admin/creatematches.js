@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import LayoutGlobal from "../../components/LayoutGlobal";
 import { Router } from "../../routes";
+import SearchField from "../../components/admin-create/SearchField"
 
 
 class CreatMatches extends Component {
@@ -132,6 +133,7 @@ class CreatMatches extends Component {
       }
 
       ));
+
   
   
     }
@@ -140,57 +142,15 @@ class CreatMatches extends Component {
   componentDidMount() {}
 
   render() {
-    //const userinfoList = this.state.searchResult.map(userinf => <li key={userinf.toString()}> <button type="button" className="btnDisplay" data-toggle="collapse" data-target="#demo">{userinf}</button></li>);
-      const  userinfoList = "";
-      let filtered = this.state.searchResult.filter(
-    (team) => {
-        return team.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
-    }     
-    );
-    const teamsearch = filtered.map(team =><option key={team.id} value={team.name}>{team.name}</option>);
-
-    
 
     return (
-      <div>
-        <LayoutGlobal />
-           <div className="info-container">
-             <div className="dashboard-info1">
-               <div className="top">
-               <h2>Search for teams</h2>
-               <input type="text" className="searchTeams" placeholder="Search for team" value={this.state.search} onChange={this.updateSearch.bind(this)}></input>
-               </div>
-               Teams <input type="checkbox" id="myCheck"  onClick={this._getTeams}/>
-               Location <input type="checkbox" id="myCheck"  onClick={this._getLocations}/>
-               Season <input type="checkbox" id="myCheck"  onClick={this._getSeasons}/>
-               <br></br>
-               <br></br>
 
-                    <select name="teams" size="10" onChange={this.handleChange}>
-                    {teamsearch}
-                    </select>
-                    <br></br>
-                    <button type="Submit" onClick={this.transferSelected}>Select</button>
+        <div>
+            <LayoutGlobal />
+            <SearchField type={'address'}/>
+        </div>
 
-                </div>
-             <div className="dashboard-info2">
 
-               <div className="top">
-                 <h2>Match</h2>
-               </div>
-               <ul>{userinfoList}</ul>
-               <div id="demo" className="collapse">
-                </div>
-             </div>
-             </div>
-
-        <div className="btn-index">
-    <button type="button"
-    onClick={() => Router.pushRoute("/admin/matches")}
-    > Back
-    </button>
-      </div>
-      </div>
     );
   }
 }
