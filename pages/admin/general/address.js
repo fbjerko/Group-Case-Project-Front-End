@@ -20,22 +20,7 @@ _createAddress() {
   });
 
 }
-
-  _addAddress(){
-    var xhttp = new XMLHttpRequest();
-
-    xhttp.open("POST", "http://localhost:5000/api/location", true);
-    xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send(
-      JSON.stringify({
-        name: document.getElementById("name").value,
-        description: document.getElementById("description").value,
-        address: document.getElementById("address").value
-      }));
-  
-  
-    }
-  
+ 
 
   render() {
 

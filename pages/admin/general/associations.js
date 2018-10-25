@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import LayoutGlobal from "../../../components/LayoutGlobal";
-import AssociationForm from "../../../../associationsForm";
+import AssociationForm from "../../../components/forms/associationsForm";
+import { Router } from "../../../routes";
 
 
-class Address extends Component {
+
+class Associations extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -22,12 +24,17 @@ _createAssoc() {
 
   render() {
 
-    if(this.state.createAddress === true){
+    if(this.state.createAssoc === true){
 
         return (
             <div>
               <LayoutGlobal />
               <AssociationForm />
+              <div className = "btn-admin-create-bottom">
+              <button className="btn-create" onClick={this._createAssoc}>
+              Back
+            </button>
+              </div>
             </div>
           );
 
@@ -38,19 +45,29 @@ _createAssoc() {
           <LayoutGlobal />
        
           <div className="container">
-            <h1>Address</h1>
+            <h1>Associations</h1>
 
             <div className="btn-admin-create-top">
-              <button className="btn-create" onClick={this._createAddress}>
-                Create Address
+              <button className="btn-create" onClick={this._createAssoc}>
+                Create Associations
               </button>
             </div>
-            <IndexReturn />
+            <div >
+
+<button
+type="button"
+className="btn-ret-admin"
+onClick={() => Router.pushRoute("/admin/general")}
+>
+Return to General
+</button>
+</div>
           </div>
+  
         </div>
       );
     }  
   }
 }
 
-export default Address;
+export default Associations;
