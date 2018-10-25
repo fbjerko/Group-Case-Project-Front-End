@@ -5,34 +5,25 @@ import { Router } from "../routes";
 function registerUser() {
   console.log(document.getElementById("userName").value);
 
-  var xhttp = new XMLHttpRequest();
-
-  xhttp.onreadystatechange = function() {
-    if (xhttp.readyState === 4 && xhttp.status === 200) {
-
-      Router.pushRoute("/");
-      alert("User registered");
-      console.log("USer Register");
-      console.log(json);
-    }
-
-    if (xhttp.status !== 200) {
-      
-      console.log()
-      console.log(json);
-    }
-  };
-  xhttp.open("POST", "http://localhost:5000/api/user", true);
-  xhttp.setRequestHeader("Content-type", "application/json");
-  xhttp.send(
-    JSON.stringify({
-      userName: document.getElementById("userName").value,
-      email: document.getElementById("email").value,
-      password: document.getElementById("psw").value
-    })
-  );
-
-  
+  fetch('http://localhost:3000/register', {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                userName: document.getElementById("userName").value,
+                email: document.getElementById("email").value,
+                password: document.getElementById("psw").value
+            })
+          }).then((response)=>{
+            if(response.status==200){
+              console.log('Registered User')
+              Router.pushRoute("/");
+              }else{
+                console.log('Registered Failed');}
+   });
+ 
 }
 
 function checkAll() {

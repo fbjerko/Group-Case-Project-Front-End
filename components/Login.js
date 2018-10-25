@@ -52,7 +52,8 @@ const Login = () => (
               }
             });
 
-          }}
+          }
+        }
       >
         Login Admin
       </button>
