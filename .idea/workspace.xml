@@ -1,28 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4e7ac656-d274-4327-975e-2bbed824ab97" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/components/admin-player/PlayerList.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/admin-user/UserInfo.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/admin-user/UserList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/LayoutFrontPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/LayoutFrontPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/LayoutGlobal.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/LayoutGlobal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/admin-player/ListPlayers.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/admin-player/PlayerInfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/admin-player/PlayerInfo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/admin/managers.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin/managers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/admin/matches.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin/matches.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/admin/players.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin/players.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/admin/stadiums.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin/stadiums.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/admin/teams.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin/teams.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/admin/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin/users.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/style/admin.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/style/admin.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/style/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/style/global.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/style/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/style/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/style/navbar.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/style/user.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/style/user.css" afterDir="false" />
-    </list>
+    <list default="true" id="4e7ac656-d274-4327-975e-2bbed824ab97" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +56,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/components/admin-create/SearchField.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="494">
@@ -94,8 +73,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pages/admin/matches.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1254">
-              <caret line="66" selection-start-line="66" selection-end-line="66" />
+            <state relative-caret-position="167">
+              <caret line="63" column="12" selection-start-line="63" selection-start-column="12" selection-end-line="63" selection-end-column="12" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -115,11 +94,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/static/style/admin.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19">
-              <caret line="1" column="18" lean-forward="true" selection-start-line="1" selection-start-column="18" selection-end-line="1" selection-end-column="18" />
+            <state relative-caret-position="589">
+              <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
             </state>
           </provider>
         </entry>
@@ -240,7 +219,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540454935195" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540455951717" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -268,12 +247,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1540364283404</updated>
-      <workItem from="1540364284831" duration="18477000" />
+      <workItem from="1540364284831" duration="18804000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18477000" />
+    <option name="totallyTimeSpent" value="18804000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
@@ -344,28 +323,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/admin-create/SearchField.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="73" column="8" selection-start-line="73" selection-start-column="8" selection-end-line="73" selection-end-column="8" />
-          <folding>
-            <element signature="n#!!block;n#getData#0;n#SearchField#0" />
-            <element signature="e#298#314#0" />
-            <element signature="e#931#947#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/admin/matches.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1254">
-          <caret line="66" selection-start-line="66" selection-end-line="66" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pages/admin/stadiums.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1311">
@@ -381,8 +338,30 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/static/style/admin.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="1" column="18" lean-forward="true" selection-start-line="1" selection-start-column="18" selection-end-line="1" selection-end-column="18" />
+        <state relative-caret-position="589">
+          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/admin/matches.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="63" column="12" selection-start-line="63" selection-start-column="12" selection-end-line="63" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/admin-create/SearchField.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="73" column="8" selection-start-line="73" selection-start-column="8" selection-end-line="73" selection-end-column="8" />
+          <folding>
+            <element signature="n#!!block;n#getData#0;n#SearchField#0" />
+            <element signature="e#298#314#0" />
+            <element signature="e#931#947#0" />
+          </folding>
         </state>
       </provider>
     </entry>
