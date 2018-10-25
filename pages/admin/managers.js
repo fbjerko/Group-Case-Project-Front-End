@@ -114,7 +114,6 @@ class Managers extends Component {
               <AdminReturn />
             </div>
 
-           
               <ManagerList
                 managers={managers}
                 ready={this.state.ready}

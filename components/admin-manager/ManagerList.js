@@ -1,31 +1,43 @@
 import React, { Component } from "react";
 import ManagerInfo from "./ManagerInfo";
+import TeamInfo from "../admin-team/TeamInfo";
 
 class ManagerList extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      activeManager: "",
-      displayManager: false
+      activeId: "",
+      displayManager: false,
+      displayTeam: false
     };
 
     this.showManager = this.showManager.bind(this);
-    this.closeManager = this.closeManager.bind(this);
+    this.showTeam = this.showTeam.bind(this);
+    this.close = this.close.bind(this);
   }
 
   showManager(id) {
-    console.log("huhuhuhu" + id);
     this.setState({
-      activeManager: id,
-      displayManager: true
+      activeId: id,
+      displayManager: true,
+      displayTeam: false
     });
   }
 
-  closeManager() {
+  showTeam(id) {
     this.setState({
-      activeManager: "",
+      activeId: id,
+      displayTeam: true,
       displayManager: false
+    });
+  }
+
+  close() {
+    this.setState({
+      activeId: "",
+      displayManager: false,
+      displayTeam: false
     });
   }
 
@@ -33,15 +45,21 @@ class ManagerList extends Component {
     const managers = this.props.managers.map(manager => {
       return (
         <tr
-          key={manager.coachId}
+          key={manager[0]}
           className="tr-admin-get-all"
-          onClick={() => this.showManager(manager.coachId)}
+         
         >
-          <td className="td-admin-get-all">
-            {manager.person.firstName} {manager.person.lastName} {""}
+          <td className="td-admin-get-all"
+           onClick={() => this.showManager(manager[0])}>{manager[1]}
           </td>
 
-          <td className="td-admin-get-all">{manager.team.name} {""} </td>
+          <td
+            className="td-admin-get-all"
+            key={manager[2]}
+            onClick={() => this.showTeam(manager[2])}
+          >
+            {manager[3]}
+          </td>
         </tr>
       );
     });
@@ -55,10 +73,13 @@ class ManagerList extends Component {
     } else if (this.state.displayManager === true) {
       return (
         <div>
-          <ManagerInfo
-            id={this.state.activeManager}
-            closeManager={this.closeManager}
-          />
+          <ManagerInfo id={this.state.activeId} close={this.close} />
+        </div>
+      );
+    } else if (this.state.displayTeam === true) {
+      return (
+        <div>
+          <TeamInfo id={this.state.activeId} close={this.close} />
         </div>
       );
     } else {
@@ -80,27 +101,21 @@ class ManagerList extends Component {
             <table className="table-admin-but">
               <tbody>
                 <tr>
-              <td
-                  className="td-admin-but"
-                  onClick={this.props.firstPage}
-                >
-                  First Page
-                </td>
-                <td
-                  className="td-admin-but"
-                  onClick={this.props.previousPage}
-                >
-                  Previous Page
-                </td>
-                <td className="td-admin-but" onClick={this.props.nextPage}>
-                  Next Page
-                </td>
-                <td
-                  className="td-admin-but"
-                  onClick={this.props.lastPage}
-                >
-                  Last Page
-                </td>
+                  <td className="td-admin-but" onClick={this.props.firstPage}>
+                    First Page
+                  </td>
+                  <td
+                    className="td-admin-but"
+                    onClick={this.props.previousPage}
+                  >
+                    Previous Page
+                  </td>
+                  <td className="td-admin-but" onClick={this.props.nextPage}>
+                    Next Page
+                  </td>
+                  <td className="td-admin-but" onClick={this.props.lastPage}>
+                    Last Page
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -112,4 +127,3 @@ class ManagerList extends Component {
 }
 
 export default ManagerList;
-

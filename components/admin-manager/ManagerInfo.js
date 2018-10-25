@@ -16,7 +16,7 @@ class ManagerInfo extends Component {
     console.log("Hey");
     try {
       const response = await fetch(
-        `http://localhost:5000/api/manager/` + this.props.id
+        `http://localhost:5000/api/coach/` + this.props.id
       );
       const json = await response.json();
       console.log(json);
@@ -50,18 +50,7 @@ class ManagerInfo extends Component {
                     {manager.person.firstName} {manager.person.lastName}
                   </td>
                 </tr>
-                <tr className="tr-admin-get-one">
-                  <th className="th-admin-get-one"> Team</th>
-                  <td className="td-admin-get-one">{manager.team.name}</td>
-                </tr>
-                <tr className="tr-admin-get-one">
-                  <th className="th-admin-get-one"> Number</th>
-                  <td className="td-admin-get-one">{manager.number}</td>
-                </tr>
-                <tr className="tr-admin-get-one">
-                  <th className="th-admin-get-one"> Position</th>
-                  <td className="td-admin-get-one">{manager.normalPosition}</td>
-                </tr>
+                
                 <tr className="tr-admin-get-one">
                   <th className="th-admin-get-one"> Date Of Birth</th>
                   <td className="td-admin-get-one">
@@ -97,7 +86,7 @@ class ManagerInfo extends Component {
               </tbody>
             </table>
           </div>
-          <button  onClick={this.props.closemanager}>
+          <button  onClick={this.props.close}>
             Back
           </button>
         </div>

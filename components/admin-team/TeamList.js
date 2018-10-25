@@ -1,64 +1,65 @@
 import React, { Component } from "react";
-import PlayerInfo from "./PlayerInfo";
-import TeamInfo from "../admin-team/TeamInfo";
+import TeamInfo from "./TeamInfo";
+import ManagerInfo from "../admin-manager/ManagerInfo";
 
-class PlayerList extends Component {
+class TeamList extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      activeId: "",
-      displayPlayer: false,
-      displayTeam: false
+      activeTeam: "",
+      activeManager: "",
+      displayTeam: false,
+      displayManager: false
     };
 
-    this.showPlayer = this.showPlayer.bind(this);
-    this.close = this.close.bind(this);
     this.showTeam = this.showTeam.bind(this);
-  }
-
-  showPlayer(id) {
-    console.log("huhuhuhu" + id);
-    this.setState({
-      activeId: id,
-      displayPlayer: true,
-      displayTeam: false
-    });
+    this.close = this.close.bind(this);
+    this.showManager = this.showManager.bind(this);
   }
 
   showTeam(id) {
+    console.log("huhuhuhu" + id);
     this.setState({
-      activeId: id,
+      activeTeam: id,
       displayTeam: true,
-      displayPlayer: false
+      displayManager: false
+    });
+  }
+
+  showManager(id) {
+    console.log("DSHUAHUASD" + id);
+    this.setState({
+      activeManager: id,
+      displayManager: true,
+      displayTeam: false
     });
   }
 
   close() {
     this.setState({
-      activeId: "",
-      displayPlayer: false,
-      displayTeam: false
+      activeTeam: "",
+      displayTeam: false,
+      displayManager: false
     });
   }
 
   render() {
-    const players = this.props.players.map(player => {
+    const teams = this.props.teams.map(team => {
       return (
-        <tr key={player[0]} className="tr-admin-get-all">
+        <tr key={team[0]} className="tr-admin-get-all">
           <td
             className="td-admin-get-all"
-            onClick={() => this.showPlayer(player[0])}
+            onClick={() => this.showTeam(team[0])}
           >
-            {player[1]}{" "}
+            {team[1]} {""}
           </td>
 
-          <td
+          <td key={team[2]}
             className="td-admin-get-all"
-            key={player[2]}
-            onClick={() => this.showTeam(player[2])}
+            onClick={() => this.showManager(team[2])}
           >
-            {player[3]}{" "}
+            {team[3]} {""}
           </td>
         </tr>
       );
@@ -70,31 +71,31 @@ class PlayerList extends Component {
           <h2>Loading...</h2>
         </div>
       );
-    } else if (this.state.displayPlayer === true) {
-      return (
-        <div>
-          <PlayerInfo id={this.state.activeId} close={this.close} />
-        </div>
-      );
     } else if (this.state.displayTeam === true) {
       return (
         <div>
-          <TeamInfo id={this.state.activeId} close={this.close} />
+          <TeamInfo id={this.state.activeTeam} close={this.close} />
+        </div>
+      );
+    } else if (this.state.displayManager === true) {
+      return (
+        <div>
+          <ManagerInfo id={this.state.activeManager} close={this.close} />
         </div>
       );
     } else {
       return (
         <div>
-          <h1>Players</h1>
+          <h1>Teams</h1>
           <div className="div-admin-get-all">
             <table className="table-admin-get-all">
               <tbody>
                 <tr className="tr-admin-get-all">
                   <th className="th-admin-get-all"> Name</th>
-                  <th className="th-admin-get-all"> Team</th>
+                  <th className="th-admin-get-all"> Manager</th>
                 </tr>
 
-                {players}
+                {teams}
               </tbody>
             </table>
 
@@ -126,15 +127,4 @@ class PlayerList extends Component {
   }
 }
 
-export default PlayerList;
-
-/*
-
-
- onClick={this.showPlayer}
-   
-
-
-
-     
-      */
+export default TeamList;

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import LayoutGlobal from "../../components/LayoutGlobal";
 import AdminReturn from "../../components/AdminReturn";
-import ListPlayers from "../../components/admin-player/PlayerList";
+import PlayerList from "../../components/admin-player/PlayerList";
 
 class Players extends Component {
   constructor(props) {
@@ -114,7 +114,7 @@ class Players extends Component {
               <AdminReturn />
             </div>
             
-              <ListPlayers
+              <PlayerList
                 players={players}
                 ready={this.state.ready}
                 nextPage={this.nextPage}
@@ -123,7 +123,6 @@ class Players extends Component {
                 lastPage={this.lastPage}
               />
       
-
             <h2>Page {this.state.currentPage + 1}</h2>
             {this.state.createPlayer ? <CreateUser /> : null}
           </div>
