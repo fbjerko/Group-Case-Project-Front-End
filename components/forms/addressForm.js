@@ -17,13 +17,12 @@ function sendAddress() {
       })
     );
   
-    
+    this._createAddress();
   }
   
 
 const AddressForm = () => (
 <div className="info-container">
-      
       <div className="seasons-container">
       <div className="top">
         <h2>Create new address</h2>
@@ -52,9 +51,8 @@ const AddressForm = () => (
        <input type="text" placeholder="Write a country" id="country" />
        <br></br>
        <br></br>
-       <input className="btn-index" type="button" value="Submit" onClick={sendAddress}></input>
+       <input className="btn-index" type="button" value="Submit" onClick={sendAddress} ></input>
       </div>
-
     </div>
 )
 

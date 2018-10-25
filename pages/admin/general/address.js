@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import LayoutGlobal from "../../../components/LayoutGlobal";
-import AddressForm from "../../../forms/AddressForm";
+import AddressForm from "../../../components/forms/addressForm";
+import { Router } from "../../../routes";
 
 
 class Address extends Component {
@@ -44,6 +45,12 @@ _createAddress() {
             <div>
               <LayoutGlobal />
               <AddressForm />
+              <div className = "btn-admin-create-bottom">
+              <button className="btn-create" onClick={this._createAddress}>
+              Back
+            </button>
+              </div>
+          
             </div>
           );
 
@@ -61,7 +68,16 @@ _createAddress() {
                 Create Address
               </button>
             </div>
-            <IndexReturn />
+            <div >
+
+<button
+type="button"
+className="btn-ret-admin"
+onClick={() => Router.pushRoute("/admin/general")}
+>
+Return to General
+</button>
+</div>
           </div>
         </div>
       );
