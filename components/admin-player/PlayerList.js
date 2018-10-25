@@ -77,26 +77,26 @@ class PlayerList extends Component {
               </tbody>
             </table>
 
-            <table className="table-admin-get-all-but">
+            <table className="table-admin-but">
               <tbody>
                 <tr>
               <td
-                  className="td-admin-list-but"
+                  className="td-admin-but"
                   onClick={this.props.firstPage}
                 >
                   First Page
                 </td>
                 <td
-                  className="td-admin-list-but"
+                  className="td-admin-but"
                   onClick={this.props.previousPage}
                 >
                   Previous Page
                 </td>
-                <td className="td-admin-list-but" onClick={this.props.nextPage}>
+                <td className="td-admin-but" onClick={this.props.nextPage}>
                   Next Page
                 </td>
                 <td
-                  className="td-admin-list-but"
+                  className="td-admin-but"
                   onClick={this.props.lastPage}
                 >
                   Last Page
