@@ -29,12 +29,15 @@ class Matches extends Component {
       return (
         <div>
           <LayoutGlobal />
-          
+
           <div className="container">
             <h1>Matches</h1>
 
             <div className="btn-admin-create-top">
-              <button className="btn-create" onClick={() => Router.pushRoute("/admin/creatematches")}>
+              <button
+                className="btn-create"
+                onClick={() => Router.pushRoute("/admin/creatematches")}
+              >
                 Create
               </button>
 
@@ -59,31 +62,26 @@ class Matches extends Component {
       return (
         <div>
           <LayoutGlobal />
-       
 
           <div className="container">
             <h1>Matches</h1>
 
-
             <div className="btn-admin-create-top">
-              <button className="btn-create" onClick={() => Router.pushRoute("/admin/season")}>
+              <button
+                className="btn-create"
+                onClick={() => Router.pushRoute("/admin/season")}
+              >
                 Create Season
               </button>
-
-            <div className="btn-admin-config">
-
-              <button className="btn-create" onClick={this._createMatches}>
-                Configure matches
-              </button>
-              <AdminReturn />
+              <div className="btn-admin-config">
+                <button className="btn-create" onClick={this._createMatches}>
+                  Configure matches
+                </button>
+                <AdminReturn />
+              </div>
+              <div className="btn-admin-create-bottom" />;
+              {this.state.createMatches ? <CreateUser /> : null}
             </div>
-            <div className="btn-admin-create-bottom">
-              
-            </div>
-            ;
-            {this.state.createMatches ? <CreateUser /> : null}
-
-            
           </div>
         </div>
       );

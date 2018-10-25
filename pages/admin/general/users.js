@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import LayoutGlobal from "../../components/LayoutGlobal";
-import AdminReturn from "../../components/AdminReturn";
-import UserList from "../../components/admin-user/UserList";
+import LayoutGlobal from "../../../components/LayoutGlobal";
+import AdminReturn from "../../../components/AdminReturn";
+import UserList from "../../../components/admin-user/UserList";
 
 class Users extends Component {
   constructor(props) {
