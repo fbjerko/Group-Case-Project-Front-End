@@ -40,8 +40,6 @@ div.div-admin-get-all {
   margin-bottom: 2vh;
 }
 
-
-
 table {
   color: white;
   font-family: Verdana;
@@ -110,7 +108,7 @@ table.table-admin-but {
   margin: auto;
   margin-top: 2rem;
 }
-
+/****************************************/
 td.td-admin-but {
  
   border: 0.1rem solid rgb(255, 255, 255);
