@@ -67,9 +67,25 @@ class PlayerInfo extends Component {
                   <td className="td-admin-get-one">{player.person.address.addressLine1} {player.person.address.addressLine2} {player.person.address.addressLine3}, {player.person.address.postalCode}, {player.person.address.city}, {player.person.address.country}</td>
                 </tr>
                 
-                
-                
-                
+              </tbody>
+            </table>
+            <table className="table-admin-get-all-but">
+              <tbody>
+                <tr>
+              <td
+                  className="td-admin-list-but"
+                  onClick={this.props.firstPage}
+                >
+                  EDIT
+                </td>
+                <td
+                  className="td-admin-list-but"
+                  onClick={this.props.previousPage}
+                >
+                  DELETE
+                </td>
+               
+                </tr>
               </tbody>
             </table>
           </div>

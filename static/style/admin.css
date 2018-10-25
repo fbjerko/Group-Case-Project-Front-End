@@ -98,14 +98,17 @@ table.table-admin-get-all-but {
 
 td.td-admin-list-but {
  
-  font-family: Verdana;
   border: 0.1rem solid rgb(255, 255, 255);
   padding: 1rem;
-  text-align: center;
   cursor: pointer;
   width: 25%;
 
 }
+
+td.td-admin-list-but:hover {
+  opacity: 0.8;
+}
+
 
 button.btn-admin-get-users {
 }
