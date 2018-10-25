@@ -65,7 +65,7 @@ class Matches extends Component {
             <h1>Matches</h1>
 
             <div className="btn-admin-create-top">
-              <button className="btn-create" onClick={() => Router.pushRoute("/admin/createseason")}>
+              <button className="btn-create" onClick={() => Router.pushRoute("/admin/season")}>
                 Create Season
               </button>
               <button className="btn-create" onClick={this._createMatches}>

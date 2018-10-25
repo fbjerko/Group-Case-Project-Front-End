@@ -68,7 +68,7 @@ class Stadiums extends Component {
               <button className="btn-create" onClick={this._createStadium}>
                 Configure
               </button>
-              <button className="btn-create" onClick={() => Router.pushRoute("/admin/createlocation")}>
+              <button className="btn-create" onClick={() => Router.pushRoute("/admin/location")}>
                 Create location
               </button>
             </div>
