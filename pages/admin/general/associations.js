@@ -7,34 +7,18 @@ class Address extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      createAddress: false
+      createAssoc: false
     };
 
-    this._createAddress = this._createAddress.bind(this);
+    this._createAssoc = this._createAssoc.bind(this);
 }
 
-_createAddress() {
+_createAssoc() {
   this.setState({
-    createAddress: !this.state.createAddress
+    createAssoc: !this.state.createAssoc
   });
 
-}
-
-  _addAddress(){
-    var xhttp = new XMLHttpRequest();
-
-    xhttp.open("POST", "http://localhost:5000/api/location", true);
-    xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send(
-      JSON.stringify({
-        name: document.getElementById("name").value,
-        description: document.getElementById("description").value,
-        address: document.getElementById("address").value
-      }));
-  
-  
-    }
-  
+} 
 
   render() {
 
