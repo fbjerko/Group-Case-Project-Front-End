@@ -15,6 +15,7 @@
   "dependencies": {
     "@trendmicro/react-sidenav": "^0.4.5",
     "@zeit/next-css": "^0.2.0",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "cookie-parser": "^1.4.3",
     "express": "^4.16.4",
