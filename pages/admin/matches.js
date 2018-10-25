@@ -86,6 +86,7 @@ class Matches extends Component {
             
           </div>
         </div>
+        </div>
       );
     }
   }
