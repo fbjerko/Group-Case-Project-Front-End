@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import LayoutGlobal from "../../components/LayoutGlobal";
+import LayoutGlobal from "../../../components/LayoutGlobal";
 import AddressForm from "../../../forms/AddressForm";
 
 

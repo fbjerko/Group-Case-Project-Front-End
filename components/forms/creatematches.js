@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import LayoutGlobal from "../../components/LayoutGlobal";
+import LayoutGlobal from "../LayoutGlobal";
 import { Router } from "../../routes";
-import SearchField from "../../components/admin-create/SearchField"
+import SearchField from "../admin-create/SearchField"
 
 
 class CreatMatches extends Component {

@@ -30,16 +30,19 @@ class PlayerList extends Component {
   }
 
   render() {
-    console.log(" PLayersss" + this.props.players);
     const players = this.props.players.map(player => {
       return (
-        <button
+        <tr
           key={player[0]}
-          className="btn-admin-get-players"
+          className="tr-admin-get-all"
           onClick={() => this.showPlayer(player[0])}
         >
-          Name: {player[1]} {player[2]} Team: " + {player[3]}
-        </button>
+          <td className="td-admin-get-all">
+            {player[1]} {player[2]}{" "}
+          </td>
+
+          <td className="td-admin-get-all">{player[3]} </td>
+        </tr>
       );
     });
 
@@ -62,9 +65,46 @@ class PlayerList extends Component {
       return (
         <div>
           <h1>Players</h1>
-          <div className="btn-group-admin-get-all">{players}</div>
-          <button onClick={this.props.previousPage}>Previous Page</button>
-          <button onClick={this.props.nextPage}>Next Page</button>
+          <div className="div-admin-get-all">
+            <table className="table-admin-get-all">
+              <tbody>
+                <tr className="tr-admin-get-all">
+                  <th className="th-admin-get-all"> Name</th>
+                  <th className="th-admin-get-all"> Team</th>
+                </tr>
+
+                {players}
+              </tbody>
+            </table>
+
+            <table className="table-admin-but">
+              <tbody>
+                <tr>
+              <td
+                  className="td-admin-but"
+                  onClick={this.props.firstPage}
+                >
+                  First Page
+                </td>
+                <td
+                  className="td-admin-but"
+                  onClick={this.props.previousPage}
+                >
+                  Previous Page
+                </td>
+                <td className="td-admin-but" onClick={this.props.nextPage}>
+                  Next Page
+                </td>
+                <td
+                  className="td-admin-but"
+                  onClick={this.props.lastPage}
+                >
+                  Last Page
+                </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       );
     }
