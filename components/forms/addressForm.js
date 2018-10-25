@@ -1,5 +1,25 @@
 import React from "react";
-import { Router } from "../routes";
+
+function sendAddress() {
+  
+    var xhttp = new XMLHttpRequest();
+  
+    xhttp.open("POST", "http://localhost:5000/api/user", true);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send(
+      JSON.stringify({
+        address_line_1: document.getElementById("address_line_1").value,
+        address_line_2: document.getElementById("address_line_2").value,
+        address_line_3: document.getElementById("address_line_3").value,
+        postal_code: document.getElementById("postal_code").value,
+        city: document.getElementById("city").value,
+        country: document.getElementById("country").value
+      })
+    );
+  
+    
+  }
+  
 
 const AddressForm = () => (
 <div className="info-container">
@@ -32,7 +52,7 @@ const AddressForm = () => (
        <input type="text" placeholder="Write a country" id="country" />
        <br></br>
        <br></br>
-       <input className="btn-index" type="button" value="Submit"></input>
+       <input className="btn-index" type="button" value="Submit" onClick={sendAddress}></input>
       </div>
 
     </div>
