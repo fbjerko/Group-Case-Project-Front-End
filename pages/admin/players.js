@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import LayoutGlobal from "../../components/LayoutGlobal";
-
 import AdminReturn from "../../components/AdminReturn";
 import ListPlayers from "../../components/admin-player/PlayerList";
 
@@ -81,15 +80,15 @@ class Players extends Component {
             <h1>Players</h1>
 
             <div className="btn-admin-create-top">
-              <button className="btn-create" onClick={this._createPlayer}>
+              <button className="btn-create" >
                 Create
               </button>
 
-              <button className="btn-create" onClick={this._matches}>
+              <button className="btn-create" >
                 Update
               </button>
 
-              <button className="btn-create" onClick={this._teams}>
+              <button className="btn-create" >
                 Delete
               </button>
             </div>
@@ -114,8 +113,7 @@ class Players extends Component {
               </button>
               <AdminReturn />
             </div>
-
-            <div className="list-info-admin">
+            
               <ListPlayers
                 players={players}
                 ready={this.state.ready}
@@ -124,7 +122,7 @@ class Players extends Component {
                 firstPage= {this.firstPage}
                 lastPage={this.lastPage}
               />
-            </div>
+      
 
             <h2>Page {this.state.currentPage + 1}</h2>
             {this.state.createPlayer ? <CreateUser /> : null}

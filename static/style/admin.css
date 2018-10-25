@@ -37,14 +37,14 @@ div.div-admin-get-all {
   text-align: center;
   margin: auto;
   margin-top: 3vh;
-  margin-bottom: 2vh;
+
 }
 
 table {
   color: white;
   font-family: Verdana;
   border-collapse: collapse;
-  margin-top: 2rem;
+  
 }
 
 /* Table for displaying all info about entities admin */
@@ -68,6 +68,12 @@ td.td-admin-get-all {
   text-align: left;
   width: 50%;
   cursor: pointer;
+}
+
+td.td-admin-get-all:hover {
+  
+  background-color: rgb(99, 97, 97);
+  opacity: 0.8;
 }
 
 /****************************************************/
@@ -107,6 +113,7 @@ table.table-admin-but {
   width: 50rem;
   margin: auto;
   margin-top: 2rem;
+  margin-bottom: 3rem;
 }
 /****************************************/
 td.td-admin-but {
