@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const port = process.env.PORT || 3000;
 const http = require('http');
 const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser');
 
 
 // initialize the Next.js application
@@ -19,14 +20,17 @@ app.prepare()
   const server = express();
   
   //server.use('/',routes);
+  server.use(cookieParser());
   server.use(bodyParser.json());
+
   server.use('/admin',(req,res,next)=>{
-    console.log("Checking authentication");
-    console.log(req);
+    console.log("Checking authentication for Admin");
+    console.log(req.cookies.token);
     try{
-      const decode = jwt.verify(req.body.token,process.env.JWT_KEY);
+      const decode = jwt.verify(req.cookies.token,'secretAdmin');
       next();
     }catch(error){
+    	
       res.status(401).end();
     }
     
@@ -34,9 +38,19 @@ app.prepare()
     
   });
 
-  server.get('/admin',(req,res)=>{
-    console.log('User granted access!');
-    return handle(req,res);
+  server.use('/dashboard',(req,res,next)=>{
+    console.log("Checking authentication for User");
+    console.log(req.cookies.token);
+    try{
+      const decode = jwt.verify(req.cookies.token,'secretNotAdmin');
+      next();
+    }catch(error){
+    	
+      res.status(401).end();
+    }
+    
+    
+    
   });
 
   server.post('/login',(req,res)=>{
@@ -44,7 +58,7 @@ app.prepare()
     console.log(req.body.password);
     console.log(req.body.email);
 
-    let url = "http://localhost:5000/api/user/findbyemail/"+req.body.email;
+    let url = "http://localhost:5000/api/user/"+req.body.email;
     http.get(url,(response)=>{
       let data = '';
         // A chunk of data has been recieved.
@@ -54,9 +68,9 @@ app.prepare()
 
           // The whole response has been received. Print out the result.
           response.on('end', () => {
-            let users = JSON.parse(data);
-            let user = users[1];
-            console.log(user.admin);
+          	let user = JSON.parse(data);
+            
+            console.log(user);
 
             if(user.admin==false){
               const JWTToken = jwt.sign({
@@ -65,10 +79,11 @@ app.prepare()
                   admin : false
 
                 },
-                'secret',
+                'secretNotAdmin',
                  {
                    expiresIn: '2h'
                  });
+              res.cookie('token',JWTToken,{maxAge:2 * 60 * 60 * 1000,httpOnly:true});
               res.status(200).json({
                 message: "user",
                 token: JWTToken
@@ -81,13 +96,13 @@ app.prepare()
                   admin : true
 
                 },
-                'secret',
+                'secretAdmin',
                  {
                    expiresIn: '2h'
                  });
+              res.cookie('token',JWTToken,{maxAge:2 * 60 * 60 * 1000,httpOnly:true})
               res.status(200).json({
                 message: "admin",
-                token: JWTToken
               });
             }
 
