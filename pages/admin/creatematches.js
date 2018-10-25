@@ -145,11 +145,11 @@ class CreatMatches extends Component {
 
     return (
 
+
         <div>
             <LayoutGlobal />
             <SearchField type={'address'}/>
         </div>
-
 
     );
   }
