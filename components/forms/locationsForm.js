@@ -64,7 +64,7 @@ class LocationsForm extends React.Component {
     render(){
 
         if(this.state.showPop){
-            return(<Popupp redirect={'/admin/general'} text={this.state.status}/>);
+            return(<Popupp text={this.state.status}/>);
         }
 
         return(<div className="info-container">

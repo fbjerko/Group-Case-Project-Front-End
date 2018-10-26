@@ -5,7 +5,9 @@ class GoalForm extends React.Component {
     constructor(props){
         super(props);
         this.state={
-            name:''
+            name:'',
+            showPop:false,
+            status:'Nothing'
           }
     }
 
@@ -29,19 +31,27 @@ class GoalForm extends React.Component {
             })
         );
         xhttp.onreadystatechange = ()=>{
-            if (xhttp.readyState == XMLHttpRequest.DONE) {
-                if(xhttp.status==201){
-                    console.log("Created");
-                }else if (xhttp.status==403){
-                    console.log("Failed to create")
-                }
+          if (xhttp.readyState == XMLHttpRequest.DONE) {
+            if(xhttp.status==201){
+                console.log("Created");
+                this.setState({status:"Created"});
+
+            }else if (xhttp.status==403){
+                console.log("Failed to create")
+                this.setState({status:"Failed to create"});
             }
+            this.setState({showPop:true});
+
+        }
         }
     }
 
 
 
     render(){
+      if(this.state.showPop){
+        return(<Popupp text={this.state.status}/>);
+    }
         return(<div className="info-container">
 
             <div className="seasons-container">
