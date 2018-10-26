@@ -24,7 +24,7 @@ class GoalForm extends React.Component {
 
         var xhttp = new XMLHttpRequest();
 
-        xhttp.open("POST", "http://localhost:5000/api/goal", true);
+        xhttp.open("POST", "http://localhost:5000/api/goalType", true);
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send(
             JSON.stringify({
