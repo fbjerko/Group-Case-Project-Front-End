@@ -1,21 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4e7ac656-d274-4327-975e-2bbed824ab97" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Group-Case-Project-Front-End.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/admin-create/SearchField.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/admin-create/SearchField.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/admin-player/PlayerInfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/admin-player/PlayerInfo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/admin-player/PlayerList.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/admin-player/PlayerList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/admin/creatematches.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin/creatematches.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/admin/players.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin/players.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/style/admin.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/style/admin.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/style/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/style/global.css" afterDir="false" />
-    </list>
+    <list default="true" id="4e7ac656-d274-4327-975e-2bbed824ab97" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +12,7 @@
     <session id="150873112">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="2" />
+          <entry key="project.closed" value="3" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.7" value="1" />
@@ -63,29 +49,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/components/admin-create/SearchField.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="135" column="107" selection-start-line="135" selection-start-column="107" selection-end-line="135" selection-end-column="107" />
-              <folding>
-                <element signature="n#!!block;n#getData#0;n#SearchField#0" />
-                <element signature="e#1006#1655#0" />
-                <element signature="n#!!block;n#componentDidMount#0;n#SearchField#0" />
-                <element signature="e#1838#1854#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/pages/admin/creatematches.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1364">
-              <caret line="152" column="49" selection-start-line="152" selection-start-column="49" selection-end-line="152" selection-end-column="49" />
-              <folding>
-                <element signature="e#0#41#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="685">
+              <caret line="152" column="5" selection-start-line="152" selection-start-column="5" selection-end-line="152" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -226,7 +194,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34095000" />
+    <option name="totallyTimeSpent" value="34096000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
@@ -316,26 +284,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/components/admin-create/SearchField.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="135" column="107" selection-start-line="135" selection-start-column="107" selection-end-line="135" selection-end-column="107" />
-          <folding>
-            <element signature="n#!!block;n#getData#0;n#SearchField#0" />
-            <element signature="e#1006#1655#0" />
-            <element signature="n#!!block;n#componentDidMount#0;n#SearchField#0" />
-            <element signature="e#1838#1854#0" />
-          </folding>
+        <state relative-caret-position="685">
+          <caret line="152" column="5" selection-start-line="152" selection-start-column="5" selection-end-line="152" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pages/admin/creatematches.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1364">
-          <caret line="152" column="49" selection-start-line="152" selection-start-column="49" selection-end-line="152" selection-end-column="49" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/admin/creatematches.js" />
   </component>
 </project>
