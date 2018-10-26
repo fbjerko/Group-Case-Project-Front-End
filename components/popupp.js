@@ -29,7 +29,7 @@ class Popupp extends Component {
 
     render() {
         return (
-            <div >
+            <div className="info-container">
 
                 <h1>{this.state.text}</h1>
             </div>

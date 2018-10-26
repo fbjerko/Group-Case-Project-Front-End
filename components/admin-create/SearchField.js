@@ -113,6 +113,13 @@ class SearchField extends Component {
         this.props.handleChange(this.state.id);
     }
 
+    styles={
+        width:200,
+        position:'absolute',
+        left:'45%',
+        zIndex:1
+    }
+
 
     render() {
 
@@ -128,11 +135,11 @@ class SearchField extends Component {
 
         if(this.state.active){
             return (
-                <div >
+                <div>
 
                     <input value={this.state.search} placeholder={'Search for '+this.state.type} onChange={this.updateSearch}/>
                     <br></br>
-                        <select onBlur={this.disable} size={filteredData.length>10?10:filteredData.length+1} style={this.styles} >
+                        <select style={this.styles}  onBlur={this.disable} size={filteredData.length>10?10:filteredData.length+1} style={this.styles} >
                             {searchResult}</select>
 
 
@@ -141,7 +148,7 @@ class SearchField extends Component {
         }else{
             return (
                 <div>
-                    <input  onFocus={this.activate} style={this.styles} value={this.state.search} placeholder={'Search for '+this.state.type} onChange={this.updateSearch}/>
+                    <input  onFocus={this.activate} value={this.state.search} placeholder={'Search for '+this.state.type} onChange={this.updateSearch}/>
                 </div>
             );
         }
