@@ -7,9 +7,9 @@ class PersonForm extends React.Component {
     constructor(props){
         super(props);
         this.state={
-            first_name:'',
-            last_name:'',
-            date_of_birth:'',
+            firstName:'',
+            lastName:'',
+            dateOfBirth:'',
             addressId:-1,
             showPop:false,
             status:'Nothing'

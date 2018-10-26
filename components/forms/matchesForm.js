@@ -3,6 +3,7 @@ import Popupp from "../popupp";
 import SearchField from "../admin-create/SearchField";
 
 
+
 class MatchesForm extends React.Component {
     constructor(props){
         super(props);
@@ -50,11 +51,11 @@ class MatchesForm extends React.Component {
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send(
             JSON.stringify({
-              match_date: this.state.match_date,
-              team_1: this.state.team_1,
-              team_2: this.state.team_2,
-              season_id: this.state.season_id,
-              location_id: this.state.location_id 
+              matchDate: this.state.match_date,
+              team1: this.state.team_1,
+              team2: this.state.team_2,
+              seasonId: this.state.season_id,
+              locationId: this.state.location_id 
             })
         );
         xhttp.onreadystatechange = ()=>{
