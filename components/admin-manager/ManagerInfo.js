@@ -1,26 +1,27 @@
 import React, { Component } from "react";
 
-class UserInfo extends Component {
+class ManagerInfo extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      userId: "0",
-      userInfo: [],
+      managerId: "0",
+      managerInfo: [],
       ready: false
     };
   }
 
   async componentWillMount() {
-
+    // "await fetch(`http://localhost:5000/api/user/all`);"
+    console.log("Hey");
     try {
       const response = await fetch(
-        `http://localhost:5000/api/user/` + this.props.id
+        `http://localhost:5000/api/coach/` + this.props.id
       );
       const json = await response.json();
       console.log(json);
       this.setState({
-        userInfo: json,
+        managerInfo: json,
         ready: true
       });
     } catch (error) {
@@ -29,48 +30,42 @@ class UserInfo extends Component {
   }
 
   render() {
-    const user = this.state.userInfo;
+    const manager = this.state.managerInfo;
     if (this.state.ready === true) {
       return (
         <div>
           <div className="div-admin-get-all">
             <h1>
-              {user.name} 
+              {manager.person.firstName} {manager.person.lastName}
             </h1>
             <table className="table-admin-get-one">
               <tbody>
                 <tr className="tr-admin-get-one">
-                  <th className="th-admin-get-one"> user ID</th>
-                  <td className="td-admin-get-one">{user.user}</td>
+                  <th className="th-admin-get-one"> Manager ID</th>
+                  <td className="td-admin-get-one">{manager.coachId}</td>
                 </tr>
                 <tr className="tr-admin-get-one">
                   <th className="th-admin-get-one"> Name</th>
                   <td className="td-admin-get-one">
-                    {user.name}
+                    {manager.person.firstName} {manager.person.lastName}
                   </td>
                 </tr>
-                <tr className="tr-admin-get-one">
-                  <th className="th-admin-get-one"> user</th>
-                  <td className="td-admin-get-one">{user.name}</td>
-                </tr>
-                <tr className="tr-admin-get-one">
-                  <th className="th-admin-get-one"> Number</th>
-                  <td className="td-admin-get-one">{user.name}</td>
-                </tr>
-                <tr className="tr-admin-get-one">
-                  <th className="th-admin-get-one"> Position</th>
-                  <td className="td-admin-get-one">{user.name}</td>
-                </tr>
+                
                 <tr className="tr-admin-get-one">
                   <th className="th-admin-get-one"> Date Of Birth</th>
                   <td className="td-admin-get-one">
-                    {user.name}
+                    {manager.person.dateOfBirth}
                   </td>
                 </tr>
                 <tr className="tr-admin-get-one">
                   <th className="th-admin-get-one"> Address</th>
                   <td className="td-admin-get-one">
-                 Her setter vi addressa
+                    {manager.person.address.addressLine1}{" "}
+                    {manager.person.address.addressLine2}{" "}
+                    {manager.person.address.addressLine3},{" "}
+                    {manager.person.address.postalCode},{" "}
+                    {manager.person.address.city},{" "}
+                    {manager.person.address.country}
                   </td>
                 </tr>
               </tbody>
@@ -91,7 +86,7 @@ class UserInfo extends Component {
               </tbody>
             </table>
           </div>
-          <button  onClick={this.props.closeuser}>
+          <button  onClick={this.props.close}>
             Back
           </button>
         </div>
@@ -102,15 +97,4 @@ class UserInfo extends Component {
   }
 }
 
-export default UserInfo;
-
-/*
-
-   {user.person.address.addressLine1}{" "}
-                    {user.person.address.addressLine2}{" "}
-                    {user.person.address.addressLine3},{" "}
-                    {user.person.address.postalCode},{" "}
-                    {user.person.address.city},{" "}
-                    {user.person.address.country}
-
-                    */
+export default ManagerInfo;
