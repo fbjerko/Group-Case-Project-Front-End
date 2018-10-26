@@ -39,9 +39,9 @@ class ContactForm extends React.Component {
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send(
             JSON.stringify({
-              person_id: this.state.person_id,
-              contact_type: this.state.contact_type,
-              contact_detail: this.state.contact_detail
+              personId: this.state.person_id,
+              contactType: this.state.contact_type,
+              contactDetail: this.state.contact_detail
             })
         );
         xhttp.onreadystatechange = ()=>{

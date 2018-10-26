@@ -75,6 +75,9 @@ class SearchField extends Component {
             case 'owner':
                 url = 'http://localhost:5000/api/owner/all';
                 break;
+            case 'goalType':
+                url = 'http://localhost:5000/api/goalType/all';
+                break;
         }
         return url;
     };

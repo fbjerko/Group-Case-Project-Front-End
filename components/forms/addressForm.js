@@ -42,10 +42,10 @@ class AddressForm extends React.Component {
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send(
             JSON.stringify({
-              address_line_1: this.state.address_line_1,
-              address_line_2: this.state.address_line_2,
-              address_line_3: this.state.address_line_3,
-              postal_code: this.state.postal_code,
+              addressLine1: this.state.address_line_1,
+              addressLine2: this.state.address_line_2,
+              addressLine3: this.state.address_line_3,
+              postalCode: this.state.postal_code,
               city: this.state.city,
               country: this.state.country
             })
