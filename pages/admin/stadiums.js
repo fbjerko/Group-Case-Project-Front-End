@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import LayoutGlobal from "../../components/LayoutGlobal";
 import IndexReturn from "../../components/IndexReturn";
-import NavBar from "../../components/NavBar";
+import { Router } from "../../routes";
 import AdminReturn from "../../components/AdminReturn";
 
 class Stadiums extends Component {
@@ -29,7 +29,7 @@ class Stadiums extends Component {
       return (
         <div>
           <LayoutGlobal />
-          <NavBar />
+
           <div className="container">
             <h1>Stadiums</h1>
 
@@ -59,24 +59,30 @@ class Stadiums extends Component {
       return (
         <div>
           <LayoutGlobal />
-          <NavBar />
 
           <div className="container">
             <h1>Stadiums</h1>
 
-            <div className="btn-admin-create-top">
+            <div className="btn-admin-config">
               <button className="btn-create" onClick={this._createStadium}>
                 Configure
               </button>
+
+              <button className="btn-create" onClick={() => Router.pushRoute("/admin/location")}>
+                Create location
+              </button>
+
+              <AdminReturn />
+
             </div>
 
             <div className="btn-admin-create-bottom">
-              <AdminReturn/>
+             
             </div>
 
             {this.state.createStadium ? <CreateUser /> : null}
 
-            <IndexReturn />
+           
           </div>
         </div>
       );

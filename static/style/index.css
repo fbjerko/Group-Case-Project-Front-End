@@ -7,21 +7,7 @@ div.info-container {
   align-items: center;
   text-align: center;
   margin-top: 10vh;
-}
-
-div.btn-index-menu {
-  display: column;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  margin: auto;
-  margin-top: 5vh;
-}
-
-button.index-menu {
-  width: 7vw;
-  height: 7vh;
+  
 }
 
 div.frontpage-info1 {
@@ -29,6 +15,7 @@ div.frontpage-info1 {
   width: 25vw;
   border: 2px solid black;
   margin-left: 1vw;
+	background-color:#f9f9f9;
 }
 
 div.frontpage-info2 {
@@ -36,6 +23,8 @@ div.frontpage-info2 {
   width: 25vw;
   border: 2px solid black;
   margin-left: 1vw;
+	background-color:#f9f9f9;
+
 }
 div.top {
   border-bottom: 2px solid black;
@@ -47,24 +36,51 @@ div.top h2 {
   text-align: center;
 }
 
-div.btn-group {
-  position: absolute;
-  top: 3.5vh;
-  right: 1vw;
+
+div.btn-group-index-toggle-info {
+  display: column;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: auto;
+  margin-top: 5vh;
 }
 
-button.btn-index-top {
+div.btn-group-index-login-reg {
+  position: absolute;
+  top: 5.5rem;
+  right: 2.5vw;
+}
+
+button.btn-index-login-reg {
+  font-family:Verdana;
+	font-size:15px;
+	font-weight:bold;
   margin: 0.3vw;
-  height: 7vh;
-  width: 7vw;
+  height: 7rem;
+  width: 10rem;
+  margin: 0.5rem;
   border-width: 0.1rem;
   border-color: black;
+  border-radius: 6px
 }
 
+button.btn-index-toggle-info {
+  font-family:Verdana;
+	font-size:15px;
+	font-weight:bold;
+  margin: 0.3vw;
+  height: 5rem;
+  width: 15rem;
+  border-width: 0.1rem;
+  border-color: black;
+  border-radius: 6px
+}
 
 form {
   border-width: 1rem;
-  border-color: black;
+  border-color: rgb(253, 194, 194);
 }
 
 .form-div {
@@ -87,6 +103,7 @@ form {
   border: solid;
   border-width: 0.1rem;
   border-color: black;
+  border-radius: 6px;
 
 }
 
@@ -97,6 +114,7 @@ form {
   height: 4rem;
   margin: 10px 2px 10px 2px;
   background: #f1f1f1;
+  border-radius: 6px;
 }
 
 
@@ -108,6 +126,7 @@ form {
   padding: 16px 20px;
   border: solid;
   border-width: 0.1rem;
+  border-radius: 6px;
   cursor: pointer;
   width: 48%;
   margin: 1%;
@@ -120,3 +139,23 @@ form {
 .open-button:hover {
   opacity: 2;
 }
+body {
+  background: url(../images/background.jpg) no-repeat center center fixed;
+  background-size: cover;
+  height: 100vh;
+  min-height: 100vh;
+  display: block;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+}
+
+
+
+
+        
+
+
+
+
+

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import LayoutGlobal from "../../components/LayoutGlobal";
 import IndexReturn from "../../components/IndexReturn";
-import NavBar from "../../components/NavBar";
 import AdminReturn from "../../components/AdminReturn";
+import { Router } from "../../routes";
 
 class Matches extends Component {
   constructor(props) {
@@ -29,12 +29,15 @@ class Matches extends Component {
       return (
         <div>
           <LayoutGlobal />
-          <NavBar />
+
           <div className="container">
             <h1>Matches</h1>
 
             <div className="btn-admin-create-top">
-              <button className="btn-create" onClick={this._createMatches}>
+              <button
+                className="btn-create"
+                onClick={() => Router.pushRoute("/admin/creatematches")}
+              >
                 Create
               </button>
 
@@ -59,24 +62,26 @@ class Matches extends Component {
       return (
         <div>
           <LayoutGlobal />
-          <NavBar />
 
           <div className="container">
             <h1>Matches</h1>
 
             <div className="btn-admin-create-top">
-              <button className="btn-create" onClick={this._createMatches}>
-                Configure
+              <button
+                className="btn-create"
+                onClick={() => Router.pushRoute("/admin/season")}
+              >
+                Create Season
               </button>
+              <div className="btn-admin-config">
+                <button className="btn-create" onClick={this._createMatches}>
+                  Configure matches
+                </button>
+                <AdminReturn />
+              </div>
+              <div className="btn-admin-create-bottom" />;
+              {this.state.createMatches ? <CreateUser /> : null}
             </div>
-
-            <div className="btn-admin-create-bottom">
-              <AdminReturn/>
-            </div>
-
-            {this.state.createMatches ? <CreateUser /> : null}
-
-            <IndexReturn />
           </div>
         </div>
       );

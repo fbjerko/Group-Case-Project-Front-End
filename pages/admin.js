@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import LayoutGlobal from "../components/LayoutGlobal";
 import IndexReturn from "../components/IndexReturn";
-import NavBar from "../components/NavBar";
 import { Router } from "../routes";
-import Players from "./admin/players";
+
 
 
 
@@ -23,7 +22,6 @@ class Dashboard extends Component {
   <LayoutGlobal />
         
         <div className="container">
-        <h1>Dashboard</h1>
        
 
         <div className="btn-admin-nav">
@@ -31,7 +29,7 @@ class Dashboard extends Component {
                 Players
               </button>
 
-              <button className="btn-nav" onClick={() => Router.pushRoute("/admin/managers")}>
+              <button className="btn-nav" id="btn-managers" onClick={() => Router.pushRoute("/admin/managers")}>
                 Managers
               </button>
 
@@ -44,7 +42,7 @@ class Dashboard extends Component {
              <div className="btn-admin-nav-bottom">
               
 
-               <button className="btn-nav" onClick={() => Router.pushRoute("/admin/matches")}>
+               <button className="btn-nav" id="btn-matches" onClick={() => Router.pushRoute("/admin/matches")}>
                 Matches
               </button>
 
@@ -52,18 +50,20 @@ class Dashboard extends Component {
                 Stadiums
               </button>
 
-              <button className="btn-nav" onClick={() => Router.pushRoute("/admin/users")}>
-                Users
+
+              <button className="btn-nav" id="btn-general" onClick={() => Router.pushRoute("/admin/general")}>
+                General
+
+
               </button>
             </div>
 
              </div>
-        
 
-        
-       
-        <IndexReturn
-        />
+            
+             <IndexReturn/>
+           
+     
       </div>
     );
   }

@@ -7,6 +7,8 @@ function getTeams(){
   Http.send();
   Http.onreadystatechange=(e)=>{
   console.log(Http.responseText)
+  
+
 
   var teamInfo = Http.responseText;
 

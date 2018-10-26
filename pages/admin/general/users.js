@@ -1,31 +1,21 @@
 import React, { Component } from "react";
-import LayoutGlobal from "../../components/LayoutGlobal";
-import AdminReturn from "../../components/AdminReturn";
-import TeamList from "../../components/admin-team/TeamList";
+import LayoutGlobal from "../../../components/LayoutGlobal";
+import AdminReturn from "../../../components/AdminReturn";
+import UserList from "../../../components/admin-user/UserList";
 
-class Teams extends Component {
+class Users extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      teams: [],
+      users: [],
       ready: false,
-      createTeam: false,
+      createUser: false,
       currentPage: 0
     };
 
-    this._createTeam = this._createTeam.bind(this);
+    this._createUser = this._createUser.bind(this);
     this.previousPage = this.previousPage.bind(this);
     this.nextPage = this.nextPage.bind(this);
-    this.firstPage = this.firstPage.bind(this);
-    this.lastPage = this.lastPage.bind(this);
-  }
-
-  firstPage() { 
-    this.setState({currentPage: 0})
-  }
-  lastPage() { 
-    this.setState({currentPage: Math.floor(this.state.teams.length/10 )});
-    console.log(this.state.currentPage);
   }
 
   previousPage() {
@@ -35,28 +25,26 @@ class Teams extends Component {
   }
 
   nextPage() {
-    if (this.state.currentPage + 1 < this.state.teams.length / 10) {
+    if (this.state.currentPage + 1 < this.state.users.length / 10) {
       this.setState({ currentPage: this.state.currentPage + 1 });
-    }
+    } 
     console.log(this.state.currentPage);
   }
+  
 
-  _createTeam() {
+
+  _createUser() {
     this.setState({
-      createTeam: !this.state.createTeam
+      createUser: !this.state.createUser
     });
-
-    console.log(this.state.createTeam + " ");
   }
 
-  async componentDidMount() {
-    console.log("Hey");
+  async componentWillMount() {
     try {
-      const response = await fetch(`http://localhost:5000/api/team/all`);
+      const response = await fetch(`http://localhost:5000/api/user/all`);
       const json = await response.json();
-      console.log(json);
       this.setState({
-        teams: json,
+        users: json,
         ready: true
       });
     } catch (error) {
@@ -64,37 +52,39 @@ class Teams extends Component {
     }
   }
 
+  componentWillUpdate() {
+    
+  }
+
   render() {
-    console.log(this.state.teams.length
-      );
-    const teams = this.state.teams.slice(
+    const users = this.state.users.slice(
       this.state.currentPage * 10,
       (this.state.currentPage + 1) * 10
     );
-    if (this.state.createTeam === true) {
+
+    
+
+    if (this.state.createUser === true) {
       return (
         <div>
           <LayoutGlobal />
 
           <div className="container">
-            <h1>teams</h1>
+            <h1>Users</h1>
 
             <div className="btn-admin-create-top">
-              <button className="btn-create" >
-                Create
-              </button>
 
-              <button className="btn-create" >
+              <button className="btn-create" onClick={this._matches}>
                 Update
               </button>
 
-              <button className="btn-create" >
+              <button className="btn-create" onClick={this._teams}>
                 Delete
               </button>
             </div>
 
             <div className="btn-admin-create-bottom">
-              <button className="btn-create" onClick={this._createTeam}>
+              <button className="btn-create" onClick={this._createUser}>
                 Back
               </button>
             </div>
@@ -108,24 +98,23 @@ class Teams extends Component {
 
           <div className="container">
             <div className="btn-admin-config">
-              <button className="btn-create" onClick={this._createTeam}>
-                Configure
+              <button className="btn-create" onClick={this._createUser}>
+                Edit/Delete User
               </button>
               <AdminReturn />
             </div>
 
-           
-              <TeamList
-                teams={teams}
+            <div className="list-info-admin">
+              <UserList
+                users={users}
                 ready={this.state.ready}
                 nextPage={this.nextPage}
                 previousPage={this.previousPage}
-                firstPage= {this.firstPage}
-                lastPage={this.lastPage}
               />
-          
+            </div>
+
             <h2>Page {this.state.currentPage + 1}</h2>
-            {this.state.createTeam ? <CreateUser /> : null}
+            {this.state.createUser ? <CreateUser /> : null}
           </div>
         </div>
       );
@@ -133,4 +122,4 @@ class Teams extends Component {
   }
 }
 
-export default Teams;
+export default Users;

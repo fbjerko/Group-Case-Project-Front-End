@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Head from "next/head";
 import LayoutGlobal from "../components/LayoutGlobal";
 import Login from "../components/Login";
 import Register from "../components/Register";
@@ -11,7 +10,6 @@ class Index extends Component {
     this.state = {
       showLogin: false,
       showRegister: false,
-      tables: false,
       matches: false,
       teams: false
     };
@@ -20,7 +18,6 @@ class Index extends Component {
     this._onRegisterClick = this._onRegisterClick.bind(this);
     this._matches = this._matches.bind(this);
     this._teams = this._teams.bind(this);
-    this._tables = this._tables.bind(this);
   }
 
   _onLoginClick() {
@@ -45,13 +42,6 @@ class Index extends Component {
     });
   }
 
-  _tables() {
-    this.setState({
-      tables: !this.state.tables,
-      teams: false,
-      matches: false
-    });
-  }
 
   _teams() {
     this.setState({
@@ -69,30 +59,26 @@ class Index extends Component {
       <div>
         <LayoutGlobal />
 
-        <div className="btn-group">
-          <button className="btn-index-top" onClick={this._onLoginClick}>
+        <div className="btn-group-index-login-reg">
+          <button className="btn-index-login-reg " onClick={this._onLoginClick}>
             Log in
           </button>
 
-          <button className="btn-index-top" onClick={this._onRegisterClick}>
+          <button className="btn-index-login-reg " onClick={this._onRegisterClick}>
             Register
           </button>
         </div>
 
-        <div className="btn-index-menu">
-          <button className="index-menu" onClick={this._tables}>
-            Tables
-          </button>
+        <div className="btn-group-index-toggle-info">
 
-          <button className="index-menu" onClick={this._matches}>
+          <button className="btn-index-toggle" onClick={this._matches}>
             Matches
           </button>
 
-          <button className="index-menu" onClick={this._teams}>
-            Teams
+          <button className="btn-index-toggle" onClick={this._teams}>
+            Players
           </button>
 
-          {this.state.tables ? <IndexInfo tables={this.state.tables}/> : null}
           {this.state.matches ? <IndexInfo matches={this.state.matches}/> : null}
           {this.state.teams ? <IndexInfo teams={this.state.teams}/> : null}
         </div>
