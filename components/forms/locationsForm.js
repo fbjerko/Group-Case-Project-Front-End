@@ -28,20 +28,27 @@ class LocationsForm extends React.Component {
     }
 
     sendLocation = ()=>{
-        console.log({
-            address_id: this.state.addressId,
-            name: this.state.name,
-            description: this.state.description,
-        });
-        fetch("http://localhost:5000/api/location",{
-            method:'POST',
-            headers:{"Content-type":"application/json"},
-            body:{
-                address_id: this.state.addressId,
-                name: this.state.name,
-                description: this.state.description,
+
+        var xhttp = new XMLHttpRequest();
+
+        xhttp.open("POST", "http://localhost:5000/api/location", true);
+        xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.send(
+            JSON.stringify({
+                name:this.state.name,
+                description:this.state.description,
+                addressId:this.state.addressId
+            })
+        );
+        xhttp.onreadystatechange = ()=>{
+            if (xhttp.readyState == XMLHttpRequest.DONE) {
+                if(xhttp.status==201){
+                    console.log("Created");
+                }else if (xhttp.status==403){
+                    console.log("Failed to create")
+                }
             }
-        })
+        }
     }
 
 
