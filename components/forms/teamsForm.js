@@ -8,10 +8,10 @@ class TeamForm extends React.Component {
         super(props);
         this.state={
             name:'',
-            association_id:-1,
-            location_id: -1,
-            owner_id: -1,
-            coach_id: -1,
+            associationId:-1,
+            locationId: -1,
+            ownerId: -1,
+            coachId: -1,
             showPop:false,
             status:'Nothing'       
           }

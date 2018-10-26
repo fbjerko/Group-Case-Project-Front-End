@@ -7,8 +7,8 @@ class SeasonForm extends React.Component {
         super(props);
         this.state={
             name:'',
-            start_date:'',
-            end_date: '',
+            startDate:'',
+            endDate: '',
             description:'',
             showPop:false,
             status:'Nothing'
