@@ -1,5 +1,6 @@
 import React from "react";
 import SearchField from "../admin-create/SearchField";
+import Popupp from "../popupp";
 
 
 class LocationsForm extends React.Component {
@@ -8,7 +9,9 @@ class LocationsForm extends React.Component {
         this.state={
             name:'',
             description:'',
-            addressId:-1
+            addressId:-1,
+            showPop:false,
+            status:'Nothing'
         }
     }
 
@@ -44,9 +47,14 @@ class LocationsForm extends React.Component {
             if (xhttp.readyState == XMLHttpRequest.DONE) {
                 if(xhttp.status==201){
                     console.log("Created");
+                    this.setState({status:"Created"});
+
                 }else if (xhttp.status==403){
                     console.log("Failed to create")
+                    this.setState({status:"Failed to create"});
                 }
+                this.setState({showPop:true});
+
             }
         }
     }
@@ -54,6 +62,11 @@ class LocationsForm extends React.Component {
 
 
     render(){
+
+        if(this.state.showPop){
+            return(<Popupp redirect={'/admin/general'} text={this.state.status}/>);
+        }
+
         return(<div className="info-container">
 
             <div className="seasons-container">

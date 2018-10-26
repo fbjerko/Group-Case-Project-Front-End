@@ -32,7 +32,7 @@ _create() {
         return (
             <div>
               <LayoutGlobal />
-              <LocationsForm/>
+              <LocationsForm />
               <div className = "btn-admin-create-bottom">
               <button className="btn-create" onClick={this._create}>
               Back
@@ -57,14 +57,14 @@ _create() {
             </div>
             <div >
 
-<button
-type="button"
-className="btn-ret-admin"
-onClick={() => Router.pushRoute("/admin/general")}
->
-Return to General
-</button>
-</div>
+                <button
+                type="button"
+                className="btn-ret-admin"
+                onClick={() => Router.pushRoute("/admin/general")}
+                >
+                Return to General
+                </button>
+                </div>
           </div>
 
         </div>

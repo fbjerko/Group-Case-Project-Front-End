@@ -12,23 +12,23 @@ export default props => {
         <link
           rel="stylesheet"
           type="text/css"
-          href="../static/style/global.css"
+          href="/static/style/global.css"
         />
         <link
           rel="stylesheet"
           type="text/css"
-          href="../static/style/admin.css"
+          href="/static/style/admin.css"
         />
 
         <link
           rel="stylesheet"
           type="text/css"
-          href="../static/style/index.css"
+          href="/static/style/index.css"
         />
         <link
           rel="stylesheet"
           type="text/css"
-          href="../static/style/user.css"
+          href="/static/style/user.css"
         />
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" />

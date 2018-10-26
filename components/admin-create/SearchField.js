@@ -92,9 +92,7 @@ class SearchField extends Component {
         this.props.handleChange(event.target.id);
     };
 
-    styles={
-        width:200
-    }
+
 
     getId=()=>{
         return this.state.id;
@@ -132,7 +130,7 @@ class SearchField extends Component {
             return (
                 <div >
 
-                    <input style={this.styles} value={this.state.search} placeholder={'Search for '+this.state.type} onChange={this.updateSearch}/>
+                    <input value={this.state.search} placeholder={'Search for '+this.state.type} onChange={this.updateSearch}/>
                     <br></br>
                         <select onBlur={this.disable} size={filteredData.length>10?10:filteredData.length+1} style={this.styles} >
                             {searchResult}</select>
