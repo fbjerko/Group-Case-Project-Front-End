@@ -7,10 +7,10 @@ class PersonForm extends React.Component {
     constructor(props){
         super(props);
         this.state={
-            firstName:'',
-            lastName:'',
-            dateOfBirth:'',
-            addressId:-1,
+            first_name:'',
+            last_name:'',
+            date_of_birth:'',
+            address_id:-1,
             showPop:false,
             status:'Nothing'
         }
@@ -42,9 +42,9 @@ class PersonForm extends React.Component {
         xhttp.send(
             JSON.stringify({
                 addressId:this.state.addressId,
-                first_name:this.state.first_name,
-                last_name:this.state.last_name,
-                date_of_birth:this.state.date_of_birth
+                firstName:this.state.first_name,
+                lastName:this.state.last_name,
+                dateOfBirth:this.state.date_of_birth
             })
         );
         xhttp.onreadystatechange = ()=>{

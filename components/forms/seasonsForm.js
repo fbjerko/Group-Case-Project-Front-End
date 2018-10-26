@@ -7,8 +7,8 @@ class SeasonForm extends React.Component {
         super(props);
         this.state={
             name:'',
-            startDate:'',
-            endDate: '',
+            start_date:'',
+            end_date: '',
             description:'',
             showPop:false,
             status:'Nothing'
@@ -20,6 +20,7 @@ class SeasonForm extends React.Component {
         if(event.target.id=='name'){
             this.setState({name:event.target.value});
         }else if(event.target.id=='start_date'){
+            console.log(event.target.value);
             this.setState({start_date:event.target.value});
         }else if(event.target.id=='end_date'){
           this.setState({end_date:event.target.value});
@@ -33,13 +34,13 @@ class SeasonForm extends React.Component {
 
         var xhttp = new XMLHttpRequest();
 
-        xhttp.open("POST", "http://localhost:5000/api/location", true);
+        xhttp.open("POST", "http://localhost:5000/api/season", true);
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send(
             JSON.stringify({
                 name:this.state.name,
-                start_date:this.state.start_date,
-                end_date:this.state.end_date,
+                startDate:this.state.start_date,
+                endDate:this.state.end_date,
                 description:this.state.description            
               })
         );
@@ -76,11 +77,11 @@ class SeasonForm extends React.Component {
                 <br></br>
                 <br></br>
                 <p>Start Date</p>
-                <input onChange={this.updateInput} value={this.state.name} type="date" placeholder="Choose a date" id="start_date" />
+                <input onChange={this.updateInput} type="date" placeholder="Choose a date" id="start_date" />
                 <br></br>
                 <br></br>
                 <p>End Date</p>
-                <input onChange={this.updateInput} value={this.state.name} type="date" placeholder="Choose a date" id="end_date" />
+                <input onChange={this.updateInput} type="date" placeholder="Choose a date" id="end_date" />
                 <br></br>
                 <br></br>
                 <p>Description</p>

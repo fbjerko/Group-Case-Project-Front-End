@@ -8,10 +8,10 @@ class TeamForm extends React.Component {
         super(props);
         this.state={
             name:'',
-            associationId:-1,
-            locationId: -1,
-            ownerId: -1,
-            coachId: -1,
+            association_id:-1,
+            location_id: -1,
+            owner_id: -1,
+            coach_id: -1,
             showPop:false,
             status:'Nothing'       
           }
@@ -52,9 +52,9 @@ class TeamForm extends React.Component {
             JSON.stringify({
               name: this.state.name,
               association_id: this.state.association_id,
-              location_id: this.state.location_id,
-              owner_id: this.state.owner_id,
-              coach_id:this.state.coach_id  
+              locationId: this.state.location_id,
+              ownerId: this.state.owner_id,
+              coachId:this.state.coach_id
             })
         );
         xhttp.onreadystatechange = ()=>{

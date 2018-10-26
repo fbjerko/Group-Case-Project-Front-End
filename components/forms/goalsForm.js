@@ -28,7 +28,7 @@ class GoalForm extends React.Component {
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send(
             JSON.stringify({
-                name:this.state.name
+                type:this.state.name
             })
         );
         xhttp.onreadystatechange = ()=>{
