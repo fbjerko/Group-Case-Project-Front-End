@@ -48,11 +48,11 @@ _create() {
           <LayoutGlobal />
        
           <div className="container">
-            <h1>Goal Types</h1>
+            <h1>Locations</h1>
 
             <div className="btn-admin-create-top">
               <button className="btn-create" onClick={this._create}>
-                Create Goal Type
+                Create location
               </button>
             </div>
             <div >
