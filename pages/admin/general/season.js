@@ -1,84 +1,72 @@
 import React, { Component } from "react";
 import LayoutGlobal from "../../../components/LayoutGlobal";
+import SeasonsForm from "../../../components/forms/seasonsForm";
 import { Router } from "../../../routes";
+
 
 
 class Seasons extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showEdit: false
+      create: false
     };
 
-    this._onEditClick = this._onEditClick.bind(this);
+    this._create = this._create.bind(this);
 }
 
-  
+_create() {
+  this.setState({
+    create: !this.state.create
+  });
 
-  _onEditClick() {
-    this.setState({
-      showEdit: !this.state.showEdit,
-    });
-  }
-  
-  
-
-  _getSeasons(){
-    var xhttp = new XMLHttpRequest();
-
-    xhttp.open("POST", "http://localhost:5000/api/season", true);
-    xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send(
-      JSON.stringify({
-        name: document.getElementById("name").value,
-        startDate: document.getElementById("startdate").value,
-        endDate: document.getElementById("enddate").value,
-        description: document.getElementById("description").value
-      }));
-  
-  
-    }
-  
+} 
 
   render() {
 
+    if(this.state.create === true){
+
+        return (
+            <div>
+              <LayoutGlobal />
+              <SeasonsForm />
+              <div className = "btn-admin-create-bottom">
+              <button className="btn-create" onClick={this._create}>
+              Back
+            </button>
+              </div>
+            </div>
+          );
+
+    } else {
+        //This return is going to display a list of addresses and a create address button
     return (
-      <div>
-        <LayoutGlobal />
-           <div className="info-container">
+        <div>
+          <LayoutGlobal />
+       
+          <div className="container">
+            <h1>Seasons</h1>
 
-               <div className="seasons-container">
-               <div className="top">
-                 <h2>Create new season</h2>
-               </div>
-                <p>Season Name </p>
-                <input type="text" placeholder="Enter a name" id="name"/>
-                <br></br>
-                <br></br>
-                <p>Start Date </p>
-                <input type="date" id="startdate" />
-                <br></br>
-                <br></br>
-                <p>End Date </p>
-                <input type="date" id="enddate" />
-                <br></br>
-                <br></br>
-                <p>Description </p>
-                <input type="text" placeholder="Write a description" id="description" />
-                <br></br>
-                <br></br>
-                <input className="btn-index" type="button" value="Submit"></input>
-               </div>
+            <div className="btn-admin-create-top">
+              <button className="btn-create" onClick={this._create}>
+                Create Season
+              </button>
+            </div>
+            <div >
 
-             </div>
-        <div className="btn-index">
-    <button type="button"
-    onClick={() => Router.pushRoute("/admin/matches")}
-    > Back
-    </button>
-      </div>
-      </div>
-    );
+            <button
+            type="button"
+            className="btn-ret-admin"
+            onClick={() => Router.pushRoute("/admin/general")}
+            >
+            Return to General
+            </button>
+            </div>
+          </div>
+  
+        </div>
+      );
+    }  
   }
 }
 
