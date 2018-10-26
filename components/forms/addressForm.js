@@ -100,7 +100,7 @@ class AddressForm extends React.Component {
        <input onChange={this.updateInput} value={this.state.country} type="text" placeholder="Write a country" id="country" />
        <br></br>
        <br></br>
-       <input className="btn-index" type="button" value="Submit" onClick={sendAddress} ></input>
+       <input className="btn-index" type="button" value="Submit" onClick={this.sendAddress} ></input>
       </div>
     </div>
       );

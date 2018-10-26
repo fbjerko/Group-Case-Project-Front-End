@@ -104,7 +104,7 @@ class TeamForm extends React.Component {
        <SearchField type={'coach'} handleChange={this.updateSearchFieldCoach}/>
        <br></br>
        <br></br>
-       <input className="btn-index" type="button" value="Submit" onClick={sendTeam}></input>
+       <input className="btn-index" type="button" value="Submit" onClick={this.sendTeam}></input>
       </div>
 
     </div>

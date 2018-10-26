@@ -102,7 +102,7 @@ class MatchesForm extends React.Component {
        <SearchField type={'location'} handleChange={this.updateSearchFieldLocation}/>
        <br></br>
        <br></br>
-       <input className="btn-index" type="button" value="Submit" onClick={sendMatches}></input>
+       <input className="btn-index" type="button" value="Submit" onClick={this.sendMatches}></input>
       </div>
 
     </div>
