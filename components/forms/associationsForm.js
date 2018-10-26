@@ -24,11 +24,11 @@ const assocationForm = () => (
         <h2>Create new assocation</h2>
       </div>
        <p>Name </p>
-       <input type="text" placeholder="Write an address" id="name"/>
+       <input type="text" placeholder="Write a name" id="name"/>
        <br></br>
        <br></br>
        <p>Description</p>
-       <input type="text" placeholder="Write an optional address" id="description" />
+       <input type="text" placeholder="Write an description" id="description" />
        <br></br>
        <br></br>
        <input className="btn-index" type="button" value="Submit" onClick={sendAssociation}></input>

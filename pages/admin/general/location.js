@@ -21,7 +21,9 @@ _create() {
     create: !this.state.create
   });
 
-} 
+}
+
+
 
   render() {
 
@@ -30,7 +32,7 @@ _create() {
         return (
             <div>
               <LayoutGlobal />
-              <LocationsForm />
+              <LocationsForm/>
               <div className = "btn-admin-create-bottom">
               <button className="btn-create" onClick={this._create}>
               Back
