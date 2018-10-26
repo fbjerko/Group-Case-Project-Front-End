@@ -3,6 +3,11 @@ const express = require('express');
 const routes = require('./routes');
 const bodyParser = require('body-parser');
 const port = process.env.PORT || 3000;
+const http = require('http');
+const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser');
+const bcrypt = require('bcryptjs');
+const request = require('request');
 
 
 // initialize the Next.js application
@@ -17,24 +22,124 @@ app.prepare()
   const server = express();
   
   //server.use('/',routes);
+  server.use(cookieParser());
   server.use(bodyParser.json());
+
   server.use('/admin',(req,res,next)=>{
-    console.log("Checking authentication");
-    next();
+    console.log("Checking authentication for Admin");
+    console.log(req.cookies.token);
+    try{
+      const decode = jwt.verify(req.cookies.token,'secretAdmin');
+      next();
+    }catch(error){
+    	
+      res.status(401).end();
+    }
+    
+    
     
   });
 
-  server.get('/admin',(req,res)=>{
-    console.log('User granted access!');
-    return handle(req,res);
+  server.use('/dashboard',(req,res,next)=>{
+    console.log("Checking authentication for User");
+    console.log(req.cookies.token);
+    try{
+      const decode = jwt.verify(req.cookies.token,'secretNotAdmin');
+      next();
+    }catch(error){
+    	
+      res.status(401).end();
+    }
+    
+    
+    
   });
 
   server.post('/login',(req,res)=>{
     console.log('User whishes to login as Admin');
     console.log(req.body.password);
     console.log(req.body.email);
-    res.status(400);
-    res.send('OK');
+
+
+
+    let url = "http://localhost:5000/api/user/"+req.body.email;
+    http.get(url,(response)=>{
+      let data = '';
+        // A chunk of data has been recieved.
+          response.on('data', (chunk) => {
+            data += chunk;
+          });
+
+          // The whole response has been received. Print out the result.
+          response.on('end', () => {
+          	let user = JSON.parse(data);
+            
+            bcrypt.compare(req.body.password,user.password,(err,hashResponse)=>{
+            	if(hashResponse){
+            		if(user.admin==false){
+			              const JWTToken = jwt.sign({
+			                  email: user.email,
+			                  id: user.id,
+			                  admin : false
+
+			                },
+			                'secretNotAdmin',
+			                 {
+			                   expiresIn: '2h'
+			                 });
+			              res.cookie('token',JWTToken,{maxAge:2 * 60 * 60 * 1000,httpOnly:true});
+			              res.status(200).json({
+			                message: "user",
+			                token: JWTToken
+
+			              });
+			            }else if(user.admin==true){
+			              const JWTToken = jwt.sign({
+			                  email: user.email,
+			                  id: user.id,
+			                  admin : true
+
+			                },
+			                'secretAdmin',
+			                 {
+			                   expiresIn: '2h'
+			                 });
+			              res.cookie('token',JWTToken,{maxAge:2 * 60 * 60 * 1000,httpOnly:true})
+			              res.status(200).json({
+			                message: "admin",
+			              });
+			            }
+            	}else{
+
+            	}
+            })
+          });
+    }).on("error", (err) => {
+      console.log("Error: " + err.message);
+    });
+
+  });
+
+  server.post('/register',(req,res)=>{
+  	let body = req.body;
+  	bcrypt.hash(body.password,10,(err,hash)=>{
+  		if(hash){
+  			body.password = hash;
+  			console.log(hash);
+  			let url = "http://localhost:5000/api/user";
+		  	request.post(url,{json:body},(response)=>{
+		  		res.status(200);
+		  		console.log('User Registered');
+		  	})
+  		}else{
+  			console.log(err);
+  			res.status(401);
+  		}
+  		
+  	})
+  	
+  	
+  	
   });
   
   server.get('*', (req, res) => {

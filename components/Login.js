@@ -35,13 +35,25 @@ const Login = () => (
               email: document.getElementById("email").value
             })
           }).then((response)=>{
-            
-              if(response.status==200){
-                Router.pushRoute("/admin");
+            if(response.status==200){
+              response.json().then((response)=>{
+
+                if(response.message=='admin'){
+                  console.log("Admin logged in");
+                  Router.pushRoute("/admin");}
+                else if (response.message=='user'){
+                  console.log("user logged in");
+                  Router.pushRoute("/dashboard");}
+                
+              
+            });
+              }else{
+                res.status(401).end();
               }
             });
 
-          }}
+          }
+        }
       >
         Login Admin
       </button>
