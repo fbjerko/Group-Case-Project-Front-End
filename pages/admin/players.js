@@ -17,6 +17,16 @@ class Players extends Component {
     this._createPlayer = this._createPlayer.bind(this);
     this.previousPage = this.previousPage.bind(this);
     this.nextPage = this.nextPage.bind(this);
+    this.firstPage = this.firstPage.bind(this);
+    this.lastPage = this.lastPage.bind(this);
+  }
+
+  firstPage() { 
+    this.setState({currentPage: 0})
+  }
+  lastPage() { 
+    this.setState({currentPage: Math.floor(this.state.players.length/10 )});
+    console.log(this.state.currentPage);
   }
 
   previousPage() {
@@ -111,6 +121,8 @@ class Players extends Component {
                 ready={this.state.ready}
                 nextPage={this.nextPage}
                 previousPage={this.previousPage}
+                firstPage= {this.firstPage}
+                lastPage={this.lastPage}
               />
             </div>
 

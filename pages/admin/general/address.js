@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import LayoutGlobal from "../../components/LayoutGlobal";
-import AddressForm from "../../../forms/AddressForm";
+import LayoutGlobal from "../../../components/LayoutGlobal";
+import AddressForm from "../../../components/forms/addressForm";
+import { Router } from "../../../routes";
 
 
 class Address extends Component {
@@ -19,22 +20,7 @@ _createAddress() {
   });
 
 }
-
-  _addAddress(){
-    var xhttp = new XMLHttpRequest();
-
-    xhttp.open("POST", "http://localhost:5000/api/location", true);
-    xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send(
-      JSON.stringify({
-        name: document.getElementById("name").value,
-        description: document.getElementById("description").value,
-        address: document.getElementById("address").value
-      }));
-  
-  
-    }
-  
+ 
 
   render() {
 
@@ -44,6 +30,12 @@ _createAddress() {
             <div>
               <LayoutGlobal />
               <AddressForm />
+              <div className = "btn-admin-create-bottom">
+              <button className="btn-create" onClick={this._createAddress}>
+              Back
+            </button>
+              </div>
+          
             </div>
           );
 
@@ -61,7 +53,16 @@ _createAddress() {
                 Create Address
               </button>
             </div>
-            <IndexReturn />
+            <div >
+
+<button
+type="button"
+className="btn-ret-admin"
+onClick={() => Router.pushRoute("/admin/general")}
+>
+Return to General
+</button>
+</div>
           </div>
         </div>
       );

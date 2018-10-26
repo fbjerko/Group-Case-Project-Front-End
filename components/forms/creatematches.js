@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import LayoutGlobal from "../../components/LayoutGlobal";
+import LayoutGlobal from "../LayoutGlobal";
 import { Router } from "../../routes";
-import SearchField from "../../components/admin-create/SearchField"
+import SearchField from "../admin-create/SearchField"
 
 
 class CreatMatches extends Component {
@@ -74,8 +74,6 @@ class CreatMatches extends Component {
                 id:team.teamId
             });
           }
-
-
           this.setState({searchResult});
       }
       }
@@ -138,7 +136,9 @@ class CreatMatches extends Component {
   
     }
   
-  
+  handleChange (id){
+      console.log(id);
+  }
   componentDidMount() {}
 
   render() {
@@ -150,7 +150,7 @@ class CreatMatches extends Component {
             <LayoutGlobal />
                 <div className="info-container">
                     <div className="dashboard-info1">
-                        <SearchField type={'player'}/>
+                        <SearchField type={'coach'} handleChange={this.handleChange.bind(this)}/>
                     </div>
                 </div>
         </div>

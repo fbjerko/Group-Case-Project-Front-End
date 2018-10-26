@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import LayoutGlobal from "../../components/LayoutGlobal";
-import AdminReturn from "../../components/AdminReturn";
-import UserList from "../../components/admin-user/UserList";
+import LayoutGlobal from "../../../components/LayoutGlobal";
+import AdminReturn from "../../../components/AdminReturn";
+import UserList from "../../../components/admin-user/UserList";
 
 class Users extends Component {
   constructor(props) {
@@ -73,9 +73,6 @@ class Users extends Component {
             <h1>Users</h1>
 
             <div className="btn-admin-create-top">
-              <button className="btn-create" onClick={this._createUser}>
-                Create
-              </button>
 
               <button className="btn-create" onClick={this._matches}>
                 Update
@@ -102,7 +99,7 @@ class Users extends Component {
           <div className="container">
             <div className="btn-admin-config">
               <button className="btn-create" onClick={this._createUser}>
-                Configure
+                Edit/Delete User
               </button>
               <AdminReturn />
             </div>
