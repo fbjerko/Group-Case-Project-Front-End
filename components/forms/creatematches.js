@@ -110,31 +110,7 @@ class CreatMatches extends Component {
   
   
 
-  _getSeasons(){
-    const url='http://localhost:5000/api/season/all';
-    fetch(url).then(
-      (res)=>res.json().then(
-      (res)=>{
-        if(res.length>0){
-            let searchResult =[];
 
-            for(let team of res){
-                searchResult.push({
-                    name:team.name,
-                    id:team.seasonId
-                });
-            }
-
-          this.setState({searchResult});
-        }
-        
-      }
-
-      ));
-
-  
-  
-    }
   
   handleChange (id){
       console.log(id);

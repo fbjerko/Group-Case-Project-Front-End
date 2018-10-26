@@ -89,7 +89,7 @@ class SearchField extends Component {
     };
     handleClick = (event)=>{
         this.setState({search:event.target.value,id:event.target.id,active:false});
-
+        this.props.handleChange(event.target.id);
     };
 
     styles={
@@ -112,11 +112,12 @@ class SearchField extends Component {
     }
     disable = ()=>{
         this.setState({active:!this.state.active});
+        this.props.handleChange(this.state.id);
     }
 
 
     render() {
-        this.props.handleChange(this.state.id);
+
 
         let filteredData = this.state.data.filter((element)=>{
 
