@@ -209,6 +209,16 @@ button.btn-nav {
   color: yellow;
 }
 
+
+#btn-users {
+  background: url(../images/users.jpg);
+  background-size: 315px 300px;
+  font-family: Verdana;
+  text-shadow: 2px 2px 2px #000000;
+  font-size: 50px;
+  color: yellow;
+}
+
 #btn-general {
   background: url(../images/matches.png);
   background-size: 400px 300px;

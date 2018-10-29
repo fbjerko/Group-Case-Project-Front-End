@@ -21,7 +21,9 @@ _create() {
     create: !this.state.create
   });
 
-} 
+}
+
+
 
   render() {
 
@@ -46,23 +48,23 @@ _create() {
           <LayoutGlobal />
        
           <div className="container">
-            <h1>Goal Types</h1>
+            <h1>Locations</h1>
 
             <div className="btn-admin-create-top">
               <button className="btn-create" onClick={this._create}>
-                Create Goal Type
+                Create location
               </button>
             </div>
             <div >
 
-<button
-type="button"
-className="btn-ret-admin"
-onClick={() => Router.pushRoute("/admin/general")}
->
-Return to General
-</button>
-</div>
+                <button
+                type="button"
+                className="btn-ret-admin"
+                onClick={() => Router.pushRoute("/admin/general")}
+                >
+                Return to General
+                </button>
+                </div>
           </div>
 
         </div>

@@ -15,14 +15,15 @@ class UserInfo extends Component {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/user/` + this.props.id
+        'http://localhost:5000/api/user/findById/' + this.props.id
       );
+      console.log(response);
       const json = await response.json();
       console.log(json);
-      this.setState({
-        userInfo: json,
-        ready: true
-      });
+        this.setState({
+            userInfo: json,
+            ready: true
+        });
     } catch (error) {
       console.log(error);
     }

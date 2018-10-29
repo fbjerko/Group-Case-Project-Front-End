@@ -1,53 +1,121 @@
 import React from "react";
+import Popupp from "../popupp";
+import SearchField from "../admin-create/SearchField";
 
-function sendMatches() {
-  
-  var xhttp = new XMLHttpRequest();
 
-  xhttp.open("POST", "http://localhost:5000/api/user", true);
-  xhttp.setRequestHeader("Content-type", "application/json");
-  xhttp.send(
-    JSON.stringify({
-      match_date: document.getElementById("match_date").value,
-      team_1: document.getElementById("team_1").value,
-      team_2: document.getElementById("team_2").value,
-      season_id: document.getElementById("season").value,
-      location_id: document.getElementById("location").value
-    })
-  );
 
-  
-}
+class MatchesForm extends React.Component {
+    constructor(props){
+        super(props);
+        this.state={
+            team_1:'',
+            team_2:'',
+            match_date: '',
+            season_id:'',
+            location_id:'',
+            showPop:false,
+            status:'Nothing'       
+          }
+    }
 
-const matchesForm = () => (
-<div className="info-container">
+    updateSearchFieldSeason = (id)=>{
+      console.log(id);
+      this.setState({season_id:id});
+  }
+    updateSearchFieldLocation = (id)=>{
+      console.log(id);
+      this.setState({location_id:id});
+  }
+    updateSearchFieldTeam1 = (id)=>{
+      console.log(id);
+      this.setState({team_1:id});
+  }
+    updateSearchFieldTeam2 = (id)=>{
+      console.log(id);
+      this.setState({team_2:id});
+  }
+
+
+    updateInput = (event)=>{
+      if(event.target.id=='match_date'){
+          this.setState({match_date:event.target.value});
+        }
+
+    }
+
+    sendMatch = ()=>{
+
+        var xhttp = new XMLHttpRequest();
+
+        xhttp.open("POST", "http://localhost:5000/api/match", true);
+        xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.send(
+            JSON.stringify({
+              matchDate: this.state.match_date,
+              team1: this.state.team_1,
+              team2: this.state.team_2,
+              seasonId: this.state.season_id,
+              locationId: this.state.location_id 
+            })
+        );
+        xhttp.onreadystatechange = ()=>{
+          if (xhttp.readyState == XMLHttpRequest.DONE) {
+            if(xhttp.status==201){
+                console.log("Created");
+                this.setState({status:"Created"});
+
+            }else if (xhttp.status==403){
+                console.log("Failed to create")
+                this.setState({status:"Failed to create"});
+            }
+            this.setState({showPop:true});
+
+        }
+        }
+    }
+
+
+
+    render(){
+      if(this.state.showPop){
+        return(<Popupp text={this.state.status}/>);
+    }
+        return(
+          <div className="info-container">
       
       <div className="seasons-container">
       <div className="top">
         <h2>Create new match</h2>
       </div>
        <p>Team 1 </p>
-       <input type="text" placeholder="Pick team 1" id="team_1"/>
+       <SearchField type={'team'} handleChange={this.updateSearchFieldTeam1}/>
        <p>Team 2</p>
-       <input type="text" placeholder="Pick team 2" id="team_2" />
+       <SearchField type={'team'} handleChange={this.updateSearchFieldTeam2}/>
        <br></br>
        <br></br>
        <p>Match date</p>
-       <input type="date" placeholder="Write an optional address" id="match_date" />
+       <input onChange={this.updateInput} value={this.state.match_date} type="date" placeholder="Write a match_date" id="match_date" />
        <br></br>
        <br></br>
        <p>Season</p>
-       <input type="text" placeholder="Write a postal code" id="season" />
+       <SearchField type={'season'} handleChange={this.updateSearchFieldSeason}/>
        <br></br>
        <br></br>
        <p>Location</p>
-       <input type="text" placeholder="Write a city" id="location" />
+       <SearchField type={'location'} handleChange={this.updateSearchFieldLocation}/>
        <br></br>
        <br></br>
-       <input className="btn-index" type="button" value="Submit" onClick={sendMatches}></input>
+       <input className="btn-index" type="button" value="Submit" onClick={this.sendMatches}></input>
       </div>
 
     </div>
-)
+        );
 
-export default matchesForm;
+    }
+
+
+}
+
+
+
+export default MatchesForm;
