@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import LayoutGlobal from "../../components/LayoutGlobal";
 import AdminReturn from "../../components/AdminReturn";
 import ManagerList from "../../components/admin-manager/ManagerList";
+import ListInfo from "../../components/admin-view/LIstInfo";
 
 class Managers extends Component {
   constructor(props) {
@@ -127,8 +128,14 @@ class Managers extends Component {
               <AdminReturn />
             </div>
 
-              <ManagerList
-                managers={managers}
+              <ListInfo
+                data={managers}
+                name='Managers'
+                type1='Manager'
+                type2='Team'
+                att1='Name'
+                att2='Team'
+
                 ready={this.state.ready}
                 nextPage={this.nextPage}
                 previousPage={this.previousPage}

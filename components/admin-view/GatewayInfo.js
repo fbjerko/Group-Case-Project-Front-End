@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import PlayerInfo from "../admin-player/PlayerInfo";
 import ManagerInfo from "../admin-info/ManagerInfo";
 import UserInfo from "../admin-user/UserInfo";
+import TeamInfo from "../admin-user/TeamInfo";
 
 
 class GatewayInfo extends Component {
@@ -27,7 +28,7 @@ class GatewayInfo extends Component {
     if(this.props.type === 'Player') {
         return (
             <div>
-                <PlayerInfo id={this.props.id}/>
+                <PlayerInfo id={this.props.id} close ={this.props.close}/>
             </div>
         )
     }
@@ -35,9 +36,33 @@ class GatewayInfo extends Component {
     if(this.props.type === 'Manager') {
         return (
             <div>
-                <ManagerInfo id={this.props.id}/>
+                <ManagerInfo id={this.props.id} close ={this.props.close}/>
             </div>
         )
+    }
+
+    if(this.props.type === 'Team') {
+        return (
+            <div>
+                <TeamInfo id={this.props.id} close ={this.props.close}/>
+            </div>
+        )
+    }
+
+    if(this.props.type === 'User') {
+        return (
+            <div>
+                <UserInfo id={this.props.id} close ={this.props.close}/>
+            </div>
+        )
+    }
+
+    else {
+        
+        return (
+           <div>Else</div>
+
+        );
     }
    
   }

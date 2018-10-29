@@ -1,8 +1,5 @@
 import React, { Component } from "react";
 
-import PlayerInfo from "../admin-player/PlayerInfo";
-import ManagerInfo from "../admin-info/ManagerInfo";
-import UserInfo from "../admin-user/UserInfo";
 import GatewayInfo from "--/admin-view/GatewayInfo";
 
 class ListInfo extends Component {
@@ -17,9 +14,9 @@ class ListInfo extends Component {
     };
 
     this.showFirst = this.showFirst.bind(this);
-    this.close = this.close.bind(this);
     this.showSecond = this.showSecond.bind(this);
     this.showThird = this.showThird.bind(this);
+    this.close = this.close.bind(this);
   }
 
   showFirst(id) {
@@ -102,7 +99,6 @@ class ListInfo extends Component {
         <div>
           <GatewayInfo
           type2={this.props.type}
-            name={this.props.name2}
             id={this.state.activeId}
             close={this.close}
           />
@@ -111,13 +107,13 @@ class ListInfo extends Component {
     } else {
       return (
         <div>
-          <h1>{this.props.name1}</h1>
+          <h1>{this.props.name}</h1>
           <div className="div-admin-get-all">
             <table className="table-admin-get-all">
               <tbody>
                 <tr className="tr-admin-get-all">
-                  <th className="th-admin-get-all"> Name</th>
-                  <th className="th-admin-get-all"> Team</th>
+                  <th className="th-admin-get-all"> {this.props.att1} </th>
+                  <th className="th-admin-get-all"> {this.props.att2}</th>
                 </tr>
 
                 {data}
