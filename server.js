@@ -12,8 +12,8 @@ const request = require('request-promise');
 
 
 
-// initialize the Next.js application
-const app = next();
+const dev = process.env.NODE_ENV !== 'production'
+const app = next({ dev })
 
 const handle = app.getRequestHandler();
 
