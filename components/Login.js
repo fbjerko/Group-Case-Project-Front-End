@@ -28,7 +28,7 @@ const Login = () => (
 
             var xhttp = new XMLHttpRequest();
 
-            xhttp.open("POST", process.env.FRONT_END_URL+/login", true);
+            xhttp.open("POST", process.env.FRONT_END_URL+"/login", true);
             xhttp.setRequestHeader("Content-type", "application/json");
             xhttp.send(
                 JSON.stringify({
