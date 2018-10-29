@@ -8,6 +8,7 @@ const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
 const request = require('request-promise');
+process.env.API_URL="http://experisfotballmanager-env.qedd2mt7g3.eu-west-2.elasticbeanstalk.com";
 
 
 
@@ -62,7 +63,7 @@ app.prepare()
 
 
 
-    let url = "http://localhost:5000/api/user/findByEmail/"+req.body.email;
+    let url = process.env.API_URL+"/api/user/findByEmail/"+req.body.email;
     http.get(url,(response)=>{
       let data = '';
         // A chunk of data has been recieved.
@@ -126,7 +127,7 @@ app.prepare()
   		if(hash){
   			body.password = hash;
   			console.log(hash);
-  			let url = "http://localhost:5000/api/user";
+  			let url = process.env.API_URL+"/api/user";
 
             const options = {
                 method: 'POST',
@@ -169,8 +170,7 @@ app.prepare()
     
   server.listen(port, (err) => {
     if (err) throw err
-    console.log('> Ready on http://localhost:3000');
-      console.log(process.env.NODE_ENV);
+
   });
 })
 .catch((ex) => {
