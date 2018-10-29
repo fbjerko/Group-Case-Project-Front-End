@@ -4,10 +4,10 @@
   "description": "",
   "main": "./pages/index.js",
   "scripts": {
-    "dev": "node server.js",
+    "dev": "node server.js -p $PORT",
     "build": "next build",
-    "start": "next start -p $PORT && npm run dev",
-    "heroku-postbuild": "npm run build",
+    "heroku-postbuild": "next build",
+    "start": "node server.js -p $PORT",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
 
