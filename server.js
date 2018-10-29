@@ -14,7 +14,6 @@ const request = require('request-promise');
 
 // initialize the Next.js application
 const app = next({
-
   dev: process.env.NODE_ENV !== "production"
 });
 
