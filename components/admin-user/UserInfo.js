@@ -15,7 +15,7 @@ class UserInfo extends Component {
 
     try {
       const response = await fetch(
-        'http://localhost:5000/api/user/findById/' + this.props.id
+          process.env.API_URL+"/api/user/findById/" + this.props.id
       );
       console.log(response);
       const json = await response.json();
