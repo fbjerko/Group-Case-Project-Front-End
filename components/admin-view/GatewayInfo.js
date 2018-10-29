@@ -12,9 +12,7 @@ class GatewayInfo extends Component {
 
     this.state = {
       activeId: "",
-      displayFirst: false,
-      displaySecond: false,
-      displayThird: false
+      displayFirst: false
     };
   }
 

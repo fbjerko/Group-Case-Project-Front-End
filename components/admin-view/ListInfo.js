@@ -12,7 +12,7 @@ class ListInfo extends Component {
     };
 
     this.showFirst = this.showFirst.bind(this);
-    
+
     this.close = this.close.bind(this);
   }
 
@@ -25,19 +25,34 @@ class ListInfo extends Component {
     console.log(this.state.display);
   }
 
-
-
   close() {
     this.setState({
       activeId: "",
       display: 99
-      
     });
   }
 
   render() {
+ 
     const data = this.props.data.map(data => {
-      if(this.props.contentFields.length > 2){
+      for(var j=0; j<data.length; j++) {
+        var i=0;
+
+      while (data[i] !== undefined) {
+        
+        if (i % 2 === 0) {
+          
+          if (typeof data[i] === "string") {
+           
+            data[i-1] = data[i];
+            
+          }
+        }
+        i++;
+      }
+    }
+
+      if (this.props.contentFields.length > 2) {
         return (
           <tr key={data[0]} className="tr-admin-get-all">
             <td
@@ -46,7 +61,7 @@ class ListInfo extends Component {
             >
               {data[1]}{" "}
             </td>
-  
+
             <td
               className="td-admin-get-all"
               key={data[2]}
@@ -55,16 +70,16 @@ class ListInfo extends Component {
               {data[3]}{" "}
             </td>
 
-             <td
+            <td
               className="td-admin-get-all"
               key={data[4]}
               onClick={() => this.showFirst(data[4], 2)}
             >
-              {data[6]}{" "}
+              {data[5]}{" "}
             </td>
           </tr>
         );
-    x
+        x;
       }
       return (
         <tr key={data[0]} className="tr-admin-get-all">
@@ -86,23 +101,12 @@ class ListInfo extends Component {
       );
     });
 
-    const fields = this.props.contentFields.map(function(field, index)  {
-      console.log(index + " INDEX");
-      console.log("DATA: " + data[index * 2]);
+    const fields = this.props.contentFields.map(function(field) {
       return (
-       
-          <th 
-            key={index}
-            className="th-admin-get-all"
-            onClick={() => this.showFirst(data[index * 2], index)}
-          >
-            {field}{" "}
-          
-          </th>
-        
+        <th key={field} className="th-admin-get-all">
+          {field}{" "}
+        </th>
       );
-     
-    
     });
 
     if (this.props.ready === false) {
@@ -122,7 +126,6 @@ class ListInfo extends Component {
         </div>
       );
     } else if (this.state.display === 1) {
-       
       return (
         <div>
           <GatewayInfo
@@ -132,8 +135,7 @@ class ListInfo extends Component {
           />
         </div>
       );
-    }else if (this.state.display === 2) {
-       
+    } else if (this.state.display === 2) {
       return (
         <div>
           <GatewayInfo
@@ -143,17 +145,16 @@ class ListInfo extends Component {
           />
         </div>
       );
-    }
-     else {
+    } else {
       return (
         <div>
           <h1>{this.props.content[0]}</h1>
           <div className="div-admin-get-all">
             <table className="table-admin-get-all">
               <tbody>
-              <tr key='Attr' className="tr-admin-get-all">
-               {fields}
-               </tr>
+                <tr key="Attr" className="tr-admin-get-all">
+                  {fields}
+                </tr>
 
                 {data}
               </tbody>
