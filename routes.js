@@ -7,7 +7,7 @@ routes
     .add('/admin', '/admin')
 
     .add('/admin/players', '/admin/players')
-    .add('/admin/managers', '/admin/coaches')
+    .add('/admin/managers', '/admin/managers')
     .add('/admin/teams', '/admin/teams')
     .add('/admin/matches', '/admin/matches')
     .add('/admin/stadiums', '/admin/stadiums')

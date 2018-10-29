@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import LayoutGlobal from "../../components/LayoutGlobal";
 import AdminReturn from "../../components/AdminReturn";
-import TeamList from "../../components/admin-team/TeamList";
+import ListInfo from "../../components/admin-view/ListInfo";
 
 class Teams extends Component {
   constructor(props) {
@@ -10,7 +10,9 @@ class Teams extends Component {
       teams: [],
       ready: false,
       createTeam: false,
-      currentPage: 0
+      currentPage: 0,
+      content: ['Teams', 'Managers'], // Attribute variable names
+      contentFields: ['Name', 'Manager', 'Country'] // Names/Values of variables
     };
 
     this._createTeam = this._createTeam.bind(this);
@@ -115,8 +117,10 @@ class Teams extends Component {
             </div>
 
            
-              <TeamList
-                teams={teams}
+           <ListInfo
+                data={teams}
+                content= {this.state.content}
+                contentFields = {this.state.contentFields}
                 ready={this.state.ready}
                 nextPage={this.nextPage}
                 previousPage={this.previousPage}
