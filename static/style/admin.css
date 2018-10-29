@@ -56,13 +56,14 @@ table {
 table.table-admin-get-all {
   font-size: 150%;
   border-collapse: collapse;
-  width: 60rem;
+  width: 70rem;
 }
 
 th.th-admin-get-all {
   font-size: 150%;
   padding-top: 0.5rem;
   padding-left: 1rem;
+  padding-right: 1rem;
   text-align: left;
   border: 0.1rem solid rgb(255, 255, 255);
 }
@@ -70,7 +71,7 @@ td.td-admin-get-all {
   border: 0.1rem solid rgb(255, 255, 255);
   padding: 1rem;
   text-align: left;
-  width: 50%;
+  width: 33%;
   cursor: pointer;
 }
 
