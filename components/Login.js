@@ -24,33 +24,37 @@ const Login = () => (
         type="button"
         className="btn"
         onClick={() => {
-          fetch('http://localhost:3000/login', {
-            method: 'POST',
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              password: document.getElementById('psw').value,
-              email: document.getElementById("email").value
-            })
-          }).then((response)=>{
-            if(response.status==200){
-              response.json().then((response)=>{
 
-                if(response.message=='admin'){
-                  console.log("Admin logged in");
-                  Router.pushRoute("/admin");}
-                else if (response.message=='user'){
-                  console.log("user logged in");
-                  Router.pushRoute("/dashboard");}
-                
-              
-            });
-              }else{
-                res.status(401).end();
-              }
-            });
+
+            var xhttp = new XMLHttpRequest();
+
+            xhttp.open("POST", "http://localhost:3000/login", true);
+            xhttp.setRequestHeader("Content-type", "application/json");
+            xhttp.send(
+                JSON.stringify({
+                    password: document.getElementById('psw').value,
+                    email: document.getElementById("email").value
+                })
+            );
+            xhttp.onreadystatechange = ()=>{
+                if (xhttp.readyState == XMLHttpRequest.DONE) {
+                    if(xhttp.status==200){
+                        let body = JSON.parse(xhttp.responseText);
+                        console.log(body);
+                        if(body.message=='admin'){
+                            console.log("Admin logged in");
+                            Router.pushRoute("/admin");}
+                        else if (body.message=='user'){
+                            console.log("user logged in");
+                            Router.pushRoute("/dashboard");}
+                    }else if(xhttp.status!=200){
+                      console.log("authFailed")
+                    }
+
+
+
+                }
+            }
 
           }
         }

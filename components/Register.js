@@ -5,24 +5,33 @@ import { Router } from "../routes";
 function registerUser() {
   console.log(document.getElementById("userName").value);
 
-  fetch('http://localhost:3000/register', {
-            method: 'POST',
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                userName: document.getElementById("userName").value,
-                email: document.getElementById("email").value,
-                password: document.getElementById("psw").value
-            })
-          }).then((response)=>{
-            if(response.status==200){
-              console.log('Registered User')
-              Router.pushRoute("/");
-              }else{
-                console.log('Registered Failed');}
-   });
+
+
+
+    var xhttp = new XMLHttpRequest();
+
+    xhttp.open("POST", "http://localhost:3000/register", true);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send(
+        JSON.stringify({
+            userName: document.getElementById("userName").value,
+            email: document.getElementById("email").value,
+            password: document.getElementById("psw").value
+        })
+    );
+    xhttp.onreadystatechange = ()=>{
+        if (xhttp.readyState == XMLHttpRequest.DONE) {
+            if(xhttp.status==200){
+                console.log('Registered User');
+                Router.pushRoute("/");
+            }else if(xhttp.status!=200){
+                console.log("authFailed")
+            }
+
+
+
+        }
+    }
  
 }
 

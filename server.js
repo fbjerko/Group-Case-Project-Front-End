@@ -7,7 +7,7 @@ const http = require('http');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
-const request = require('request');
+const request = require('request-promise');
 
 
 // initialize the Next.js application
@@ -55,14 +55,14 @@ app.prepare()
     
   });
 
-  server.post('/login',(req,res)=>{
-    console.log('User whishes to login as Admin');
-    console.log(req.body.password);
-    console.log(req.body.email);
+  server.post('/login',(req,res)=> {
+      console.log('User whishes to login as Admin');
+      console.log(req.body.password);
+      console.log(req.body.email);
 
 
 
-    let url = "http://localhost:5000/api/user/"+req.body.email;
+    let url = "http://localhost:5000/api/user/findByEmail/"+req.body.email;
     http.get(url,(response)=>{
       let data = '';
         // A chunk of data has been recieved.
@@ -127,16 +127,33 @@ app.prepare()
   			body.password = hash;
   			console.log(hash);
   			let url = "http://localhost:5000/api/user";
-		  	request.post(url,{json:body},(response)=>{
-		  		res.status(200);
-		  		console.log('User Registered');
-		  	})
+
+            const options = {
+                method: 'POST',
+                uri: url,
+                body: body,
+                json: true, // Automatically stringifies the body to JSON
+                resolveWithFullResponse: true,
+                headers:{
+                    'content-type':"application/json"
+                }
+            };
+
+		  	request(options).then(response=>{
+		  	    //console.log(response.status);
+                res.status(200);
+            }).catch((err)=>{
+                console.log("Error!!!-----------------------------------------");
+                console.log(err);
+                res.status(401);
+            });
   		}else{
   			console.log(err);
   			res.status(401);
   		}
   		
-  	})
+  	});
+
   	
   	
   	
