@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import LayoutGlobal from "../../components/LayoutGlobal";
 import AdminReturn from "../../components/AdminReturn";
-import ManagerList from "../../components/admin-manager/ManagerList";
-import ListInfo from "../../components/admin-view/LIstInfo";
+import ListInfo from "../../components/admin-view/ListInfo";
 
 class Managers extends Component {
   constructor(props) {
@@ -13,7 +12,9 @@ class Managers extends Component {
       search:'a',
       ready: false,
       createManager: false,
-      currentPage: 0
+      currentPage: 0,
+      content: ['Managers', 'Teams'], // Attribute variable names
+      contentFields: ['Name', 'Team'] // Names/Values of variables
     };
 
     this._createManager = this._createManager.bind(this);
@@ -53,7 +54,6 @@ class Managers extends Component {
   }
 
   async componentDidMount() {
-    console.log("Hey");
     try {
       const response = await fetch(`http://localhost:5000/api/coach/all`);
       const json = await response.json();
@@ -71,15 +71,6 @@ class Managers extends Component {
 
   render() {
 
-    let filteredData = (search) => {
-      return this.state.managers[3].filter((el) => {
-        el.toLowerCase().indexOf(search.toLowerCase()) > -1;
-      })
-    }
-
-
-  
-    console.log("Filtered data "  + filteredData('a'));
       
     const managers = this.state.managers.slice(
       this.state.currentPage * 10,
@@ -130,12 +121,8 @@ class Managers extends Component {
 
               <ListInfo
                 data={managers}
-                name='Managers'
-                type1='Manager'
-                type2='Team'
-                att1='Name'
-                att2='Team'
-
+                content= {this.state.content}
+                contentFields = {this.state.contentFields}
                 ready={this.state.ready}
                 nextPage={this.nextPage}
                 previousPage={this.previousPage}
@@ -153,3 +140,19 @@ class Managers extends Component {
 }
 
 export default Managers;
+
+
+/*
+
+
+    let filteredData = (search) => {
+      return this.state.managers[3].filter((el) => {
+        el.toLowerCase().indexOf(search.toLowerCase()) > -1;
+      })
+    }
+
+
+  
+    console.log("Filtered data "  + filteredData('a'));
+
+    */

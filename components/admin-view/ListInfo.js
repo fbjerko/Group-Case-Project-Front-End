@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import GatewayInfo from "--/admin-view/GatewayInfo";
+import GatewayInfo from "./GatewayInfo";
 
 class ListInfo extends Component {
   constructor(props) {
@@ -8,60 +8,69 @@ class ListInfo extends Component {
 
     this.state = {
       activeId: "",
-      displayFirst: false,
-      displaySecond: false,
-      displayThird: false
+      display: 99
     };
 
     this.showFirst = this.showFirst.bind(this);
-    this.showSecond = this.showSecond.bind(this);
-    this.showThird = this.showThird.bind(this);
+    
     this.close = this.close.bind(this);
   }
 
-  showFirst(id) {
-    console.log("huhuhuhu" + id);
+  showFirst(id, index) {
+    console.log("huhuhuhu" + index);
     this.setState({
       activeId: id,
-      displayFirst: true,
-      displaySecond: false,
-      displayThird: false
+      display: index
     });
+    console.log(this.state.display);
   }
 
-  showSecond(id) {
-    this.setState({
-      activeId: id,
-      displaySecond: true,
-      displayFirst: false,
-      displayThird: false
-    });
-  }
 
-  showThird(id) {
-    this.setState({
-      activeId: id,
-      displayThird: true,
-      displaySecond: false,
-      displayFirst: false
-    });
-  }
 
   close() {
     this.setState({
       activeId: "",
-      displayFirst: false,
-      displaySecond: false
+      display: 99
+      
     });
   }
 
   render() {
     const data = this.props.data.map(data => {
+      if(this.props.contentFields.length > 2){
+        return (
+          <tr key={data[0]} className="tr-admin-get-all">
+            <td
+              className="td-admin-get-all"
+              onClick={() => this.showFirst(data[0], 0)}
+            >
+              {data[1]}{" "}
+            </td>
+  
+            <td
+              className="td-admin-get-all"
+              key={data[2]}
+              onClick={() => this.showFirst(data[2], 1)}
+            >
+              {data[3]}{" "}
+            </td>
+
+             <td
+              className="td-admin-get-all"
+              key={data[4]}
+              onClick={() => this.showFirst(data[4], 2)}
+            >
+              {data[6]}{" "}
+            </td>
+          </tr>
+        );
+    x
+      }
       return (
         <tr key={data[0]} className="tr-admin-get-all">
           <td
             className="td-admin-get-all"
-            onClick={() => this.showFirst(data[0])}
+            onClick={() => this.showFirst(data[0], 0)}
           >
             {data[1]}{" "}
           </td>
@@ -69,12 +78,31 @@ class ListInfo extends Component {
           <td
             className="td-admin-get-all"
             key={data[2]}
-            onClick={() => this.showSecond(data[2])}
+            onClick={() => this.showFirst(data[2], 1)}
           >
             {data[3]}{" "}
           </td>
         </tr>
       );
+    });
+
+    const fields = this.props.contentFields.map(function(field, index)  {
+      console.log(index + " INDEX");
+      console.log("DATA: " + data[index * 2]);
+      return (
+       
+          <th 
+            key={index}
+            className="th-admin-get-all"
+            onClick={() => this.showFirst(data[index * 2], index)}
+          >
+            {field}{" "}
+          
+          </th>
+        
+      );
+     
+    
     });
 
     if (this.props.ready === false) {
@@ -83,38 +111,49 @@ class ListInfo extends Component {
           <h2>Loading...</h2>
         </div>
       );
-    } else if (this.state.displayFirst === true) {
+    } else if (this.state.display === 0) {
       return (
         <div>
           <GatewayInfo
-          type1={this.props.type}
             id={this.state.activeId}
             close={this.close}
+            content={this.props.content[0]}
           />
         </div>
       );
-    } else if (this.state.displaySecond === true) {
+    } else if (this.state.display === 1) {
        
       return (
         <div>
           <GatewayInfo
-          type2={this.props.type}
             id={this.state.activeId}
             close={this.close}
+            content={this.props.content[1]}
           />
         </div>
       );
-    } else {
+    }else if (this.state.display === 2) {
+       
       return (
         <div>
-          <h1>{this.props.name}</h1>
+          <GatewayInfo
+            id={this.state.activeId}
+            close={this.close}
+            content={this.props.content[2]}
+          />
+        </div>
+      );
+    }
+     else {
+      return (
+        <div>
+          <h1>{this.props.content[0]}</h1>
           <div className="div-admin-get-all">
             <table className="table-admin-get-all">
               <tbody>
-                <tr className="tr-admin-get-all">
-                  <th className="th-admin-get-all"> {this.props.att1} </th>
-                  <th className="th-admin-get-all"> {this.props.att2}</th>
-                </tr>
+              <tr key='Attr' className="tr-admin-get-all">
+               {fields}
+               </tr>
 
                 {data}
               </tbody>

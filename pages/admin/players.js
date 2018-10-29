@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import LayoutGlobal from "../../components/LayoutGlobal";
 import AdminReturn from "../../components/AdminReturn";
-import PlayerList from "../../components/admin-player/PlayerList";
+import ListInfo from "../../components/admin-view/ListInfo";
+
 
 class Players extends Component {
   constructor(props) {
@@ -10,7 +11,9 @@ class Players extends Component {
       players: [],
       ready: false,
       createPlayer: false,
-      currentPage: 0
+      currentPage: 0,
+      content: ['Players', 'Teams'], // Attribute variable names
+      contentFields: ['Name', 'Team'] // Names/Values of variables
     };
 
     this._createPlayer = this._createPlayer.bind(this);
@@ -114,8 +117,10 @@ class Players extends Component {
               <AdminReturn />
             </div>
             
-              <PlayerList
-                players={players}
+            <ListInfo
+                data={players}
+                content= {this.state.content}
+                contentFields = {this.state.contentFields}
                 ready={this.state.ready}
                 nextPage={this.nextPage}
                 previousPage={this.previousPage}

@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 
-import PlayerInfo from "../admin-player/PlayerInfo";
-import ManagerInfo from "../admin-info/ManagerInfo";
-import UserInfo from "../admin-user/UserInfo";
-import TeamInfo from "../admin-user/TeamInfo";
+import PlayerInfo from "./PlayerInfo";
+import ManagerInfo from "./ManagerInfo";
+import UserInfo from "./UserInfo";
+import TeamInfo from "./TeamInfo";
 
 
 class GatewayInfo extends Component {
@@ -16,55 +16,44 @@ class GatewayInfo extends Component {
       displaySecond: false,
       displayThird: false
     };
-
-    this.showFirst = this.showFirst.bind(this);
-    this.close = this.close.bind(this);
-    this.showSecond = this.showSecond.bind(this);
-    this.showThird = this.showThird.bind(this);
   }
 
   render() {
-
-    if(this.props.type === 'Player') {
-        return (
-            <div>
-                <PlayerInfo id={this.props.id} close ={this.props.close}/>
-            </div>
-        )
+    console.log(this.props.content + "");
+    if (this.props.content === "Players") {
+      return (
+        <div>
+          <PlayerInfo id={this.props.id} close={this.props.close} />
+        </div>
+      );
     }
 
-    if(this.props.type === 'Manager') {
-        return (
-            <div>
-                <ManagerInfo id={this.props.id} close ={this.props.close}/>
-            </div>
-        )
+    if (this.props.content === "Managers") {
+      return (
+        <div>
+          <ManagerInfo id={this.props.id} close={this.props.close} />
+        </div>
+      );
     }
 
-    if(this.props.type === 'Team') {
-        return (
-            <div>
-                <TeamInfo id={this.props.id} close ={this.props.close}/>
-            </div>
-        )
+    if (this.props.content === "Teams") {
+      return (
+        <div>
+          <TeamInfo id={this.props.id} close={this.props.close} />
+        </div>
+      );
     }
 
-    if(this.props.type === 'User') {
-        return (
-            <div>
-                <UserInfo id={this.props.id} close ={this.props.close}/>
-            </div>
-        )
+    if (this.props.content === "Users") {
+      return (
+        <div>
+          <UserInfo id={this.props.id} close={this.props.close} />
+        </div>
+      );
+    } else {
+      this.props.close();
+      return <div />;
     }
-
-    else {
-        
-        return (
-           <div>Else</div>
-
-        );
-    }
-   
   }
 }
 
