@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import LayoutGlobal from "../components/LayoutGlobal";
 import EditUser from "../components/EditUser";
-import TeamsInfo from "../components/TeamsInfo";
-import MatchInfo from "../components/MatchInfo";
+import IndexReturn from "../components/IndexReturn";
 import { Router } from "../routes";
 
 
@@ -10,25 +9,19 @@ class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showEdit: false,
-      showTeam: false,
-      showMatchInfo: false,
-      userInfo: ["Tonje", "Lasse", "Fredrik", "Karoline"]
+      showEdit: false
     };
 
     this._onEditClick = this._onEditClick.bind(this);
-    this._onTeamClick = this._onTeamClick.bind(this);
-    this._onMatchClick = this._onMatchClick.bind(this);
 
   }
-
-  
 
   _onEditClick() {
     this.setState({
       showEdit: !this.state.showEdit,
     });
   }
+
 
   _onTeamClick() {
     this.setState({
@@ -47,53 +40,57 @@ class Dashboard extends Component {
 
   }
 
-  render() {
-    const userinfoList = this.state.userInfo.map(userinf => <li key={userinf.toString()}> <button type="button" className="btnDisplay" data-toggle="collapse" data-target="#demo">{userinf}</button></li>);
-    const teamsinfoList = this.state.userInfo.map(teaminf => <li key={teaminf.toString()}> <button type="button" className="btnDisplay" onClick={this._onTeamClick}>{teaminf}</button></li>);
 
-    
+  render() {
 
     return (
       <div>
-        <LayoutGlobal />
+  <LayoutGlobal />
+        
+        <div className="container">
+       
 
-        <div className="editUser">
-    <button type="button"
-    onClick={this._onEditClick}
-    > Edit account
-    </button>
-    {this.state.showEdit ? <EditUser /> : null}
-      </div>
-           <div className="info-container">
-           <div>
-           {this.state.showTeam ? <TeamsInfo /> : null}
+        <div className="btn-admin-nav">
+              <button className="btn-nav" id="btn-players" onClick={() => Router.pushRoute("/admin/players")}>
+                Players
+              </button>
 
-             <div className="dashboard-info2">
-               <div className="top">
-                 <h2>Teams</h2>
-               </div>
-               <ul>{teamsinfoList}
-               </ul>
+              <button className="btn-nav" id="btn-teams" onClick={() => Router.pushRoute("/admin/teams")}>
+                Teams
+              </button>
+
+            </div>
+
+             <div className="btn-admin-nav-bottom">
+              
+             <button className="btn-nav" id="btn-managers" onClick={() => Router.pushRoute("/admin/managers")}>
+                Managers
+              </button>
+
+               <button className="btn-nav" id="btn-matches" onClick={() => Router.pushRoute("/admin/matches")}>
+                Matches
+              </button>
+
+              <button className="btn-nav"  id="btn-stadium" onClick={() => Router.pushRoute("/admin/stadiums")}>
+                Stadiums
+              </button>
+            </div>
+            <button
+              type="button"
+              className="btn-edit"
+              onClick={this._onEditClick}
+              >
+              Edit account
+              </button>
+              <div className="div-edituser">
+              {this.state.showEdit ? <EditUser /> : null}
+              </div>
+
              </div>
-             <div className="dashboard-info1">
-
-               <div className="top">
-                 <h2>Matches</h2>
-               </div>
-               <ul>{userinfoList}</ul>
-               <div id="demo" className="collapse">
-               {this.state.showMatchInfo ? <MatchInfo /> : null}
-                </div>
-             </div>
-           </div>
-         </div>
-
-        <div className="btn-index">
-    <button type="button"
-    onClick={() => Router.pushRoute("/")}
-    > Log out
-    </button>
-      </div>
+              
+             <IndexReturn/>
+           
+     
       </div>
     );
   }

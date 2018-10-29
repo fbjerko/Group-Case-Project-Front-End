@@ -2,16 +2,27 @@ import React, { Component } from "react";
 import LayoutGlobal from "../components/LayoutGlobal";
 import IndexReturn from "../components/IndexReturn";
 import { Router } from "../routes";
+import EditUser from "../components/EditUser";
 
 
 
 
-class Dashboard extends Component {
+class Admin extends Component {
   constructor(props) {
     super(props);
     this.state = {
+       showEdit: false,
        players: false
     };
+
+    this._onEditClick = this._onEditClick.bind(this);
+  }
+
+
+  _onEditClick() {
+    this.setState({
+      showEdit: !this.state.showEdit,
+    });
   }
 
   componentDidMount() {}
@@ -57,10 +68,19 @@ class Dashboard extends Component {
 
               </button>
             </div>
+            <button
+              type="button"
+              className="btn-edit"
+              onClick={this._onEditClick}
+              >
+              Edit account
+              </button>
+              <div className="div-edituser">
+              {this.state.showEdit ? <EditUser /> : null}
+              </div>
 
              </div>
-
-            
+              
              <IndexReturn/>
            
      
@@ -69,4 +89,4 @@ class Dashboard extends Component {
   }
 }
 
-export default Dashboard;
+export default Admin;

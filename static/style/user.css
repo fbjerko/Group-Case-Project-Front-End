@@ -72,4 +72,20 @@
   .btnDisplay {
       width: 40rem;
   }
+
+  .div-ret-user{
+
+    position: absolute;
+    top: 7rem;
+    right: 0vw;
+  
+  }
+
+  .div-edituser{
+
+    position: absolute;
+    top: 18rem;
+    right: 0.5vw;
+  
+  }
   

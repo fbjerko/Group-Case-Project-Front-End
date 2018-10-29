@@ -10,7 +10,7 @@ const IndexReturn = () => (
     className="btn-ret"
     onClick={() => Router.pushRoute("/")}
   >
-   Return to Index
+   Home
   </button>
   </div>
 

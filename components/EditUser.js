@@ -27,15 +27,6 @@ const EditUser = () => (
     <form className="form-container">
       <h2>Your account</h2>
 
-   <label for="username"><b>Username</b></label>
-    <input type="text" placeholder="Enter User name" className="userName" required />
-
-   <label for="firstname"><b>First name</b></label>
-    <input type="text" placeholder="Enter First name" className="firstname" required/>
-
-    <label for="lastname"><b>Last name</b></label>
-    <input type="text" placeholder="Enter Last Name" className="lastname" required/>
-
     <label for="email"><b>Email</b></label>
     <input type="text" placeholder="Enter Email" className="email" required/>
 
