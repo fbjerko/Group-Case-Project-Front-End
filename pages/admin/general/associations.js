@@ -52,7 +52,7 @@ _createAssoc() {
                 Create Associations
               </button>
             </div>
-            <div >
+            <div className="div-ret-general" >
 
 <button
 type="button"

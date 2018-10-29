@@ -53,7 +53,7 @@ _createGoal() {
                 Create Goal Type
               </button>
             </div>
-            <div >
+            <div className="div-ret-general">
 
         <button
         type="button"

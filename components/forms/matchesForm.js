@@ -47,7 +47,7 @@ class MatchesForm extends React.Component {
 
         var xhttp = new XMLHttpRequest();
 
-        xhttp.open("POST", "http://localhost:5000/api/match", true);
+        xhttp.open("POST", "http://localhost:5000/api/footballmatch", true);
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send(
             JSON.stringify({

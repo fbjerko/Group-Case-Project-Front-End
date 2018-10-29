@@ -78,6 +78,14 @@ button.btn-ret {
   /* Må fikses posisjonen her*/
 }
 
+button.btn-edit {
+  position: absolute;
+  top: 13rem;
+  right: 5vw;
+
+  /* Må fikses posisjonen her*/
+}
+
 .logo {
   display: grid;
   height: 100%;

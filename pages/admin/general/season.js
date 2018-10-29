@@ -52,7 +52,7 @@ _create() {
                 Create Season
               </button>
             </div>
-            <div >
+            <div className="div-ret-general" >
 
             <button
             type="button"
