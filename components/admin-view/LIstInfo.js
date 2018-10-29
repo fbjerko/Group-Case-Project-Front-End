@@ -1,65 +1,80 @@
 import React, { Component } from "react";
-import ManagerInfo from "./ManagerInfo";
-import TeamInfo from "../admin-team/TeamInfo";
 
+import PlayerInfo from "../admin-player/PlayerInfo";
+import ManagerInfo from "../admin-info/ManagerInfo";
+import UserInfo from "../admin-user/UserInfo";
+import GatewayInfo from "--/admin-view/GatewayInfo";
 
-class ManagerList extends Component {
+class ListInfo extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       activeId: "",
-      displayManager: false,
-      displayTeam: false
+      displayFirst: false,
+      displaySecond: false,
+      displayThird: false
     };
 
-    this.showManager = this.showManager.bind(this);
-    this.showTeam = this.showTeam.bind(this);
+    this.showFirst = this.showFirst.bind(this);
     this.close = this.close.bind(this);
+    this.showSecond = this.showSecond.bind(this);
+    this.showThird = this.showThird.bind(this);
   }
 
-  showManager(id) {
+  showFirst(id) {
+    console.log("huhuhuhu" + id);
     this.setState({
       activeId: id,
-      displayManager: true,
-      displayTeam: false
+      displayFirst: true,
+      displaySecond: false,
+      displayThird: false
     });
   }
 
-  showTeam(id) {
+  showSecond(id) {
     this.setState({
       activeId: id,
-      displayTeam: true,
-      displayManager: false
+      displaySecond: true,
+      displayFirst: false,
+      displayThird: false
+    });
+  }
+
+  showThird(id) {
+    this.setState({
+      activeId: id,
+      displayThird: true,
+      displaySecond: false,
+      displayFirst: false
     });
   }
 
   close() {
     this.setState({
       activeId: "",
-      displayManager: false,
-      displayTeam: false
+      displayFirst: false,
+      displaySecond: false
     });
   }
 
   render() {
-    const managers = this.props.managers.map(manager => {
+    const data = this.props.data.map(data => {
       return (
-        <tr
-          key={manager[0]}
-          className="tr-admin-get-all"
-         
-        >
-          <td className="td-admin-get-all"
-           onClick={() => this.showManager(manager[0])}>{manager[1]}
+        <tr key={data[0]} className="tr-admin-get-all">
+          <td
+            className="td-admin-get-all"
+            onClick={() => this.showFirst(data[0])}
+          >
+            {data[1]}{" "}
           </td>
 
           <td
             className="td-admin-get-all"
-            key={manager[2]}
-            onClick={() => this.showTeam(manager[2])}
+            key={data[2]}
+            onClick={() => this.showSecond(data[2])}
           >
-            {manager[3]}
+            {data[3]}{" "}
           </td>
         </tr>
       );
@@ -71,22 +86,32 @@ class ManagerList extends Component {
           <h2>Loading...</h2>
         </div>
       );
-    } else if (this.state.displayManager === true) {
+    } else if (this.state.displayFirst === true) {
       return (
         <div>
-          <ManagerInfo id={this.state.activeId} close={this.close} />
+          <GatewayInfo
+          type1={this.props.type}
+            id={this.state.activeId}
+            close={this.close}
+          />
         </div>
       );
-    } else if (this.state.displayTeam === true) {
+    } else if (this.state.displaySecond === true) {
+       
       return (
         <div>
-          <TeamInfo id={this.state.activeId} close={this.close} />
+          <GatewayInfo
+          type2={this.props.type}
+            name={this.props.name2}
+            id={this.state.activeId}
+            close={this.close}
+          />
         </div>
       );
     } else {
       return (
         <div>
-          <h1>Managers</h1>
+          <h1>{this.props.name1}</h1>
           <div className="div-admin-get-all">
             <table className="table-admin-get-all">
               <tbody>
@@ -95,7 +120,7 @@ class ManagerList extends Component {
                   <th className="th-admin-get-all"> Team</th>
                 </tr>
 
-                {managers}
+                {data}
               </tbody>
             </table>
 
@@ -127,4 +152,15 @@ class ManagerList extends Component {
   }
 }
 
-export default ManagerList;
+export default ListInfo;
+
+/*
+
+
+ onClick={this.showFirst}
+   
+
+
+
+     
+      */

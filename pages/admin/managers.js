@@ -8,6 +8,8 @@ class Managers extends Component {
     super(props);
     this.state = {
       managers: [],
+      filteredData:[],
+      search:'a',
       ready: false,
       createManager: false,
       currentPage: 0
@@ -64,9 +66,20 @@ class Managers extends Component {
     }
   }
 
+ 
+
   render() {
-    console.log(this.state.managers.length
-      );
+
+    let filteredData = (search) => {
+      return this.state.managers[3].filter((el) => {
+        el.toLowerCase().indexOf(search.toLowerCase()) > -1;
+      })
+    }
+
+
+  
+    console.log("Filtered data "  + filteredData('a'));
+      
     const managers = this.state.managers.slice(
       this.state.currentPage * 10,
       (this.state.currentPage + 1) * 10

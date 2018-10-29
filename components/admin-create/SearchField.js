@@ -116,7 +116,6 @@ class SearchField extends Component {
 
 
     render() {
-        this.props.handleChange(this.state.id);
 
         let filteredData = this.state.data.filter((element)=>{
 
