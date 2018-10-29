@@ -190,28 +190,10 @@ button.btn-nav {
   color: yellow;
 }
 
-#btn-general {
-  background: url(../images/general.jpg);
-  background-size: 315px 300px;
-  font-family: Verdana;
-  text-shadow: 2px 2px 2px #000000;
-  font-size: 50px;
-  color: yellow;
-}
-
-#btn-roles {
-  background: url(../images/users.jpg);
-  background-size: 315px 300px;
-  font-family: Verdana;
-  text-shadow: 2px 2px 2px #000000;
-  font-size: 50px;
-  color: yellow;
-}
-
 
 #btn-users {
-  background: url(../images/users.jpg);
-  background-size: 315px 300px;
+  background: url(../images/users.png);
+  background-size: 390px 300px;
   font-family: Verdana;
   text-shadow: 2px 2px 2px #000000;
   font-size: 50px;
@@ -219,7 +201,7 @@ button.btn-nav {
 }
 
 #btn-general {
-  background: url(../images/matches.png);
+  background: url(../images/general.png);
   background-size: 400px 300px;
   font-family: Verdana;
   text-shadow: 2px 2px 2px #000000;
@@ -228,8 +210,8 @@ button.btn-nav {
 }
 
 #btn-address {
-  background: url(../images/matches.png);
-  background-size: 400px 300px;
+  background: url(../images/address.png);
+  background-size: 390px 300px;
   font-family: Verdana;
   text-shadow: 2px 2px 2px #000000;
   font-size: 50px;
@@ -246,7 +228,7 @@ button.btn-nav {
 }
 
 #btn-goaltype {
-  background: url(../images/matches.png);
+  background: url(../images/goaltypes.png);
   background-size: 400px 300px;
   font-family: Verdana;
   text-shadow: 2px 2px 2px #000000;
@@ -255,7 +237,7 @@ button.btn-nav {
 }
 
 #btn-locations {
-  background: url(../images/matches.png);
+  background: url(../images/locations.png);
   background-size: 400px 300px;
   font-family: Verdana;
   text-shadow: 2px 2px 2px #000000;
@@ -264,8 +246,8 @@ button.btn-nav {
 }
 
 #btn-season {
-  background: url(../images/matches.png);
-  background-size: 400px 300px;
+  background: url(../images/seasons.png);
+  background-size: 390px 300px;
   font-family: Verdana;
   text-shadow: 2px 2px 2px #000000;
   font-size: 50px;
@@ -273,7 +255,7 @@ button.btn-nav {
 }
 
 #btn-association {
-  background: url(../images/matches.png);
+  background: url(../images/association.png);
   background-size: 400px 300px;
   font-family: Verdana;
   text-shadow: 2px 2px 2px #000000;
@@ -294,6 +276,13 @@ button.btn-create {
 
 }
 
+.div-ret-general{
+
+  position: absolute;
+  top: 7rem;
+  right: 1vw;
+
+}
 
   .seasons-container {
     float: center;
