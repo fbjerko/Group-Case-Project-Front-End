@@ -43,7 +43,9 @@ class Dashboard extends Component {
   }
 
 
-  componentDidMount() {}
+  componentDidMount() {
+
+  }
 
   render() {
     const userinfoList = this.state.userInfo.map(userinf => <li key={userinf.toString()}> <button type="button" className="btnDisplay" data-toggle="collapse" data-target="#demo">{userinf}</button></li>);

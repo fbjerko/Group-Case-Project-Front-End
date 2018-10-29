@@ -34,7 +34,7 @@ class SeasonForm extends React.Component {
 
         var xhttp = new XMLHttpRequest();
 
-        xhttp.open("POST", "http://localhost:5000/api/season", true);
+        xhttp.open("POST",  process.env.API_URL+"/api/season", true);
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send(
             JSON.stringify({

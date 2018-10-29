@@ -38,7 +38,7 @@ class AddressForm extends React.Component {
 
         var xhttp = new XMLHttpRequest();
 
-        xhttp.open("POST", "http://localhost:5000/api/address", true);
+        xhttp.open("POST", process.env.API_URL+"/api/address", true);
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send(
             JSON.stringify({

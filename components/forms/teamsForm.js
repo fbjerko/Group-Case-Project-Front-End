@@ -46,7 +46,7 @@ class TeamForm extends React.Component {
 
         var xhttp = new XMLHttpRequest();
 
-        xhttp.open("POST", "http://localhost:5000/api/team", true);
+        xhttp.open("POST",  process.env.API_URL+"/api/team", true);
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send(
             JSON.stringify({

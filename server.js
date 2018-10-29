@@ -10,8 +10,11 @@ const bcrypt = require('bcryptjs');
 const request = require('request-promise');
 
 
+
+
 // initialize the Next.js application
 const app = next({
+
   dev: process.env.NODE_ENV !== "production"
 });
 
@@ -170,6 +173,7 @@ app.prepare()
   server.listen(3000, (err) => {
     if (err) throw err
     console.log('> Ready on http://localhost:3000');
+      console.log(process.env.NODE_ENV);
   });
 })
 .catch((ex) => {

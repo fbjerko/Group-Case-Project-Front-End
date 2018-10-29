@@ -61,7 +61,7 @@ class CreatMatches extends Component {
 
   _getTeams(){
 
-    const url='http://localhost:5000/api/team/all';
+    const url= process.env.API_URL+"/api/team/all";
     fetch(url).then(
       (res)=>res.json().then(
       (res)=>{

@@ -4,9 +4,13 @@ import Login from "../components/Login";
 import Register from "../components/Register";
 import IndexInfo from "../components/IndexInfo";
 
+
+const context = React.createContext();
+
 class Index extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       showLogin: false,
       showRegister: false,
@@ -52,7 +56,10 @@ class Index extends Component {
   }
 
   
-  componentDidMount() {}
+  componentDidMount() {
+      //console.log(process.env.API_URL);
+
+  }
 
   render() {
     return (

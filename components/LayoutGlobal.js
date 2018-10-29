@@ -1,9 +1,10 @@
 import React from "react";
 import Head from "next/head";
-
+const Context = React.createContext();
 export default props => {
   return (
     <div>
+      <Context.Provider apiUrl={"experisfotballmanager-env.qedd2mt7g3.eu-west-2.elasticbeanstalk.com"}>
       <Head>
         <link
           rel="stylesheet"
@@ -36,6 +37,7 @@ export default props => {
       </Head>
 
       <img src="../static/images/logo.png" alt="" className="logo" />
+      </Context.Provider>
     </div>
   );
 };
