@@ -10,9 +10,6 @@
     "heroku-postbuild": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "engines": {
-    "node": "8.12.0"
-  },
 
   "author": "",
   "license": "ISC",
