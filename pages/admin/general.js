@@ -31,6 +31,10 @@ class General extends Component {
                Goal Types
              </button>
 
+              <button className="btn-nav" id="btn-owner" onClick={() => Router.pushRoute("/admin/general/owners")}>
+               Owners
+             </button>
+
            </div>
 
             <div className="btn-admin-nav-bottom">
@@ -40,6 +44,10 @@ class General extends Component {
 
              <button className="btn-nav"  id="btn-association" onClick={() => Router.pushRoute("/admin/general/associations")}>
                Association
+             </button>
+
+              <button className="btn-nav" id="btn-persons" onClick={() => Router.pushRoute("/admin/general/persons")}>
+               Persons
              </button>
 
              <button className="btn-nav" id="btn-users" onClick={() => Router.pushRoute("/admin/general/users")}>
