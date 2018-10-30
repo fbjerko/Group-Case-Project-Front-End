@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import LayoutGlobal from "../../components/LayoutGlobal";
-import IndexReturn from "../../components/IndexReturn";
 import { Router } from "../../routes";
-import AdminReturn from "../../components/AdminReturn";
+import UserReturn from "../../components/buttons/UserReturn";
 
 class Stadiums extends Component {
   constructor(props) {
@@ -72,7 +71,7 @@ class Stadiums extends Component {
                 Create location
               </button>
 
-              <AdminReturn />
+              <UserReturn />
 
             </div>
 

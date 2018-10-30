@@ -98,6 +98,8 @@ class ListInfo extends Component {
             id={this.state.activeId}
             close={this.close}
             content={this.props.content[0]}
+            canEdit={this.props.canEdit}
+            
           />
         </div>
       );
@@ -108,6 +110,8 @@ class ListInfo extends Component {
             id={this.state.activeId}
             close={this.close}
             content={this.props.content[1]}
+            canEdit={this.props.canEdit}
+            
           />
         </div>
       );
@@ -118,6 +122,8 @@ class ListInfo extends Component {
             id={this.state.activeId}
             close={this.close}
             content={this.props.content[2]}
+            canEdit={this.props.canEdit}
+            
           />
         </div>
       );

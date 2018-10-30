@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import LayoutGlobal from "../../components/LayoutGlobal";
-import AdminReturn from "../../components/AdminReturn";
+import UserReturn from "../../components/buttons/UserReturn";
 import ListInfo from "../../components/admin-view/ListInfo";
 
 class Managers extends Component {
@@ -14,7 +14,8 @@ class Managers extends Component {
       createManager: false,
       currentPage: 0,
       content: ['Managers', 'Teams'], // Attribute variable names
-      contentFields: ['Name', 'Team'] // Names/Values of variables
+      contentFields: ['Name', 'Team'], // Names/Values of variables
+      canEdit: false
     };
 
     this._createManager = this._createManager.bind(this);
@@ -55,7 +56,7 @@ class Managers extends Component {
 
   async componentDidMount() {
     try {
-      const response = await fetch(`http://localhost:5000/api/coach/all`);
+      const response = await fetch(process.env.API_URL+"/api/coach/all");
       const json = await response.json();
       console.log(json);
       this.setState({
@@ -116,7 +117,7 @@ class Managers extends Component {
               <button className="btn-create" onClick={this._createManager}>
                 Configure
               </button>
-              <AdminReturn />
+              <UserReturn />
             </div>
 
               <ListInfo
@@ -128,6 +129,7 @@ class Managers extends Component {
                 previousPage={this.previousPage}
                 firstPage= {this.firstPage}
                 lastPage={this.lastPage}
+                canEdit={this.state.canEdit}
               />
           
             <h2>Page {this.state.currentPage + 1}</h2>

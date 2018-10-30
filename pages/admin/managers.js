@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import LayoutGlobal from "../../components/LayoutGlobal";
-import AdminReturn from "../../components/AdminReturn";
+import AdminReturn from "../../components/buttons/AdminReturn";
 import ListInfo from "../../components/admin-view/ListInfo";
 
 class Managers extends Component {
@@ -14,7 +14,8 @@ class Managers extends Component {
       createManager: false,
       currentPage: 0,
       content: ['Managers', 'Teams'], // Attribute variable names
-      contentFields: ['Name', 'Team'] // Names/Values of variables
+      contentFields: ['Name', 'Team'],
+      canEdit: true // Names/Values of variables
     };
 
     this._createManager = this._createManager.bind(this);
@@ -128,6 +129,7 @@ class Managers extends Component {
                 previousPage={this.previousPage}
                 firstPage= {this.firstPage}
                 lastPage={this.lastPage}
+                canEdit={this.state.canEdit}
               />
           
             <h2>Page {this.state.currentPage + 1}</h2>

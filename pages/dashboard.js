@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import LayoutGlobal from "../components/LayoutGlobal";
 import EditUser from "../components/EditUser";
-import IndexReturn from "../components/IndexReturn";
+import IndexReturn from "../components/buttons/IndexReturn";
 import { Router } from "../routes";
 
 
