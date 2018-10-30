@@ -9,6 +9,7 @@ class PlayerInfo extends Component {
       playerInfo: [],
       ready: false
     };
+    this.addToWatchList = this.addToWatchList.bind(this);
   }
 
   async componentWillMount() {
@@ -25,6 +26,19 @@ class PlayerInfo extends Component {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  addToWatchList() {
+
+    /*
+
+    watchlistId
+    playerId
+    teamID
+    userId
+
+    */
+
   }
 
   
@@ -140,6 +154,7 @@ class PlayerInfo extends Component {
                   className="td-admin-but"
                 >
                   Add to Watchlist
+                  onClick={() => this.addToWatchList()}
                 </td>
                 
                
