@@ -18,7 +18,7 @@ function postPlayer() {
       Router.pushRoute("/admin/create ");
     }
   };
-  xhttp.open("POST", "http://localhost:5000/api/person", true);
+  xhttp.open("POST", process.env.API_URL+"/api/person", true);
   xhttp.setRequestHeader("Content-type", "application/json");
   xhttp.send(
     JSON.stringify({
