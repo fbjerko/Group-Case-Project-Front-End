@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import LayoutGlobal from "../../components/LayoutGlobal";
-import IndexReturn from "../../components/IndexReturn";
+import MatchesForm from "../../components/forms/matchesForm";
 import AdminReturn from "../../components/AdminReturn";
-import { Router } from "../../routes";
 
 class Matches extends Component {
   constructor(props) {
@@ -19,7 +18,6 @@ class Matches extends Component {
       createMatches: !this.state.createMatches
     });
 
-    console.log(this.state.createMatches + " ");
   }
 
   componentDidMount() {}
@@ -29,33 +27,7 @@ class Matches extends Component {
       return (
         <div>
           <LayoutGlobal />
-
-          <div className="container">
-            <h1>Matches</h1>
-
-            <div className="btn-admin-create-top">
-              <button
-                className="btn-create"
-                onClick={() => Router.pushRoute("/admin/creatematches")}
-              >
-                Create
-              </button>
-
-              <button className="btn-create" onClick={this._matches}>
-                Update
-              </button>
-
-              <button className="btn-create" onClick={this._teams}>
-                Delete
-              </button>
-            </div>
-
-            <div className="btn-admin-create-bottom">
-              <button className="btn-create" onClick={this._createMatches}>
-                Back
-              </button>
-            </div>
-          </div>
+          <MatchesForm />
         </div>
       );
     } else {
@@ -69,7 +41,7 @@ class Matches extends Component {
             <div className="btn-admin-create-top">
               <button
                 className="btn-create"
-                onClick={() => Router.pushRoute("/admin/season")}
+                onClick={this._createMatches}
               >
                 Create match
               </button>
