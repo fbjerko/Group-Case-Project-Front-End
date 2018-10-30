@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PlayersForm from "../../components/forms/playersForm";
 
 class PlayerInfo extends Component {
   constructor(props) {
@@ -7,8 +8,18 @@ class PlayerInfo extends Component {
     this.state = {
       playerId: "0",
       playerInfo: [],
+      edit: false,
       ready: false
     };
+
+    this._edit = this._edit.bind(this);
+  }
+
+  _edit() {
+    this.setState({
+      edit: !this.state.edit
+    });
+    console.log(this.state.edit);
   }
 
   async componentWillMount() {
@@ -31,7 +42,7 @@ class PlayerInfo extends Component {
 
   render() {
     const player = this.state.playerInfo;
-    if (this.state.ready === true) {
+    if (this.state.ready === true && this.state.edit === false) {
       return (
         <div>
           <div className="div-admin-get-all">
@@ -74,7 +85,7 @@ class PlayerInfo extends Component {
                 <tr>
               <td
                   className="td-admin-but"
-                  onClick={this.props.firstPage}
+                  onClick={this._edit}
                 >
                   EDIT
                 </td>
@@ -94,6 +105,19 @@ class PlayerInfo extends Component {
           </button>
         </div>
       );
+    } else if(this.state.ready === true && this.state.edit === true) {
+      return(
+        <div>
+        <PlayersForm id={this.props.id} edit={'edit'}/>
+        <div className = "btn-admin-create-bottom">
+        <button className="btn-create" onClick={this._edit}>
+        Back
+      </button>
+      </div>
+      </div>
+      
+      );  
+
     } else {
       return <div>Loading</div>;
     }

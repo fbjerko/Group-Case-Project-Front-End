@@ -10,9 +10,14 @@ class PlayersForm extends Component {
             showPop:false,
             number:'',
             position:"",
+            edit:this.props.edit,
+            method:this.switchMethods(this.props.edit),
+            playerInfo: [],
             teamId:-1,
             personId:-1
         }
+        this.switchMethods(this.props.edit);
+
     }
 
 
@@ -30,11 +35,54 @@ class PlayersForm extends Component {
         this.setState({teamId:id});
     }
 
+    switchMethods = (edit)=>{
+        let method = '';
+        switch(edit) {
+            case 'edit':
+                method = "PUT";
+
+                break;
+            case 'create':
+                method = "POST";
+                break;
+        }
+        return method;
+    }
+
+    async componentWillMount() {
+        if(this.state.edit == 'edit'){
+            try {
+                const response = await fetch(
+                    process.env.API_URL+"/api/player/" + this.props.id
+                );
+                const json = await response.json();
+                console.log(json);
+                this.setState({
+                  playerInfo: json,
+                });
+              } catch (error) {
+                console.log(error);
+              }
+              const player = this.state.playerInfo;
+              this.setState({
+                number: player.number,
+                position: player.normalPosition,
+                teamId: player.teamId,
+                personId: player.personId
+              });
+        }
+     
+       
+
+      }
+
+
+
     sendPlayer = ()=>{
 
         let xhttp = new XMLHttpRequest();
 
-        xhttp.open("POST",  process.env.API_URL+"/api/player", true);
+        xhttp.open(url,  process.env.API_URL+"/api/player", true);
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send(
             JSON.stringify({
@@ -85,7 +133,7 @@ class PlayersForm extends Component {
                     <br></br>
                     <br></br>
                     <p>Team</p>
-                    <SearchField type={'team'} handleChange={this.updateSearchFieldTeam}/>
+                    <SearchField type={'team'} handleChange={this.updateSearchFieldTeam} value={this.state.teamId}/>
                     <br></br>
                     <br></br>
                     <input className="btn-index" type="button" value="Submit" onClick={this.sendPlayer}></input>
