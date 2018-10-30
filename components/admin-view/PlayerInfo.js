@@ -107,14 +107,10 @@ class PlayerInfo extends Component {
       );
     } else if(this.state.ready === true && this.state.edit === true) {
       return(
-        <div>
+
         <PlayersForm id={this.props.id} edit={'edit'}/>
-        <div className = "btn-admin-create-bottom">
-        <button className="btn-create" onClick={this._edit}>
-        Back
-      </button>
-      </div>
-      </div>
+
+
       
       );  
 

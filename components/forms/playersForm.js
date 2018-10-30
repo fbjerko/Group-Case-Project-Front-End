@@ -14,7 +14,8 @@ class PlayersForm extends Component {
             method:this.switchMethods(this.props.edit),
             playerInfo: [],
             teamId:-1,
-            personId:-1
+            personId:-1,
+            ready:false
         }
         this.switchMethods(this.props.edit);
 
@@ -56,7 +57,7 @@ class PlayersForm extends Component {
                     process.env.API_URL+"/api/player/" + this.props.id
                 );
                 const json = await response.json();
-                console.log(json);
+
                 this.setState({
                   playerInfo: json,
                 });
@@ -64,12 +65,16 @@ class PlayersForm extends Component {
                 console.log(error);
               }
               const player = this.state.playerInfo;
+
               this.setState({
                 number: player.number,
                 position: player.normalPosition,
-                teamId: player.teamId,
-                personId: player.personId
+                teamId: player.team.teamId,
+                personId: player.person.personId,
+                  ready:true
               });
+        }else{
+            this.setState({ready:true})
         }
      
        
@@ -109,38 +114,48 @@ class PlayersForm extends Component {
     }
 
     render(){
-        if(this.state.showPop){
-            return(<Popupp text={this.state.status}/>);
+        if(this.state.ready){
+            if(this.state.showPop){
+                return(<Popupp text={this.state.status}/>);
+            }
+
+            return(
+                <div className="info-container">
+
+                    <div className="seasons-container">
+                        <div className="top">
+                            <h2>Create new player</h2>
+                        </div>
+                        <p>Person </p>
+                        <SearchField type={'person'} id={this.state.personId} handleChange={this.updateSearchFieldPerson}/>
+                        <br></br>
+                        <br></br>
+                        <p>Number</p>
+                        <input onChange={this.updateInput} value={this.state.number} type="text" placeholder="Write a number:" id="number" />
+                        <br></br>
+                        <br></br>
+                        <p>Position</p>
+                        <input onChange={this.updateInput} value={this.state.position} type="text" placeholder="Write a position" id="position" />
+                        <br></br>
+                        <br></br>
+                        <p>Team</p>
+                        <SearchField type={'team'} id={this.state.teamId} handleChange={this.updateSearchFieldTeam} value={this.state.teamId}/>
+                        <br></br>
+                        <br></br>
+                        <input className="btn-index" type="button" value="Submit" onClick={this.sendPlayer}></input>
+                    </div>
+
+                </div>
+            );
+        }else{
+            return(
+                <div>
+                    <h1>Loading Data...</h1>
+                </div>
+            );
         }
 
-        return(
-            <div className="info-container">
 
-                <div className="seasons-container">
-                    <div className="top">
-                        <h2>Create new player</h2>
-                    </div>
-                    <p>Person </p>
-                    <SearchField type={'person'} handleChange={this.updateSearchFieldPerson}/>
-                    <br></br>
-                    <br></br>
-                    <p>Number</p>
-                    <input onChange={this.updateInput} value={this.state.number} type="text" placeholder="Write a number:" id="number" />
-                    <br></br>
-                    <br></br>
-                    <p>Position</p>
-                    <input onChange={this.updateInput} value={this.state.position} type="text" placeholder="Write a position" id="position" />
-                    <br></br>
-                    <br></br>
-                    <p>Team</p>
-                    <SearchField type={'team'} handleChange={this.updateSearchFieldTeam} value={this.state.teamId}/>
-                    <br></br>
-                    <br></br>
-                    <input className="btn-index" type="button" value="Submit" onClick={this.sendPlayer}></input>
-                </div>
-
-            </div>
-        );
 
     }
 }
