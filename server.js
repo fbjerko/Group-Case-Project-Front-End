@@ -56,6 +56,8 @@ app.prepare()
     
   });
 
+
+
   server.post('/login',(req,res)=> {
       console.log('User whishes to login as Admin');
       console.log(req.body.password);
@@ -80,7 +82,7 @@ app.prepare()
             		if(user.admin==false){
 			              const JWTToken = jwt.sign({
 			                  email: user.email,
-			                  id: user.id,
+			                  id: user.userId,
 			                  admin : false
 
 			                },
@@ -89,6 +91,7 @@ app.prepare()
 			                   expiresIn: '2h'
 			                 });
 			              res.cookie('token',JWTToken,{maxAge:2 * 60 * 60 * 1000,httpOnly:true});
+			              res.cookie('id',user.userId,{maxAge:2 * 60 * 60 * 1000,httpOnly:false});
 			              res.status(200).json({
 			                message: "user",
 			                token: JWTToken
@@ -97,7 +100,7 @@ app.prepare()
 			            }else if(user.admin==true){
 			              const JWTToken = jwt.sign({
 			                  email: user.email,
-			                  id: user.id,
+			                  id: user.userId,
 			                  admin : true
 
 			                },
@@ -105,7 +108,9 @@ app.prepare()
 			                 {
 			                   expiresIn: '2h'
 			                 });
-			              res.cookie('token',JWTToken,{maxAge:2 * 60 * 60 * 1000,httpOnly:true})
+			              console.log(user);
+			              res.cookie('token',JWTToken,{maxAge:2 * 60 * 60 * 1000,httpOnly:true});
+			              res.cookie('id',user.userId,{maxAge:2 * 60 * 60 * 1000,httpOnly:false});
 			              res.status(200).json({
 			                message: "admin",
 			              });
