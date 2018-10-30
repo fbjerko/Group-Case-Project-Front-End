@@ -10,7 +10,8 @@ class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showEdit: false
+      showEdit: false,
+      userId: ""
     };
 
     this._onEditClick = this._onEditClick.bind(this);
@@ -36,21 +37,42 @@ class Dashboard extends Component {
     });
   }
 
+  getCookie() {
+    var name = "id" + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+          console.log(c.substring(name.length, c.length) + " is cookie");
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+  }
 
-  componentDidMount() {
 
+  async componentDidMount() {
+    await this.setState({
+      userId: this.getCookie()
+    })
+    console.log(this.state.userId + " is userId");
+    
   }
 
 
   render() {
-
+    
     return (
       <div>
   <LayoutGlobal />
         
         <div className="container">
        
-
+       
         <div className="btn-admin-nav">
               <button className="btn-nav" id="btn-players" onClick={() => Router.pushRoute("/dashboard/players")}>
                 Players

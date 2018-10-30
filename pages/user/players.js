@@ -14,7 +14,8 @@ class Players extends Component {
       currentPage: 0,
       content: ['Players', 'Teams'], // Attribute variable names
       contentFields: ['Name', 'Team'], // Names/Values of variables
-      canEdit: false
+      canEdit: false,
+      userId: ""
      
     };
 
@@ -56,8 +57,31 @@ class Players extends Component {
     console.log(this.state.createPlayer + " ");
   }
 
+  getCookie() {
+    var name = "id" + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+          console.log(c.substring(name.length, c.length) + " is cookie");
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+  }
+
   async componentDidMount() {
-    console.log("Hey");
+
+    await this.setState({
+      userId: this.getCookie()
+    });
+
+    console.log(this.state.userId);
+    
     try {
       const response = await fetch(process.env.API_URL+"/api/player/all");
       const json = await response.json();
@@ -69,6 +93,8 @@ class Players extends Component {
     } catch (error) {
       console.log(error);
     }
+
+   
   }
 
   render() {
@@ -129,6 +155,7 @@ class Players extends Component {
                 firstPage= {this.firstPage}
                 lastPage={this.lastPage}
                 canEdit={this.state.canEdit}
+                userId={this.state.userId}
                
                 
               />

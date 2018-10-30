@@ -10,7 +10,7 @@ function registerUser() {
 
     var xhttp = new XMLHttpRequest();
 
-    xhttp.open("POST",  process.env.FRONT_END_URL+"/register", true);
+    xhttp.open("POST",  process.env.API_URL+"/user", true);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send(
         JSON.stringify({

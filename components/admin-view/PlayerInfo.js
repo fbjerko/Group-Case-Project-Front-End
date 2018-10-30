@@ -30,6 +30,32 @@ class PlayerInfo extends Component {
 
   addToWatchList() {
 
+    var xhttp = new XMLHttpRequest();
+
+    xhttp.open("POST",  process.env.API_URL+"/api/watchlist", true);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send(
+        JSON.stringify({
+            userId: this.props.userId,
+            playerId: this.props.id
+            
+        })
+    );
+    xhttp.onreadystatechange = ()=>{
+        if (xhttp.readyState == XMLHttpRequest.DONE) {
+            if(xhttp.status==200){
+                console.log('Watchlist updated');
+                this.props.close;
+            }else if(xhttp.status!=200){
+                console.log("Failed to add to watchlist");
+                this.props.close;
+            }
+
+
+
+        }
+    }
+
     /*
 
     watchlistId

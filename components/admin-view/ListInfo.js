@@ -7,7 +7,8 @@ class ListInfo extends Component {
 
     this.state = {
       activeId: "",
-      display: 99
+      display: 99,
+      userId: ""
     };
 
     this.showFirst = this.showFirst.bind(this);
@@ -26,6 +27,18 @@ class ListInfo extends Component {
       activeId: "",
       display: 99
     });
+  }
+
+  async componentDidMount() {
+    if (this.props.userId !== undefined) {
+      await this.setState({
+        userId: this.props.userId
+      });
+    } else {
+      await this.setState({
+        userId: 0
+      });
+    }
   }
 
   render() {
@@ -74,7 +87,7 @@ class ListInfo extends Component {
       }
     });
 
-    /* Assigning header values */ 
+    /* Assigning header values */
 
     const fields = this.props.contentFields.map(function(field) {
       return (
@@ -91,7 +104,6 @@ class ListInfo extends Component {
         </div>
       );
     } else if (this.state.display === 0) {
-     
       return (
         <div>
           <GatewayInfo
@@ -99,7 +111,7 @@ class ListInfo extends Component {
             close={this.close}
             content={this.props.content[0]}
             canEdit={this.props.canEdit}
-            
+            userId={this.state.userId}
           />
         </div>
       );
@@ -111,7 +123,7 @@ class ListInfo extends Component {
             close={this.close}
             content={this.props.content[1]}
             canEdit={this.props.canEdit}
-            
+            userId={this.state.userId}
           />
         </div>
       );
@@ -123,7 +135,6 @@ class ListInfo extends Component {
             close={this.close}
             content={this.props.content[2]}
             canEdit={this.props.canEdit}
-            
           />
         </div>
       );
@@ -171,4 +182,3 @@ class ListInfo extends Component {
 }
 
 export default ListInfo;
-
