@@ -55,7 +55,7 @@ class users extends Component {
 
   async componentDidMount() {
     try {
-      const response = await fetch(`http://localhost:5000/api/user/all`);
+      const response = await fetch(process.env.API_URL+"/api/user/all");
       const json = await response.json();
       console.log(json);
       this.setState({

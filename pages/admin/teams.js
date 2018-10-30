@@ -54,7 +54,7 @@ class Teams extends Component {
   async componentDidMount() {
     console.log("Hey");
     try {
-      const response = await fetch(`http://localhost:5000/api/team/all`);
+      const response = await fetch(process.env.API_URL+"/api/team/all");
       const json = await response.json();
       console.log(json);
       this.setState({
