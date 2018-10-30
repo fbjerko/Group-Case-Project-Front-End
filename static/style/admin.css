@@ -309,20 +309,36 @@ button.btn-create {
 }
 
   .seasons-container {
-    float: center;
+    position: relative;
     height: 50vh;
     width: 25vw;
     margin-left: 1vw;
   }
   div.info-container {
-    position: relative;
+
     display: flex;
-    flex-direction: grid;
     justify-content: center;
     align-items: center;
     text-align: center;
     margin-top: 10vh; 
   }
+
+.create-match-container {
+  display: flex;
+  justify-content: center;
+
+}
+.create-match-container ul{
+  color:white;
+  opacity: 100%;
+  display: block;
+  list-style-type: none;
+  margin-top: 1em;
+  margin-bottom: 1 em;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0px;
+}
 
 
 

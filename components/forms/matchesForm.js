@@ -16,7 +16,8 @@ class MatchesForm extends React.Component {
             showPop:false,
             status:'Nothing',
             team_1_players: [],
-            team_2_players: []
+            team_2_players: [],
+            selectedPlayers:[]
           }
     }
 
@@ -88,16 +89,30 @@ class MatchesForm extends React.Component {
         }
     }
 
+    selectPlayer = (event)=>{
+        let selectedPlayers = this.state.selectedPlayers.slice(0);
+
+        if(selectedPlayers.indexOf(event.target.id)===-1){
+            selectedPlayers.push(event.target.id);
+        }else{
+            selectedPlayers.splice(selectedPlayers.indexOf(event.target.id),1);
+        }
+
+        this.setState({selectedPlayers});
+    }
+
 
 
     render(){
+
       if(this.state.showPop){
         return(<Popupp text={this.state.status}/>);
     }
         return(
-            <div className="info-container">
-      
+            <div className="create-match-container">
 
+      
+        <div style={{marginRight:'50px'}}>
 
         <h2>Create new match</h2>
 
@@ -121,20 +136,35 @@ class MatchesForm extends React.Component {
        <br></br>
        <input className="btn-index" type="button" value="Submit" onClick={this.sendMatches}></input>
 
-
-                <div>
+        </div>
+                <div style={{width:'300px',marginLeft:'50px'}}>
                     <h2>Team 1:</h2>
                     <ul>
                         {this.state.team_1_players.map((player)=>{
-                            return <li key={player[0]}>{player[1]}</li>
+
+
+                            if(this.state.selectedPlayers.indexOf(player[0].toString())!=-1){
+
+                                return <li id={player[0]} style={{color:'blue'}} key={player[0]} onClick={this.selectPlayer}>{player[1]}</li>
+                            }else{
+                                return <li id={player[0]} style={{color:'white'}} key={player[0]} onClick={this.selectPlayer}>{player[1]}</li>
+                            }
+
+
                         })}
                     </ul>
                 </div>
-                <div>
+                <div style={{width:'300px',marginLeft:'50px'}}>
                     <h2>Team 2:</h2>
+
                     <ul>
                         {this.state.team_2_players.map((player)=>{
-                            return <li key={player[0]}>{player[1]}</li>
+                            if(this.state.selectedPlayers.indexOf(player[0].toString())!=-1){
+
+                                return <li id={player[0]} style={{color:'blue'}} key={player[0]} onClick={this.selectPlayer}>{player[1]}</li>
+                            }else{
+                                return <li id={player[0]} style={{color:'white'}} key={player[0]} onClick={this.selectPlayer}>{player[1]}</li>
+                            }
                         })}
                     </ul>
                 </div>

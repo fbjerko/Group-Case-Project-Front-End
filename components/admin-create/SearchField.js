@@ -119,7 +119,6 @@ class SearchField extends Component {
     styles={
         width:200,
         position:'absolute',
-        left:'45%',
         zIndex:1
     }
 
@@ -150,7 +149,7 @@ class SearchField extends Component {
             );
         }else{
             return (
-                <div>
+                <div >
                     <input  onFocus={this.activate} value={this.state.search} placeholder={'Search for '+this.state.type} onChange={this.updateSearch}/>
                 </div>
             );
