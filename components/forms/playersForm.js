@@ -8,7 +8,7 @@ class PlayersForm extends Component {
         this.state={
             status:"Nothing",
             showPop:false,
-            number:-1,
+            number:'',
             position:"",
             teamId:-1,
             personId:-1
@@ -18,9 +18,45 @@ class PlayersForm extends Component {
 
     updateInput = (event)=>{
         if(event.target.id=="position"){
-            this.setState({position:this.target.value});
+            this.setState({position:event.target.value});
         }else if(event.target.id=="number"){
-            this.setState({number:this.target.value});
+            this.setState({number:event.target.value});
+        }
+    }
+    updateSearchFieldPerson = (id)=>{
+        this.setState({personId:id});
+    }
+    updateSearchFieldTeam = (id)=>{
+        this.setState({teamId:id});
+    }
+
+    sendPlayer = ()=>{
+
+        let xhttp = new XMLHttpRequest();
+
+        xhttp.open("POST",  process.env.API_URL+"/api/player", true);
+        xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.send(
+            JSON.stringify({
+                teamId: this.state.teamId,
+                personId:this.state.personId,
+                normalPosition:this.state.position,
+                number:this.state.number
+            })
+        );
+        xhttp.onreadystatechange = ()=>{
+            if (xhttp.readyState == XMLHttpRequest.DONE) {
+                if(xhttp.status==201){
+                    console.log("Created");
+                    this.setState({status:"Created"});
+
+                }else if (xhttp.status==403){
+                    console.log("Failed to create")
+                    this.setState({status:"Failed to create"});
+                }
+                this.setState({showPop:true});
+
+            }
         }
     }
 
@@ -34,7 +70,7 @@ class PlayersForm extends Component {
 
                 <div className="seasons-container">
                     <div className="top">
-                        <h2>Create new person</h2>
+                        <h2>Create new player</h2>
                     </div>
                     <p>Person </p>
                     <SearchField type={'person'} handleChange={this.updateSearchFieldPerson}/>
@@ -45,7 +81,7 @@ class PlayersForm extends Component {
                     <br></br>
                     <br></br>
                     <p>Position</p>
-                    <input onChange={this.updateInput} value={this.state.postion} type="text" placeholder="Write a position" id="position" />
+                    <input onChange={this.updateInput} value={this.state.position} type="text" placeholder="Write a position" id="position" />
                     <br></br>
                     <br></br>
                     <p>Team</p>

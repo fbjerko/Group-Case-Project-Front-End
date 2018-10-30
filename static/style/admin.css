@@ -21,9 +21,6 @@ div.btn-admin-config {
   right: 3vw;
 }
 
-div.btn-admin-create-bottom {
-}
-
 div.btn-admin-nav {
   width: 100%;
   margin-top: 5rem;
@@ -155,6 +152,14 @@ button.btn-nav {
   height: 30rem;
 }
 
+button.btn-nav-general {
+  margin: 0.5rem;
+  min-width: 25rem;
+  min-height: 18.75rem;
+  width: 35rem;
+  height: 25rem;
+}
+
 #btn-stadium {
   background: url(../images/stadium.jpg);
   background-size: 400px 300px;
@@ -194,7 +199,7 @@ button.btn-nav {
 
 #btn-users {
   background: url(../images/users.png);
-  background-size: 390px 300px;
+  background-size: 340px 260px;
   font-family: Verdana;
   text-shadow: 2px 2px 2px #000000;
   font-size: 50px;
@@ -212,7 +217,7 @@ button.btn-nav {
 
 #btn-address {
   background: url(../images/address.png);
-  background-size: 390px 300px;
+  background-size: 340px 260px;
   font-family: Verdana;
   text-shadow: 2px 2px 2px #000000;
   font-size: 50px;
@@ -230,7 +235,7 @@ button.btn-nav {
 
 #btn-goaltype {
   background: url(../images/goaltypes.png);
-  background-size: 400px 300px;
+  background-size: 340px 260px;
   font-family: Verdana;
   text-shadow: 2px 2px 2px #000000;
   font-size: 50px;
@@ -239,7 +244,7 @@ button.btn-nav {
 
 #btn-locations {
   background: url(../images/locations.png);
-  background-size: 400px 300px;
+  background-size: 340px 250px;
   font-family: Verdana;
   text-shadow: 2px 2px 2px #000000;
   font-size: 50px;
@@ -248,7 +253,7 @@ button.btn-nav {
 
 #btn-season {
   background: url(../images/seasons.png);
-  background-size: 390px 300px;
+  background-size: 340px 250px;
   font-family: Verdana;
   text-shadow: 2px 2px 2px #000000;
   font-size: 50px;
@@ -257,7 +262,7 @@ button.btn-nav {
 
 #btn-association {
   background: url(../images/association.png);
-  background-size: 400px 300px;
+  background-size: 340px 260px;
   font-family: Verdana;
   text-shadow: 2px 2px 2px #000000;
   font-size: 50px;
@@ -266,7 +271,7 @@ button.btn-nav {
 
 #btn-owner {
   background: url(../images/owners.png);
-  background-size: 400px 300px;
+  background-size: 340px 260px;
   font-family: Verdana;
   text-shadow: 2px 2px 2px #000000;
   font-size: 50px;
@@ -275,7 +280,7 @@ button.btn-nav {
 
 #btn-persons {
   background: url(../images/persons.png);
-  background-size: 400px 300px;
+  background-size: 340px 260px;
   font-family: Verdana;
   text-shadow: 2px 2px 2px #000000;
   font-size: 50px;
@@ -307,7 +312,6 @@ button.btn-create {
     float: center;
     height: 50vh;
     width: 25vw;
-    border:2px solid black;
     margin-left: 1vw;
   }
   div.info-container {
@@ -317,8 +321,7 @@ button.btn-create {
     justify-content: center;
     align-items: center;
     text-align: center;
-    margin-top: 10vh;
-    
+    margin-top: 10vh; 
   }
 
 
