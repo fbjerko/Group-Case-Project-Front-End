@@ -70,12 +70,9 @@ class Matches extends Component {
                 className="btn-create"
                 onClick={() => Router.pushRoute("/admin/season")}
               >
-                Create Season
+                Create match
               </button>
               <div className="btn-admin-config">
-                <button className="btn-create" onClick={this._createMatches}>
-                  Configure matches
-                </button>
                 <AdminReturn />
               </div>
               <div className="btn-admin-create-bottom" />;

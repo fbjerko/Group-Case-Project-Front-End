@@ -264,6 +264,24 @@ button.btn-nav {
   color: yellow;
 }
 
+#btn-owner {
+  background: url(../images/owners.png);
+  background-size: 400px 300px;
+  font-family: Verdana;
+  text-shadow: 2px 2px 2px #000000;
+  font-size: 50px;
+  color: yellow;
+}
+
+#btn-persons {
+  background: url(../images/persons.png);
+  background-size: 400px 300px;
+  font-family: Verdana;
+  text-shadow: 2px 2px 2px #000000;
+  font-size: 50px;
+  color: yellow;
+}
+
 
 button.btn-create {
   margin: 2vh;
