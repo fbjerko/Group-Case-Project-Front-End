@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import LayoutGlobal from "../../components/LayoutGlobal";
-import IndexReturn from "../../components/IndexReturn";
-import AdminReturn from "../../components/AdminReturn";
+import UserReturn from "../../components/buttons/UserReturn";
 import { Router } from "../../routes";
 
 class Matches extends Component {
@@ -77,7 +76,7 @@ class Matches extends Component {
                 <button className="btn-create" onClick={this._createMatches}>
                   Configure matches
                 </button>
-                <AdminReturn />
+                <UserReturn />
               </div>
               <div className="btn-admin-create-bottom" />;
               {this.state.createMatches ? <CreateUser /> : null}

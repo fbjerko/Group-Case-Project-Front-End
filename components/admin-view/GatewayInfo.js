@@ -17,11 +17,11 @@ class GatewayInfo extends Component {
   }
 
   render() {
-    console.log(this.props.content + "");
+    console.log(this.props.canEdit + "");
     if (this.props.content === "Players") {
       return (
         <div>
-          <PlayerInfo id={this.props.id} close={this.props.close} />
+          <PlayerInfo id={this.props.id} close={this.props.close} canEdit={this.props.canEdit}/>
         </div>
       );
     }
@@ -29,7 +29,7 @@ class GatewayInfo extends Component {
     if (this.props.content === "Managers") {
       return (
         <div>
-          <ManagerInfo id={this.props.id} close={this.props.close} />
+          <ManagerInfo id={this.props.id} close={this.props.close} canEdit={this.props.canEdit} />
         </div>
       );
     }
@@ -37,7 +37,7 @@ class GatewayInfo extends Component {
     if (this.props.content === "Teams") {
       return (
         <div>
-          <TeamInfo id={this.props.id} close={this.props.close} />
+          <TeamInfo id={this.props.id} close={this.props.close} canEdit={this.props.canEdit} />
         </div>
       );
     }

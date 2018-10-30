@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import LayoutGlobal from "../../components/LayoutGlobal";
-import AdminReturn from "../../components/AdminReturn";
+import UserReturn from "../../components/buttons/UserReturn";
 import ListInfo from "../../components/admin-view/ListInfo";
 
 
@@ -14,7 +14,8 @@ class Players extends Component {
       currentPage: 0,
       content: ['Players', 'Teams'], // Attribute variable names
       contentFields: ['Name', 'Team'], // Names/Values of variables
-      edit: false
+      canEdit: false
+     
     };
 
     this._createPlayer = this._createPlayer.bind(this);
@@ -58,7 +59,7 @@ class Players extends Component {
   async componentDidMount() {
     console.log("Hey");
     try {
-      const response = await fetch(`http://localhost:5000/api/player/all`);
+      const response = await fetch(process.env.API_URL+"/api/player/all");
       const json = await response.json();
       console.log(json);
       this.setState({
@@ -115,7 +116,7 @@ class Players extends Component {
               <button className="btn-create" onClick={this._createPlayer}>
                 Configure
               </button>
-              <AdminReturn />
+              <UserReturn />
             </div>
             
             <ListInfo
@@ -127,7 +128,8 @@ class Players extends Component {
                 previousPage={this.previousPage}
                 firstPage= {this.firstPage}
                 lastPage={this.lastPage}
-                edit={this.state.edit}
+                canEdit={this.state.canEdit}
+               
                 
               />
       

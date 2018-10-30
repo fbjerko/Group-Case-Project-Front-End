@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import LayoutGlobal from "../../components/LayoutGlobal";
-import AdminReturn from "../../components/AdminReturn";
+import UserReturn from "../../components/buttons/UserReturn";
 import ListInfo from "../../components/admin-view/ListInfo";
 
 class Teams extends Component {
@@ -12,7 +12,9 @@ class Teams extends Component {
       createTeam: false,
       currentPage: 0,
       content: ['Teams', 'Managers'], // Attribute variable names
-      contentFields: ['Name', 'Manager', 'Country'] // Names/Values of variables
+      contentFields: ['Name', 'Manager', 'Country'], // Names/Values of variables
+      canEdit: false,
+     
     };
 
     this._createTeam = this._createTeam.bind(this);
@@ -54,7 +56,7 @@ class Teams extends Component {
   async componentDidMount() {
     console.log("Hey");
     try {
-      const response = await fetch(`http://localhost:5000/api/team/all`);
+      const response = await fetch(process.env.API_URL+"/api/coach/all");
       const json = await response.json();
       console.log(json);
       this.setState({
@@ -113,7 +115,7 @@ class Teams extends Component {
               <button className="btn-create" onClick={this._createTeam}>
                 Configure
               </button>
-              <AdminReturn />
+              <UserReturn />
             </div>
 
            
@@ -126,6 +128,8 @@ class Teams extends Component {
                 previousPage={this.previousPage}
                 firstPage= {this.firstPage}
                 lastPage={this.lastPage}
+                canEdit={this.state.canEdit}
+               
               />
           
             <h2>Page {this.state.currentPage + 1}</h2>
