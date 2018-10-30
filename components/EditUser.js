@@ -5,7 +5,7 @@ function editUser() {
 
   var xhttp = new XMLHttpRequest();
 
-  xhttp.open("PUT", "http://localhost:5000/api/user", true);
+  xhttp.open("PUT", process.env.API_URL+"/api/user", true);
   xhttp.setRequestHeader("Content-type", "application/json");
   xhttp.send(
     JSON.stringify({

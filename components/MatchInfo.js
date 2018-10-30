@@ -2,7 +2,7 @@ import React from "react";
 
 function getMatchInfo(){
   const Http = new XMLHttpRequest();
-  const url='http://localhost:5000/api/match';
+  const url=process.env.API_URL+"/api/match";
   Http.open("GET", url);
   Http.send();
   Http.onreadystatechange=(e)=>{
