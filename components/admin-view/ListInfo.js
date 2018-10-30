@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-
 import GatewayInfo from "./GatewayInfo";
 
 class ListInfo extends Component {
@@ -12,7 +11,6 @@ class ListInfo extends Component {
     };
 
     this.showFirst = this.showFirst.bind(this);
-
     this.close = this.close.bind(this);
   }
 
@@ -21,7 +19,6 @@ class ListInfo extends Component {
       activeId: id,
       display: action
     });
-  
   }
 
   close() {
@@ -31,60 +28,53 @@ class ListInfo extends Component {
     });
   }
 
-  componentDidUpdate() {
-    
-  }
-
   render() {
- 
     /* Code for checking wether even values are number/id, pretty weak as for now as it just checks one row ahead for a number value */
 
     const data = this.props.data.map(data => {
-    
-        var i=0;
+      var i = 0;
 
       while (data[i] !== undefined) {
-        
         if (i % 2 === 0) {
           if (typeof data[i] === "string") {
-           
-            data[i-1] = data[i];
+            data[i - 1] = data[i];
           }
         }
         i++;
-    }
+      }
 
-    const columns = [];
-  
-    for(var i = 0; i<this.props.contentFields.length; i++) {
+      /* Creating columns with rows */
 
-      let id = data[i*2];
-      let action = i;
-      
-     console.log(id + " ID");
+      const columns = [];
+
+      for (var i = 0; i < this.props.contentFields.length; i++) {
+        let id = data[i * 2];
+        let action = i;
+
+        console.log(id + " ID");
         columns.push(
           <td
-            key={data[i*2+1]}
+            key={data[i * 2 + 1]}
             className="td-admin-get-all"
-            onClick={() => this.showFirst(id, action )}
+            onClick={() => this.showFirst(id, action)}
           >
-            {data[i*2+1]}{" "}
+            {data[i * 2 + 1]}{" "}
           </td>
         );
- 
-    };
+      }
 
-    for(var k = 0; k<this.props.contentFields.length; k++) {
+      /* Assining each row from each column in tr tag */
 
-      return(
-     
-      <tr key={data[k*k]} className="tr-admin-get-all">
-      
-          {columns}
-      </tr>
-    );
-    }
-  });
+      for (var k = 0; k < this.props.contentFields.length; k++) {
+        return (
+          <tr key={data[k * k]} className="tr-admin-get-all">
+            {columns}
+          </tr>
+        );
+      }
+    });
+
+    /* Assigning header values */ 
 
     const fields = this.props.contentFields.map(function(field) {
       return (
@@ -94,7 +84,6 @@ class ListInfo extends Component {
       );
     });
 
-
     if (this.props.ready === false) {
       return (
         <div>
@@ -102,7 +91,7 @@ class ListInfo extends Component {
         </div>
       );
     } else if (this.state.display === 0) {
-      console.log(this.state.display + " DISPLAY")
+     
       return (
         <div>
           <GatewayInfo
@@ -177,13 +166,3 @@ class ListInfo extends Component {
 
 export default ListInfo;
 
-/*
-
-
- onClick={this.showFirst}
-   
-
-
-
-     
-      */
