@@ -10,11 +10,9 @@
     "start": "node server.js -p $PORT",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-
   "author": "",
   "license": "ISC",
   "dependencies": {
-  
     "@zeit/next-css": "^0.2.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
@@ -25,12 +23,10 @@
     "jsonwebtoken": "^8.3.0",
     "next": "^5.0.0",
     "next-routes": "^1.4.1",
-
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
     "react-simple-sidenav": "^1.0.1",
     "request": "^2.88.0",
     "request-promise": "^4.2.2"
-
   }
 }
