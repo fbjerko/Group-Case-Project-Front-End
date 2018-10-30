@@ -72,7 +72,8 @@ class PersonForm extends React.Component {
         return(<Popupp text={this.state.status}/>);
     }
 
-        return(<div className="info-container">
+        return(
+        <div className="info-container">
 
             <div className="seasons-container">
                 <div className="top">

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import LayoutGlobal from "../../components/LayoutGlobal";
 import AdminReturn from "../../components/AdminReturn";
 import ListInfo from "../../components/admin-view/ListInfo";
+import PlayersForm from "../../components/forms/playersForm";
 
 
 class Players extends Component {
@@ -78,30 +79,7 @@ class Players extends Component {
       return (
         <div>
           <LayoutGlobal />
-
-          <div className="container">
-            <h1>Players</h1>
-
-            <div className="btn-admin-create-top">
-              <button className="btn-create" >
-                Create
-              </button>
-
-              <button className="btn-create" >
-                Update
-              </button>
-
-              <button className="btn-create" >
-                Delete
-              </button>
-            </div>
-
-            <div className="btn-admin-create-bottom">
-              <button className="btn-create" onClick={this._createPlayer}>
-                Back
-              </button>
-            </div>
-          </div>
+          <PlayersForm/>
         </div>
       );
     } else {
@@ -112,7 +90,7 @@ class Players extends Component {
           <div className="container">
             <div className="btn-admin-config">
               <button className="btn-create" onClick={this._createPlayer}>
-                Configure
+                Create
               </button>
               <AdminReturn />
             </div>
