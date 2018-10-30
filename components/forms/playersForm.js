@@ -66,7 +66,7 @@ class PlayersForm extends Component {
               const player = this.state.playerInfo;
               this.setState({
                 number: player.number,
-                position: player.position,
+                position: player.normalPosition,
                 teamId: player.teamId,
                 personId: player.personId
               });
@@ -133,7 +133,7 @@ class PlayersForm extends Component {
                     <br></br>
                     <br></br>
                     <p>Team</p>
-                    <SearchField type={'team'} handleChange={this.updateSearchFieldTeam} value={this.state.personId}/>
+                    <SearchField type={'team'} handleChange={this.updateSearchFieldTeam} value={this.state.teamId}/>
                     <br></br>
                     <br></br>
                     <input className="btn-index" type="button" value="Submit" onClick={this.sendPlayer}></input>
