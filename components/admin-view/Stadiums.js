@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 
-class UserInfo extends Component {
+class StadiumInfo extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      userId: "0",
-      userInfo: [],
+      stadiumId: "0",
+      stadiumInfo: [],
       ready: false
     };
   }
@@ -15,65 +15,72 @@ class UserInfo extends Component {
 
     try {
       const response = await fetch(
-          process.env.API_URL+"/api/user/findById/" + this.props.id
+        `http://localhost:5000/api/location/` + this.props.id
       );
-      console.log(response);
       const json = await response.json();
-      console.log(json);
-        this.setState({
-            userInfo: json,
-            ready: true
-        });
+      console.log("hduashduas " + json);
+      this.setState({
+        stadiumInfo: json,
+        ready: true
+      });
     } catch (error) {
       console.log(error);
     }
   }
 
   render() {
-    const user = this.state.userInfo;
+    const stadium = this.state.stadiumInfo;
     if (this.state.ready === true) {
       return (
         <div>
           <div className="div-admin-get-all">
             <h1>
-              {user.name} 
+              {stadium.name} 
             </h1>
             <table className="table-admin-get-one">
               <tbody>
                 <tr className="tr-admin-get-one">
-                  <th className="th-admin-get-one"> user ID</th>
-                  <td className="td-admin-get-one">{user.user}</td>
+                  <th className="th-admin-get-one"> stadium ID</th>
+                  <td className="td-admin-get-one">{stadium.stadiumId}</td>
                 </tr>
                 <tr className="tr-admin-get-one">
                   <th className="th-admin-get-one"> Name</th>
                   <td className="td-admin-get-one">
-                    {user.name}
+                    {stadium.name}
                   </td>
                 </tr>
                 <tr className="tr-admin-get-one">
-                  <th className="th-admin-get-one"> user</th>
-                  <td className="td-admin-get-one">{user.name}</td>
+                  <th className="th-admin-get-one"> Manager</th>
+                  <td className="td-admin-get-one">{stadium.coach.person.firstName} {stadium.coach.person.lastName}</td>
                 </tr>
-                <tr className="tr-admin-get-one">
-                  <th className="th-admin-get-one"> Number</th>
-                  <td className="td-admin-get-one">{user.name}</td>
+
+
+                 <tr className="tr-admin-get-one">
+                  <th className="th-admin-get-one"> Country</th>
+                  <td className="td-admin-get-one"> {stadium.location.address.country}</td>
                 </tr>
+              
                 <tr className="tr-admin-get-one">
-                  <th className="th-admin-get-one"> Position</th>
-                  <td className="td-admin-get-one">{user.name}</td>
-                </tr>
-                <tr className="tr-admin-get-one">
-                  <th className="th-admin-get-one"> Date Of Birth</th>
-                  <td className="td-admin-get-one">
-                    {user.name}
-                  </td>
+                  <th className="th-admin-get-one"> Owner</th>
+                  <td className="td-admin-get-one">{stadium.owner.person.firstName} {stadium.owner.person.lastName}</td>
                 </tr>
                 <tr className="tr-admin-get-one">
                   <th className="th-admin-get-one"> Address</th>
                   <td className="td-admin-get-one">
-                 Her setter vi addressa
+                  {stadium.location.address.addressLine1} 
+                  {stadium.location.address.addressLine2} 
+                  {stadium.location.address.addressLine3},
+                  {stadium.location.address.postalCode},
+                  {stadium.location.address.city}
                   </td>
                 </tr>
+               
+                <tr className="tr-admin-get-one">
+                  <th className="th-admin-get-one"> Association</th>
+                  <td className="td-admin-get-one">{stadium.association.name}</td>
+                </tr>
+                
+                
               </tbody>
             </table>
             <table className="table-admin-but">
@@ -92,7 +99,7 @@ class UserInfo extends Component {
               </tbody>
             </table>
           </div>
-          <button  onClick={this.props.closeuser}>
+          <button  onClick={this.props.close}>
             Back
           </button>
         </div>
@@ -103,15 +110,5 @@ class UserInfo extends Component {
   }
 }
 
-export default UserInfo;
+export default StadiumInfo;
 
-/*
-
-   {user.person.address.addressLine1}{" "}
-                    {user.person.address.addressLine2}{" "}
-                    {user.person.address.addressLine3},{" "}
-                    {user.person.address.postalCode},{" "}
-                    {user.person.address.city},{" "}
-                    {user.person.address.country}
-
-                    */

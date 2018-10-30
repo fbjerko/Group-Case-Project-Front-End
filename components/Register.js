@@ -5,34 +5,34 @@ import { Router } from "../routes";
 function registerUser() {
   console.log(document.getElementById("userName").value);
 
-  var xhttp = new XMLHttpRequest();
 
-  xhttp.onreadystatechange = function() {
-    if (xhttp.readyState === 4 && xhttp.status === 200) {
 
-      Router.pushRoute("/");
-      alert("User registered");
-      console.log("USer Register");
-      console.log(json);
+
+    var xhttp = new XMLHttpRequest();
+
+    xhttp.open("POST",  process.env.FRONT_END_URL+"/register", true);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send(
+        JSON.stringify({
+            userName: document.getElementById("userName").value,
+            email: document.getElementById("email").value,
+            password: document.getElementById("psw").value
+        })
+    );
+    xhttp.onreadystatechange = ()=>{
+        if (xhttp.readyState == XMLHttpRequest.DONE) {
+            if(xhttp.status==200){
+                console.log('Registered User');
+                Router.pushRoute("/");
+            }else if(xhttp.status!=200){
+                console.log("authFailed")
+            }
+
+
+
+        }
     }
-
-    if (xhttp.status !== 200) {
-      
-      console.log()
-      console.log(json);
-    }
-  };
-  xhttp.open("POST", "http://localhost:5000/api/user", true);
-  xhttp.setRequestHeader("Content-type", "application/json");
-  xhttp.send(
-    JSON.stringify({
-      userName: document.getElementById("userName").value,
-      email: document.getElementById("email").value,
-      password: document.getElementById("psw").value
-    })
-  );
-
-  
+ 
 }
 
 function checkAll() {

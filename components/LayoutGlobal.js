@@ -1,6 +1,6 @@
 import React from "react";
 import Head from "next/head";
-
+const Context = React.createContext();
 export default props => {
   return (
     <div>
@@ -36,6 +36,7 @@ export default props => {
       </Head>
 
       <img src="../static/images/logo.png" alt="" className="logo" />
+
     </div>
   );
 };

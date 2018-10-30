@@ -1,30 +1,78 @@
 import React, { Component } from "react";
 import LayoutGlobal from "../../components/LayoutGlobal";
-import IndexReturn from "../../components/IndexReturn";
-import { Router } from "../../routes";
 import AdminReturn from "../../components/AdminReturn";
+import ListInfo from "../../components/admin-view/ListInfo";
 
 class Stadiums extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      createStadium: false
+      stadiums: [],
+      ready: false,
+      createStadium: false,
+      currentPage: 0,
+      content: ['Stadium', 'Teams'], // Attribute variable names
+      contentFields: ['Name', 'Team'] // Names/Values of variables
     };
 
     this._createStadium = this._createStadium.bind(this);
+    this.previousPage = this.previousPage.bind(this);
+    this.nextPage = this.nextPage.bind(this);
+    this.firstPage = this.firstPage.bind(this);
+    this.lastPage = this.lastPage.bind(this);
+  }
+
+  firstPage() { 
+    this.setState({currentPage: 0})
+  }
+  lastPage() { 
+    this.setState({currentPage: Math.floor(this.state.players.length/10 )});
+    console.log(this.state.currentPage);
+  }
+
+  previousPage() {
+    if (this.state.currentPage !== 0)
+      this.setState(prevState => ({ currentPage: prevState.currentPage - 1 }));
+    console.log(this.state.currentPage);
+  }
+
+  nextPage() {
+    console.log(this.state.players.length);
+    console.log(this.state.players.length / 10);
+    if (this.state.currentPage + 1 < this.state.players.length / 10) {
+      this.setState({ currentPage: this.state.currentPage + 1 });
+    }
+    console.log(this.state.currentPage);
   }
 
   _createStadium() {
     this.setState({
       createStadium: !this.state.createStadium
     });
-
-    console.log(this.state.createStadium + " ");
+    
   }
 
-  componentDidMount() {}
+  async componentDidMount() {
+    console.log("Hey");
+    try {
+      const response = await fetch(`http://localhost:5000/api/location/all`);
+      const json = await response.json();
+  
+      this.setState({
+        stadiums: json,
+        ready: true
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   render() {
+
+    const stadiums = this.state.stadiums.slice(
+      this.state.currentPage * 10,
+      (this.state.currentPage + 1) * 10
+    );
     if (this.state.createStadium === true) {
       return (
         <div>
@@ -58,33 +106,31 @@ class Stadiums extends Component {
     } else {
       return (
         <div>
-          <LayoutGlobal />
+        <LayoutGlobal />
 
-          <div className="container">
-            <h1>Stadiums</h1>
-
-            <div className="btn-admin-config">
-              <button className="btn-create" onClick={this._createStadium}>
-                Configure
-              </button>
-
-              <button className="btn-create" onClick={() => Router.pushRoute("/admin/location")}>
-                Create location
-              </button>
-
-              <AdminReturn />
-
-            </div>
-
-            <div className="btn-admin-create-bottom">
-             
-            </div>
-
-            {this.state.createStadium ? <CreateUser /> : null}
-
-           
+        <div className="container">
+          <div className="btn-admin-config">
+            <button className="btn-create" onClick={this._createStadum}>
+              Configure
+            </button>
+            <AdminReturn />
           </div>
+          
+          <ListInfo
+              data={stadiums}
+              content= {this.state.content}
+              contentFields = {this.state.contentFields}
+              ready={this.state.ready}
+              nextPage={this.nextPage}
+              previousPage={this.previousPage}
+              firstPage= {this.firstPage}
+              lastPage={this.lastPage}
+            />
+    
+          <h2>Page {this.state.currentPage + 1}</h2>
+          {this.state.createPlayer ? <CreateUser /> : null}
         </div>
+      </div>
       );
     }
   }

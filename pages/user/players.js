@@ -3,21 +3,21 @@ import LayoutGlobal from "../../components/LayoutGlobal";
 import AdminReturn from "../../components/AdminReturn";
 import ListInfo from "../../components/admin-view/ListInfo";
 
-class Managers extends Component {
+
+class Players extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      managers: [],
-      filteredData:[],
-      search:'a',
+      players: [],
       ready: false,
-      createManager: false,
+      createPlayer: false,
       currentPage: 0,
-      content: ['Managers', 'Teams'], // Attribute variable names
-      contentFields: ['Name', 'Team'] // Names/Values of variables
+      content: ['Players', 'Teams'], // Attribute variable names
+      contentFields: ['Name', 'Team'], // Names/Values of variables
+      edit: false
     };
 
-    this._createManager = this._createManager.bind(this);
+    this._createPlayer = this._createPlayer.bind(this);
     this.previousPage = this.previousPage.bind(this);
     this.nextPage = this.nextPage.bind(this);
     this.firstPage = this.firstPage.bind(this);
@@ -28,7 +28,7 @@ class Managers extends Component {
     this.setState({currentPage: 0})
   }
   lastPage() { 
-    this.setState({currentPage: Math.floor(this.state.managers.length/10 )});
+    this.setState({currentPage: Math.floor(this.state.players.length/10 )});
     console.log(this.state.currentPage);
   }
 
@@ -39,27 +39,30 @@ class Managers extends Component {
   }
 
   nextPage() {
-    if (this.state.currentPage + 1 < this.state.managers.length / 10) {
+    console.log(this.state.players.length);
+    console.log(this.state.players.length / 10);
+    if (this.state.currentPage + 1 < this.state.players.length / 10) {
       this.setState({ currentPage: this.state.currentPage + 1 });
     }
     console.log(this.state.currentPage);
   }
 
-  _createManager() {
+  _createPlayer() {
     this.setState({
-      createManager: !this.state.createManager
+      createPlayer: !this.state.createPlayer
     });
 
-    console.log(this.state.createManager + " ");
+    console.log(this.state.createPlayer + " ");
   }
 
   async componentDidMount() {
+    console.log("Hey");
     try {
-      const response = await fetch(process.env.API_URL+"/api/coach/all");
+      const response = await fetch(`http://localhost:5000/api/player/all`);
       const json = await response.json();
       console.log(json);
       this.setState({
-        managers: json,
+        players: json,
         ready: true
       });
     } catch (error) {
@@ -67,22 +70,18 @@ class Managers extends Component {
     }
   }
 
- 
-
   render() {
-
-      
-    const managers = this.state.managers.slice(
+    const players = this.state.players.slice(
       this.state.currentPage * 10,
       (this.state.currentPage + 1) * 10
     );
-    if (this.state.createManager === true) {
+    if (this.state.createPlayer === true) {
       return (
         <div>
           <LayoutGlobal />
 
           <div className="container">
-            <h1>Managers</h1>
+            <h1>Players</h1>
 
             <div className="btn-admin-create-top">
               <button className="btn-create" >
@@ -99,7 +98,7 @@ class Managers extends Component {
             </div>
 
             <div className="btn-admin-create-bottom">
-              <button className="btn-create" onClick={this._createManager}>
+              <button className="btn-create" onClick={this._createPlayer}>
                 Back
               </button>
             </div>
@@ -113,14 +112,14 @@ class Managers extends Component {
 
           <div className="container">
             <div className="btn-admin-config">
-              <button className="btn-create" onClick={this._createManager}>
+              <button className="btn-create" onClick={this._createPlayer}>
                 Configure
               </button>
               <AdminReturn />
             </div>
-
-              <ListInfo
-                data={managers}
+            
+            <ListInfo
+                data={players}
                 content= {this.state.content}
                 contentFields = {this.state.contentFields}
                 ready={this.state.ready}
@@ -128,10 +127,12 @@ class Managers extends Component {
                 previousPage={this.previousPage}
                 firstPage= {this.firstPage}
                 lastPage={this.lastPage}
+                edit={this.state.edit}
+                
               />
-          
+      
             <h2>Page {this.state.currentPage + 1}</h2>
-            {this.state.createManager ? <CreateUser /> : null}
+            {this.state.createPlayer ? <CreateUser /> : null}
           </div>
         </div>
       );
@@ -139,20 +140,4 @@ class Managers extends Component {
   }
 }
 
-export default Managers;
-
-
-/*
-
-
-    let filteredData = (search) => {
-      return this.state.managers[3].filter((el) => {
-        el.toLowerCase().indexOf(search.toLowerCase()) > -1;
-      })
-    }
-
-
-  
-    console.log("Filtered data "  + filteredData('a'));
-
-    */
+export default Players;

@@ -57,9 +57,9 @@ class Players extends Component {
   async componentDidMount() {
     console.log("Hey");
     try {
-      const response = await fetch(`http://localhost:5000/api/player/all`);
+      const response = await fetch(process.env.API_URL+"/api/player/all");
       const json = await response.json();
-      console.log(json);
+  
       this.setState({
         players: json,
         ready: true

@@ -2,7 +2,7 @@ import React from "react";
 
 function getTeams(){
   const Http = new XMLHttpRequest();
-  const url='http://localhost:5000/api/teams/all';
+  const url=process.env.API_URL+"/api/teams/all";
   Http.open("GET", url);
   Http.send();
   Http.onreadystatechange=(e)=>{

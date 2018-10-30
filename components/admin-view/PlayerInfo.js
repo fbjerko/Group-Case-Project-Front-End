@@ -16,7 +16,7 @@ class PlayerInfo extends Component {
     console.log("Hey");
     try {
       const response = await fetch(
-        `http://localhost:5000/api/player/` + this.props.id
+          process.env.API_URL+"/api/player/" + this.props.id
       );
       const json = await response.json();
       console.log(json);

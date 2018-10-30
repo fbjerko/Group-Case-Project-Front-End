@@ -16,7 +16,7 @@ class ManagerInfo extends Component {
     console.log("Hey");
     try {
       const response = await fetch(
-        `http://localhost:5000/api/coach/` + this.props.id
+          process.env.API_URL+"/api/coach/" + this.props.id
       );
       const json = await response.json();
       console.log(json);

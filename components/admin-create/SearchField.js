@@ -49,34 +49,34 @@ class SearchField extends Component {
         let url = '';
         switch (type) {
             case 'address':
-                url = 'http://localhost:5000/api/address/all';
+                url = process.env.API_URL+"/api/address/all";
                 break;
             case 'season':
-                url = 'http://localhost:5000/api/season/all';
+                url = process.env.API_URL+"/api/season/all";
                 break;
             case 'location':
-                url = 'http://localhost:5000/api/location/all';
+                url = process.env.API_URL+"/api/location/all";
                 break;
             case 'team':
-                url = 'http://localhost:5000/api/team/all';
+                url = process.env.API_URL+"/api/team/all";
                 break;
             case 'player':
-                url = 'http://localhost:5000/api/player/all';
+                url = process.env.API_URL+"/api/player/all";
                 break;
             case 'person':
-                url = 'http://localhost:5000/api/person/all';
+                url = process.env.API_URL+"/api/person/all";
                 break;
             case 'association':
-                url = 'http://localhost:5000/api/association/all';
+                url = process.env.API_URL+"/api/association/all";
                 break;
             case 'coach':
-                url = 'http://localhost:5000/api/coach/all';
+                url = process.env.API_URL+"/api/coach/all";
                 break;
             case 'owner':
-                url = 'http://localhost:5000/api/owner/all';
+                url = process.env.API_URL+"/api/owner/all";
                 break;
             case 'goalType':
-                url = 'http://localhost:5000/api/goalType/all';
+                url = process.env.API_URL+"/api/goalType/all";
                 break;
         }
         return url;
