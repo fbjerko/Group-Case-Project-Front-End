@@ -3,19 +3,21 @@ import LayoutGlobal from "../../components/LayoutGlobal";
 import AdminReturn from "../../components/AdminReturn";
 import ListInfo from "../../components/admin-view/ListInfo";
 
-class Stadiums extends Component {
+
+class Players extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      stadiums: [],
+      players: [],
       ready: false,
-      createStadium: false,
+      createPlayer: false,
       currentPage: 0,
-      content: ['Stadium', 'Teams'], // Attribute variable names
-      contentFields: ['Name', 'Team'] // Names/Values of variables
+      content: ['Players', 'Teams'], // Attribute variable names
+      contentFields: ['Name', 'Team'], // Names/Values of variables
+      edit: false
     };
 
-    this._createStadium = this._createStadium.bind(this);
+    this._createPlayer = this._createPlayer.bind(this);
     this.previousPage = this.previousPage.bind(this);
     this.nextPage = this.nextPage.bind(this);
     this.firstPage = this.firstPage.bind(this);
@@ -45,21 +47,22 @@ class Stadiums extends Component {
     console.log(this.state.currentPage);
   }
 
-  _createStadium() {
+  _createPlayer() {
     this.setState({
-      createStadium: !this.state.createStadium
+      createPlayer: !this.state.createPlayer
     });
-    
+
+    console.log(this.state.createPlayer + " ");
   }
 
   async componentDidMount() {
     console.log("Hey");
     try {
-      const response = await fetch(`http://localhost:5000/api/location/all`);
+      const response = await fetch(`http://localhost:5000/api/player/all`);
       const json = await response.json();
-  
+      console.log(json);
       this.setState({
-        stadiums: json,
+        players: json,
         ready: true
       });
     } catch (error) {
@@ -68,35 +71,34 @@ class Stadiums extends Component {
   }
 
   render() {
-
-    const stadiums = this.state.stadiums.slice(
+    const players = this.state.players.slice(
       this.state.currentPage * 10,
       (this.state.currentPage + 1) * 10
     );
-    if (this.state.createStadium === true) {
+    if (this.state.createPlayer === true) {
       return (
         <div>
           <LayoutGlobal />
 
           <div className="container">
-            <h1>Stadiums</h1>
+            <h1>Players</h1>
 
             <div className="btn-admin-create-top">
-              <button className="btn-create" onClick={this._createStadium}>
+              <button className="btn-create" >
                 Create
               </button>
 
-              <button className="btn-create" onClick={this._matches}>
+              <button className="btn-create" >
                 Update
               </button>
 
-              <button className="btn-create" onClick={this._teams}>
+              <button className="btn-create" >
                 Delete
               </button>
             </div>
 
             <div className="btn-admin-create-bottom">
-              <button className="btn-create" onClick={this._createStadium}>
+              <button className="btn-create" onClick={this._createPlayer}>
                 Back
               </button>
             </div>
@@ -106,34 +108,36 @@ class Stadiums extends Component {
     } else {
       return (
         <div>
-        <LayoutGlobal />
+          <LayoutGlobal />
 
-        <div className="container">
-          <div className="btn-admin-config">
-            <button className="btn-create" onClick={this._createStadum}>
-              Configure
-            </button>
-            <AdminReturn />
+          <div className="container">
+            <div className="btn-admin-config">
+              <button className="btn-create" onClick={this._createPlayer}>
+                Configure
+              </button>
+              <AdminReturn />
+            </div>
+            
+            <ListInfo
+                data={players}
+                content= {this.state.content}
+                contentFields = {this.state.contentFields}
+                ready={this.state.ready}
+                nextPage={this.nextPage}
+                previousPage={this.previousPage}
+                firstPage= {this.firstPage}
+                lastPage={this.lastPage}
+                edit={this.state.edit}
+                
+              />
+      
+            <h2>Page {this.state.currentPage + 1}</h2>
+            {this.state.createPlayer ? <CreateUser /> : null}
           </div>
-          
-          <ListInfo
-              data={stadiums}
-              content= {this.state.content}
-              contentFields = {this.state.contentFields}
-              ready={this.state.ready}
-              nextPage={this.nextPage}
-              previousPage={this.previousPage}
-              firstPage= {this.firstPage}
-              lastPage={this.lastPage}
-            />
-    
-          <h2>Page {this.state.currentPage + 1}</h2>
-          {this.state.createPlayer ? <CreateUser /> : null}
         </div>
-      </div>
       );
     }
   }
 }
 
-export default Stadiums;
+export default Players;

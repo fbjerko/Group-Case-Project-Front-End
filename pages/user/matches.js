@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import LayoutGlobal from "../../components/LayoutGlobal";
+import IndexReturn from "../../components/IndexReturn";
 import AdminReturn from "../../components/AdminReturn";
 import { Router } from "../../routes";
 

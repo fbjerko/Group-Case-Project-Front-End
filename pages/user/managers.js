@@ -3,20 +3,21 @@ import LayoutGlobal from "../../components/LayoutGlobal";
 import AdminReturn from "../../components/AdminReturn";
 import ListInfo from "../../components/admin-view/ListInfo";
 
-
-class Players extends Component {
+class Managers extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      players: [],
+      managers: [],
+      filteredData:[],
+      search:'a',
       ready: false,
-      createPlayer: false,
+      createManager: false,
       currentPage: 0,
-      content: ['Players', 'Teams'], // Attribute variable names
+      content: ['Managers', 'Teams'], // Attribute variable names
       contentFields: ['Name', 'Team'] // Names/Values of variables
     };
 
-    this._createPlayer = this._createPlayer.bind(this);
+    this._createManager = this._createManager.bind(this);
     this.previousPage = this.previousPage.bind(this);
     this.nextPage = this.nextPage.bind(this);
     this.firstPage = this.firstPage.bind(this);
@@ -27,7 +28,7 @@ class Players extends Component {
     this.setState({currentPage: 0})
   }
   lastPage() { 
-    this.setState({currentPage: Math.floor(this.state.players.length/10 )});
+    this.setState({currentPage: Math.floor(this.state.managers.length/10 )});
     console.log(this.state.currentPage);
   }
 
@@ -38,30 +39,27 @@ class Players extends Component {
   }
 
   nextPage() {
-    console.log(this.state.players.length);
-    console.log(this.state.players.length / 10);
-    if (this.state.currentPage + 1 < this.state.players.length / 10) {
+    if (this.state.currentPage + 1 < this.state.managers.length / 10) {
       this.setState({ currentPage: this.state.currentPage + 1 });
     }
     console.log(this.state.currentPage);
   }
 
-  _createPlayer() {
+  _createManager() {
     this.setState({
-      createPlayer: !this.state.createPlayer
+      createManager: !this.state.createManager
     });
 
-    console.log(this.state.createPlayer + " ");
+    console.log(this.state.createManager + " ");
   }
 
   async componentDidMount() {
-    console.log("Hey");
     try {
-      const response = await fetch(`http://localhost:5000/api/player/all`);
+      const response = await fetch(`http://localhost:5000/api/coach/all`);
       const json = await response.json();
-  
+      console.log(json);
       this.setState({
-        players: json,
+        managers: json,
         ready: true
       });
     } catch (error) {
@@ -69,18 +67,22 @@ class Players extends Component {
     }
   }
 
+ 
+
   render() {
-    const players = this.state.players.slice(
+
+      
+    const managers = this.state.managers.slice(
       this.state.currentPage * 10,
       (this.state.currentPage + 1) * 10
     );
-    if (this.state.createPlayer === true) {
+    if (this.state.createManager === true) {
       return (
         <div>
           <LayoutGlobal />
 
           <div className="container">
-            <h1>Players</h1>
+            <h1>Managers</h1>
 
             <div className="btn-admin-create-top">
               <button className="btn-create" >
@@ -97,7 +99,7 @@ class Players extends Component {
             </div>
 
             <div className="btn-admin-create-bottom">
-              <button className="btn-create" onClick={this._createPlayer}>
+              <button className="btn-create" onClick={this._createManager}>
                 Back
               </button>
             </div>
@@ -111,14 +113,14 @@ class Players extends Component {
 
           <div className="container">
             <div className="btn-admin-config">
-              <button className="btn-create" onClick={this._createPlayer}>
+              <button className="btn-create" onClick={this._createManager}>
                 Configure
               </button>
               <AdminReturn />
             </div>
-            
-            <ListInfo
-                data={players}
+
+              <ListInfo
+                data={managers}
                 content= {this.state.content}
                 contentFields = {this.state.contentFields}
                 ready={this.state.ready}
@@ -127,9 +129,9 @@ class Players extends Component {
                 firstPage= {this.firstPage}
                 lastPage={this.lastPage}
               />
-      
+          
             <h2>Page {this.state.currentPage + 1}</h2>
-            {this.state.createPlayer ? <CreateUser /> : null}
+            {this.state.createManager ? <CreateUser /> : null}
           </div>
         </div>
       );
@@ -137,4 +139,20 @@ class Players extends Component {
   }
 }
 
-export default Players;
+export default Managers;
+
+
+/*
+
+
+    let filteredData = (search) => {
+      return this.state.managers[3].filter((el) => {
+        el.toLowerCase().indexOf(search.toLowerCase()) > -1;
+      })
+    }
+
+
+  
+    console.log("Filtered data "  + filteredData('a'));
+
+    */
