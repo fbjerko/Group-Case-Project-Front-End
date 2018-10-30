@@ -8,7 +8,7 @@ const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
 const request = require('request-promise');
-process.env.API_URL="http://experisfotballmanager-env.qedd2mt7g3.eu-west-2.elasticbeanstalk.com";
+process.env.API_URL="https://experis-football-manager-back.herokuapp.com";
 
 
 
