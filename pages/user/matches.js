@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import LayoutGlobal from "../../components/LayoutGlobal";
+import IndexReturn from "../../components/IndexReturn";
 import AdminReturn from "../../components/AdminReturn";
 import { Router } from "../../routes";
 
@@ -70,9 +71,12 @@ class Matches extends Component {
                 className="btn-create"
                 onClick={() => Router.pushRoute("/admin/season")}
               >
-                Create match
+                Create Season
               </button>
               <div className="btn-admin-config">
+                <button className="btn-create" onClick={this._createMatches}>
+                  Configure matches
+                </button>
                 <AdminReturn />
               </div>
               <div className="btn-admin-create-bottom" />;

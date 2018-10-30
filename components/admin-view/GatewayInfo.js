@@ -48,7 +48,13 @@ class GatewayInfo extends Component {
           <UserInfo id={this.props.id} close={this.props.close} />
         </div>
       );
-    } else {
+    } if (this.props.content === "Stadiums") {
+      return (
+        <div>
+          <StadiumInfo id={this.props.id} close={this.props.close} />
+        </div>
+      );
+    }  else {
       this.props.close();
       return <div />;
     }

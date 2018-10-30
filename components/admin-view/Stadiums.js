@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 
-class TeamInfo extends Component {
+class StadiumInfo extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      teamId: "0",
-      teamInfo: [],
+      stadiumId: "0",
+      stadiumInfo: [],
       ready: false
     };
   }
@@ -15,12 +15,12 @@ class TeamInfo extends Component {
 
     try {
       const response = await fetch(
-          process.env.API_URL+"/api/team/" + this.props.id
+        `http://localhost:5000/api/location/` + this.props.id
       );
       const json = await response.json();
       console.log("hduashduas " + json);
       this.setState({
-        teamInfo: json,
+        stadiumInfo: json,
         ready: true
       });
     } catch (error) {
@@ -29,55 +29,55 @@ class TeamInfo extends Component {
   }
 
   render() {
-    const team = this.state.teamInfo;
+    const stadium = this.state.stadiumInfo;
     if (this.state.ready === true) {
       return (
         <div>
           <div className="div-admin-get-all">
             <h1>
-              {team.name} 
+              {stadium.name} 
             </h1>
             <table className="table-admin-get-one">
               <tbody>
                 <tr className="tr-admin-get-one">
-                  <th className="th-admin-get-one"> Team ID</th>
-                  <td className="td-admin-get-one">{team.teamId}</td>
+                  <th className="th-admin-get-one"> stadium ID</th>
+                  <td className="td-admin-get-one">{stadium.stadiumId}</td>
                 </tr>
                 <tr className="tr-admin-get-one">
                   <th className="th-admin-get-one"> Name</th>
                   <td className="td-admin-get-one">
-                    {team.name}
+                    {stadium.name}
                   </td>
                 </tr>
                 <tr className="tr-admin-get-one">
                   <th className="th-admin-get-one"> Manager</th>
-                  <td className="td-admin-get-one">{team.coach.person.firstName} {team.coach.person.lastName}</td>
+                  <td className="td-admin-get-one">{stadium.coach.person.firstName} {stadium.coach.person.lastName}</td>
                 </tr>
 
 
                  <tr className="tr-admin-get-one">
                   <th className="th-admin-get-one"> Country</th>
-                  <td className="td-admin-get-one"> {team.location.address.country}</td>
+                  <td className="td-admin-get-one"> {stadium.location.address.country}</td>
                 </tr>
               
                 <tr className="tr-admin-get-one">
                   <th className="th-admin-get-one"> Owner</th>
-                  <td className="td-admin-get-one">{team.owner.person.firstName} {team.owner.person.lastName}</td>
+                  <td className="td-admin-get-one">{stadium.owner.person.firstName} {stadium.owner.person.lastName}</td>
                 </tr>
                 <tr className="tr-admin-get-one">
                   <th className="th-admin-get-one"> Address</th>
                   <td className="td-admin-get-one">
-                  {team.location.address.addressLine1} 
-                  {team.location.address.addressLine2} 
-                  {team.location.address.addressLine3},
-                  {team.location.address.postalCode},
-                  {team.location.address.city}
+                  {stadium.location.address.addressLine1} 
+                  {stadium.location.address.addressLine2} 
+                  {stadium.location.address.addressLine3},
+                  {stadium.location.address.postalCode},
+                  {stadium.location.address.city}
                   </td>
                 </tr>
                
                 <tr className="tr-admin-get-one">
                   <th className="th-admin-get-one"> Association</th>
-                  <td className="td-admin-get-one">{team.association.name}</td>
+                  <td className="td-admin-get-one">{stadium.association.name}</td>
                 </tr>
                 
                 
@@ -110,15 +110,5 @@ class TeamInfo extends Component {
   }
 }
 
-export default TeamInfo;
+export default StadiumInfo;
 
-/*
-
-   {team.person.address.addressLine1}{" "}
-                    {team.person.address.addressLine2}{" "}
-                    {team.person.address.addressLine3},{" "}
-                    {team.person.address.postalCode},{" "}
-                    {team.person.address.city},{" "}
-                    {team.person.address.country}
-
-                    */

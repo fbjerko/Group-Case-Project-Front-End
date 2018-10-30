@@ -3,7 +3,7 @@ import LayoutGlobal from "../components/LayoutGlobal";
 import EditUser from "../components/EditUser";
 import IndexReturn from "../components/IndexReturn";
 import { Router } from "../routes";
-
+import Players from "./admin/players";
 
 
 class Dashboard extends Component {
@@ -23,25 +23,6 @@ class Dashboard extends Component {
     });
   }
 
-
-  _onTeamClick() {
-    this.setState({
-      showTeam: !this.state.showTeam,
-    });
-  }
-
-  _onMatchClick() {
-    this.setState({
-      showMatchInfo: !this.state.showMatchInfo,
-    });
-  }
-
-
-  componentDidMount() {
-
-  }
-
-
   render() {
 
     return (
@@ -52,11 +33,11 @@ class Dashboard extends Component {
        
 
         <div className="btn-admin-nav">
-              <button className="btn-nav" id="btn-players" onClick={() => Router.pushRoute("/dashboard/players")}>
+              <button className="btn-nav" id="btn-players" onClick={() => Router.pushRoute("/admin/players")}>
                 Players
               </button>
 
-              <button className="btn-nav" id="btn-teams" onClick={() => Router.pushRoute("/dashboard/teams")}>
+              <button className="btn-nav" id="btn-teams" onClick={() => Router.pushRoute("/admin/teams")}>
                 Teams
               </button>
 
@@ -64,15 +45,15 @@ class Dashboard extends Component {
 
              <div className="btn-admin-nav-bottom">
               
-             <button className="btn-nav" id="btn-managers" onClick={() => Router.pushRoute("/dashboard/managers")}>
+             <button className="btn-nav" id="btn-managers" onClick={() => Router.pushRoute("/admin/managers")}>
                 Managers
               </button>
 
-               <button className="btn-nav" id="btn-matches" onClick={() => Router.pushRoute("/dashboard/matches")}>
+               <button className="btn-nav" id="btn-matches" onClick={() => Router.pushRoute("/admin/matches")}>
                 Matches
               </button>
 
-              <button className="btn-nav"  id="btn-stadium" onClick={() => Router.pushRoute("/dashboard/stadiums")}>
+              <button className="btn-nav"  id="btn-stadium" onClick={() => Router.pushRoute("/admin/stadiums")}>
                 Stadiums
               </button>
             </div>

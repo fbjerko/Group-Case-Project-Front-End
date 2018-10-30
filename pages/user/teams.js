@@ -3,20 +3,19 @@ import LayoutGlobal from "../../components/LayoutGlobal";
 import AdminReturn from "../../components/AdminReturn";
 import ListInfo from "../../components/admin-view/ListInfo";
 
-
-class Players extends Component {
+class Teams extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      players: [],
+      teams: [],
       ready: false,
-      createPlayer: false,
+      createTeam: false,
       currentPage: 0,
-      content: ['Players', 'Teams'], // Attribute variable names
-      contentFields: ['Name', 'Team'] // Names/Values of variables
+      content: ['Teams', 'Managers'], // Attribute variable names
+      contentFields: ['Name', 'Manager', 'Country'] // Names/Values of variables
     };
 
-    this._createPlayer = this._createPlayer.bind(this);
+    this._createTeam = this._createTeam.bind(this);
     this.previousPage = this.previousPage.bind(this);
     this.nextPage = this.nextPage.bind(this);
     this.firstPage = this.firstPage.bind(this);
@@ -27,7 +26,7 @@ class Players extends Component {
     this.setState({currentPage: 0})
   }
   lastPage() { 
-    this.setState({currentPage: Math.floor(this.state.players.length/10 )});
+    this.setState({currentPage: Math.floor(this.state.teams.length/10 )});
     console.log(this.state.currentPage);
   }
 
@@ -38,30 +37,28 @@ class Players extends Component {
   }
 
   nextPage() {
-    console.log(this.state.players.length);
-    console.log(this.state.players.length / 10);
-    if (this.state.currentPage + 1 < this.state.players.length / 10) {
+    if (this.state.currentPage + 1 < this.state.teams.length / 10) {
       this.setState({ currentPage: this.state.currentPage + 1 });
     }
     console.log(this.state.currentPage);
   }
 
-  _createPlayer() {
+  _createTeam() {
     this.setState({
-      createPlayer: !this.state.createPlayer
+      createTeam: !this.state.createTeam
     });
 
-    console.log(this.state.createPlayer + " ");
+    console.log(this.state.createTeam + " ");
   }
 
   async componentDidMount() {
     console.log("Hey");
     try {
-      const response = await fetch(process.env.API_URL+"/api/player/all");
+      const response = await fetch(`http://localhost:5000/api/team/all`);
       const json = await response.json();
-  
+      console.log(json);
       this.setState({
-        players: json,
+        teams: json,
         ready: true
       });
     } catch (error) {
@@ -70,17 +67,19 @@ class Players extends Component {
   }
 
   render() {
-    const players = this.state.players.slice(
+    console.log(this.state.teams.length
+      );
+    const teams = this.state.teams.slice(
       this.state.currentPage * 10,
       (this.state.currentPage + 1) * 10
     );
-    if (this.state.createPlayer === true) {
+    if (this.state.createTeam === true) {
       return (
         <div>
           <LayoutGlobal />
 
           <div className="container">
-            <h1>Players</h1>
+            <h1>teams</h1>
 
             <div className="btn-admin-create-top">
               <button className="btn-create" >
@@ -97,7 +96,7 @@ class Players extends Component {
             </div>
 
             <div className="btn-admin-create-bottom">
-              <button className="btn-create" onClick={this._createPlayer}>
+              <button className="btn-create" onClick={this._createTeam}>
                 Back
               </button>
             </div>
@@ -111,14 +110,15 @@ class Players extends Component {
 
           <div className="container">
             <div className="btn-admin-config">
-              <button className="btn-create" onClick={this._createPlayer}>
+              <button className="btn-create" onClick={this._createTeam}>
                 Configure
               </button>
               <AdminReturn />
             </div>
-            
-            <ListInfo
-                data={players}
+
+           
+           <ListInfo
+                data={teams}
                 content= {this.state.content}
                 contentFields = {this.state.contentFields}
                 ready={this.state.ready}
@@ -127,9 +127,9 @@ class Players extends Component {
                 firstPage= {this.firstPage}
                 lastPage={this.lastPage}
               />
-      
+          
             <h2>Page {this.state.currentPage + 1}</h2>
-            {this.state.createPlayer ? <CreateUser /> : null}
+            {this.state.createTeam ? <CreateUser /> : null}
           </div>
         </div>
       );
@@ -137,4 +137,4 @@ class Players extends Component {
   }
 }
 
-export default Players;
+export default Teams;

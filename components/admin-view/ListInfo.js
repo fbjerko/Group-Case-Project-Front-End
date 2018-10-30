@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-
 import GatewayInfo from "./GatewayInfo";
 
 class ListInfo extends Component {
@@ -12,17 +11,14 @@ class ListInfo extends Component {
     };
 
     this.showFirst = this.showFirst.bind(this);
-
     this.close = this.close.bind(this);
   }
 
-  showFirst(id, index) {
-    console.log("huhuhuhu" + index);
+  showFirst(id, action) {
     this.setState({
       activeId: id,
-      display: index
+      display: action
     });
-    console.log(this.state.display);
   }
 
   close() {
@@ -33,73 +29,52 @@ class ListInfo extends Component {
   }
 
   render() {
- 
+    /* Code for checking wether even values are number/id, pretty weak as for now as it just checks one row ahead for a number value */
+
     const data = this.props.data.map(data => {
-      for(var j=0; j<data.length; j++) {
-        var i=0;
+      var i = 0;
 
       while (data[i] !== undefined) {
-        
         if (i % 2 === 0) {
-          
           if (typeof data[i] === "string") {
-           
-            data[i-1] = data[i];
-            
+            data[i - 1] = data[i];
           }
         }
         i++;
       }
-    }
 
-      if (this.props.contentFields.length > 2) {
+      /* Creating columns with rows */
+
+      const columns = [];
+
+      for (var i = 0; i < this.props.contentFields.length; i++) {
+        let id = data[i * 2];
+        let action = i;
+
+        console.log(id + " ID");
+        columns.push(
+          <td
+            key={data[i * 2 + 1]}
+            className="td-admin-get-all"
+            onClick={() => this.showFirst(id, action)}
+          >
+            {data[i * 2 + 1]}{" "}
+          </td>
+        );
+      }
+
+      /* Assining each row from each column in tr tag */
+
+      for (var k = 0; k < this.props.contentFields.length; k++) {
         return (
-          <tr key={data[0]} className="tr-admin-get-all">
-            <td
-              className="td-admin-get-all"
-              onClick={() => this.showFirst(data[0], 0)}
-            >
-              {data[1]}{" "}
-            </td>
-
-            <td
-              className="td-admin-get-all"
-              key={data[2]}
-              onClick={() => this.showFirst(data[2], 1)}
-            >
-              {data[3]}{" "}
-            </td>
-
-            <td
-              className="td-admin-get-all"
-              key={data[4]}
-              onClick={() => this.showFirst(data[4], 2)}
-            >
-              {data[5]}{" "}
-            </td>
+          <tr key={data[k * k]} className="tr-admin-get-all">
+            {columns}
           </tr>
         );
-        x;
       }
-      return (
-        <tr key={data[0]} className="tr-admin-get-all">
-          <td
-            className="td-admin-get-all"
-            onClick={() => this.showFirst(data[0], 0)}
-          >
-            {data[1]}{" "}
-          </td>
-
-          <td
-            className="td-admin-get-all"
-            key={data[2]}
-            onClick={() => this.showFirst(data[2], 1)}
-          >
-            {data[3]}{" "}
-          </td>
-        </tr>
-      );
     });
+
+    /* Assigning header values */ 
 
     const fields = this.props.contentFields.map(function(field) {
       return (
@@ -116,6 +91,7 @@ class ListInfo extends Component {
         </div>
       );
     } else if (this.state.display === 0) {
+     
       return (
         <div>
           <GatewayInfo
@@ -190,13 +166,3 @@ class ListInfo extends Component {
 
 export default ListInfo;
 
-/*
-
-
- onClick={this.showFirst}
-   
-
-
-
-     
-      */
