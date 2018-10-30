@@ -14,7 +14,9 @@ class MatchesForm extends React.Component {
             season_id:'',
             location_id:'',
             showPop:false,
-            status:'Nothing'       
+            status:'Nothing',
+            team_1_players: [],
+            team_2_players: []
           }
     }
 
@@ -28,11 +30,21 @@ class MatchesForm extends React.Component {
   }
     updateSearchFieldTeam1 = (id)=>{
       console.log(id);
-      this.setState({team_1:id});
+
+
+      const url = process.env.API_URL+"/api/team/getPlayersByTeamId/"+id;
+      fetch(url).then((response)=>response.json().then((body)=>{
+          this.setState({team_1_players:body,team_1:id});
+      }));
+
   }
     updateSearchFieldTeam2 = (id)=>{
       console.log(id);
-      this.setState({team_2:id});
+
+        const url = process.env.API_URL+"/api/team/getPlayersByTeamId/"+id;
+        fetch(url).then((response)=>response.json().then((body)=>{
+            this.setState({team_2_players:body,team_2:id});
+        }));
   }
 
 
@@ -109,6 +121,8 @@ class MatchesForm extends React.Component {
        <br></br>
        <input className="btn-index" type="button" value="Submit" onClick={this.sendMatches}></input>
       </div>
+
+
 
     </div>
         );
