@@ -47,28 +47,26 @@ class MatchesForm extends React.Component {
             this.setState({team_2_players:body,team_2:id});
         }));
   }
-
-
     updateInput = (event)=>{
       if(event.target.id=='match_date'){
           this.setState({match_date:event.target.value});
         }
 
     }
-
-    sendMatches = ()=>{
+    sendMatch = ()=>{
 
         var xhttp = new XMLHttpRequest();
 
 
-        xhttp.open("POST",  process.env.API_URL+"/api/match", true);
+        xhttp.open("POST",  process.env.API_URL+"/api/footballMatch", true);
 
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send(
             JSON.stringify({
+              playersId: this.state.selectedPlayers,
               matchDate: this.state.match_date,
-              team1: this.state.team_1,
-              team2: this.state.team_2,
+              homeTeamId: this.state.team_1,
+              awayTeamId: this.state.team_2,
               seasonId: this.state.season_id,
               locationId: this.state.location_id 
             })
@@ -88,7 +86,6 @@ class MatchesForm extends React.Component {
         }
         }
     }
-
     selectPlayer = (event)=>{
         let selectedPlayers = this.state.selectedPlayers.slice(0);
 
@@ -134,39 +131,59 @@ class MatchesForm extends React.Component {
        <SearchField type={'location'} handleChange={this.updateSearchFieldLocation}/>
        <br></br>
        <br></br>
-       <input className="btn-index" type="button" value="Submit" onClick={this.sendMatches}></input>
+       <input className="btn-index" type="button" value="Submit" onClick={this.sendMatch}></input>
 
         </div>
                 <div style={{width:'300px',marginLeft:'50px'}}>
                     <h2>Team 1:</h2>
-                    <ul>
+                    <table>
+                        <tbody>
                         {this.state.team_1_players.map((player)=>{
-
-
                             if(this.state.selectedPlayers.indexOf(player[0].toString())!=-1){
 
-                                return <li id={player[0]} style={{color:'blue'}} key={player[0]} onClick={this.selectPlayer}>{player[1]}</li>
+                                return (<tr id={player[0]} style={{color:'yellow'}} key={player[0]} onClick={this.selectPlayer}>
+                                        <td id={player[0]}>{player[1]}</td>
+                                        <td id={player[0]}>{player[2]}</td>
+                                    </tr>
+
+
+                                );
                             }else{
-                                return <li id={player[0]} style={{color:'white'}} key={player[0]} onClick={this.selectPlayer}>{player[1]}</li>
+                                return (<tr  style={{color:'white'}} key={player[0]} onClick={this.selectPlayer}>
+                                        <td id={player[0]}>{player[1]}</td>
+                                        <td id={player[0]}>{player[2]}</td>
+                                    </tr>
+                                );
                             }
-
-
                         })}
-                    </ul>
+                        </tbody>
+                    </table>
                 </div>
                 <div style={{width:'300px',marginLeft:'50px'}}>
                     <h2>Team 2:</h2>
 
-                    <ul>
+                    <table>
+                        <tbody>
                         {this.state.team_2_players.map((player)=>{
                             if(this.state.selectedPlayers.indexOf(player[0].toString())!=-1){
 
-                                return <li id={player[0]} style={{color:'blue'}} key={player[0]} onClick={this.selectPlayer}>{player[1]}</li>
+                                return (<tr id={player[0]} style={{color:'yellow'}} key={player[0]} onClick={this.selectPlayer}>
+                                                <td id={player[0]}>{player[1]}</td>
+                                                <td id={player[0]}>{player[2]}</td>
+                                        </tr>
+
+
+                                );
                             }else{
-                                return <li id={player[0]} style={{color:'white'}} key={player[0]} onClick={this.selectPlayer}>{player[1]}</li>
+                                return (<tr id={player[0]} style={{color:'white'}} key={player[0]} onClick={this.selectPlayer}>
+                                            <td id={player[0]}>{player[1]}</td>
+                                            <td id={player[0]}>{player[2]}</td>
+                                        </tr>
+                                );
                             }
                         })}
-                    </ul>
+                        </tbody>
+                    </table>
                 </div>
 
 

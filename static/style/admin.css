@@ -334,10 +334,15 @@ button.btn-create {
   display: block;
   list-style-type: none;
   margin-top: 1em;
-  margin-bottom: 1 em;
+  margin-bottom: 1em;
   margin-left: 0;
   margin-right: 0;
   padding-left: 0px;
+
+}
+.create-match-container td{
+  cursor: pointer;
+  padding-left: 10px;
 }
 
 
