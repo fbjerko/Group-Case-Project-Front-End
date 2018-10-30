@@ -169,6 +169,8 @@ app.prepare()
 
     
   server.listen(port, (err) => {
+      console.log(process.env.NODE_ENV);
+      console.log(">"+port)
     if (err) throw err
 
   });
