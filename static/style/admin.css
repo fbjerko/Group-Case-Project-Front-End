@@ -312,7 +312,6 @@ button.btn-create {
     float: center;
     height: 50vh;
     width: 25vw;
-    border:2px solid black;
     margin-left: 1vw;
   }
   div.info-container {
@@ -322,8 +321,7 @@ button.btn-create {
     justify-content: center;
     align-items: center;
     text-align: center;
-    margin-top: 10vh;
-    
+    margin-top: 10vh; 
   }
 
 

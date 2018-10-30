@@ -55,7 +55,7 @@ class MatchesForm extends React.Component {
 
     }
 
-    sendMatch = ()=>{
+    sendMatches = ()=>{
 
         var xhttp = new XMLHttpRequest();
 
