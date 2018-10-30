@@ -95,12 +95,12 @@ class MatchesForm extends React.Component {
         return(<Popupp text={this.state.status}/>);
     }
         return(
-          <div className="info-container">
+            <div className="info-container">
       
-      <div className="seasons-container">
-      <div className="top">
+
+
         <h2>Create new match</h2>
-      </div>
+
        <p>Team 1 </p>
        <SearchField type={'team'} handleChange={this.updateSearchFieldTeam1}/>
        <p>Team 2</p>
@@ -120,7 +120,24 @@ class MatchesForm extends React.Component {
        <br></br>
        <br></br>
        <input className="btn-index" type="button" value="Submit" onClick={this.sendMatches}></input>
-      </div>
+
+
+                <div>
+                    <h2>Team 1:</h2>
+                    <ul>
+                        {this.state.team_1_players.map((player)=>{
+                            return <li key={player[0]}>{player[1]}</li>
+                        })}
+                    </ul>
+                </div>
+                <div>
+                    <h2>Team 2:</h2>
+                    <ul>
+                        {this.state.team_2_players.map((player)=>{
+                            return <li key={player[0]}>{player[1]}</li>
+                        })}
+                    </ul>
+                </div>
 
 
 
