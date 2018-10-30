@@ -16,13 +16,12 @@ class ListInfo extends Component {
     this.close = this.close.bind(this);
   }
 
-  showFirst(id, index) {
-    console.log("huhuhuhu" + index);
+  showFirst(id, action) {
     this.setState({
       activeId: id,
-      display: index
+      display: action
     });
-    console.log(this.state.display);
+  
   }
 
   close() {
@@ -32,74 +31,60 @@ class ListInfo extends Component {
     });
   }
 
+  componentDidUpdate() {
+    
+  }
+
   render() {
  
+    /* Code for checking wether even values are number/id, pretty weak as for now as it just checks one row ahead for a number value */
+
     const data = this.props.data.map(data => {
-      for(var j=0; j<data.length; j++) {
+    
         var i=0;
 
       while (data[i] !== undefined) {
         
         if (i % 2 === 0) {
-          
           if (typeof data[i] === "string") {
            
             data[i-1] = data[i];
-            
           }
         }
         i++;
-      }
     }
 
-      if (this.props.contentFields.length > 2) {
-        return (
-          <tr key={data[0]} className="tr-admin-get-all">
-            <td
-              className="td-admin-get-all"
-              onClick={() => this.showFirst(data[0], 0)}
-            >
-              {data[1]}{" "}
-            </td>
+    const columns = [];
+  
+    for(var i = 0; i<this.props.contentFields.length; i++) {
 
-            <td
-              className="td-admin-get-all"
-              key={data[2]}
-              onClick={() => this.showFirst(data[2], 1)}
-            >
-              {data[3]}{" "}
-            </td>
-
-            <td
-              className="td-admin-get-all"
-              key={data[4]}
-              onClick={() => this.showFirst(data[4], 2)}
-            >
-              {data[5]}{" "}
-            </td>
-          </tr>
+      let id = data[i*2];
+      let action = i;
+      
+     console.log(id + " ID");
+        columns.push(
+          <td
+            key={data[i*2+1]}
+            className="td-admin-get-all"
+            onClick={() => this.showFirst(id, action )}
+          >
+            {data[i*2+1]}{" "}
+          </td>
         );
-        x;
-      }
-      return (
-        <tr key={data[0]} className="tr-admin-get-all">
-          <td
-            className="td-admin-get-all"
-            onClick={() => this.showFirst(data[0], 0)}
-          >
-            {data[1]}{" "}
-          </td>
+ 
+    };
 
-          <td
-            className="td-admin-get-all"
-            key={data[2]}
-            onClick={() => this.showFirst(data[2], 1)}
-          >
-            {data[3]}{" "}
-          </td>
-        </tr>
-      );
-    });
+    for(var k = 0; k<this.props.contentFields.length; k++) {
+
+      return(
+     
+      <tr key={data[k*k]} className="tr-admin-get-all">
+      
+          {columns}
+      </tr>
+    );
+    }
+  });
 
     const fields = this.props.contentFields.map(function(field) {
       return (
@@ -109,6 +94,7 @@ class ListInfo extends Component {
       );
     });
 
+
     if (this.props.ready === false) {
       return (
         <div>
@@ -116,6 +102,7 @@ class ListInfo extends Component {
         </div>
       );
     } else if (this.state.display === 0) {
+      console.log(this.state.display + " DISPLAY")
       return (
         <div>
           <GatewayInfo

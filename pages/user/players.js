@@ -13,7 +13,8 @@ class Players extends Component {
       createPlayer: false,
       currentPage: 0,
       content: ['Players', 'Teams'], // Attribute variable names
-      contentFields: ['Name', 'Team'] // Names/Values of variables
+      contentFields: ['Name', 'Team'], // Names/Values of variables
+      edit: false
     };
 
     this._createPlayer = this._createPlayer.bind(this);
@@ -59,7 +60,7 @@ class Players extends Component {
     try {
       const response = await fetch(`http://localhost:5000/api/player/all`);
       const json = await response.json();
-  
+      console.log(json);
       this.setState({
         players: json,
         ready: true
@@ -126,6 +127,8 @@ class Players extends Component {
                 previousPage={this.previousPage}
                 firstPage= {this.firstPage}
                 lastPage={this.lastPage}
+                edit={this.state.edit}
+                
               />
       
             <h2>Page {this.state.currentPage + 1}</h2>

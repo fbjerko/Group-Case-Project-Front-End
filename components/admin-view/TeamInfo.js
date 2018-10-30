@@ -18,7 +18,7 @@ class TeamInfo extends Component {
         `http://localhost:5000/api/team/` + this.props.id
       );
       const json = await response.json();
-      console.log(json);
+      console.log("hduashduas " + json);
       this.setState({
         teamInfo: json,
         ready: true

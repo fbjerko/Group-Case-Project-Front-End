@@ -6,6 +6,12 @@ routes
     .add('/dashboard', '/dashboard')
     .add('/admin', '/admin')
 
+    .add('/dashboard/players', '/user/players')
+    .add('/dashboard/managers', '/user/managers')
+    .add('/dashboard/teams', '/user/teams')
+    .add('/dashboard/matches', '/user/matches')
+    .add('/dashboard/stadiums', '/user/stadiums')
+
     .add('/admin/players', '/admin/players')
     .add('/admin/managers', '/admin/managers')
     .add('/admin/teams', '/admin/teams')
