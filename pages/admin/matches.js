@@ -28,31 +28,26 @@ class Matches extends Component {
         <div>
           <LayoutGlobal />
           <MatchesForm />
+          <div className = "btn-admin-create-bottom">
+              <button className="btn-create" onClick={this._createMatches}>
+              Back
+            </button>
+              </div>
         </div>
       );
     } else {
       return (
         <div>
           <LayoutGlobal />
-
-          <div className="container">
-            <h1>Matches</h1>
-
-            <div className="btn-admin-create-top">
-              <button
-                className="btn-create"
-                onClick={this._createMatches}
-              >
+           <div className="container">
+            <div className="btn-admin-config">
+              <button className="btn-create" onClick={this._createMatches}>
                 Create match
               </button>
-              <div className="btn-admin-config">
-                <AdminReturn />
-              </div>
-              <div className="btn-admin-create-bottom" />;
-              {this.state.createMatches ? <CreateUser /> : null}
+              <AdminReturn />
             </div>
           </div>
-        </div>
+      </div>
       );
     }
   }

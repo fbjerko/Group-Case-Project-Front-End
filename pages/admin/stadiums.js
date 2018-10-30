@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import LayoutGlobal from "../../components/LayoutGlobal";
 import AdminReturn from "../../components/AdminReturn";
 import ListInfo from "../../components/admin-view/ListInfo";
+import LocationsForm from "../../components/forms/locationsForm";
 
 class Stadiums extends Component {
   constructor(props) {
@@ -55,7 +56,7 @@ class Stadiums extends Component {
   async componentDidMount() {
     console.log("Hey");
     try {
-      const response = await fetch(`http://localhost:5000/api/location/all`);
+      const response = await fetch(process.env.API_URL+'/api/location/all');
       const json = await response.json();
   
       this.setState({
@@ -76,32 +77,14 @@ class Stadiums extends Component {
     if (this.state.createStadium === true) {
       return (
         <div>
-          <LayoutGlobal />
-
-          <div className="container">
-            <h1>Stadiums</h1>
-
-            <div className="btn-admin-create-top">
+              <LayoutGlobal />
+              <LocationsForm />
+              <div className = "btn-admin-create-bottom">
               <button className="btn-create" onClick={this._createStadium}>
-                Create
-              </button>
-
-              <button className="btn-create" onClick={this._matches}>
-                Update
-              </button>
-
-              <button className="btn-create" onClick={this._teams}>
-                Delete
-              </button>
+              Back
+            </button>
+              </div>
             </div>
-
-            <div className="btn-admin-create-bottom">
-              <button className="btn-create" onClick={this._createStadium}>
-                Back
-              </button>
-            </div>
-          </div>
-        </div>
       );
     } else {
       return (
@@ -110,8 +93,8 @@ class Stadiums extends Component {
 
         <div className="container">
           <div className="btn-admin-config">
-            <button className="btn-create" onClick={this._createStadum}>
-              Configure
+            <button className="btn-create" onClick={this._createStadium}>
+              Create location
             </button>
             <AdminReturn />
           </div>

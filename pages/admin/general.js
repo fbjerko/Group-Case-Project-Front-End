@@ -19,38 +19,34 @@ class General extends Component {
        
 
        <div className="btn-admin-nav">
-             <button className="btn-nav" id="btn-address" onClick={() => Router.pushRoute("/admin/general/address")}>
+             <button className="btn-nav-general" id="btn-address" onClick={() => Router.pushRoute("/admin/general/address")}>
                Address
              </button>
 
-             <button className="btn-nav" id="btn-locations" onClick={() => Router.pushRoute("/admin/general/location")}>
-               Location
-             </button>
-
-             <button className="btn-nav" id="btn-goaltype" onClick={() => Router.pushRoute("/admin/general/goaltypes")}>
+             <button className="btn-nav-general" id="btn-goaltype" onClick={() => Router.pushRoute("/admin/general/goaltypes")}>
                Goal Types
              </button>
 
-              <button className="btn-nav" id="btn-owner" onClick={() => Router.pushRoute("/admin/general/owners")}>
+              <button className="btn-nav-general" id="btn-owner" onClick={() => Router.pushRoute("/admin/general/owners")}>
                Owners
              </button>
 
            </div>
 
             <div className="btn-admin-nav-bottom">
-              <button className="btn-nav" id="btn-season" onClick={() => Router.pushRoute("/admin/general/season")}>
+              <button className="btn-nav-general" id="btn-season" onClick={() => Router.pushRoute("/admin/general/season")}>
                Season
              </button>
 
-             <button className="btn-nav"  id="btn-association" onClick={() => Router.pushRoute("/admin/general/associations")}>
+             <button className="btn-nav-general"  id="btn-association" onClick={() => Router.pushRoute("/admin/general/associations")}>
                Association
              </button>
 
-              <button className="btn-nav" id="btn-persons" onClick={() => Router.pushRoute("/admin/general/persons")}>
+              <button className="btn-nav-general" id="btn-persons" onClick={() => Router.pushRoute("/admin/general/persons")}>
                Persons
              </button>
 
-             <button className="btn-nav" id="btn-users" onClick={() => Router.pushRoute("/admin/general/users")}>
+             <button className="btn-nav-general" id="btn-users" onClick={() => Router.pushRoute("/admin/general/users")}>
                Users
              </button>
            </div>
