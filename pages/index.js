@@ -63,8 +63,8 @@ class Index extends Component {
 
   render() {
     return (
-      <div>
-        <LayoutGlobal />
+      
+        <LayoutGlobal >
 
         <div className="btn-group-index-login-reg">
           <button className="btn-index-login-reg " onClick={this._onLoginClick}>
@@ -93,7 +93,8 @@ class Index extends Component {
         
         {this.state.showLogin ? <Login /> : null}
         {this.state.showRegister ? <Register /> : null}
-      </div>
+        </LayoutGlobal >
+      
     );
   }
 }

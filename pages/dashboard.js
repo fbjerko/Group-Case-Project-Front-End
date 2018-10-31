@@ -163,17 +163,17 @@ class Dashboard extends Component {
 
     let players = [];
 
-    for (var i = 0; i < watchList[1].length / 2; i++) {
-      var playerId = watchList[1][i * 2];
+    for (var i = 0; i < watchList[1].length; i++) {
+      var playerId = watchList[1][i];
       console.log(playerId + " HER er ID");
       players.push(
         <tr key={i}>
           <td
-            key={watchList[1][i * 2]}
+            key={watchList[1][i]}
             className="td-dashboard-watchlist-user"
             onClick={() => this.showPlayer(playerId)}
           >
-            {watchList[1][i * 2 + 1]}
+            {watchList[2][i]}
           </td>
         </tr>
       );
@@ -181,16 +181,16 @@ class Dashboard extends Component {
 
     let teams = [];
 
-    for (var i = 0; i < watchList[2].length / 2; i++) {
-      var teamId = watchList[2][i * 2];
+    for (var i = 0; i < watchList[3].length; i++) {
+      var teamId = watchList[3][i];
       teams.push(
         <tr key={i + i * 10}>
           <td
-            key={watchList[2][i * 2]}
+            key={watchList[3][i]}
             className="td-dashboard-watchlist-user"
             onClick={() => this.showTeam(teamId)}
           >
-            {watchList[2][i * 2 + 1]}
+            {watchList[4][i]}
           </td>
         </tr>
       );

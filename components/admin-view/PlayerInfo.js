@@ -28,16 +28,14 @@ class PlayerInfo extends Component {
     }
   }
 
-  addToWatchList() {
-
+  addToWatchList(name) {
     console.log(this.props.id + " ID FROM");
     var xhttp = new XMLHttpRequest();
 
     var json = JSON.stringify({
-    
       playerId: this.props.id,
-      teamId: 0,
-      userId: 4008,
+      playerName: name,
+      userId: this.props.userId
     });
 
     console.log(json);
@@ -47,8 +45,8 @@ class PlayerInfo extends Component {
     xhttp.send(
       JSON.stringify({
         playerId: this.props.id,
-        teamId: 0,
-        userId: 4008,
+        playerName: name,
+        userId: this.props.userId
       })
     );
     xhttp.onreadystatechange = () => {
@@ -76,6 +74,7 @@ class PlayerInfo extends Component {
   render() {
     console.log(this.props.canEdit + " can edit");
     const player = this.state.playerInfo;
+    const name = player.person.firstName + " " + player.person.lastName;
     if (this.state.ready === true && this.props.canEdit === true) {
       return (
         <div>
@@ -203,7 +202,7 @@ class PlayerInfo extends Component {
                 <tr>
                   <td
                     className="td-admin-but"
-                    onClick={() => this.addToWatchList()}
+                    onClick={() => this.addToWatchList(name)}
                   >
                     Add to Watchlist
                   </td>
