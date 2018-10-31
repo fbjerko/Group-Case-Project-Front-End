@@ -29,21 +29,11 @@ class ListInfo extends Component {
     });
   }
 
-  async componentDidMount() {
-    if (this.props.userId !== undefined) {
-      await this.setState({
-        userId: this.props.userId
-      });
-    } else {
-      await this.setState({
-        userId: 0
-      });
-    }
-  }
+ 
 
   render() {
     /* Code for checking wether even values are number/id, pretty weak as for now as it just checks one row ahead for a number value */
-
+    
     const data = this.props.data.map(data => {
       var i = 0;
 
@@ -64,7 +54,6 @@ class ListInfo extends Component {
         let id = data[i * 2];
         let action = i;
 
-        console.log(id + " ID");
         columns.push(
           <td
             key={data[i * 2 + 1]}
@@ -111,7 +100,7 @@ class ListInfo extends Component {
             close={this.close}
             content={this.props.content[0]}
             canEdit={this.props.canEdit}
-            userId={this.state.userId}
+            userId={this.props.userId}
           />
         </div>
       );
@@ -123,7 +112,7 @@ class ListInfo extends Component {
             close={this.close}
             content={this.props.content[1]}
             canEdit={this.props.canEdit}
-            userId={this.state.userId}
+            userId={this.props.userId}
           />
         </div>
       );
@@ -135,6 +124,7 @@ class ListInfo extends Component {
             close={this.close}
             content={this.props.content[2]}
             canEdit={this.props.canEdit}
+            
           />
         </div>
       );
