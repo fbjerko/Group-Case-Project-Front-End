@@ -21,7 +21,7 @@ class GatewayInfo extends Component {
     if (this.props.content === "Players") {
       return (
         <div>
-          <PlayerInfo id={this.props.id} close={this.props.close} canEdit={this.props.canEdit}/>
+          <PlayerInfo id={this.props.id} close={this.props.close} canEdit={this.props.canEdit} userId={this.props.userId}/>
         </div>
       );
     }
@@ -37,7 +37,7 @@ class GatewayInfo extends Component {
     if (this.props.content === "Teams") {
       return (
         <div>
-          <TeamInfo id={this.props.id} close={this.props.close} canEdit={this.props.canEdit} />
+          <TeamInfo id={this.props.id} close={this.props.close} canEdit={this.props.canEdit} userId={this.props.userId}/>
         </div>
       );
     }

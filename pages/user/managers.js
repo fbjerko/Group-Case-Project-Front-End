@@ -114,9 +114,7 @@ class Managers extends Component {
 
           <div className="container">
             <div className="btn-admin-config">
-              <button className="btn-create" onClick={this._createManager}>
-                Configure
-              </button>
+            
               <UserReturn />
             </div>
 

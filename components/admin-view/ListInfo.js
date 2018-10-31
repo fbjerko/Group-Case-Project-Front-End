@@ -7,7 +7,8 @@ class ListInfo extends Component {
 
     this.state = {
       activeId: "",
-      display: 99
+      display: 99,
+      userId: ""
     };
 
     this.showFirst = this.showFirst.bind(this);
@@ -28,9 +29,11 @@ class ListInfo extends Component {
     });
   }
 
+ 
+
   render() {
     /* Code for checking wether even values are number/id, pretty weak as for now as it just checks one row ahead for a number value */
-
+    
     const data = this.props.data.map(data => {
       var i = 0;
 
@@ -51,7 +54,6 @@ class ListInfo extends Component {
         let id = data[i * 2];
         let action = i;
 
-        console.log(id + " ID");
         columns.push(
           <td
             key={data[i * 2 + 1]}
@@ -74,7 +76,7 @@ class ListInfo extends Component {
       }
     });
 
-    /* Assigning header values */ 
+    /* Assigning header values */
 
     const fields = this.props.contentFields.map(function(field) {
       return (
@@ -91,7 +93,6 @@ class ListInfo extends Component {
         </div>
       );
     } else if (this.state.display === 0) {
-     
       return (
         <div>
           <GatewayInfo
@@ -99,7 +100,7 @@ class ListInfo extends Component {
             close={this.close}
             content={this.props.content[0]}
             canEdit={this.props.canEdit}
-            
+            userId={this.props.userId}
           />
         </div>
       );
@@ -111,7 +112,7 @@ class ListInfo extends Component {
             close={this.close}
             content={this.props.content[1]}
             canEdit={this.props.canEdit}
-            
+            userId={this.props.userId}
           />
         </div>
       );
@@ -171,4 +172,3 @@ class ListInfo extends Component {
 }
 
 export default ListInfo;
-
