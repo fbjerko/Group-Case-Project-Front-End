@@ -19,18 +19,18 @@ class PlayerInfo extends Component {
     this.setState({
       edit: !this.state.edit
     });
-    console.log(this.state.edit);
+
   }
 
   async componentWillMount() {
     // "await fetch(`http://localhost:5000/api/user/all`);"
-    console.log("Hey");
+
     try {
       const response = await fetch(
           process.env.API_URL+"/api/player/" + this.props.id
       );
       const json = await response.json();
-      console.log(json);
+
       this.setState({
         playerInfo: json,
         ready: true

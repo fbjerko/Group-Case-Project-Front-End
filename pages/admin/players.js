@@ -57,7 +57,7 @@ class Players extends Component {
   }
 
   async componentDidMount() {
-    console.log("Hey");
+
     try {
       const response = await fetch(process.env.API_URL+"/api/player/all");
       const json = await response.json();
@@ -80,7 +80,7 @@ class Players extends Component {
       return (
         <div>
           <LayoutGlobal />
-          <PlayersForm/>
+          <PlayersForm edit={"create"}/>
         </div>
       );
     } else if(this.state.createPlayer === false && this.state.ready===true){

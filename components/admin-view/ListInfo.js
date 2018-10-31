@@ -51,7 +51,7 @@ class ListInfo extends Component {
         let id = data[i * 2];
         let action = i;
 
-        console.log(id + " ID");
+
         columns.push(
           <td
             key={data[i * 2 + 1]}

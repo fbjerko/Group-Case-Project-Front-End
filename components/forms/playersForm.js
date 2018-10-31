@@ -15,7 +15,8 @@ class PlayersForm extends Component {
             playerInfo: [],
             teamId:-1,
             personId:-1,
-            ready:false
+            ready:false,
+            playerId:-1
         }
         this.switchMethods(this.props.edit);
 
@@ -67,6 +68,7 @@ class PlayersForm extends Component {
               const player = this.state.playerInfo;
 
               this.setState({
+                  playerId:player.playerId,
                 number: player.number,
                 position: player.normalPosition,
                 teamId: player.team.teamId,
@@ -87,10 +89,11 @@ class PlayersForm extends Component {
 
         let xhttp = new XMLHttpRequest();
 
-        xhttp.open(url,  process.env.API_URL+"/api/player", true);
+        xhttp.open(this.state.method,  process.env.API_URL+"/api/player", true);
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send(
             JSON.stringify({
+                playerId:this.state.playerId,
                 teamId: this.state.teamId,
                 personId:this.state.personId,
                 normalPosition:this.state.position,
@@ -98,8 +101,9 @@ class PlayersForm extends Component {
             })
         );
         xhttp.onreadystatechange = ()=>{
+
             if (xhttp.readyState == XMLHttpRequest.DONE) {
-                if(xhttp.status==201){
+                if(xhttp.status==200){
                     console.log("Created");
                     this.setState({status:"Created"});
 
