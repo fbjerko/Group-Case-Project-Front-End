@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PlayersForm from "../../components/forms/playersForm";
 
 class PlayerInfo extends Component {
   constructor(props) {
@@ -7,21 +8,41 @@ class PlayerInfo extends Component {
     this.state = {
       playerId: "0",
       playerInfo: [],
+      edit: false,
       ready: false
     };
-    this.addToWatchList = this.addToWatchList. bind(this);
+
+
+    this._edit = this._edit.bind(this);
+        this.addToWatchList = this.addToWatchList. bind(this);
+  
+
+
   }
+
+
+
+  _edit() {
+    this.setState({
+      edit: !this.state.edit
+    });
+
+
+  
 
   async componentDidMount() {
 
     console.log("ID player: " + this.props.id );
+
     try {
       const response = await fetch(
         process.env.API_URL + "/api/player/" + this.props.id
       );
       const json = await response.json();
+
       console.log(json);
       await this.setState({
+
         playerInfo: json,
         ready: true
       });
@@ -80,9 +101,11 @@ class PlayerInfo extends Component {
     console.log(process.env.API_URL + "/api/player/" + this.props.id);
     console.log(this.state.playerInfo);
     const player = this.state.playerInfo;
+
     const name = player.person.firstName + " " + player.person.lastName;
     
     if (this.props.canEdit === true) {
+
       return (
         <div>
           <div className="div-admin-get-all">
@@ -135,6 +158,8 @@ class PlayerInfo extends Component {
             <table className="table-admin-but">
               <tbody>
                 <tr>
+
+
                   <td className="td-admin-but" onClick={this.props.firstPage}>
                     EDIT
                   </td>
@@ -144,6 +169,7 @@ class PlayerInfo extends Component {
                   >
                     DELETE
                   </td>
+
                 </tr>
               </tbody>
             </table>
@@ -153,7 +179,8 @@ class PlayerInfo extends Component {
           </button>
         </div>
       );
-    }
+
+    } 
     if (this.props.canEdit === false) {
       return (
         <div>
@@ -223,6 +250,18 @@ class PlayerInfo extends Component {
         </div>
       );
     }
+    
+   if(this.state.ready === true && this.state.edit === true) {
+      return(
+
+        <PlayersForm id={this.props.id} edit={'edit'}/>
+
+
+      
+      );  
+
+    }
+
     } else {
       return <div>Loading</div>;
     }

@@ -14,7 +14,10 @@ class MatchesForm extends React.Component {
             season_id:'',
             location_id:'',
             showPop:false,
-            status:'Nothing'       
+            status:'Nothing',
+            team_1_players: [],
+            team_2_players: [],
+            selectedPlayers:[]
           }
     }
 
@@ -28,34 +31,42 @@ class MatchesForm extends React.Component {
   }
     updateSearchFieldTeam1 = (id)=>{
       console.log(id);
-      this.setState({team_1:id});
+
+
+      const url = process.env.API_URL+"/api/team/getPlayersByTeamId/"+id;
+      fetch(url).then((response)=>response.json().then((body)=>{
+          this.setState({team_1_players:body,team_1:id});
+      }));
+
   }
     updateSearchFieldTeam2 = (id)=>{
       console.log(id);
-      this.setState({team_2:id});
+
+        const url = process.env.API_URL+"/api/team/getPlayersByTeamId/"+id;
+        fetch(url).then((response)=>response.json().then((body)=>{
+            this.setState({team_2_players:body,team_2:id});
+        }));
   }
-
-
     updateInput = (event)=>{
       if(event.target.id=='match_date'){
           this.setState({match_date:event.target.value});
         }
 
     }
-
     sendMatch = ()=>{
 
         var xhttp = new XMLHttpRequest();
 
 
-        xhttp.open("POST",  process.env.API_URL+"/api/match", true);
+        xhttp.open("POST",  process.env.API_URL+"/api/footballMatch", true);
 
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send(
             JSON.stringify({
-              matchDate: this.state.match_date,
-              team1: this.state.team_1,
-              team2: this.state.team_2,
+              playersId: this.state.selectedPlayers,
+              date: this.state.match_date,
+              homeTeamId: this.state.team_1,
+              awayTeamId: this.state.team_2,
               seasonId: this.state.season_id,
               locationId: this.state.location_id 
             })
@@ -75,20 +86,33 @@ class MatchesForm extends React.Component {
         }
         }
     }
+    selectPlayer = (event)=>{
+        let selectedPlayers = this.state.selectedPlayers.slice(0);
+
+        if(selectedPlayers.indexOf(event.target.id)===-1){
+            selectedPlayers.push(event.target.id);
+        }else{
+            selectedPlayers.splice(selectedPlayers.indexOf(event.target.id),1);
+        }
+
+        this.setState({selectedPlayers});
+    }
 
 
 
     render(){
+
       if(this.state.showPop){
         return(<Popupp text={this.state.status}/>);
     }
         return(
-          <div className="info-container">
+            <div className="create-match-container">
+
       
-      <div className="seasons-container">
-      <div className="top">
+        <div style={{marginRight:'50px'}}>
+
         <h2>Create new match</h2>
-      </div>
+
        <p>Team 1 </p>
        <SearchField type={'team'} handleChange={this.updateSearchFieldTeam1}/>
        <p>Team 2</p>
@@ -107,8 +131,62 @@ class MatchesForm extends React.Component {
        <SearchField type={'location'} handleChange={this.updateSearchFieldLocation}/>
        <br></br>
        <br></br>
-       <input className="btn-index" type="button" value="Submit" onClick={this.sendMatches}></input>
-      </div>
+       <input className="btn-index" type="button" value="Submit" onClick={this.sendMatch}></input>
+
+        </div>
+                <div style={{width:'300px',marginLeft:'50px'}}>
+                    <h2>Team 1:</h2>
+                    <table>
+                        <tbody>
+                        {this.state.team_1_players.map((player)=>{
+                            if(this.state.selectedPlayers.indexOf(player[0].toString())!=-1){
+
+                                return (<tr id={player[0]} style={{color:'yellow'}} key={player[0]} onClick={this.selectPlayer}>
+                                        <td id={player[0]}>{player[1]}</td>
+                                        <td id={player[0]}>{player[2]}</td>
+                                    </tr>
+
+
+                                );
+                            }else{
+                                return (<tr  style={{color:'white'}} key={player[0]} onClick={this.selectPlayer}>
+                                        <td id={player[0]}>{player[1]}</td>
+                                        <td id={player[0]}>{player[2]}</td>
+                                    </tr>
+                                );
+                            }
+                        })}
+                        </tbody>
+                    </table>
+                </div>
+                <div style={{width:'300px',marginLeft:'50px'}}>
+                    <h2>Team 2:</h2>
+
+                    <table>
+                        <tbody>
+                        {this.state.team_2_players.map((player)=>{
+                            if(this.state.selectedPlayers.indexOf(player[0].toString())!=-1){
+
+                                return (<tr id={player[0]} style={{color:'yellow'}} key={player[0]} onClick={this.selectPlayer}>
+                                                <td id={player[0]}>{player[1]}</td>
+                                                <td id={player[0]}>{player[2]}</td>
+                                        </tr>
+
+
+                                );
+                            }else{
+                                return (<tr id={player[0]} style={{color:'white'}} key={player[0]} onClick={this.selectPlayer}>
+                                            <td id={player[0]}>{player[1]}</td>
+                                            <td id={player[0]}>{player[2]}</td>
+                                        </tr>
+                                );
+                            }
+                        })}
+                        </tbody>
+                    </table>
+                </div>
+
+
 
     </div>
         );

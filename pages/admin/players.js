@@ -3,6 +3,7 @@ import LayoutGlobal from "../../components/LayoutGlobal";
 import AdminReturn from "../../components/buttons/AdminReturn";
 import ListInfo from "../../components/admin-view/ListInfo";
 import PlayersForm from "../../components/forms/playersForm";
+import CreateUser from "../../components/admin-create/CreateUsers";
 
 class Players extends Component {
   constructor(props) {
@@ -56,7 +57,7 @@ class Players extends Component {
   }
 
   async componentDidMount() {
-    console.log("Hey");
+
     try {
       const response = await fetch(process.env.API_URL + "/api/player/all");
       const json = await response.json();
@@ -76,15 +77,15 @@ class Players extends Component {
       (this.state.currentPage + 1) * 10
     );
 
-   
-    if (this.state.createPlayer === true) {
+    if (this.state.createPlayer === true && this.state.ready===true) {
       return (
         <div>
           <LayoutGlobal />
-          <PlayersForm />
+          <PlayersForm edit={"create"}/>
+
         </div>
       );
-    } else {
+    } else if(this.state.createPlayer === false && this.state.ready===true){
       return (
         <div>
           <LayoutGlobal />
@@ -98,6 +99,7 @@ class Players extends Component {
             </div>
 
             <ListInfo
+
               data={players}
               content={this.state.content}
               contentFields={this.state.contentFields}
@@ -108,12 +110,20 @@ class Players extends Component {
               lastPage={this.lastPage}
               canEdit={this.state.canEdit}
               currentPage={this.state.currentPage}
+        edit={this.edit}
             />
 
             {this.state.createPlayer ? <CreateUser /> : null}
+
           </div>
         </div>
       );
+    }
+    else{
+      return(<div>
+          <h1>Loading...</h1>
+      </div>);
+
     }
   }
 }

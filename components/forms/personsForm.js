@@ -44,7 +44,7 @@ class PersonForm extends React.Component {
                 addressId:this.state.addressId,
                 firstName:this.state.first_name,
                 lastName:this.state.last_name,
-                dateOfBirth:this.state.date_of_birth
+                date:this.state.date_of_birth
             })
         );
         xhttp.onreadystatechange = ()=>{
@@ -92,7 +92,7 @@ class PersonForm extends React.Component {
                 <br></br>
                 <br></br>
                 <p>Date of birth</p>
-                <input onChange={this.updateInput} value={this.state.date_of_birth} type="text" placeholder="Write a date of birth" id="date_of_birth" />
+                <input onChange={this.updateInput} value={this.state.date_of_birth} type="date" placeholder="Write a date of birth" id="date_of_birth" />
                 <br></br>
                 <br></br>
                 <input className="btn-index" type="button" value="Submit" onClick={this.sendPerson}></input>

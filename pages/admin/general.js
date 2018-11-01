@@ -18,14 +18,18 @@ class General extends Component {
           <h1>General</h1>
        
 
+
        <div className="btn-admin-nav-general">
+
              <button className="btn-nav-general" id="btn-address" onClick={() => Router.pushRoute("/admin/general/address")}>
                Address
              </button>
 
+
              <button className="btn-nav-general" id="btn-locations" onClick={() => Router.pushRoute("/admin/general/location")}>
                Location
              </button>
+
 
              <button className="btn-nav-general" id="btn-goaltype" onClick={() => Router.pushRoute("/admin/general/goaltypes")}>
                Goal Types
@@ -37,7 +41,9 @@ class General extends Component {
 
            </div>
 
+
             <div className="btn-admin-nav-bottom-general">
+
               <button className="btn-nav-general" id="btn-season" onClick={() => Router.pushRoute("/admin/general/season")}>
                Season
              </button>

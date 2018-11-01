@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import LayoutGlobal from "../../components/LayoutGlobal";
+
+import ManagerForm from "../../components/forms/managerForm";
+
 import AdminReturn from "../../components/buttons/AdminReturn";
+
 import ListInfo from "../../components/admin-view/ListInfo";
 
 class Managers extends Component {
@@ -78,6 +82,10 @@ class Managers extends Component {
         <div>
           <LayoutGlobal />
 
+          <ManagerForm />
+          <div className = "btn-admin-create-bottom">
+
+
           <div className="container">
             <h1>Managers</h1>
 
@@ -90,11 +98,11 @@ class Managers extends Component {
             </div>
 
             <div className="btn-admin-create-bottom">
+
               <button className="btn-create" onClick={this._createManager}>
-                Back
-              </button>
-            </div>
-          </div>
+              Back
+            </button>
+              </div>
         </div>
       );
     } else {
@@ -105,7 +113,7 @@ class Managers extends Component {
           <div className="container">
             <div className="btn-admin-config">
               <button className="btn-create" onClick={this._createManager}>
-                Configure
+                Create Manager
               </button>
               <AdminReturn />
             </div>
