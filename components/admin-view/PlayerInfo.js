@@ -27,7 +27,7 @@ class PlayerInfo extends Component {
       edit: !this.state.edit
     });
 
-
+  }
   
 
   async componentDidMount() {
