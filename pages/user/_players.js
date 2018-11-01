@@ -65,7 +65,6 @@ class Players extends Component {
         c = c.substring(1);
       }
       if (c.indexOf(name) == 0) {
-        
         return c.substring(name.length, c.length);
       }
     }
@@ -77,7 +76,7 @@ class Players extends Component {
       userId: this.getCookie()
     });
 
-    console.log(this.state.userId +  " is userId / players");
+    console.log(this.state.userId + " is userId / players");
 
     try {
       const response = await fetch(process.env.API_URL + "/api/player/all");
@@ -128,7 +127,6 @@ class Players extends Component {
 
           <div className="container">
             <div className="btn-admin-config">
-           
               <UserReturn />
             </div>
 
@@ -143,9 +141,9 @@ class Players extends Component {
               lastPage={this.lastPage}
               canEdit={this.state.canEdit}
               userId={this.state.userId}
+              currentPage={this.state.currentPage}
             />
 
-            <h2>Page {this.state.currentPage + 1}</h2>
             {this.state.createPlayer ? <CreateUser /> : null}
           </div>
         </div>

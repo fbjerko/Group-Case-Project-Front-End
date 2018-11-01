@@ -127,7 +127,6 @@ class Teams extends Component {
 
           <div className="container">
             <div className="btn-admin-config">
-             
               <UserReturn />
             </div>
 
@@ -142,9 +141,9 @@ class Teams extends Component {
               lastPage={this.lastPage}
               canEdit={this.state.canEdit}
               userId={this.state.userId}
+              currentPage={this.state.currentPage}
             />
 
-            <h2>Page {this.state.currentPage + 1}</h2>
             {this.state.createTeam ? <CreateUser /> : null}
           </div>
         </div>

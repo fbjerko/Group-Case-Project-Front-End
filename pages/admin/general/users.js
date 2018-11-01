@@ -128,9 +128,11 @@ class users extends Component {
                 previousPage={this.previousPage}
                 firstPage= {this.firstPage}
                 lastPage={this.lastPage}
+                currentPage={this.state.currentPage}
+                
               />
           
-            <h2>Page {this.state.currentPage + 1}</h2>
+        
             {this.state.createUser ? <CreateUser /> : null}
           </div>
         </div>
