@@ -3,21 +3,22 @@ import LayoutGlobal from "../../components/LayoutGlobal";
 import UserReturn from "../../components/buttons/UserReturn";
 import ListInfo from "../../components/admin-view/ListInfo";
 
-class Players extends Component {
+class Managers extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      players: [],
+      managers: [],
+      filteredData: [],
+      search: "a",
       ready: false,
-      createPlayer: false,
+      createManager: false,
       currentPage: 0,
-      content: ["Players", "Teams"], // Attribute variable names
+      content: ["Managers", "Teams"], // Attribute variable names
       contentFields: ["Name", "Team"], // Names/Values of variables
-      canEdit: false,
-      userId: ""
+      canEdit: false
     };
 
-    this._createPlayer = this._createPlayer.bind(this);
+    this._createManager = this._createManager.bind(this);
     this.previousPage = this.previousPage.bind(this);
     this.nextPage = this.nextPage.bind(this);
     this.firstPage = this.firstPage.bind(this);
@@ -28,7 +29,7 @@ class Players extends Component {
     this.setState({ currentPage: 0 });
   }
   lastPage() {
-    this.setState({ currentPage: Math.floor(this.state.players.length / 10) });
+    this.setState({ currentPage: Math.floor(this.state.managers.length / 10) });
     console.log(this.state.currentPage);
   }
 
@@ -39,52 +40,27 @@ class Players extends Component {
   }
 
   nextPage() {
-    console.log(this.state.players.length);
-    console.log(this.state.players.length / 10);
-    if (this.state.currentPage + 1 < this.state.players.length / 10) {
+    if (this.state.currentPage + 1 < this.state.managers.length / 10) {
       this.setState({ currentPage: this.state.currentPage + 1 });
     }
     console.log(this.state.currentPage);
   }
 
-  _createPlayer() {
+  _createManager() {
     this.setState({
-      createPlayer: !this.state.createPlayer
+      createManager: !this.state.createManager
     });
 
-    console.log(this.state.createPlayer + " ");
-  }
-
-  getCookie() {
-    var name = "id" + "=";
-    var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(";");
-    for (var i = 0; i < ca.length; i++) {
-      var c = ca[i];
-      while (c.charAt(0) == " ") {
-        c = c.substring(1);
-      }
-      if (c.indexOf(name) == 0) {
-        
-        return c.substring(name.length, c.length);
-      }
-    }
-    return "";
+    console.log(this.state.createManager + " ");
   }
 
   async componentDidMount() {
-    await this.setState({
-      userId: this.getCookie()
-    });
-
-    console.log(this.state.userId +  " is userId / players");
-
     try {
-      const response = await fetch(process.env.API_URL + "/api/player/all");
+      const response = await fetch(process.env.API_URL + "/api/coach/all");
       const json = await response.json();
       console.log(json);
       this.setState({
-        players: json,
+        managers: json,
         ready: true
       });
     } catch (error) {
@@ -93,17 +69,17 @@ class Players extends Component {
   }
 
   render() {
-    const players = this.state.players.slice(
+    const managers = this.state.managers.slice(
       this.state.currentPage * 10,
       (this.state.currentPage + 1) * 10
     );
-    if (this.state.createPlayer === true) {
+    if (this.state.createManager === true) {
       return (
         <div>
           <LayoutGlobal />
 
           <div className="container">
-            <h1>Players</h1>
+            <h1>Managers</h1>
 
             <div className="btn-admin-create-top">
               <button className="btn-create">Create</button>
@@ -114,7 +90,7 @@ class Players extends Component {
             </div>
 
             <div className="btn-admin-create-bottom">
-              <button className="btn-create" onClick={this._createPlayer}>
+              <button className="btn-create" onClick={this._createManager}>
                 Back
               </button>
             </div>
@@ -128,12 +104,11 @@ class Players extends Component {
 
           <div className="container">
             <div className="btn-admin-config">
-           
               <UserReturn />
             </div>
 
             <ListInfo
-              data={players}
+              data={managers}
               content={this.state.content}
               contentFields={this.state.contentFields}
               ready={this.state.ready}
@@ -142,11 +117,10 @@ class Players extends Component {
               firstPage={this.firstPage}
               lastPage={this.lastPage}
               canEdit={this.state.canEdit}
-              userId={this.state.userId}
+              currentPage={this.state.currentPage}
             />
 
-            <h2>Page {this.state.currentPage + 1}</h2>
-            {this.state.createPlayer ? <CreateUser /> : null}
+            {this.state.createManager ? <CreateUser /> : null}
           </div>
         </div>
       );
@@ -154,4 +128,19 @@ class Players extends Component {
   }
 }
 
-export default Players;
+export default Managers;
+
+/*
+
+
+    let filteredData = (search) => {
+      return this.state.managers[3].filter((el) => {
+        el.toLowerCase().indexOf(search.toLowerCase()) > -1;
+      })
+    }
+
+
+  
+    console.log("Filtered data "  + filteredData('a'));
+
+    */

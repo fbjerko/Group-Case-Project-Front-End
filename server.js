@@ -30,7 +30,7 @@ app.prepare()
     console.log("Checking authentication for Admin");
     console.log(req.cookies.token);
     try{
-      const decode = jwt.verify(req.cookies.token,'secretAdmin');
+    const decode = jwt.verify(req.cookies.token,'secretAdmin');
       next();
     }catch(error){
     	
@@ -45,7 +45,7 @@ app.prepare()
     console.log("Checking authentication for User");
     console.log(req.cookies.token);
     try{
-      const decode = jwt.verify(req.cookies.token,'secretNotAdmin');
+    const decode = jwt.verify(req.cookies.token,'secretNotAdmin');
       next();
     }catch(error){
     	

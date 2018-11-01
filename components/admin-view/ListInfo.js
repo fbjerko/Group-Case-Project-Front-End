@@ -39,8 +39,14 @@ class ListInfo extends Component {
 
       while (data[i] !== undefined) {
         if (i % 2 === 0) {
-          if (typeof data[i] === "string") {
-            data[i - 1] = data[i];
+          if (typeof data[i] === "string" || data[i] === null) {
+            if(data[i+1] == undefined) {
+              data[i+1] = data[i];
+              break;
+            }
+            for(var j = 0; j < 5; j++){
+              data[i+j] = data[i + j + 1];
+            }
           }
         }
         i++;
@@ -164,7 +170,9 @@ class ListInfo extends Component {
                 </tr>
               </tbody>
             </table>
+            <h2>Page {this.props.currentPage + 1}</h2>
           </div>
+          
         </div>
       );
     }

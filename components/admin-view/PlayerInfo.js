@@ -12,6 +12,8 @@ class PlayerInfo extends Component {
       ready: false
     };
 
+    this.addToWatchList = this.addToWatchList. bind(this);
+
 
     this._edit = this._edit.bind(this);
   }
@@ -33,7 +35,9 @@ class PlayerInfo extends Component {
       );
       const json = await response.json();
 
-      this.setState({
+      console.log(json);
+      await this.setState({
+
         playerInfo: json,
         ready: true
       });
@@ -86,11 +90,17 @@ class PlayerInfo extends Component {
   }
 
   render() {
-    console.log(this.props.canEdit + " can edit");
+
+    if(this.state.ready === true){
+
+    console.log(process.env.API_URL + "/api/player/" + this.props.id);
+    console.log(this.state.playerInfo);
     const player = this.state.playerInfo;
 
     const name = player.person.firstName + " " + player.person.lastName;
-    if (this.state.ready === true && this.props.canEdit === true) {
+
+    
+    if (this.props.canEdit === true) {
 
       return (
         <div>
@@ -163,7 +173,7 @@ class PlayerInfo extends Component {
         </div>
       );
     }
-    if (this.state.ready === true && this.props.canEdit === false) {
+    if (this.props.canEdit === false) {
       return (
         <div>
           <div className="div-admin-get-all">
@@ -216,28 +226,17 @@ class PlayerInfo extends Component {
             <table className="table-admin-but">
               <tbody>
                 <tr>
-<<<<<<< HEAD
+
                   <td
                     className="td-admin-but"
                     onClick={() => this.addToWatchList(name)}
                   >
                     Add to Watchlist
-                  </td>
-=======
-              <td
-                  className="td-admin-but"
-                  onClick={this._edit}
-                >
-                  EDIT
-                </td>
-                <td
-                  className="td-admin-but"
-                  onClick={this.props.previousPage}
-                >
-                  DELETE
+
+            
                 </td>
                
->>>>>>> lasse-tonje-branch
+
                 </tr>
               </tbody>
             </table>
@@ -247,6 +246,9 @@ class PlayerInfo extends Component {
           </button>
         </div>
       );
+
+    }
+
     } else if(this.state.ready === true && this.state.edit === true) {
       return(
 
@@ -255,6 +257,7 @@ class PlayerInfo extends Component {
 
       
       );  
+
 
     } else {
       return <div>Loading</div>;

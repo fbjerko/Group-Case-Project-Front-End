@@ -3,21 +3,21 @@ import LayoutGlobal from "../../components/LayoutGlobal";
 import UserReturn from "../../components/buttons/UserReturn";
 import ListInfo from "../../components/admin-view/ListInfo";
 
-class Teams extends Component {
+class Players extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      teams: [],
+      players: [],
       ready: false,
-      createTeam: false,
+      createPlayer: false,
       currentPage: 0,
-      content: ["Teams", "Managers"], // Attribute variable names
-      contentFields: ["Name", "Manager", "Country"], // Names/Values of variables
+      content: ["Players", "Teams"], // Attribute variable names
+      contentFields: ["Name", "Team"], // Names/Values of variables
       canEdit: false,
       userId: ""
     };
 
-    this._createTeam = this._createTeam.bind(this);
+    this._createPlayer = this._createPlayer.bind(this);
     this.previousPage = this.previousPage.bind(this);
     this.nextPage = this.nextPage.bind(this);
     this.firstPage = this.firstPage.bind(this);
@@ -28,7 +28,7 @@ class Teams extends Component {
     this.setState({ currentPage: 0 });
   }
   lastPage() {
-    this.setState({ currentPage: Math.floor(this.state.teams.length / 10) });
+    this.setState({ currentPage: Math.floor(this.state.players.length / 10) });
     console.log(this.state.currentPage);
   }
 
@@ -39,18 +39,20 @@ class Teams extends Component {
   }
 
   nextPage() {
-    if (this.state.currentPage + 1 < this.state.teams.length / 10) {
+    console.log(this.state.players.length);
+    console.log(this.state.players.length / 10);
+    if (this.state.currentPage + 1 < this.state.players.length / 10) {
       this.setState({ currentPage: this.state.currentPage + 1 });
     }
     console.log(this.state.currentPage);
   }
 
-  _createTeam() {
+  _createPlayer() {
     this.setState({
-      createTeam: !this.state.createTeam
+      createPlayer: !this.state.createPlayer
     });
 
-    console.log(this.state.createTeam + " ");
+    console.log(this.state.createPlayer + " ");
   }
 
   getCookie() {
@@ -63,7 +65,6 @@ class Teams extends Component {
         c = c.substring(1);
       }
       if (c.indexOf(name) == 0) {
-        console.log(c.substring(name.length, c.length) + " is cookie");
         return c.substring(name.length, c.length);
       }
     }
@@ -75,14 +76,14 @@ class Teams extends Component {
       userId: this.getCookie()
     });
 
-    console.log(this.state.userId);
+    console.log(this.state.userId + " is userId / players");
 
     try {
-      const response = await fetch(process.env.API_URL + "/api/team/all");
+      const response = await fetch(process.env.API_URL + "/api/player/all");
       const json = await response.json();
       console.log(json);
       this.setState({
-        teams: json,
+        players: json,
         ready: true
       });
     } catch (error) {
@@ -91,18 +92,17 @@ class Teams extends Component {
   }
 
   render() {
-    console.log(this.state.teams.length);
-    const teams = this.state.teams.slice(
+    const players = this.state.players.slice(
       this.state.currentPage * 10,
       (this.state.currentPage + 1) * 10
     );
-    if (this.state.createTeam === true) {
+    if (this.state.createPlayer === true) {
       return (
         <div>
           <LayoutGlobal />
 
           <div className="container">
-            <h1>teams</h1>
+            <h1>Players</h1>
 
             <div className="btn-admin-create-top">
               <button className="btn-create">Create</button>
@@ -113,7 +113,7 @@ class Teams extends Component {
             </div>
 
             <div className="btn-admin-create-bottom">
-              <button className="btn-create" onClick={this._createTeam}>
+              <button className="btn-create" onClick={this._createPlayer}>
                 Back
               </button>
             </div>
@@ -127,12 +127,11 @@ class Teams extends Component {
 
           <div className="container">
             <div className="btn-admin-config">
-             
               <UserReturn />
             </div>
 
             <ListInfo
-              data={teams}
+              data={players}
               content={this.state.content}
               contentFields={this.state.contentFields}
               ready={this.state.ready}
@@ -142,10 +141,10 @@ class Teams extends Component {
               lastPage={this.lastPage}
               canEdit={this.state.canEdit}
               userId={this.state.userId}
+              currentPage={this.state.currentPage}
             />
 
-            <h2>Page {this.state.currentPage + 1}</h2>
-            {this.state.createTeam ? <CreateUser /> : null}
+            {this.state.createPlayer ? <CreateUser /> : null}
           </div>
         </div>
       );
@@ -153,4 +152,4 @@ class Teams extends Component {
   }
 }
 
-export default Teams;
+export default Players;

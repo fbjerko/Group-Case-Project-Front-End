@@ -41,39 +41,16 @@ class UserInfo extends Component {
             <table className="table-admin-get-one">
               <tbody>
                 <tr className="tr-admin-get-one">
-                  <th className="th-admin-get-one"> user ID</th>
-                  <td className="td-admin-get-one">{user.user}</td>
+                  <th className="th-admin-get-one"> User ID</th>
+                  <td className="td-admin-get-one">{user.userId}</td>
                 </tr>
                 <tr className="tr-admin-get-one">
-                  <th className="th-admin-get-one"> Name</th>
+                  <th className="th-admin-get-one"> Username</th>
                   <td className="td-admin-get-one">
-                    {user.name}
+                    {user.userName}
                   </td>
                 </tr>
-                <tr className="tr-admin-get-one">
-                  <th className="th-admin-get-one"> user</th>
-                  <td className="td-admin-get-one">{user.name}</td>
-                </tr>
-                <tr className="tr-admin-get-one">
-                  <th className="th-admin-get-one"> Number</th>
-                  <td className="td-admin-get-one">{user.name}</td>
-                </tr>
-                <tr className="tr-admin-get-one">
-                  <th className="th-admin-get-one"> Position</th>
-                  <td className="td-admin-get-one">{user.name}</td>
-                </tr>
-                <tr className="tr-admin-get-one">
-                  <th className="th-admin-get-one"> Date Of Birth</th>
-                  <td className="td-admin-get-one">
-                    {user.name}
-                  </td>
-                </tr>
-                <tr className="tr-admin-get-one">
-                  <th className="th-admin-get-one"> Address</th>
-                  <td className="td-admin-get-one">
-                 Her setter vi addressa
-                  </td>
-                </tr>
+           
               </tbody>
             </table>
             <table className="table-admin-but">

@@ -12,8 +12,8 @@ class Stadiums extends Component {
       ready: false,
       createStadium: false,
       currentPage: 0,
-      content: ['Stadium', 'Teams'], // Attribute variable names
-      contentFields: ['Name', 'Team'] // Names/Values of variables
+      content: ["Stadium", "Team", "Address"], // Attribute variable names
+      contentFields: ["Name", "Team", "Address"] // Names/Values of variables
     };
 
     this._createStadium = this._createStadium.bind(this);
@@ -23,11 +23,11 @@ class Stadiums extends Component {
     this.lastPage = this.lastPage.bind(this);
   }
 
-  firstPage() { 
-    this.setState({currentPage: 0})
+  firstPage() {
+    this.setState({ currentPage: 0 });
   }
-  lastPage() { 
-    this.setState({currentPage: Math.floor(this.state.players.length/10 )});
+  lastPage() {
+    this.setState({ currentPage: Math.floor(this.state.players.length / 10) });
     console.log(this.state.currentPage);
   }
 
@@ -50,7 +50,6 @@ class Stadiums extends Component {
     this.setState({
       createStadium: !this.state.createStadium
     });
-    
   }
 
   async componentDidMount() {
@@ -58,7 +57,7 @@ class Stadiums extends Component {
     try {
       const response = await fetch(process.env.API_URL+'/api/location/all');
       const json = await response.json();
-  
+
       this.setState({
         stadiums: json,
         ready: true
@@ -69,7 +68,6 @@ class Stadiums extends Component {
   }
 
   render() {
-
     const stadiums = this.state.stadiums.slice(
       this.state.currentPage * 10,
       (this.state.currentPage + 1) * 10
@@ -89,6 +87,7 @@ class Stadiums extends Component {
     } else {
       return (
         <div>
+
         <LayoutGlobal />
 
         <div className="container">
@@ -100,20 +99,21 @@ class Stadiums extends Component {
           </div>
           
           <ListInfo
+
               data={stadiums}
-              content= {this.state.content}
-              contentFields = {this.state.contentFields}
+              content={this.state.content}
+              contentFields={this.state.contentFields}
               ready={this.state.ready}
               nextPage={this.nextPage}
               previousPage={this.previousPage}
-              firstPage= {this.firstPage}
+              firstPage={this.firstPage}
               lastPage={this.lastPage}
+              currentPage={this.state.currentPage}
             />
-    
-          <h2>Page {this.state.currentPage + 1}</h2>
-          {this.state.createPlayer ? <CreateUser /> : null}
+
+            {this.state.createPlayer ? <CreateUser /> : null}
+          </div>
         </div>
-      </div>
       );
     }
   }

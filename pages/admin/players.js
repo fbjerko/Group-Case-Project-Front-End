@@ -5,7 +5,6 @@ import ListInfo from "../../components/admin-view/ListInfo";
 import PlayersForm from "../../components/forms/playersForm";
 import CreateUser from "../../components/admin-create/CreateUsers";
 
-
 class Players extends Component {
   constructor(props) {
     super(props);
@@ -14,8 +13,8 @@ class Players extends Component {
       ready: false,
       createPlayer: false,
       currentPage: 0,
-      content: ['Players', 'Teams'], // Attribute variable names
-      contentFields: ['Name', 'Team'],
+      content: ["Players", "Teams"], // Attribute variable names
+      contentFields: ["Name", "Team"],
       canEdit: true // Names/Values of variables
     };
 
@@ -26,11 +25,11 @@ class Players extends Component {
     this.lastPage = this.lastPage.bind(this);
   }
 
-  firstPage() { 
-    this.setState({currentPage: 0})
+  firstPage() {
+    this.setState({ currentPage: 0 });
   }
-  lastPage() { 
-    this.setState({currentPage: Math.floor(this.state.players.length/10 )});
+  lastPage() {
+    this.setState({ currentPage: Math.floor(this.state.players.length / 10) });
     console.log(this.state.currentPage);
   }
 
@@ -60,9 +59,9 @@ class Players extends Component {
   async componentDidMount() {
 
     try {
-      const response = await fetch(process.env.API_URL+"/api/player/all");
+      const response = await fetch(process.env.API_URL + "/api/player/all");
       const json = await response.json();
-  
+
       this.setState({
         players: json,
         ready: true
@@ -77,11 +76,16 @@ class Players extends Component {
       this.state.currentPage * 10,
       (this.state.currentPage + 1) * 10
     );
+
+
+
+
     if (this.state.createPlayer === true && this.state.ready===true) {
       return (
         <div>
           <LayoutGlobal />
           <PlayersForm edit={"create"}/>
+
         </div>
       );
     } else if(this.state.createPlayer === false && this.state.ready===true){
@@ -98,22 +102,22 @@ class Players extends Component {
             </div>
 
             <ListInfo
-                data={players}
-                content= {this.state.content}
-                contentFields = {this.state.contentFields}
-                ready={this.state.ready}
-                nextPage={this.nextPage}
-                previousPage={this.previousPage}
-                firstPage= {this.firstPage}
-                lastPage={this.lastPage}
-<<<<<<< HEAD
-                canEdit={this.state.canEdit}
-=======
-                edit={this.edit}
->>>>>>> lasse-tonje-branch
-              />
 
-              <h2>Page {this.state.currentPage + 1}</h2>
+              data={players}
+              content={this.state.content}
+              contentFields={this.state.contentFields}
+              ready={this.state.ready}
+              nextPage={this.nextPage}
+              previousPage={this.previousPage}
+              firstPage={this.firstPage}
+              lastPage={this.lastPage}
+              canEdit={this.state.canEdit}
+              currentPage={this.state.currentPage}
+        edit={this.edit}
+            />
+
+
+
 
           </div>
         </div>
