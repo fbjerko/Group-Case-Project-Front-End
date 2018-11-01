@@ -1,5 +1,5 @@
 .container {
-  display: column;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -7,6 +7,7 @@
   margin: auto;
   width: 70%;
   min-height: 100vh;
+
   margin-top: 1vh;
 }
 
@@ -19,8 +20,7 @@
   margin: auto;
   width: 100%;
   min-height: 100vh;
-  margin-top: 1vh;
-  
+  margin-top: 1rem;
 }
 
 div.btn-admin-create-top {
@@ -32,9 +32,6 @@ div.btn-admin-config {
   position: absolute;
   top: 4vh;
   right: 3vw;
-}
-
-div.btn-admin-create-bottom {
 }
 
 div.btn-admin-nav {
@@ -186,6 +183,14 @@ button.btn-nav-general {
   height: 24.75rem;
 }
 
+button.btn-nav-general {
+  margin: 0.5rem;
+  min-width: 25rem;
+  min-height: 18.75rem;
+  width: 35rem;
+  height: 25rem;
+}
+
 #btn-stadium {
   background: url(../images/stadium.jpg);
   background-size: 400px 300px;
@@ -225,7 +230,9 @@ button.btn-nav-general {
 
 #btn-users {
   background: url(../images/users.png);
+
   background-size: 33rem 24.75rem;
+
   font-family: Verdana;
   text-shadow: 2px 2px 2px #000000;
   font-size: 50px;
@@ -243,7 +250,9 @@ button.btn-nav-general {
 
 #btn-address {
   background: url(../images/address.png);
+
   background-size: 33rem 24.75rem;
+
   font-family: Verdana;
   text-shadow: 2px 2px 2px #000000;
   font-size: 50px;
@@ -261,7 +270,9 @@ button.btn-nav-general {
 
 #btn-goaltype {
   background: url(../images/goaltypes.png);
+
   background-size: 33rem 24.75rem;
+
   font-family: Verdana;
   text-shadow: 2px 2px 2px #000000;
   font-size: 50px;
@@ -270,7 +281,9 @@ button.btn-nav-general {
 
 #btn-locations {
   background: url(../images/locations.png);
+
   background-size: 33rem 24.75rem;
+
   font-family: Verdana;
   text-shadow: 2px 2px 2px #000000;
   font-size: 50px;
@@ -279,7 +292,9 @@ button.btn-nav-general {
 
 #btn-season {
   background: url(../images/seasons.png);
+
   background-size: 33rem 24.75rem;
+
   font-family: Verdana;
   text-shadow: 2px 2px 2px #000000;
   font-size: 50px;
@@ -288,7 +303,9 @@ button.btn-nav-general {
 
 #btn-association {
   background: url(../images/association.png);
+
   background-size: 33rem 24.75rem;
+
   font-family: Verdana;
   text-shadow: 2px 2px 2px #000000;
   font-size: 50px;
@@ -297,7 +314,9 @@ button.btn-nav-general {
 
 #btn-owner {
   background: url(../images/owners.png);
+
   background-size: 33rem 24.75rem;
+
   font-family: Verdana;
   text-shadow: 2px 2px 2px #000000;
   font-size: 50px;
@@ -306,7 +325,9 @@ button.btn-nav-general {
 
 #btn-persons {
   background: url(../images/persons.png);
+
   background-size: 33rem 24.75rem;
+
   font-family: Verdana;
   text-shadow: 2px 2px 2px #000000;
   font-size: 50px;
@@ -335,22 +356,41 @@ button.btn-create {
 }
 
   .seasons-container {
-    float: center;
+    position: relative;
     height: 50vh;
     width: 25vw;
-    border:2px solid black;
     margin-left: 1vw;
   }
   div.info-container {
-    position: relative;
+
     display: flex;
-    flex-direction: grid;
     justify-content: center;
     align-items: center;
     text-align: center;
-    margin-top: 10vh;
-    
+    margin-top: 10vh; 
   }
+
+.create-match-container {
+  display: flex;
+  justify-content: center;
+
+}
+.create-match-container ul{
+  color:white;
+  opacity: 100%;
+  display: block;
+  list-style-type: none;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0px;
+
+}
+.create-match-container td{
+  cursor: pointer;
+  padding-left: 10px;
+}
 
 
 

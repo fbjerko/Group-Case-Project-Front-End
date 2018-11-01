@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import LayoutGlobal from "../../components/LayoutGlobal";
-import AdminReturn from "../../components/buttons/AdminReturn";
+
+import AdminReturn from "../../components/AdminReturn";
+import TeamsForm from "../../components/forms/teamsForm";
+
 import ListInfo from "../../components/admin-view/ListInfo";
 
 class Teams extends Component {
@@ -78,23 +81,15 @@ class Teams extends Component {
         <div>
           <LayoutGlobal />
 
-          <div className="container">
-            <h1>teams</h1>
 
-            <div className="btn-admin-create-top">
-              <button className="btn-create">Create</button>
+            <h1>Teams</h1>
+            <TeamsForm />
+          <div className = "btn-admin-create-bottom">
 
-              <button className="btn-create">Update</button>
-
-              <button className="btn-create">Delete</button>
-            </div>
-
-            <div className="btn-admin-create-bottom">
               <button className="btn-create" onClick={this._createTeam}>
-                Back
-              </button>
-            </div>
-          </div>
+              Back
+            </button>
+              </div>
         </div>
       );
     } else {
@@ -105,7 +100,7 @@ class Teams extends Component {
           <div className="container">
             <div className="btn-admin-config">
               <button className="btn-create" onClick={this._createTeam}>
-                Configure
+                Create team
               </button>
               <AdminReturn />
             </div>

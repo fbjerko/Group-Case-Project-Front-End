@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import LayoutGlobal from "../../components/LayoutGlobal";
-import AdminReturn from "../../components/buttons/AdminReturn";
-import { Router } from "../../routes";
+
+import MatchesForm from "../../components/forms/matchesForm";
+import AdminReturn from "../../components/AdminReturn";
+
 
 class Matches extends Component {
   constructor(props) {
@@ -18,7 +20,6 @@ class Matches extends Component {
       createMatches: !this.state.createMatches
     });
 
-    console.log(this.state.createMatches + " ");
   }
 
   componentDidMount() {}
@@ -28,58 +29,27 @@ class Matches extends Component {
       return (
         <div>
           <LayoutGlobal />
-
-          <div className="container">
-            <h1>Matches</h1>
-
-            <div className="btn-admin-create-top">
-              <button
-                className="btn-create"
-                onClick={() => Router.pushRoute("/admin/creatematches")}
-              >
-                Create
-              </button>
-
-              <button className="btn-create" onClick={this._matches}>
-                Update
-              </button>
-
-              <button className="btn-create" onClick={this._teams}>
-                Delete
-              </button>
-            </div>
-
-            <div className="btn-admin-create-bottom">
+          <MatchesForm />
+          <div className = "btn-admin-create-bottom">
               <button className="btn-create" onClick={this._createMatches}>
-                Back
-              </button>
-            </div>
-          </div>
+              Back
+            </button>
+              </div>
         </div>
       );
     } else {
       return (
         <div>
           <LayoutGlobal />
-
-          <div className="container">
-            <h1>Matches</h1>
-
-            <div className="btn-admin-create-top">
-              <button
-                className="btn-create"
-                onClick={() => Router.pushRoute("/admin/season")}
-              >
+           <div className="container">
+            <div className="btn-admin-config">
+              <button className="btn-create" onClick={this._createMatches}>
                 Create match
               </button>
-              <div className="btn-admin-config">
-                <AdminReturn />
-              </div>
-              <div className="btn-admin-create-bottom" />;
-              {this.state.createMatches ? <CreateUser /> : null}
+              <AdminReturn />
             </div>
           </div>
-        </div>
+      </div>
       );
     }
   }

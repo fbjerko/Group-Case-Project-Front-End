@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PlayersForm from "../../components/forms/playersForm";
 
 class PlayerInfo extends Component {
   constructor(props) {
@@ -7,21 +8,36 @@ class PlayerInfo extends Component {
     this.state = {
       playerId: "0",
       playerInfo: [],
+      edit: false,
       ready: false
     };
+
     this.addToWatchList = this.addToWatchList. bind(this);
+
+
+    this._edit = this._edit.bind(this);
   }
 
-  async componentDidMount() {
+  _edit() {
+    this.setState({
+      edit: !this.state.edit
+    });
 
-    console.log("ID player: " + this.props.id );
+  }
+
+  async componentWillMount() {
+    // "await fetch(`http://localhost:5000/api/user/all`);"
+
+
     try {
       const response = await fetch(
         process.env.API_URL + "/api/player/" + this.props.id
       );
       const json = await response.json();
+
       console.log(json);
       await this.setState({
+
         playerInfo: json,
         ready: true
       });
@@ -80,9 +96,12 @@ class PlayerInfo extends Component {
     console.log(process.env.API_URL + "/api/player/" + this.props.id);
     console.log(this.state.playerInfo);
     const player = this.state.playerInfo;
+
     const name = player.person.firstName + " " + player.person.lastName;
+
     
     if (this.props.canEdit === true) {
+
       return (
         <div>
           <div className="div-admin-get-all">
@@ -207,12 +226,17 @@ class PlayerInfo extends Component {
             <table className="table-admin-but">
               <tbody>
                 <tr>
+
                   <td
                     className="td-admin-but"
                     onClick={() => this.addToWatchList(name)}
                   >
                     Add to Watchlist
-                  </td>
+
+            
+                </td>
+               
+
                 </tr>
               </tbody>
             </table>
@@ -222,7 +246,19 @@ class PlayerInfo extends Component {
           </button>
         </div>
       );
+
     }
+
+    } else if(this.state.ready === true && this.state.edit === true) {
+      return(
+
+        <PlayersForm id={this.props.id} edit={'edit'}/>
+
+
+      
+      );  
+
+
     } else {
       return <div>Loading</div>;
     }

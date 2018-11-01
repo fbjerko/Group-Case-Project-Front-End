@@ -87,7 +87,7 @@ class TeamForm extends React.Component {
         <h2>Create new team</h2>
       </div>
        <p>Team name</p>
-       <input onChange={this.updateInput} value={this.state.match_date} type="date" placeholder="Write a match_date" id="match_date" />
+       <input onChange={this.updateInput} value={this.state.name} type="text" placeholder="Write a team name" id="name" />
        <br></br>
        <br></br>
        <p>Association</p>
