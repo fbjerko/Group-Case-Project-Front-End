@@ -91,8 +91,8 @@ class Index extends Component {
         </div>
 
         
-        {this.state.showLogin ? <Login /> : null}
-        {this.state.showRegister ? <Register /> : null}
+        {this.state.showLogin ? <Login close={this._onLoginClick} /> : null}
+        {this.state.showRegister ? <Register  /> : null}
         </LayoutGlobal >
       
     );

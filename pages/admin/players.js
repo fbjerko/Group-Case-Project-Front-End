@@ -106,9 +106,9 @@ class Players extends Component {
                 firstPage= {this.firstPage}
                 lastPage={this.lastPage}
                 canEdit={this.state.canEdit}
+                currentPage={this.state.currentPage}
               />
       
-            <h2>Page {this.state.currentPage + 1}</h2>
             {this.state.createPlayer ? <CreateUser /> : null}
           </div>
         </div>

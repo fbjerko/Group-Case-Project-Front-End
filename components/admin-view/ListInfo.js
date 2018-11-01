@@ -164,7 +164,9 @@ class ListInfo extends Component {
                 </tr>
               </tbody>
             </table>
+            <h2>Page {this.props.currentPage + 1}</h2>
           </div>
+          
         </div>
       );
     }

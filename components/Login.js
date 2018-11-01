@@ -27,7 +27,7 @@ const Login = () => (
 
 
             var xhttp = new XMLHttpRequest();
-
+console.log("dasd");
             xhttp.open("POST", process.env.FRONT_END_URL+"/login", true);
             xhttp.setRequestHeader("Content-type", "application/json");
             xhttp.send(

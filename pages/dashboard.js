@@ -58,9 +58,9 @@ class Dashboard extends Component {
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send(
       JSON.stringify({
-        playerId: this.state.activeId,
-
-        userId: this.state.userId
+        playerId: 9,
+        playerName: "Kjell",
+        userId: 851
       })
     );
     xhttp.onreadystatechange = () => {
@@ -123,13 +123,13 @@ class Dashboard extends Component {
 
   async componentDidMount() {
     await this.setState({
-      userId: this.getCookie()
+      userId: 851
     });
 
     console.log(this.state.userId + " is userId");
 
-    /*
-    try {
+    
+   /* try {
       const response = await fetch(process.env.API_URL + '/api/watchlist/' + this.state.userId + '/user');
       const json = await response.json();
       console.log(json);
@@ -154,26 +154,21 @@ class Dashboard extends Component {
   }
 
   render() {
-    const watchList = [
-      3999,
-      [2982, "Niklas Dorsch", 2984, "Maurice Multhaup"],
-      [2355, "RRC de Waterloo", 2417, "SV Babelsberg 03"],
-      3998
-    ];
+   /*
 
     let players = [];
 
-    for (var i = 0; i < watchList[1].length; i++) {
-      var playerId = watchList[1][i];
+    for (var i = 0; i < this.state.watchList[1].length; i++) {
+      var playerId = this.state.watchList[1][i];
       console.log(playerId + " HER er ID");
       players.push(
         <tr key={i}>
           <td
-            key={watchList[1][i]}
+            key={this.state.watchList[1][i]}
             className="td-dashboard-watchlist-user"
             onClick={() => this.showPlayer(playerId)}
           >
-            {watchList[2][i]}
+            {this.state.watchList[2][i]}
           </td>
         </tr>
       );
@@ -181,20 +176,20 @@ class Dashboard extends Component {
 
     let teams = [];
 
-    for (var i = 0; i < watchList[3].length; i++) {
-      var teamId = watchList[3][i];
+    for (var i = 0; i < this.state.watchList[3].length; i++) {
+      var teamId = this.state.watchList[3][i];
       teams.push(
         <tr key={i + i * 10}>
           <td
-            key={watchList[3][i]}
+            key={this.state.watchList[3][i]}
             className="td-dashboard-watchlist-user"
             onClick={() => this.showTeam(teamId)}
           >
-            {watchList[4][i]}
+            {this.state.watchList[4][i]}
           </td>
         </tr>
       );
-    }
+    } */
 
     if (this.state.display === 1) {
       return (
@@ -247,14 +242,14 @@ class Dashboard extends Component {
                     </th>
                   </tr>
 
-                  {players}
+                  
 
                   <tr>
                     <th key={2} className="th-dashboard-watchlist-user">
                       Teams
                     </th>
                   </tr>
-                  {teams}
+                  
                 </tbody>
               </table>
           </div>
@@ -323,3 +318,36 @@ class Dashboard extends Component {
 }
 
 export default Dashboard;
+
+
+
+/*
+
+ <div className="dashboard-watchlist-container">
+          <table className="dashboard-watchlist-user">
+                <tbody>
+                  <tr>
+                    <th key={0} className="th-dashboard-watchlist-user">
+                      Watchlist
+                    </th>
+                  </tr>
+                  <tr>
+                    <th key={1} className="th-dashboard-watchlist-user">
+                      Teams
+                    </th>
+                  </tr>
+
+                  {players}
+
+                  <tr>
+                    <th key={2} className="th-dashboard-watchlist-user">
+                      Teams
+                    </th>
+                  </tr>
+                  {teams}
+                </tbody>
+              </table>
+          </div>
+
+
+          */

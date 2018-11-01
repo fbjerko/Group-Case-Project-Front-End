@@ -9,17 +9,19 @@ class PlayerInfo extends Component {
       playerInfo: [],
       ready: false
     };
-    this.addToWatchList = this.addToWatchList.bind(this);
+    this.addToWatchList = this.addToWatchList. bind(this);
   }
 
   async componentDidMount() {
+
+    console.log("ID player: " + this.props.id );
     try {
       const response = await fetch(
         process.env.API_URL + "/api/player/" + this.props.id
       );
       const json = await response.json();
       console.log(json);
-      this.setState({
+      await this.setState({
         playerInfo: json,
         ready: true
       });
@@ -72,10 +74,15 @@ class PlayerInfo extends Component {
   }
 
   render() {
-    console.log(this.props.canEdit + " can edit");
+
+    if(this.state.ready === true){
+
+    console.log(process.env.API_URL + "/api/player/" + this.props.id);
+    console.log(this.state.playerInfo);
     const player = this.state.playerInfo;
     const name = player.person.firstName + " " + player.person.lastName;
-    if (this.state.ready === true && this.props.canEdit === true) {
+    
+    if (this.props.canEdit === true) {
       return (
         <div>
           <div className="div-admin-get-all">
@@ -147,7 +154,7 @@ class PlayerInfo extends Component {
         </div>
       );
     }
-    if (this.state.ready === true && this.props.canEdit === false) {
+    if (this.props.canEdit === false) {
       return (
         <div>
           <div className="div-admin-get-all">
@@ -215,6 +222,7 @@ class PlayerInfo extends Component {
           </button>
         </div>
       );
+    }
     } else {
       return <div>Loading</div>;
     }
