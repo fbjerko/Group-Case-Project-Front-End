@@ -20,7 +20,10 @@
   margin: auto;
   width: 100%;
   min-height: 100vh;
-  margin-top: 1rem;
+
+  margin-top: 1vh;
+  
+
 }
 
 div.btn-admin-create-top {
@@ -183,14 +186,6 @@ button.btn-nav-general {
   height: 24.75rem;
 }
 
-button.btn-nav-general {
-  margin: 0.5rem;
-  min-width: 25rem;
-  min-height: 18.75rem;
-  width: 35rem;
-  height: 25rem;
-}
-
 #btn-stadium {
   background: url(../images/stadium.jpg);
   background-size: 400px 300px;
@@ -232,7 +227,6 @@ button.btn-nav-general {
   background: url(../images/users.png);
 
   background-size: 33rem 24.75rem;
-
   font-family: Verdana;
   text-shadow: 2px 2px 2px #000000;
   font-size: 50px;

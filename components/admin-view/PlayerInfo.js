@@ -12,11 +12,15 @@ class PlayerInfo extends Component {
       ready: false
     };
 
-    this.addToWatchList = this.addToWatchList. bind(this);
-
 
     this._edit = this._edit.bind(this);
+        this.addToWatchList = this.addToWatchList. bind(this);
+  
+
+
   }
+
+
 
   _edit() {
     this.setState({
@@ -24,10 +28,11 @@ class PlayerInfo extends Component {
     });
 
   }
+  
 
-  async componentWillMount() {
-    // "await fetch(`http://localhost:5000/api/user/all`);"
+  async componentDidMount() {
 
+    console.log("ID player: " + this.props.id );
 
     try {
       const response = await fetch(
@@ -154,6 +159,8 @@ class PlayerInfo extends Component {
             <table className="table-admin-but">
               <tbody>
                 <tr>
+
+
                   <td className="td-admin-but" onClick={this.props.firstPage}>
                     EDIT
                   </td>
@@ -172,7 +179,8 @@ class PlayerInfo extends Component {
           </button>
         </div>
       );
-    }
+
+    } 
     if (this.props.canEdit === false) {
       return (
         <div>
@@ -248,8 +256,8 @@ class PlayerInfo extends Component {
       );
 
     }
-
-    } else if(this.state.ready === true && this.state.edit === true) {
+    
+   if(this.state.ready === true && this.state.edit === true) {
       return(
 
         <PlayersForm id={this.props.id} edit={'edit'}/>
@@ -258,6 +266,7 @@ class PlayerInfo extends Component {
       
       );  
 
+    }
 
     } else {
       return <div>Loading</div>;

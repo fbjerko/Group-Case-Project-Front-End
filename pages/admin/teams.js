@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import LayoutGlobal from "../../components/LayoutGlobal";
 
-import AdminReturn from "../../components/AdminReturn";
 import TeamsForm from "../../components/forms/teamsForm";
+
+import AdminReturn from "../../components/buttons/AdminReturn";
 
 import ListInfo from "../../components/admin-view/ListInfo";
 

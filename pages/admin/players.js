@@ -77,9 +77,6 @@ class Players extends Component {
       (this.state.currentPage + 1) * 10
     );
 
-
-
-
     if (this.state.createPlayer === true && this.state.ready===true) {
       return (
         <div>
@@ -116,8 +113,7 @@ class Players extends Component {
         edit={this.edit}
             />
 
-
-
+            {this.state.createPlayer ? <CreateUser /> : null}
 
           </div>
         </div>
