@@ -3,6 +3,7 @@ import LayoutGlobal from "../../components/LayoutGlobal";
 import AdminReturn from "../../components/buttons/AdminReturn";
 import ListInfo from "../../components/admin-view/ListInfo";
 import PlayersForm from "../../components/forms/playersForm";
+import CreateUser from "../../components/admin-create/CreateUsers";
 
 
 class Players extends Component {
@@ -57,7 +58,7 @@ class Players extends Component {
   }
 
   async componentDidMount() {
-    console.log("Hey");
+
     try {
       const response = await fetch(process.env.API_URL+"/api/player/all");
       const json = await response.json();
@@ -76,14 +77,14 @@ class Players extends Component {
       this.state.currentPage * 10,
       (this.state.currentPage + 1) * 10
     );
-    if (this.state.createPlayer === true) {
+    if (this.state.createPlayer === true && this.state.ready===true) {
       return (
         <div>
           <LayoutGlobal />
-          <PlayersForm/>
+          <PlayersForm edit={"create"}/>
         </div>
       );
-    } else {
+    } else if(this.state.createPlayer === false && this.state.ready===true){
       return (
         <div>
           <LayoutGlobal />
@@ -95,7 +96,7 @@ class Players extends Component {
               </button>
               <AdminReturn />
             </div>
-            
+
             <ListInfo
                 data={players}
                 content= {this.state.content}
@@ -105,14 +106,24 @@ class Players extends Component {
                 previousPage={this.previousPage}
                 firstPage= {this.firstPage}
                 lastPage={this.lastPage}
+<<<<<<< HEAD
                 canEdit={this.state.canEdit}
+=======
+                edit={this.edit}
+>>>>>>> lasse-tonje-branch
               />
-      
-            <h2>Page {this.state.currentPage + 1}</h2>
-            {this.state.createPlayer ? <CreateUser /> : null}
+
+              <h2>Page {this.state.currentPage + 1}</h2>
+
           </div>
         </div>
       );
+    }
+    else{
+      return(<div>
+          <h1>Loading...</h1>
+      </div>);
+
     }
   }
 }

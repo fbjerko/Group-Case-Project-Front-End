@@ -11,7 +11,7 @@ class SearchField extends Component {
             filteredData:[],
             url:this.chooseUrl(this.props.type),
             active:false,
-            id:-1
+            id:this.props.id
 
         }
 
@@ -19,6 +19,8 @@ class SearchField extends Component {
         this.getData=this.getData.bind(this);
 
     }
+
+
     getData(){
 
         fetch(this.state.url).then(
@@ -35,6 +37,11 @@ class SearchField extends Component {
                         }
                         console.log("Data loaded");
                         this.setState({data:data,filteredData:data});
+                        data.forEach((element)=>{
+                            if(this.state.id==element.id){
+                                this.setState({search:element.name,id:element.id});
+                            }
+                        })
 
                     }
 
@@ -87,9 +94,10 @@ class SearchField extends Component {
 
 
     };
-    componentDidMount(){
+    componentWillMount(){
         this.getData();
     };
+
     handleClick = (event)=>{
         this.setState({search:event.target.value,id:event.target.id,active:false});
         this.props.handleChange(event.target.id);
@@ -119,9 +127,10 @@ class SearchField extends Component {
     styles={
         width:200,
         position:'absolute',
-        left:'45%',
         zIndex:1
     }
+
+
 
 
     render() {
@@ -150,7 +159,7 @@ class SearchField extends Component {
             );
         }else{
             return (
-                <div>
+                <div >
                     <input  onFocus={this.activate} value={this.state.search} placeholder={'Search for '+this.state.type} onChange={this.updateSearch}/>
                 </div>
             );
