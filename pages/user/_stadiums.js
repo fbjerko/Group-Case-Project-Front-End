@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import LayoutGlobal from "../../components/LayoutGlobal";
-import IndexReturn from "../../components/IndexReturn";
 import { Router } from "../../routes";
-import AdminReturn from "../../components/AdminReturn";
+import UserReturn from "../../components/buttons/UserReturn";
 
 class Stadiums extends Component {
   constructor(props) {
@@ -64,15 +63,13 @@ class Stadiums extends Component {
             <h1>Stadiums</h1>
 
             <div className="btn-admin-config">
-              <button className="btn-create" onClick={this._createStadium}>
-                Configure
-              </button>
+            
 
               <button className="btn-create" onClick={() => Router.pushRoute("/admin/location")}>
                 Create location
               </button>
 
-              <AdminReturn />
+              <UserReturn />
 
             </div>
 

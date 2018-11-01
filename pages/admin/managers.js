@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import LayoutGlobal from "../../components/LayoutGlobal";
-import AdminReturn from "../../components/AdminReturn";
+
 import ManagerForm from "../../components/forms/managerForm";
+
+import AdminReturn from "../../components/buttons/AdminReturn";
+
 import ListInfo from "../../components/admin-view/ListInfo";
 
 class Managers extends Component {
@@ -9,13 +12,14 @@ class Managers extends Component {
     super(props);
     this.state = {
       managers: [],
-      filteredData:[],
-      search:'a',
+      filteredData: [],
+      search: "a",
       ready: false,
       createManager: false,
       currentPage: 0,
-      content: ['Managers', 'Teams'], // Attribute variable names
-      contentFields: ['Name', 'Team'] // Names/Values of variables
+      content: ["Managers", "Teams"], // Attribute variable names
+      contentFields: ["Name", "Team"],
+      canEdit: true // Names/Values of variables
     };
 
     this._createManager = this._createManager.bind(this);
@@ -25,11 +29,11 @@ class Managers extends Component {
     this.lastPage = this.lastPage.bind(this);
   }
 
-  firstPage() { 
-    this.setState({currentPage: 0})
+  firstPage() {
+    this.setState({ currentPage: 0 });
   }
-  lastPage() { 
-    this.setState({currentPage: Math.floor(this.state.managers.length/10 )});
+  lastPage() {
+    this.setState({ currentPage: Math.floor(this.state.managers.length / 10) });
     console.log(this.state.currentPage);
   }
 
@@ -56,7 +60,7 @@ class Managers extends Component {
 
   async componentDidMount() {
     try {
-      const response = await fetch(process.env.API_URL+"/api/coach/all");
+      const response = await fetch(process.env.API_URL + "/api/coach/all");
       const json = await response.json();
       console.log(json);
       this.setState({
@@ -68,11 +72,7 @@ class Managers extends Component {
     }
   }
 
- 
-
   render() {
-
-      
     const managers = this.state.managers.slice(
       this.state.currentPage * 10,
       (this.state.currentPage + 1) * 10
@@ -81,8 +81,24 @@ class Managers extends Component {
       return (
         <div>
           <LayoutGlobal />
+
           <ManagerForm />
           <div className = "btn-admin-create-bottom">
+
+
+          <div className="container">
+            <h1>Managers</h1>
+
+            <div className="btn-admin-create-top">
+              <button className="btn-create">Create</button>
+
+              <button className="btn-create">Update</button>
+
+              <button className="btn-create">Delete</button>
+            </div>
+
+            <div className="btn-admin-create-bottom">
+
               <button className="btn-create" onClick={this._createManager}>
               Back
             </button>
@@ -102,18 +118,19 @@ class Managers extends Component {
               <AdminReturn />
             </div>
 
-              <ListInfo
-                data={managers}
-                content= {this.state.content}
-                contentFields = {this.state.contentFields}
-                ready={this.state.ready}
-                nextPage={this.nextPage}
-                previousPage={this.previousPage}
-                firstPage= {this.firstPage}
-                lastPage={this.lastPage}
-              />
-          
-            <h2>Page {this.state.currentPage + 1}</h2>
+            <ListInfo
+              data={managers}
+              content={this.state.content}
+              contentFields={this.state.contentFields}
+              ready={this.state.ready}
+              nextPage={this.nextPage}
+              previousPage={this.previousPage}
+              firstPage={this.firstPage}
+              lastPage={this.lastPage}
+              canEdit={this.state.canEdit}
+              currentPage={this.state.currentPage}
+            />
+
             {this.state.createManager ? <CreateUser /> : null}
           </div>
         </div>
@@ -123,7 +140,6 @@ class Managers extends Component {
 }
 
 export default Managers;
-
 
 /*
 

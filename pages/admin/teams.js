@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import LayoutGlobal from "../../components/LayoutGlobal";
-import AdminReturn from "../../components/AdminReturn";
+
 import TeamsForm from "../../components/forms/teamsForm";
+
+import AdminReturn from "../../components/buttons/AdminReturn";
+
 import ListInfo from "../../components/admin-view/ListInfo";
 
 class Teams extends Component {
@@ -12,8 +15,9 @@ class Teams extends Component {
       ready: false,
       createTeam: false,
       currentPage: 0,
-      content: ['Teams', 'Managers'], // Attribute variable names
-      contentFields: ['Name', 'Manager', 'Country'] // Names/Values of variables
+      content: ["Teams", "Managers"], // Attribute variable names
+      contentFields: ["Name", "Manager", "Stadium", "Country"],
+      canEdit: true // Names/Values of variables
     };
 
     this._createTeam = this._createTeam.bind(this);
@@ -23,11 +27,11 @@ class Teams extends Component {
     this.lastPage = this.lastPage.bind(this);
   }
 
-  firstPage() { 
-    this.setState({currentPage: 0})
+  firstPage() {
+    this.setState({ currentPage: 0 });
   }
-  lastPage() { 
-    this.setState({currentPage: Math.floor(this.state.teams.length/10 )});
+  lastPage() {
+    this.setState({ currentPage: Math.floor(this.state.teams.length / 10) });
     console.log(this.state.currentPage);
   }
 
@@ -55,7 +59,7 @@ class Teams extends Component {
   async componentDidMount() {
     console.log("Hey");
     try {
-      const response = await fetch(process.env.API_URL+"/api/team/all");
+      const response = await fetch(process.env.API_URL + "/api/team/all");
       const json = await response.json();
       console.log(json);
       this.setState({
@@ -68,8 +72,7 @@ class Teams extends Component {
   }
 
   render() {
-    console.log(this.state.teams.length
-      );
+    console.log(this.state.teams.length);
     const teams = this.state.teams.slice(
       this.state.currentPage * 10,
       (this.state.currentPage + 1) * 10
@@ -79,9 +82,12 @@ class Teams extends Component {
         <div>
           <LayoutGlobal />
 
+
             <h1>Teams</h1>
             <TeamsForm />
           <div className = "btn-admin-create-bottom">
+
+
               <button className="btn-create" onClick={this._createTeam}>
               Back
             </button>
@@ -101,19 +107,19 @@ class Teams extends Component {
               <AdminReturn />
             </div>
 
-           
-           <ListInfo
-                data={teams}
-                content= {this.state.content}
-                contentFields = {this.state.contentFields}
-                ready={this.state.ready}
-                nextPage={this.nextPage}
-                previousPage={this.previousPage}
-                firstPage= {this.firstPage}
-                lastPage={this.lastPage}
-              />
-          
-            <h2>Page {this.state.currentPage + 1}</h2>
+            <ListInfo
+              data={teams}
+              content={this.state.content}
+              contentFields={this.state.contentFields}
+              ready={this.state.ready}
+              nextPage={this.nextPage}
+              previousPage={this.previousPage}
+              firstPage={this.firstPage}
+              lastPage={this.lastPage}
+              canEdit={this.state.canEdit}
+              currentPage={this.state.currentPage}
+            />
+
             {this.state.createTeam ? <CreateUser /> : null}
           </div>
         </div>

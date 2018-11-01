@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import LayoutGlobal from "../components/LayoutGlobal";
-import IndexReturn from "../components/IndexReturn";
+import IndexReturn from "../components/buttons/IndexReturn";
 import { Router } from "../routes";
 import EditUser from "../components/EditUser";
 
@@ -17,7 +17,6 @@ class Admin extends Component {
 
     this._onEditClick = this._onEditClick.bind(this);
   }
-
 
   _onEditClick() {
     this.setState({

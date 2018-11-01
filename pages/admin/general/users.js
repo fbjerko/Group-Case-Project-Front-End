@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import LayoutGlobal from "../../../components/LayoutGlobal";
-import AdminReturn from "../../../components/AdminReturn";
+import AdminReturn from "../../../components/buttons/AdminReturn";
 import ListInfo from "../../../components/admin-view/ListInfo";
 
 class users extends Component {
@@ -128,9 +128,11 @@ class users extends Component {
                 previousPage={this.previousPage}
                 firstPage= {this.firstPage}
                 lastPage={this.lastPage}
+                currentPage={this.state.currentPage}
+                
               />
           
-            <h2>Page {this.state.currentPage + 1}</h2>
+        
             {this.state.createUser ? <CreateUser /> : null}
           </div>
         </div>

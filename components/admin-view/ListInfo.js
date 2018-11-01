@@ -7,7 +7,8 @@ class ListInfo extends Component {
 
     this.state = {
       activeId: "",
-      display: 99
+      display: 99,
+      userId: ""
     };
 
     this.showFirst = this.showFirst.bind(this);
@@ -28,16 +29,24 @@ class ListInfo extends Component {
     });
   }
 
+ 
+
   render() {
     /* Code for checking wether even values are number/id, pretty weak as for now as it just checks one row ahead for a number value */
-
+    
     const data = this.props.data.map(data => {
       var i = 0;
 
       while (data[i] !== undefined) {
         if (i % 2 === 0) {
-          if (typeof data[i] === "string") {
-            data[i - 1] = data[i];
+          if (typeof data[i] === "string" || data[i] === null) {
+            if(data[i+1] == undefined) {
+              data[i+1] = data[i];
+              break;
+            }
+            for(var j = 0; j < 5; j++){
+              data[i+j] = data[i + j + 1];
+            }
           }
         }
         i++;
@@ -50,7 +59,6 @@ class ListInfo extends Component {
       for (var i = 0; i < this.props.contentFields.length; i++) {
         let id = data[i * 2];
         let action = i;
-
 
         columns.push(
           <td
@@ -74,7 +82,7 @@ class ListInfo extends Component {
       }
     });
 
-    /* Assigning header values */ 
+    /* Assigning header values */
 
     const fields = this.props.contentFields.map(function(field) {
       return (
@@ -91,13 +99,14 @@ class ListInfo extends Component {
         </div>
       );
     } else if (this.state.display === 0) {
-     
       return (
         <div>
           <GatewayInfo
             id={this.state.activeId}
             close={this.close}
             content={this.props.content[0]}
+            canEdit={this.props.canEdit}
+            userId={this.props.userId}
           />
         </div>
       );
@@ -108,6 +117,8 @@ class ListInfo extends Component {
             id={this.state.activeId}
             close={this.close}
             content={this.props.content[1]}
+            canEdit={this.props.canEdit}
+            userId={this.props.userId}
           />
         </div>
       );
@@ -118,6 +129,8 @@ class ListInfo extends Component {
             id={this.state.activeId}
             close={this.close}
             content={this.props.content[2]}
+            canEdit={this.props.canEdit}
+            
           />
         </div>
       );
@@ -157,7 +170,9 @@ class ListInfo extends Component {
                 </tr>
               </tbody>
             </table>
+            <h2>Page {this.props.currentPage + 1}</h2>
           </div>
+          
         </div>
       );
     }
@@ -165,4 +180,3 @@ class ListInfo extends Component {
 }
 
 export default ListInfo;
-

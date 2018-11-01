@@ -1,3 +1,6 @@
+
+
+
 .logoutUser {
     
     display: column;
@@ -88,4 +91,40 @@
     right: 0.5vw;
   
   }
+
+  div.dashboard-watchlist-container {
+    position: absolute;
+    top: 20rem;
+    left: 3rem;
+    
+  }
+
+  table.dashboard-watchlist-user {
+    border-collapse: collapse;
+    width: 20rem;
+    
+  }
   
+  /* Table for displaying all info about entities admin */
+
+th.th-dashboard-watchlist-user {
+  font-size: 150%;
+  padding-top: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  text-align: left;
+  border: 0.1rem solid rgb(255, 255, 255);
+}
+td.td-dashboard-watchlist-user {
+  border: 0.1rem solid rgb(255, 255, 255);
+  padding: 1rem;
+  text-align: left;
+  width: 33%;
+  cursor: pointer;
+}
+
+td.td-dashboard-watchlist-user:hover {
+  
+  background-color: rgb(99, 97, 97);
+  opacity: 0.8;
+}

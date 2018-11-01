@@ -37,6 +37,10 @@ export default props => {
 
       <img src="../static/images/logo.png" alt="" className="logo" />
 
+      {props.children}
+
+      
+
     </div>
   );
 };
