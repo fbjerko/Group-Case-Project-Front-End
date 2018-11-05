@@ -3,6 +3,7 @@ import LayoutGlobal from "../components/LayoutGlobal";
 import Login from "../components/Login";
 import Register from "../components/Register";
 import IndexInfo from "../components/IndexInfo";
+import Loading from "../components/buttons/loading";
 
 
 const context = React.createContext();
@@ -63,7 +64,7 @@ class Index extends Component {
 
   render() {
     return (
-      
+
         <LayoutGlobal >
 
         <div className="btn-group-index-login-reg">

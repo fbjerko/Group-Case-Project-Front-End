@@ -1,6 +1,6 @@
 import React from "react";
 import Head from "next/head";
-const Context = React.createContext();
+
 export default props => {
   return (
     <div>
@@ -30,6 +30,11 @@ export default props => {
           type="text/css"
           href="/static/style/user.css"
         />
+          <link
+              rel="stylesheet"
+              type="text/css"
+              href="/static/style/loading.css"
+          />
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" />
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" />

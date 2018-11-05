@@ -1,5 +1,5 @@
 .container {
-  display: flex;
+  display: block;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -173,8 +173,8 @@ button.btn-nav {
   margin: 0.5rem;
   min-width: 25rem;
   min-height: 18.75rem;
-  width: 40rem;
-  height: 30rem;
+  width: 400px;
+  height: 300px;
 }
 
 button.btn-nav-general {
