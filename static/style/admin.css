@@ -22,7 +22,6 @@
   min-height: 100vh;
 
   margin-top: 1vh;
-  
 
 }
 
@@ -67,6 +66,7 @@ div.div-admin-get-all {
 }
 
 table {
+  font-size: 150%;
   color: white;
   font-family: Verdana;
   border-collapse: collapse;
@@ -76,12 +76,11 @@ table {
 /* Table for displaying all info about entities admin */
 
 table.table-admin-get-all {
-  font-size: 150%;
-  border-collapse: collapse;
+
   width: 70rem;
 }
 
-th.th-admin-get-all {
+th {
   font-size: 150%;
   padding-top: 0.5rem;
   padding-left: 1rem;
@@ -89,10 +88,18 @@ th.th-admin-get-all {
   text-align: left;
   border: 0.1rem solid rgb(255, 255, 255);
 }
-td.td-admin-get-all {
+
+td {
   border: 0.1rem solid rgb(255, 255, 255);
   padding: 1rem;
   text-align: left;
+}
+
+th.th-admin-get-all {
+ 
+}
+td.td-admin-get-all {
+
   width: 33%;
   cursor: pointer;
 }
@@ -103,36 +110,22 @@ td.td-admin-get-all:hover {
   opacity: 0.8;
 }
 
-/*******************************************/
-
 
 /* Table for displaying info about single entity */
 /*************************************************************/
 
 table.table-admin-get-one {
-  font-size: 150%;
-  border-collapse: collapse;
+  
   width: 60rem;
 }
 
 th.th-admin-get-one {
-  font-size: 150%;
-  padding-top: 0.5rem;
-  padding-left: 1rem;
-  text-align: left;
-  border: 0.1rem solid rgb(255, 255, 255);
+  
 }
 td.td-admin-get-one {
-  border: 0.1rem solid rgb(255, 255, 255);
-  padding: 1rem;
-  text-align: left;
+
   width: 50%;
- 
 }
-
-/***************************/
-
-
 
 /* Buttons for admin listing info*/
 /***********************************************************************/
@@ -143,6 +136,7 @@ table.table-admin-but {
   margin: auto;
   margin-top: 2rem;
   margin-bottom: 1rem;
+  
 }
 
 td.td-admin-but {
@@ -151,15 +145,50 @@ td.td-admin-but {
   padding: 1rem;
   cursor: pointer;
   width: 25%;
+  text-align: center;
 
 }
 
 td.td-admin-but:hover {
-  
   background-color: rgb(99, 97, 97);
   opacity: 0.8;
 }
 /***********************************/
+
+table.table-admin-get-all-matches {
+  width: 100rem;
+  font-size: 120%;
+  
+}
+
+th.th-admin-get-all-matches {
+  width: 25rem;
+  text-align: center;
+}
+th.th-admin-get-all-matches-result {
+  width: 8rem;
+  text-align: center;
+}
+
+td.td-admin-get-all-matches-result {
+  width: 12rem;
+  text-align: center;
+}
+td.td-admin-get-all-matches {
+  text-align: center;
+}
+
+td.td-admin-get-all-matches-result:hover {
+  background-color: rgb(99, 97, 97);
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+td.td-admin-get-all-matches:hover {
+  background-color: rgb(99, 97, 97);
+  opacity: 0.8;
+  cursor: pointer;
+}
 
 
 button.btn-admin-get-users {

@@ -9,14 +9,14 @@ class PlayerInfo extends Component {
       playerId: "0",
       playerInfo: [],
       edit: false,
-      ready: false
+      ready: false,
+      watchListText: "",
+      inWatchList: false
     };
 
 
     this._edit = this._edit.bind(this);
         this.addToWatchList = this.addToWatchList. bind(this);
-  
-
 
   }
 
@@ -49,9 +49,31 @@ class PlayerInfo extends Component {
     } catch (error) {
       console.log(error);
     }
+
+    if(this.state.inWatchList === true) {
+      this.setState({
+        watchListText: "Remove from Watchlist"
+      });
+    } else {
+      this.setState({
+        watchListText: "Add to Watchlist"
+      });
+    }
+
+    
   }
 
   addToWatchList(name) {
+
+    if(this.state.inWatchList === true){
+      this.setState({
+        watchListText: "Removing..."
+      });
+    } else {
+      this.setState({
+        watchListText: "Adding to Watchlist..."
+      });
+    }
     console.log(this.props.id + " ID FROM");
     var xhttp = new XMLHttpRequest();
 
@@ -69,6 +91,8 @@ class PlayerInfo extends Component {
       JSON.stringify({
         playerId: this.props.id,
         playerName: name,
+        teamId: "",
+        teamName: "",
         userId: this.props.userId
       })
     );
@@ -76,10 +100,22 @@ class PlayerInfo extends Component {
       if (xhttp.readyState == XMLHttpRequest.DONE) {
         if (xhttp.status === 200 || xhttp.status === 201) {
           console.log("Watchlist updated");
-          this.props.close;
+
+          if(this.state.inWatchList === true){
+            this.setState({
+              watchListText: name + " removed from Watchlist"
+            });
+          } else {
+            this.setState({
+              watchListText: name + " added to Watchlist"
+            });
+          }
+          
         } else if (xhttp.status !== 200) {
           console.log("Failed to add to watchlist");
-          this.props.close;
+          this.setState({
+            watchListText: "Failed. Try adding again"
+          });
         }
       }
     };
@@ -98,8 +134,6 @@ class PlayerInfo extends Component {
 
     if(this.state.ready === true){
 
-    console.log(process.env.API_URL + "/api/player/" + this.props.id);
-    console.log(this.state.playerInfo);
     const player = this.state.playerInfo;
 
     const name = player.person.firstName + " " + player.person.lastName;
@@ -239,7 +273,7 @@ class PlayerInfo extends Component {
                     className="td-admin-but"
                     onClick={() => this.addToWatchList(name)}
                   >
-                    Add to Watchlist
+                    {this.state.watchListText} 
 
             
                 </td>
