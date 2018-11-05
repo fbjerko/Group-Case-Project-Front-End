@@ -45,6 +45,8 @@ class TeamInfo extends Component {
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send(
       JSON.stringify({
+        playerId: "",
+        playerName: "",
         teamId: this.props.id,
         teamName: name,
         userId: this.props.userId
