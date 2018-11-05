@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withNamespaces } from "react-i18next";
 import LayoutGlobal from "../components/LayoutGlobal";
 import Login from "../components/Login";
 import Register from "../components/Register";
@@ -62,15 +63,19 @@ class Index extends Component {
   }
 
   render() {
-    return (
-      
-        <LayoutGlobal >
+    const { t, i18n } = this.props;
 
+    const changeLanguage = lng => {
+      i18n.changeLanguage(lng);
+      };
+    return (
+        <LayoutGlobal >
+          <button onClick={() => changeLanguage("no")}>Norsk</button>
+          <button onClick={() => changeLanguage("en")}>English</button>
         <div className="btn-group-index-login-reg">
           <button className="btn-index-login-reg " onClick={this._onLoginClick}>
-            Log in
+          {t("LOG_IN")}
           </button>
-
           <button className="btn-index-login-reg " onClick={this._onRegisterClick}>
             Register
           </button>
@@ -99,4 +104,4 @@ class Index extends Component {
   }
 }
 
-export default Index;
+export default withNamespaces("translations", {wait: true}) (Index);
