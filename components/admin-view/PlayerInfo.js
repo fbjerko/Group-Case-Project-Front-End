@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PlayersForm from "../../components/forms/playersForm";
+import Loading from "../buttons/loading";
 
 class PlayerInfo extends Component {
   constructor(props) {
@@ -98,11 +99,12 @@ class PlayerInfo extends Component {
 
     if(this.state.ready === true){
 
-    console.log(process.env.API_URL + "/api/player/" + this.props.id);
-    console.log(this.state.playerInfo);
+
     const player = this.state.playerInfo;
 
     const name = player.person.firstName + " " + player.person.lastName;
+
+
 
     
     if (this.props.canEdit === true) {
@@ -161,9 +163,10 @@ class PlayerInfo extends Component {
                 <tr>
 
 
-                  <td className="td-admin-but" onClick={this.props.firstPage}>
+                  <td className="td-admin-but" onClick={()=>this.props.editPlayer(this.props.id)}>
                     EDIT
                   </td>
+
                   <td
                     className="td-admin-but"
                     onClick={this.props.previousPage}
@@ -257,19 +260,10 @@ class PlayerInfo extends Component {
 
     }
     
-   if(this.state.ready === true && this.state.edit === true) {
-      return(
 
-        <PlayersForm id={this.props.id} edit={'edit'}/>
-
-
-      
-      );  
-
-    }
 
     } else {
-      return <div>Loading</div>;
+      return <Loading icon={true} text={"Loading player..."}/>;
     }
   }
 }

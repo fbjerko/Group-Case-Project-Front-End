@@ -107,6 +107,7 @@ class ListInfo extends Component {
             content={this.props.content[0]}
             canEdit={this.props.canEdit}
             userId={this.props.userId}
+            edit={this.props.edit}
           />
         </div>
       );
@@ -119,6 +120,7 @@ class ListInfo extends Component {
             content={this.props.content[1]}
             canEdit={this.props.canEdit}
             userId={this.props.userId}
+
           />
         </div>
       );
@@ -130,6 +132,7 @@ class ListInfo extends Component {
             close={this.close}
             content={this.props.content[2]}
             canEdit={this.props.canEdit}
+
             
           />
         </div>
