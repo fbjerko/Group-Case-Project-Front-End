@@ -22,43 +22,53 @@ app.prepare()
 .then(() => {
   const server = express();
   
-  //server.use('/',routes);
+
   server.use(cookieParser());
   server.use(bodyParser.json());
 
+
+
   server.use('/admin',(req,res,next)=>{
     console.log("Checking authentication for Admin");
-    console.log(req.cookies.token);
+
     try{
     const decode = jwt.verify(req.cookies.token,'secretAdmin');
       next();
     }catch(error){
     	
-      res.status(401).end();
+      res.redirect('/')
     }
     
     
     
   });
 
+
+
   server.use('/dashboard',(req,res,next)=>{
     console.log("Checking authentication for User");
-    console.log(req.cookies.token);
+
     try{
     const decode = jwt.verify(req.cookies.token,'secretNotAdmin');
       next();
     }catch(error){
-    	
-      res.status(401).end();
+
+        res.redirect('/')
     }
     
     
     
   });
 
+    // Authenticate middleware
+    // We will apply this middleware to every route except '/login' and '/_next'
 
-
-  server.post('/login',(req,res)=> {
+server.get('/logout',(req,res)=>{
+    res.clearCookie("token");
+    res.clearCookie("id");
+    res.redirect('/');
+})
+server.post('/login',(req,res)=> {
       console.log('User whishes to login as Admin');
       console.log(req.body.password);
       console.log(req.body.email);
@@ -119,7 +129,7 @@ app.prepare()
                           });
                       }
                   }else{
-                      res.status(401);
+                      res.status(401).end();
                   }
               })
           }else{
@@ -136,6 +146,19 @@ app.prepare()
 
 
   });
+server.get('/',(req,res)=>{
+    try{
+        const decode = jwt.verify(req.cookies.token,'secretNotAdmin');
+        res.redirect('/dashboard')
+    }catch(error){
+        try{
+            const decode = jwt.verify(req.cookies.token,'secretAdmin');
+            res.redirect('/admin')
+        }catch(error){
+            return handle(req, res);
+        }
+    }
+})
 
   server.post('/register',(req,res)=>{
   	let body = req.body;
@@ -185,8 +208,10 @@ app.prepare()
   	
   	
   });
-  
+
   server.get('*', (req, res) => {
+
+
     return handle(req, res);
   });
 
