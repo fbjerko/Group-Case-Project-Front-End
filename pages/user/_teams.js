@@ -132,6 +132,7 @@ class Teams extends Component {
 
             <ListInfo
               data={teams}
+              name = {this.state.content[0]}
               content={this.state.content}
               contentFields={this.state.contentFields}
               ready={this.state.ready}

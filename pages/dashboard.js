@@ -4,7 +4,6 @@ import EditUser from "../components/EditUser";
 import IndexReturn from "../components/buttons/IndexReturn";
 import { Router } from "../routes";
 import PlayerInfo from "../components/admin-view/PlayerInfo";
-
 import TeamInfo from "../components/admin-view/TeamInfo";
 
 class Dashboard extends Component {
@@ -16,31 +15,18 @@ class Dashboard extends Component {
       watchList: [],
       activeId: 0,
       display: 99,
-      ready: false,
+      ready: false
     };
 
     this._onEditClick = this._onEditClick.bind(this);
     this.showWatchlist = this.showWatchlist.bind(this);
-   
+    this.deleteWatchList = this.deleteWatchList.bind(this);
     this.close = this.close.bind(this);
   }
-
 
   _onEditClick() {
     this.setState({
       showEdit: !this.state.showEdit
-    });
-  }
-
-  _onTeamClick() {
-    this.setState({
-      showTeam: !this.state.showTeam
-    });
-  }
-
-  _onMatchClick() {
-    this.setState({
-      showMatchInfo: !this.state.showMatchInfo
     });
   }
 
@@ -71,7 +57,35 @@ class Dashboard extends Component {
       console.log(this.state.display + " display");
   }
 
- 
+  async deleteWatchList(id) {
+    var xhttp = new XMLHttpRequest();
+
+    xhttp.open(
+      "GET",
+      process.env.API_URL + "/api/watchlist/" + id + "/delete",
+      true
+    );
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send();
+    xhttp.onreadystatechange = () => {
+      if (xhttp.readyState == XMLHttpRequest.DONE) {
+        if (xhttp.status === 200 || xhttp.status === 201) {
+          console.log("Deleted");
+
+         
+            this.setState({
+              activeId: 0
+            });
+          
+        } else if (xhttp.status !== 200) {
+          console.log("Failed to add to watchlist");
+          this.setState({
+            activeId: 0
+          });
+        }
+      }
+    };
+  }
 
   close() {
     this.setState({
@@ -82,8 +96,7 @@ class Dashboard extends Component {
 
   async componentDidMount() {
     await this.setState({
-      userId: this.getCookie(),
-      
+      userId: this.getCookie()
     });
 
     console.log(this.state.userId + " is userId");
@@ -97,7 +110,6 @@ class Dashboard extends Component {
       this.setState({
         watchList: json,
         ready: true
-        
       });
     } catch (error) {
       console.log(error);
@@ -105,10 +117,8 @@ class Dashboard extends Component {
   }
 
   
-  
 
   render() {
-
     if (this.state.ready === true) {
       let players = [];
 
@@ -120,13 +130,15 @@ class Dashboard extends Component {
             <td
               key={this.state.watchList[0][1][i]}
               className="td-dashboard-watchlist-user"
-              onClick={() => this.showWatchlist(playerId, 1)}
+              onClick={() => this.showWatchlist(this.state.watchList[0][1][i], 1)}
             >
-              {this.state.watchList[0][2][i]}
+              {this.state.watchList[0][1][i]}
             </td>
           </tr>
         );
       }
+
+      console.log(players);
 
       let teams = [];
 
@@ -145,43 +157,8 @@ class Dashboard extends Component {
         );
       }
 
-      if (this.state.display === 1) {
-        return (
-          <div>
-            <LayoutGlobal />
-
-            <div className="container">
-              <PlayerInfo
-                id={this.state.activeId}
-                close={this.close}
-                canEdit={false}
-                userId={this.state.userId}
-              />
-            </div>
-          </div>
-        );
-      } else if (this.state.display === 2) {
-        return (
-          <div>
-            <LayoutGlobal />
-
-            <div className="container">
-              <TeamInfo
-                id={this.state.activeId}
-                close={this.close}
-                canEdit={false}
-                userId={this.state.userId}
-              />
-            </div>
-          </div>
-        );
-      } else {
-        return (
-          <div>
-            <LayoutGlobal />
-
-            <div className="container">
-              <div className="dashboard-watchlist-container">
+      const watchList = (
+        <div className="dashboard-watchlist-container">
                 <table className="dashboard-watchlist-user">
                   <tbody>
                     <tr>
@@ -202,9 +179,61 @@ class Dashboard extends Component {
                       </th>
                     </tr>
                     {teams}
+
+                    <tr >
+                      <td
+                        key={"Delete"}
+                        className="td-admin-but"
+                        onClick={() => this.deleteWatchList(this.state.userId)}
+                      >
+                        Delete Watchlist
+                      </td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
+      );
+
+      if (this.state.display === 1) {
+        return (
+          <div>
+            <LayoutGlobal />
+
+            <div className="container">
+            {watchList}
+              <PlayerInfo
+                id={this.state.activeId}
+                close={this.close}
+                canEdit={false}
+                userId={this.state.userId}
+
+              />
+            </div>
+          </div>
+        );
+      } else if (this.state.display === 2) {
+        return (
+          <div>
+            <LayoutGlobal />
+
+            <div className="container">
+            {watchList}
+              <TeamInfo
+                id={this.state.activeId}
+                close={this.close}
+                canEdit={false}
+                userId={this.state.userId}
+              />
+            </div>
+          </div>
+        );
+      } else {
+        return (
+          <div>
+            <LayoutGlobal />
+
+            <div className="container">
+              {watchList}
               <div className="btn-admin-nav">
                 <button
                   className="btn-nav"
@@ -264,12 +293,13 @@ class Dashboard extends Component {
           </div>
         );
       }
+    } else {
+      return (
+        <div>
+          <LayoutGlobal/>
+        </div>
+      );
     }
-    else {
-      return(
-        <div></div>
-      )
-  }
   }
 }
 

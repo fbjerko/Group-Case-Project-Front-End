@@ -226,7 +226,7 @@ class ListInfo extends Component {
       } else {
         return (
           <div>
-            <h1>{this.props.content[0]}</h1>
+            <h1>{this.props.name}</h1>
             <div className="div-admin-get-all">
               {table}
 

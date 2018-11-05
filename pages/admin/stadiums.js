@@ -101,6 +101,7 @@ class Stadiums extends Component {
           <ListInfo
 
               data={stadiums}
+              name = {this.state.content[0]}
               content={this.state.content}
               contentFields={this.state.contentFields}
               ready={this.state.ready}

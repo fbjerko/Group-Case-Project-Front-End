@@ -105,10 +105,16 @@ class PlayerInfo extends Component {
             this.setState({
               watchListText: name + " removed from Watchlist"
             });
+            
           } else {
             this.setState({
               watchListText: name + " added to Watchlist"
             });
+            setTimeout(function(){ 
+              this.setState({
+                watchListText: "Remove from Watchlist"
+              }); 
+            }.bind(this), 2000);
           }
           
         } else if (xhttp.status !== 200) {
@@ -120,14 +126,6 @@ class PlayerInfo extends Component {
       }
     };
 
-    /*
-
-    watchlistId
-    playerId
-    teamID
-    userId
-
-    */
   }
 
   render() {
