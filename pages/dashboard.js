@@ -4,8 +4,8 @@ import EditUser from "../components/EditUser";
 import IndexReturn from "../components/buttons/IndexReturn";
 import { Router } from "../routes";
 import PlayerInfo from "../components/admin-view/PlayerInfo";
-
 import TeamInfo from "../components/admin-view/TeamInfo";
+import WatchList from "./user/WatchList"
 
 class Dashboard extends Component {
   constructor(props) {
@@ -16,31 +16,19 @@ class Dashboard extends Component {
       watchList: [],
       activeId: 0,
       display: 99,
-      ready: false,
+      ready: false
     };
 
     this._onEditClick = this._onEditClick.bind(this);
     this.showWatchlist = this.showWatchlist.bind(this);
-   
+    this.deleteWatchList = this.deleteWatchList.bind(this);
+    this.updateWatchList = this.updateWatchList.bind(this);
     this.close = this.close.bind(this);
   }
-
 
   _onEditClick() {
     this.setState({
       showEdit: !this.state.showEdit
-    });
-  }
-
-  _onTeamClick() {
-    this.setState({
-      showTeam: !this.state.showTeam
-    });
-  }
-
-  _onMatchClick() {
-    this.setState({
-      showMatchInfo: !this.state.showMatchInfo
     });
   }
 
@@ -62,6 +50,11 @@ class Dashboard extends Component {
   }
 
   async showWatchlist(id, action) {
+
+    await this.setState({
+      activeId: 0,
+      display: 99
+    });
     await this.setState({
       activeId: id,
       display: action
@@ -71,7 +64,33 @@ class Dashboard extends Component {
       console.log(this.state.display + " display");
   }
 
- 
+  async deleteWatchList(id) {
+    var xhttp = new XMLHttpRequest();
+
+    xhttp.open(
+      "GET",
+      process.env.API_URL + "/api/watchlist/" + id + "/delete",
+      true
+    );
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send();
+    xhttp.onreadystatechange = () => {
+      if (xhttp.readyState == XMLHttpRequest.DONE) {
+        if (xhttp.status === 200 || xhttp.status === 201) {
+          console.log("Deleted");
+            this.setState({
+              activeId: 0
+            });
+          
+        } else if (xhttp.status !== 200) {
+          console.log("Failed to add to watchlist");
+          this.setState({
+            activeId: 0
+          });
+        }
+      }
+    };
+  }
 
   close() {
     this.setState({
@@ -80,70 +99,40 @@ class Dashboard extends Component {
     });
   }
 
-  async componentDidMount() {
-    await this.setState({
-      userId: this.getCookie(),
-      
-    });
-
-    console.log(this.state.userId + " is userId");
-
+  async getWatchList() {
     try {
       const response = await fetch(
-        process.env.API_URL + "/api/watchlist/" + this.state.userId + "/user"
+        process.env.API_URL + "/api/watchlist/" + this.state.userId + "/byUserId"
       );
       const json = await response.json();
       console.log(json);
       this.setState({
         watchList: json,
         ready: true
-        
       });
     } catch (error) {
       console.log(error);
     }
   }
 
+  async componentDidMount() {
+    await this.setState({
+      userId: this.getCookie()
+    });
+
+    this.getWatchList();
+    console.log(this.state.userId + " is userId");
   
+  }
+
+  updateWatchList() {
+    this.getWatchList();
+    console.log("Watchlist update");
+  }
   
 
   render() {
-
     if (this.state.ready === true) {
-      let players = [];
-
-      for (var i = 0; i < this.state.watchList[0][1].length; i++) {
-        var playerId = this.state.watchList[0][1][i];
-        console.log(playerId + " HER er ID");
-        players.push(
-          <tr key={i}>
-            <td
-              key={this.state.watchList[0][1][i]}
-              className="td-dashboard-watchlist-user"
-              onClick={() => this.showWatchlist(playerId, 1)}
-            >
-              {this.state.watchList[0][2][i]}
-            </td>
-          </tr>
-        );
-      }
-
-      let teams = [];
-
-      for (var i = 0; i < this.state.watchList[0][3].length; i++) {
-        var teamId = this.state.watchList[0][3][i];
-        teams.push(
-          <tr key={i + i * 10}>
-            <td
-              key={this.state.watchList[0][3][i]}
-              className="td-dashboard-watchlist-user"
-              onClick={() => this.showWatchlist(teamId, 2)}
-            >
-              {this.state.watchList[0][4][i]}
-            </td>
-          </tr>
-        );
-      }
 
       if (this.state.display === 1) {
         return (
@@ -151,11 +140,14 @@ class Dashboard extends Component {
             <LayoutGlobal />
 
             <div className="container">
+            <WatchList watchList = {this.state.watchList} showWatchlist={this.showWatchlist}/>
               <PlayerInfo
                 id={this.state.activeId}
                 close={this.close}
                 canEdit={false}
                 userId={this.state.userId}
+                updateWatchList={this.updateWatchlist}
+
               />
             </div>
           </div>
@@ -166,6 +158,7 @@ class Dashboard extends Component {
             <LayoutGlobal />
 
             <div className="container">
+            <WatchList watchList = {this.state.watchList} showWatchlist={this.showWatchlist}/>
               <TeamInfo
                 id={this.state.activeId}
                 close={this.close}
@@ -181,30 +174,7 @@ class Dashboard extends Component {
             <LayoutGlobal />
 
             <div className="container">
-              <div className="dashboard-watchlist-container">
-                <table className="dashboard-watchlist-user">
-                  <tbody>
-                    <tr>
-                      <th key={0} className="th-dashboard-watchlist-user">
-                        Watchlist
-                      </th>
-                    </tr>
-                    <tr>
-                      <th key={1} className="th-dashboard-watchlist-user">
-                        Players
-                      </th>
-                    </tr>
-                    {players}
-
-                    <tr>
-                      <th key={2} className="th-dashboard-watchlist-user">
-                        Teams
-                      </th>
-                    </tr>
-                    {teams}
-                  </tbody>
-                </table>
-              </div>
+            <WatchList watchList = {this.state.watchList} showWatchlist={this.showWatchlist}/>
               <div className="btn-admin-nav">
                 <button
                   className="btn-nav"
@@ -264,12 +234,14 @@ class Dashboard extends Component {
           </div>
         );
       }
+    } else {
+      return (
+        <div>
+          <LayoutGlobal/>
+          <h2>Loading...</h2>
+        </div>
+      );
     }
-    else {
-      return(
-        <div></div>
-      )
-  }
   }
 }
 

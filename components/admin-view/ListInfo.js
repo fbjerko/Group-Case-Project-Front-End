@@ -102,7 +102,7 @@ class ListInfo extends Component {
 
 
       rows.push(
-        <tr key={data[0] + data[4]} className="tr-admin-get-all">
+        <tr key={rows.length} className="tr-admin-get-all">
           {columns}
         </tr>
       );
@@ -144,7 +144,7 @@ class ListInfo extends Component {
     } else {
       if (this.props.contentFields.length === 5 && this.state.display === 99) {
         table = (
-          <table className="table-admin-get-all-matches">
+          <table key="table" className="table-admin-get-all-matches">
             <tbody key="tbody">
               <tr key="Attri" className="tr-admin-get-all">
                 {fields}
@@ -155,8 +155,8 @@ class ListInfo extends Component {
         );
       } else {
         table = (
-          <table className="table-admin-get-all-matches">
-            <tbody>
+          <table key="table" className="table-admin-get-all">
+            <tbody key="tbody_1">
               <tr key="Attr" className="tr-admin-get-all">
                 {fields}
               </tr>
@@ -226,7 +226,7 @@ class ListInfo extends Component {
       } else {
         return (
           <div>
-            <h1>{this.props.content[0]}</h1>
+            <h1>{this.props.name}</h1>
             <div className="div-admin-get-all">
               {table}
 
