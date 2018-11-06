@@ -4,6 +4,7 @@ import Login from "../components/Login";
 import Register from "../components/Register";
 import IndexInfo from "../components/IndexInfo";
 import Loading from "../components/buttons/loading";
+import i18n from "../i18n"
 
 
 const context = React.createContext();
@@ -63,14 +64,15 @@ class Index extends Component {
   }
 
   render() {
+    console.log(i18n);
     return (
 
         <LayoutGlobal >
 
         <div className="btn-group-index-login-reg">
           <button className="btn-index-login-reg " onClick={this._onLoginClick}>
-            Log in
-          </button>
+              {i18n.t("name.label")}
+        </button>
 
           <button className="btn-index-login-reg " onClick={this._onRegisterClick}>
             Register
