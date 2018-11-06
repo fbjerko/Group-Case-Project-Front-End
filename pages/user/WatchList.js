@@ -12,7 +12,6 @@ class WatchList extends Component {
     };
 
     this.deleteWatchList = this.deleteWatchList.bind(this);
-  
   }
 
   getCookie() {
@@ -31,8 +30,6 @@ class WatchList extends Component {
     }
     return "";
   }
-
- 
 
   async deleteWatchList(id) {
     var xhttp = new XMLHttpRequest();
@@ -63,35 +60,54 @@ class WatchList extends Component {
   }
 
   async componentDidMount() {
+
+
     await this.setState({
-      watchList: this.props.watchList,
-      ready: true
-    }); 
+      userId: this.getCookie()
+    });
+
+    if (this.props.watchList === undefined ) {
+      console.log(this.state.userId + " is userId WATCHLIST");
+
+      try {
+        const response = await fetch(
+          process.env.API_URL + "/api/watchlist/" + this.state.userId + "/user"
+        );
+        const json = await response.json();
+     
+        await this.setState({
+          watchList: json,
+          ready: true
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+     await this.setState({
+        watchList: this.props.watchList,
+        ready: true
+      });
+    }
   }
 
-  handleClick(playerId, id) {
-
-    this.props.close();
-    
-    this.props.showWatchlist(playerId, id);
-}
-
   render() {
+
     if (this.state.ready === true) {
+     
       let players = [];
 
-      for (var i = 0; i < this.props.watchList[0][1].length; i++) {
-        var playerId = this.props.watchList[0][1][i];
+      for (var i = 0; i < this.state.watchList[0][1].length; i++) {
+        let playerId = this.state.watchList[0][1][i];
         console.log(playerId + " playerID");
-      
+
         players.push(
-          <tr key={"p" + playerId}>
+          <tr key={i + i * 100}>
             <td
               key={this.state.watchList[0][1][i]}
               className="td-dashboard-watchlist-user"
               onClick={() => this.props.showWatchlist(playerId, 1)}
             >
-              {this.props.watchList[0][2][i]}
+              {this.state.watchList[0][2][i]}
             </td>
           </tr>
         );
@@ -99,16 +115,16 @@ class WatchList extends Component {
 
       let teams = [];
 
-      for (var i = 0; i < this.props.watchList[0][3].length; i++) {
-        var teamId = this.props.watchList[0][3][i];
+      for (var i = 0; i < this.state.watchList[0][3].length; i++) {
+        let teamId = this.state.watchList[0][3][i];
         teams.push(
           <tr key={i + i * 10}>
             <td
-              key={this.props.watchList[0][3][i]}
+              key={this.state.watchList[0][3][i]}
               className="td-dashboard-watchlist-user"
               onClick={() => this.props.showWatchlist(teamId, 2)}
             >
-              {this.props.watchList[0][4][i]}
+              {this.state.watchList[0][4][i]}
             </td>
           </tr>
         );
@@ -152,12 +168,7 @@ class WatchList extends Component {
         </div>
       );
     } else {
-      return (
-          <div>
-              
-          </div>
-      )
-      ;
+      return <div />;
     }
   }
 }

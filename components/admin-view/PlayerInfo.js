@@ -110,12 +110,14 @@ class PlayerInfo extends Component {
             this.setState({
               watchListText: name + " added to Watchlist"
             });
+            this.props.updateWatchList;
             setTimeout(function(){ 
               this.setState({
                 watchListText: "Remove from Watchlist"
               }); 
             }.bind(this), 2000);
           }
+          
           
         } else if (xhttp.status !== 200) {
           console.log("Failed to add to watchlist");
