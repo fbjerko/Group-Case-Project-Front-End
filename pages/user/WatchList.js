@@ -60,8 +60,6 @@ class WatchList extends Component {
   }
 
   async componentDidMount() {
-
-
     await this.setState({
       userId: this.getCookie()
     });
@@ -71,7 +69,7 @@ class WatchList extends Component {
 
       try {
         const response = await fetch(
-          process.env.API_URL + "/api/watchlist/" + this.state.userId + "/user"
+          process.env.API_URL + "/api/watchlist/" + this.state.userId + "/byUserId"
         );
         const json = await response.json();
      
@@ -103,7 +101,7 @@ class WatchList extends Component {
         players.push(
           <tr key={i + i * 100}>
             <td
-              key={this.state.watchList[0][1][i]}
+              key={this.state.watchList[0][1][i] + "p" + i}
               className="td-dashboard-watchlist-user"
               onClick={() => this.props.showWatchlist(playerId, 1)}
             >
@@ -129,7 +127,6 @@ class WatchList extends Component {
           </tr>
         );
       }
-      console.log(players);
 
       return (
         <div className="dashboard-watchlist-container">

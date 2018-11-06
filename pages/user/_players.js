@@ -97,6 +97,7 @@ class Players extends Component {
       console.log(error);
     }
   }
+  
   async showWatchlist(id, action) {
 
     await this.setState({

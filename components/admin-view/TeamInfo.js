@@ -65,10 +65,10 @@ class TeamInfo extends Component {
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send(
       JSON.stringify({
+        teamId: this.props.id,
+        teamName: this.name,
         playerId: "",
         playerName: "",
-        teamId: this.props.id,
-        teamName: name,
         userId: this.props.userId
       })
     );
@@ -77,11 +77,11 @@ class TeamInfo extends Component {
         if (xhttp.status === 200 || xhttp.status === 201) {
           if (this.state.inWatchList === true) {
             this.setState({
-              watchListText: name + " removed from Watchlist"
+              watchListText: name + " Removed from Watchlist"
             });
           } else {
             this.setState({
-              watchListText: name + " added to Watchlist"
+              watchListText: name + " Added to Watchlist"
             });
             this.props.updateWatchList;
             setTimeout(
@@ -142,11 +142,11 @@ class TeamInfo extends Component {
     }
     if (this.state.ready === true) {
       const team = this.state.teamInfo;
-      const name = team.name;
+      this.name = team.name;
         return (
           <div>
             <div className="div-admin-get-all">
-              <h1>{team.name}</h1>
+              <h1>{this.name}</h1>
               <table className="table-admin-get-one">
                 <tbody>
                   <tr className="tr-admin-get-one">
@@ -155,7 +155,7 @@ class TeamInfo extends Component {
                   </tr>
                   <tr className="tr-admin-get-one">
                     <th className="th-admin-get-one"> Name</th>
-                    <td className="td-admin-get-one">{team.name}</td>
+                    <td className="td-admin-get-one">{this.name}</td>
                   </tr>
                   <tr className="tr-admin-get-one">
                     <th className="th-admin-get-one"> Manager</th>

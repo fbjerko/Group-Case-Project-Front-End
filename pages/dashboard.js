@@ -102,7 +102,7 @@ class Dashboard extends Component {
   async getWatchList() {
     try {
       const response = await fetch(
-        process.env.API_URL + "/api/watchlist/" + this.state.userId + "/user"
+        process.env.API_URL + "/api/watchlist/" + this.state.userId + "/byUserId"
       );
       const json = await response.json();
       console.log(json);
