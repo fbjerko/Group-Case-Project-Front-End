@@ -14,7 +14,7 @@ class GatewayInfo extends Component {
 
     this.state = {
       activeId: "",
-      displayFirst: false
+      displayFirst: false,
     };
   }
 
@@ -23,7 +23,7 @@ class GatewayInfo extends Component {
     if (this.props.content === "Players") {
       return (
         <div>
-          <PlayerInfo id={this.props.id} close={this.props.close} canEdit={this.props.canEdit} userId={this.props.userId}/>
+          <PlayerInfo editPlayer={this.props.edit} id={this.props.id} close={this.props.close} canEdit={this.props.canEdit} userId={this.props.userId}/>
         </div>
       );
     }

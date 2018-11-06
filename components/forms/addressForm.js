@@ -1,5 +1,6 @@
 import React from "react";
 import Popupp from "../popupp";
+import Loading from "../buttons/loading";
 
 class AddressForm extends React.Component {
     constructor(props){
@@ -12,7 +13,8 @@ class AddressForm extends React.Component {
           city: '',
           country: '',
           showPop:false,
-          status:'Nothing'
+          status:'Nothing',
+            loading:null
         }
     }
 
@@ -35,7 +37,7 @@ class AddressForm extends React.Component {
       }
 
     sendAddress = ()=>{
-
+        this.setState({loading:<Loading icon={true} text={"Creating address..."}/>});
         var xhttp = new XMLHttpRequest();
 
         xhttp.open("POST", process.env.API_URL+"/api/address", true);
@@ -54,11 +56,12 @@ class AddressForm extends React.Component {
             if (xhttp.readyState == XMLHttpRequest.DONE) {
                 if(xhttp.status==201){
                     console.log("Created");
-                    this.setState({status:"Created"});
+                    this.setState({status:"Created",loading:<Loading icon={false} text={"Created Address!"}/>});
+                    setTimeout(()=>window.location.reload(), 1000);
 
                 }else if (xhttp.status==403){
                     console.log("Failed to create")
-                    this.setState({status:"Failed to create"});
+                    this.setState({status:"Created",loading:<Loading icon={false} text={"Failed to create"}/>});
                 }
                 this.setState({showPop:true});
 
@@ -68,13 +71,13 @@ class AddressForm extends React.Component {
 
   
     render(){
-        if(this.state.showPop){
-            return(<Popupp text={this.state.status}/>);
-        }
+
       return(
         <div className="info-container">
       <div className="seasons-container">
+          {this.state.loading}
       <div className="top">
+
         <h2>Create new address</h2>
       </div>
        <p>Address </p>

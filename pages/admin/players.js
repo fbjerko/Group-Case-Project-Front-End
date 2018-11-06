@@ -4,6 +4,7 @@ import AdminReturn from "../../components/buttons/AdminReturn";
 import ListInfo from "../../components/admin-view/ListInfo";
 import PlayersForm from "../../components/forms/playersForm";
 import CreateUser from "../../components/admin-create/CreateUsers";
+import Loading from "../../components/buttons/loading";
 
 class Players extends Component {
   constructor(props) {
@@ -12,10 +13,12 @@ class Players extends Component {
       players: [],
       ready: false,
       createPlayer: false,
+      editPlayer:false,
       currentPage: 0,
       content: ["Players", "Teams"], // Attribute variable names
       contentFields: ["Name", "Team"],
-      canEdit: true // Names/Values of variables
+      canEdit: true, // Names/Values of variables,
+      playerId: -1
     };
 
     this._createPlayer = this._createPlayer.bind(this);
@@ -56,6 +59,14 @@ class Players extends Component {
     console.log(this.state.createPlayer + " ");
   }
 
+  edit=(playerId)=>{
+    console.log(playerId);
+      this.setState({
+          updatePlayer: !this.state.updatePlayer,
+          playerId:playerId
+      });
+  }
+
   async componentDidMount() {
 
     try {
@@ -85,7 +96,15 @@ class Players extends Component {
 
         </div>
       );
-    } else if(this.state.createPlayer === false && this.state.ready===true){
+    } else if (this.state.updatePlayer === true && this.state.ready===true) {
+        return (
+            <div>
+                <LayoutGlobal />
+                <PlayersForm edit={"edit"} id={this.state.playerId}/>
+
+            </div>
+        );
+    }else if(this.state.createPlayer === false && this.state.ready===true){
       return (
         <div>
           <LayoutGlobal />
@@ -110,7 +129,8 @@ class Players extends Component {
               lastPage={this.lastPage}
               canEdit={this.state.canEdit}
               currentPage={this.state.currentPage}
-        edit={this.edit}
+              edit={this.edit}
+
             />
 
             {this.state.createPlayer ? <CreateUser /> : null}
@@ -121,7 +141,8 @@ class Players extends Component {
     }
     else{
       return(<div>
-          <h1>Loading...</h1>
+          <LayoutGlobal />
+          <Loading icon={true} text={"Loading players..."}/>
       </div>);
 
     }

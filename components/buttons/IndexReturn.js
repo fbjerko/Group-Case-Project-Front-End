@@ -8,9 +8,12 @@ const IndexReturn = () => (
     <button
     type="button"
     className="btn-ret"
-    onClick={() => Router.pushRoute("/")}
+    onClick={() => {
+        window.location=process.env.FRONT_END_URL+'/logout';
+    }
+        }
   >
-   Home
+   Log Out
   </button>
   </div>
 

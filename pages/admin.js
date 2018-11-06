@@ -35,11 +35,11 @@ class Admin extends Component {
        
 
         <div className="btn-admin-nav">
-              <button className="btn-nav" id="btn-players" onClick={() => Router.pushRoute("/admin/players")}>
+              <button className="btn-nav" id="btn-players" onClick={() => Router.push("/admin/players")}>
                 Players
               </button>
 
-              <button className="btn-nav" id="btn-managers" onClick={() => Router.pushRoute("/admin/managers")}>
+              <button className="btn-nav" id="btn-managers" onClick={() => Router.push("/admin/managers")}>
                 Managers
               </button>
 

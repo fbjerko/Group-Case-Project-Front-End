@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import SearchField from "../admin-create/SearchField";
 import Popupp from "../popupp";
+import Loading from "../buttons/loading";
 
 class PlayersForm extends Component {
     constructor(props){
@@ -16,7 +17,8 @@ class PlayersForm extends Component {
             teamId:-1,
             personId:-1,
             ready:false,
-            playerId:-1
+            playerId:-1,
+            loading:null
         }
         this.switchMethods(this.props.edit);
 
@@ -86,7 +88,7 @@ class PlayersForm extends Component {
 
 
     sendPlayer = ()=>{
-
+        this.setState({loading:<Loading icon={true} text={"Creating address..."}/>});
         let xhttp = new XMLHttpRequest();
 
         xhttp.open(this.state.method,  process.env.API_URL+"/api/player", true);
@@ -104,14 +106,16 @@ class PlayersForm extends Component {
 
             if (xhttp.readyState == XMLHttpRequest.DONE) {
                 if(xhttp.status==200){
-                    console.log("Created");
-                    this.setState({status:"Created"});
+
+                    this.setState({status:"Created",loading:<Loading icon={false} text={"Successfull "+this.props.edit}/>});
+                    setTimeout(()=>window.location.reload(), 1000);
 
                 }else if (xhttp.status==403){
-                    console.log("Failed to create")
-                    this.setState({status:"Failed to create"});
+
+
+                    this.setState({status:"Failed to create",loading:<Loading icon={false} text={"Failed to "+this.props.edit}/>});
                 }
-                this.setState({showPop:true});
+
 
             }
         }
@@ -119,14 +123,13 @@ class PlayersForm extends Component {
 
     render(){
         if(this.state.ready){
-            if(this.state.showPop){
-                return(<Popupp text={this.state.status}/>);
-            }
+
 
             return(
                 <div className="info-container">
 
                     <div className="seasons-container">
+                        {this.state.loading}
                         <div className="top">
                             <h2>Create new player</h2>
                         </div>
@@ -154,7 +157,7 @@ class PlayersForm extends Component {
         }else{
             return(
                 <div>
-                    <h1>Loading Data...</h1>
+                    <Loading icon={true} text={"Loading player form..."}/>
                 </div>
             );
         }

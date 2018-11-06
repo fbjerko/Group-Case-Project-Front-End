@@ -141,6 +141,47 @@ class ListInfo extends Component {
           <h2>Loading...</h2>
         </div>
       );
+
+    } else if (this.state.display === 0) {
+      return (
+        <div>
+          <GatewayInfo
+            id={this.state.activeId}
+            close={this.close}
+            content={this.props.content[0]}
+            canEdit={this.props.canEdit}
+            userId={this.props.userId}
+            edit={this.props.edit}
+          />
+        </div>
+      );
+    } else if (this.state.display === 1) {
+      return (
+        <div>
+          <GatewayInfo
+            id={this.state.activeId}
+            close={this.close}
+            content={this.props.content[1]}
+            canEdit={this.props.canEdit}
+            userId={this.props.userId}
+
+          />
+        </div>
+      );
+    } else if (this.state.display === 2) {
+      return (
+        <div>
+          <GatewayInfo
+            id={this.state.activeId}
+            close={this.close}
+            content={this.props.content[2]}
+            canEdit={this.props.canEdit}
+
+            
+          />
+        </div>
+      );
+
     } else {
       if (this.props.contentFields.length === 5 && this.state.display === 99) {
         table = (

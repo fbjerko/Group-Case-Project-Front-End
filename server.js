@@ -22,43 +22,53 @@ app.prepare()
 .then(() => {
   const server = express();
   
-  //server.use('/',routes);
+
   server.use(cookieParser());
   server.use(bodyParser.json());
 
+
+
   server.use('/admin',(req,res,next)=>{
     console.log("Checking authentication for Admin");
-    console.log(req.cookies.token);
+
     try{
     const decode = jwt.verify(req.cookies.token,'secretAdmin');
       next();
     }catch(error){
     	
-      res.status(401).end();
+      res.redirect('/')
     }
     
     
     
   });
 
+
+
   server.use('/dashboard',(req,res,next)=>{
     console.log("Checking authentication for User");
-    console.log(req.cookies.token);
+
     try{
     const decode = jwt.verify(req.cookies.token,'secretNotAdmin');
       next();
     }catch(error){
-    	
-      res.status(401).end();
+
+        res.redirect('/')
     }
     
     
     
   });
 
+    // Authenticate middleware
+    // We will apply this middleware to every route except '/login' and '/_next'
 
-
-  server.post('/login',(req,res)=> {
+server.get('/logout',(req,res)=>{
+    res.clearCookie("token");
+    res.clearCookie("id");
+    res.redirect('/');
+})
+server.post('/login',(req,res)=> {
       console.log('User whishes to login as Admin');
       console.log(req.body.password);
       console.log(req.body.email);
@@ -71,72 +81,90 @@ app.prepare()
           resolveWithFullResponse: true,
           headers:{
               'content-type':"application/json"
-          }
+          },
+          simple: false
       };
-
+    console.log(url);
       request(options).then(response=>{
+          if(response.statusCode==200){
+              console.log("User exists");
+              let user = response.body;
 
-          let user = response.body;
+              bcrypt.compare(req.body.password,user.password,(err,hashResponse)=>{
+                  if(hashResponse){
+                      if(user.admin==false){
+                          const JWTToken = jwt.sign({
+                                  email: user.email,
+                                  id: user.userId,
+                                  admin : false
 
-          bcrypt.compare(req.body.password,user.password,(err,hashResponse)=>{
-              if(hashResponse){
-                  if(user.admin==false){
-                      const JWTToken = jwt.sign({
-                              email: user.email,
-                              id: user.userId,
-                              admin : false
+                              },
+                              'secretNotAdmin',
+                              {
+                                  expiresIn: '2h'
+                              });
+                          res.cookie('token',JWTToken,{maxAge:2 * 60 * 60 * 1000,httpOnly:true});
+                          res.cookie('id',user.userId,{maxAge:2 * 60 * 60 * 1000,httpOnly:false});
+                          res.status(200).json({
+                              message: "user",
+                              token: JWTToken
 
-                          },
-                          'secretNotAdmin',
-                          {
-                              expiresIn: '2h'
                           });
-                      res.cookie('token',JWTToken,{maxAge:2 * 60 * 60 * 1000,httpOnly:true});
-                      res.cookie('id',user.userId,{maxAge:2 * 60 * 60 * 1000,httpOnly:false});
-                      res.status(200).json({
-                          message: "user",
-                          token: JWTToken
+                      }else if(user.admin==true){
+                          const JWTToken = jwt.sign({
+                                  email: user.email,
+                                  id: user.userId,
+                                  admin : true
 
-                      });
-                  }else if(user.admin==true){
-                      const JWTToken = jwt.sign({
-                              email: user.email,
-                              id: user.userId,
-                              admin : true
-
-                          },
-                          'secretAdmin',
-                          {
-                              expiresIn: '2h'
+                              },
+                              'secretAdmin',
+                              {
+                                  expiresIn: '2h'
+                              });
+                          console.log(user);
+                          res.cookie('token',JWTToken,{maxAge:2 * 60 * 60 * 1000,httpOnly:true});
+                          res.cookie('id',user.userId,{maxAge:2 * 60 * 60 * 1000,httpOnly:false});
+                          res.status(200).json({
+                              message: "admin",
                           });
-                      console.log(user);
-                      res.cookie('token',JWTToken,{maxAge:2 * 60 * 60 * 1000,httpOnly:true});
-                      res.cookie('id',user.userId,{maxAge:2 * 60 * 60 * 1000,httpOnly:false});
-                      res.status(200).json({
-                          message: "admin",
-                      });
+                      }
+                  }else{
+                      res.status(401).end();
                   }
-              }else{
-                
-              }
-          })
+              })
+          }else{
+              console.log("User Not exists");
+              res.status(401).json({
+                  message:"failed"
+              });
+          }
+
       }).catch((err)=>{
-          console.log("Error!!!-----------------------------------------");
           console.log(err);
-          res.status(401);
       });
 
 
 
-
   });
+server.get('/',(req,res)=>{
+    try{
+        const decode = jwt.verify(req.cookies.token,'secretNotAdmin');
+        res.redirect('/dashboard')
+    }catch(error){
+        try{
+            const decode = jwt.verify(req.cookies.token,'secretAdmin');
+            res.redirect('/admin')
+        }catch(error){
+            return handle(req, res);
+        }
+    }
+})
 
   server.post('/register',(req,res)=>{
   	let body = req.body;
   	bcrypt.hash(body.password,10,(err,hash)=>{
   		if(hash){
   			body.password = hash;
-  			console.log(hash);
   			let url = process.env.API_URL+"/api/user";
 
             const options = {
@@ -147,20 +175,31 @@ app.prepare()
                 resolveWithFullResponse: true,
                 headers:{
                     'content-type':"application/json"
-                }
+                },
+                simple:false
             };
 
 		  	request(options).then(response=>{
 		  	    //console.log(response.status);
-                res.status(200);
+                if(response.statusCode==201){
+                    res.status(201).json({
+                        message:"Created"
+                    });
+                }else{
+                    res.status(401).json({
+                        message:"Failed"
+                    });
+                }
+
             }).catch((err)=>{
-                console.log("Error!!!-----------------------------------------");
                 console.log(err);
-                res.status(401);
+
             });
   		}else{
   			console.log(err);
-  			res.status(401);
+  			res.status(401).json({
+                message:"Failed"
+            });
   		}
   		
   	});
@@ -169,8 +208,10 @@ app.prepare()
   	
   	
   });
-  
+
   server.get('*', (req, res) => {
+
+
     return handle(req, res);
   });
 
