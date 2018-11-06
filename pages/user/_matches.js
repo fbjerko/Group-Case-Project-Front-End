@@ -72,12 +72,7 @@ class Matches extends Component {
               >
                 Create Season
               </button>
-              <div className="btn-admin-config">
-                <button className="btn-create" onClick={this._createMatches}>
-                  Configure matches
-                </button>
-                <UserReturn />
-              </div>
+              
               <div className="btn-admin-create-bottom" />;
               {this.state.createMatches ? <CreateUser /> : null}
             </div>

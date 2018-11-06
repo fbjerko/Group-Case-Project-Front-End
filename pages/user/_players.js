@@ -27,8 +27,7 @@ class Players extends Component {
     this.nextPage = this.nextPage.bind(this);
     this.firstPage = this.firstPage.bind(this);
     this.lastPage = this.lastPage.bind(this);
-    this.showWatchlist = this.showWatchlist.bind(this);
-    this.close = this.close.bind(this);
+  
   }
 
   firstPage() {
@@ -62,26 +61,10 @@ class Players extends Component {
     console.log(this.state.createPlayer + " ");
   }
 
-  getCookie() {
-    var name = "id" + "=";
-    var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(";");
-    for (var i = 0; i < ca.length; i++) {
-      var c = ca[i];
-      while (c.charAt(0) == " ") {
-        c = c.substring(1);
-      }
-      if (c.indexOf(name) == 0) {
-        return c.substring(name.length, c.length);
-      }
-    }
-    return "";
-  }
+
 
   async componentDidMount() {
-    await this.setState({
-      userId: this.getCookie()
-    });
+
 
     console.log(this.state.userId + " is userId / players");
 
@@ -98,27 +81,9 @@ class Players extends Component {
     }
   }
   
-  async showWatchlist(id, action) {
 
-    await this.setState({
-      activeId: 0,
-      display: 99
-    });
-    await this.setState({
-      activeId: id,
-      display: action
-    });
 
-    console.log(this.state.activeId + " active id"),
-      console.log(this.state.display + " display");
-  }
 
-  close() {
-    this.setState({
-      activeId: "",
-      display: 99
-    });
-  }
 
   render() {
     const players = this.state.players.slice(
@@ -131,7 +96,7 @@ class Players extends Component {
           <LayoutGlobal />
 
           <div className="container">
-          <WatchList watchList = {this.state.watchList} showWatchlist={this.showWatchlist}/>
+        
             <PlayerInfo
               id={this.state.activeId}
               close={this.close}
@@ -149,7 +114,7 @@ class Players extends Component {
           <LayoutGlobal />
 
           <div className="container">
-          <WatchList watchList = {this.state.watchList} showWatchlist={this.showWatchlist}/>
+          
             <TeamInfo
               id={this.state.activeId}
               close={this.close}
@@ -191,9 +156,7 @@ class Players extends Component {
 
           <div className="container">
           <WatchList showWatchlist={this.showWatchlist} close={this.close}/>
-            <div className="btn-admin-config">
-              <UserReturn />
-            </div>
+            
 
             <ListInfo
               data={players}

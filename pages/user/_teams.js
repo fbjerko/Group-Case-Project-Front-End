@@ -4,7 +4,7 @@ import UserReturn from "../../components/buttons/UserReturn";
 import ListInfo from "../../components/admin-view/ListInfo";
 import PlayerInfo from "../../components/admin-view/PlayerInfo";
 import TeamInfo from "../../components/admin-view/TeamInfo";
-import WatchList from "./WatchList"
+
 
 class Teams extends Component {
   constructor(props) {
@@ -27,8 +27,8 @@ class Teams extends Component {
     this.nextPage = this.nextPage.bind(this);
     this.firstPage = this.firstPage.bind(this);
     this.lastPage = this.lastPage.bind(this);
-    this.showWatchlist = this.showWatchlist.bind(this);
-    this.close = this.close.bind(this);
+
+
   }
 
   firstPage() {
@@ -60,27 +60,10 @@ class Teams extends Component {
     console.log(this.state.createTeam + " ");
   }
 
-  getCookie() {
-    var name = "id" + "=";
-    var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(";");
-    for (var i = 0; i < ca.length; i++) {
-      var c = ca[i];
-      while (c.charAt(0) == " ") {
-        c = c.substring(1);
-      }
-      if (c.indexOf(name) == 0) {
-        console.log(c.substring(name.length, c.length) + " is cookie");
-        return c.substring(name.length, c.length);
-      }
-    }
-    return "";
-  }
+  
 
   async componentDidMount() {
-    await this.setState({
-      userId: this.getCookie()
-    });
+ 
 
     console.log(this.state.userId);
 
@@ -97,27 +80,8 @@ class Teams extends Component {
     }
   }
 
-  async showWatchlist(id, action) {
-
-    await this.setState({
-      activeId: 0,
-      display: 99
-    });
-    await this.setState({
-      activeId: id,
-      display: action
-    });
-
-    console.log(this.state.activeId + " active id"),
-      console.log(this.state.display + " display");
-  }
-
-  close() {
-    this.setState({
-      activeId: "",
-      display: 99
-    });
-  }
+ 
+  
 
   render() {
     const teams = this.state.teams.slice(
@@ -130,7 +94,7 @@ class Teams extends Component {
           <LayoutGlobal />
 
           <div className="container">
-          <WatchList watchList = {this.state.watchList} showWatchlist={this.showWatchlist}/>
+       
             <PlayerInfo
               id={this.state.activeId}
               close={this.close}
@@ -148,7 +112,7 @@ class Teams extends Component {
           <LayoutGlobal />
 
           <div className="container">
-          <WatchList watchList = {this.state.watchList} showWatchlist={this.showWatchlist}/>
+        
             <TeamInfo
               id={this.state.activeId}
               close={this.close}
@@ -189,10 +153,8 @@ class Teams extends Component {
           <LayoutGlobal />
 
           <div className="container">
-          <WatchList showWatchlist={this.showWatchlist} close={this.close}/>
-            <div className="btn-admin-config">
-              <UserReturn />
-            </div>
+         
+            
 
             <ListInfo
               data={teams}

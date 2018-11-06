@@ -5,7 +5,12 @@ import IndexReturn from "../components/buttons/IndexReturn";
 import { Router } from "../routes";
 import PlayerInfo from "../components/admin-view/PlayerInfo";
 import TeamInfo from "../components/admin-view/TeamInfo";
-import WatchList from "./user/WatchList"
+import WatchList from "./user/WatchList";
+import Players from "./user/_players";
+import Teams from "./user/_teams";
+import Managers from "./user/_managers";
+import Matches from "./user/_matches";
+import Stadiums from "./user/_stadiums";
 
 class Dashboard extends Component {
   constructor(props) {
@@ -16,7 +21,8 @@ class Dashboard extends Component {
       watchList: [],
       activeId: 0,
       display: 99,
-      ready: false
+      ready: false,
+      showContent: ""
     };
 
     this._onEditClick = this._onEditClick.bind(this);
@@ -24,6 +30,7 @@ class Dashboard extends Component {
     this.deleteWatchList = this.deleteWatchList.bind(this);
     this.updateWatchList = this.updateWatchList.bind(this);
     this.close = this.close.bind(this);
+    this.changeContent = this.changeContent.bind(this);
   }
 
   _onEditClick() {
@@ -50,7 +57,6 @@ class Dashboard extends Component {
   }
 
   async showWatchlist(id, action) {
-
     await this.setState({
       activeId: 0,
       display: 99
@@ -78,10 +84,9 @@ class Dashboard extends Component {
       if (xhttp.readyState == XMLHttpRequest.DONE) {
         if (xhttp.status === 200 || xhttp.status === 201) {
           console.log("Deleted");
-            this.setState({
-              activeId: 0
-            });
-          
+          this.setState({
+            activeId: 0
+          });
         } else if (xhttp.status !== 200) {
           console.log("Failed to add to watchlist");
           this.setState({
@@ -102,7 +107,10 @@ class Dashboard extends Component {
   async getWatchList() {
     try {
       const response = await fetch(
-        process.env.API_URL + "/api/watchlist/" + this.state.userId + "/byUserId"
+        process.env.API_URL +
+          "/api/watchlist/" +
+          this.state.userId +
+          "/byUserId"
       );
       const json = await response.json();
       console.log(json);
@@ -122,32 +130,37 @@ class Dashboard extends Component {
 
     this.getWatchList();
     console.log(this.state.userId + " is userId");
-  
   }
 
   updateWatchList() {
     this.getWatchList();
     console.log("Watchlist update");
   }
-  
+
+  changeContent(contentType) {
+    this.setState({
+      showContent: contentType
+    });
+  }
 
   render() {
     if (this.state.ready === true) {
-
       if (this.state.display === 1) {
         return (
           <div>
             <LayoutGlobal />
 
             <div className="container">
-            <WatchList watchList = {this.state.watchList} showWatchlist={this.showWatchlist}/>
+              <WatchList
+                watchList={this.state.watchList}
+                showWatchlist={this.showWatchlist}
+              />
               <PlayerInfo
                 id={this.state.activeId}
                 close={this.close}
                 canEdit={false}
                 userId={this.state.userId}
                 updateWatchList={this.updateWatchlist}
-
               />
             </div>
           </div>
@@ -158,7 +171,10 @@ class Dashboard extends Component {
             <LayoutGlobal />
 
             <div className="container">
-            <WatchList watchList = {this.state.watchList} showWatchlist={this.showWatchlist}/>
+              <WatchList
+                watchList={this.state.watchList}
+                showWatchlist={this.showWatchlist}
+              />
               <TeamInfo
                 id={this.state.activeId}
                 close={this.close}
@@ -168,18 +184,117 @@ class Dashboard extends Component {
             </div>
           </div>
         );
+      } else if (this.state.showContent === "Players") {
+        return (
+          <div>
+            <div className="btn-admin-config">
+            <button
+              type="button"
+              className="btn-ret-admin"
+              onClick={() => this.changeContent("")}
+            >
+              Return to Dashboard
+            </button>
+            </div>
+            
+            <WatchList
+              watchList={this.state.watchList}
+              showWatchlist={this.showWatchlist}
+            />
+            <Players />
+          </div>
+        );
+      } else if (this.state.showContent === "Managers") {
+        return (
+          <div>
+             <div className="btn-admin-config">
+            <button
+              type="button"
+              className="btn-ret-admin"
+              onClick={() => this.changeContent("")}
+            >
+              Return to Dashboard
+            </button>
+            </div>
+            <WatchList
+              watchList={this.state.watchList}
+              showWatchlist={this.showWatchlist}
+            />
+            <Managers />
+          </div>
+        );
+      } else if (this.state.showContent === "Teams") {
+        return (
+          <div>
+             <div className="btn-admin-config">
+            <button
+              type="button"
+              className="btn-ret-admin"
+              onClick={() => this.changeContent("")}
+            >
+              Return to Dashboard
+            </button>
+            </div>
+            <WatchList
+              watchList={this.state.watchList}
+              showWatchlist={this.showWatchlist}
+            />
+            <Teams />
+          </div>
+        );
+      } else if (this.state.showContent === "Matches") {
+        return (
+          <div>
+             <div className="btn-admin-config">
+            <button
+              type="button"
+              className="btn-ret-admin"
+              onClick={() => this.changeContent("")}
+            >
+              Return to Dashboard
+            </button>
+            </div>
+            <WatchList
+              watchList={this.state.watchList}
+              showWatchlist={this.showWatchlist}
+            />
+            <Matches />
+          </div>
+        );
+      } else if (this.state.showContent === "Stadiums") {
+        return (
+          <div>
+             <div className="btn-admin-config">
+            <button
+              type="button"
+              className="btn-ret-admin"
+              onClick={() => this.changeContent("")}
+            >
+              Return to Dashboard
+            </button>
+            </div>
+            <WatchList
+              watchList={this.state.watchList}
+              showWatchlist={this.showWatchlist}
+            />
+            <Stadiums />
+          </div>
+        );
       } else {
         return (
           <div>
             <LayoutGlobal />
 
             <div className="container">
-            <WatchList watchList = {this.state.watchList} showWatchlist={this.showWatchlist}/>
+              <WatchList
+                watchList={this.state.watchList}
+                showWatchlist={this.showWatchlist}
+              />
               <div className="btn-admin-nav">
                 <button
                   className="btn-nav"
                   id="btn-players"
-                  onClick={() => Router.pushRoute("/dashboard/players")}
+                  onClick={() => this.changeContent("Players")}
                 >
                   Players
                 </button>
@@ -187,7 +302,7 @@ class Dashboard extends Component {
                 <button
                   className="btn-nav"
                   id="btn-teams"
-                  onClick={() => Router.pushRoute("/dashboard/teams")}
+                  onClick={() => this.changeContent("Teams")}
                 >
                   Teams
                 </button>
@@ -197,7 +312,7 @@ class Dashboard extends Component {
                 <button
                   className="btn-nav"
                   id="btn-managers"
-                  onClick={() => Router.pushRoute("/dashboard/managers")}
+                  onClick={() => this.changeContent("Managers")}
                 >
                   Managers
                 </button>
@@ -205,7 +320,7 @@ class Dashboard extends Component {
                 <button
                   className="btn-nav"
                   id="btn-matches"
-                  onClick={() => Router.pushRoute("/dashboard/matches")}
+                  onClick={() => this.changeContent("Matches")}
                 >
                   Matches
                 </button>
@@ -213,7 +328,7 @@ class Dashboard extends Component {
                 <button
                   className="btn-nav"
                   id="btn-stadium"
-                  onClick={() => Router.pushRoute("/dashboard/stadiums")}
+                  onClick={() => this.changeContent("Stadiums")}
                 >
                   Stadiums
                 </button>
@@ -237,7 +352,7 @@ class Dashboard extends Component {
     } else {
       return (
         <div>
-          <LayoutGlobal/>
+          <LayoutGlobal />
           <h2>Loading...</h2>
         </div>
       );
