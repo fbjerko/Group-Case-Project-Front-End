@@ -83,7 +83,7 @@ class Matches extends Component {
           <div className = "btn-admin-create-bottom">
 
           <div className="container">
-            <h1>matches</h1>
+            <h1>Matches</h1>
 
             <div className="btn-admin-create-top">
               <button className="btn-create">Create</button>
@@ -111,13 +111,14 @@ class Matches extends Component {
           <div className="container">
             <div className="btn-admin-config">
               <button className="btn-create" onClick={this._createManager}>
-                Create Manager
+                Create Match
               </button>
               <AdminReturn />
             </div>
 
             <ListInfo
               data={matches}
+              name = {this.state.content[2]}
               content={this.state.content}
               contentFields={this.state.contentFields}
               ready={this.state.ready}

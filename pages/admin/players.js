@@ -120,6 +120,7 @@ class Players extends Component {
             <ListInfo
 
               data={players}
+              name = {this.state.content[0]}
               content={this.state.content}
               contentFields={this.state.contentFields}
               ready={this.state.ready}

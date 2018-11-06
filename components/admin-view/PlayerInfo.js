@@ -9,31 +9,27 @@ class PlayerInfo extends Component {
     this.state = {
       playerId: "0",
       playerInfo: [],
+      playerName: "",
       edit: false,
       ready: false,
       watchListText: "",
       inWatchList: false
     };
 
-
     this._edit = this._edit.bind(this);
-        this.addToWatchList = this.addToWatchList. bind(this);
+    this.addToWatchList = this.addToWatchList.bind(this);
+
 
   }
-
-
 
   _edit() {
     this.setState({
       edit: !this.state.edit
     });
-
   }
-  
 
   async componentDidMount() {
-
-    console.log("ID player: " + this.props.id );
+    console.log("ID player: " + this.props.id);
 
     try {
       const response = await fetch(
@@ -43,7 +39,6 @@ class PlayerInfo extends Component {
 
       console.log(json);
       await this.setState({
-
         playerInfo: json,
         ready: true
       });
@@ -51,7 +46,7 @@ class PlayerInfo extends Component {
       console.log(error);
     }
 
-    if(this.state.inWatchList === true) {
+    if (this.state.inWatchList === true) {
       this.setState({
         watchListText: "Remove from Watchlist"
       });
@@ -60,13 +55,10 @@ class PlayerInfo extends Component {
         watchListText: "Add to Watchlist"
       });
     }
-
-    
   }
 
   addToWatchList(name) {
-
-    if(this.state.inWatchList === true){
+    if (this.state.inWatchList === true) {
       this.setState({
         watchListText: "Removing..."
       });
@@ -80,7 +72,7 @@ class PlayerInfo extends Component {
 
     var json = JSON.stringify({
       playerId: this.props.id,
-      playerName: name,
+      playerName: this.name,
       userId: this.props.userId
     });
 
@@ -91,7 +83,7 @@ class PlayerInfo extends Component {
     xhttp.send(
       JSON.stringify({
         playerId: this.props.id,
-        playerName: name,
+        playerName: this.name,
         teamId: "",
         teamName: "",
         userId: this.props.userId
@@ -102,16 +94,24 @@ class PlayerInfo extends Component {
         if (xhttp.status === 200 || xhttp.status === 201) {
           console.log("Watchlist updated");
 
-          if(this.state.inWatchList === true){
+          if (this.state.inWatchList === true) {
             this.setState({
-              watchListText: name + " removed from Watchlist"
+              watchListText: this.name + " Removed from Watchlist"
             });
           } else {
             this.setState({
-              watchListText: name + " added to Watchlist"
+              watchListText: this.name + " Added to Watchlist"
             });
+            this.props.updateWatchList;
+            setTimeout(
+              function() {
+                this.setState({
+                  watchListText: "Remove from Watchlist"
+                });
+              }.bind(this),
+              2000
+            );
           }
-          
         } else if (xhttp.status !== 200) {
           console.log("Failed to add to watchlist");
           this.setState({
@@ -120,16 +120,8 @@ class PlayerInfo extends Component {
         }
       }
     };
-
-    /*
-
-    watchlistId
-    playerId
-    teamID
-    userId
-
-    */
   }
+
 
   render() {
 
@@ -138,18 +130,55 @@ class PlayerInfo extends Component {
 
     const player = this.state.playerInfo;
 
-    const name = player.person.firstName + " " + player.person.lastName;
+
+  render() {
 
 
-
-    
+    let buttons; // Decides if we can edit or not
     if (this.props.canEdit === true) {
+      buttons = (
+        <table className="table-admin-but">
+          <tbody>
+            <tr>
+              <td className="td-admin-but" onClick={()=>this.props.editPlayer(this.props.id)}>
+                EDIT
+              </td>
+              <td className="td-admin-but" onClick={this.props.previousPage}>
+                DELETE
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      );
+    } else {
+      buttons = (
+        <table className="table-admin-but">
+          <tbody>
+            <tr>
+              <td
+                className="td-admin-but"
+                onClick={() => this.addToWatchList(name)}
+              >
+                {this.state.watchListText}
+              </td>
+            </tr>
+          </tbody>
+        </table>
 
+      );
+    }
+
+    if (this.state.ready === true) {
+      const player = this.state.playerInfo;
+
+      this.name= player.person.firstName + " " + player.person.lastName
+    
+        
       return (
         <div>
           <div className="div-admin-get-all">
             <h1>
-              {player.person.firstName} {player.person.lastName}
+            {this.name}
             </h1>
             <table className="table-admin-get-one">
               <tbody>
@@ -160,7 +189,7 @@ class PlayerInfo extends Component {
                 <tr className="tr-admin-get-one">
                   <th className="th-admin-get-one"> Name</th>
                   <td className="td-admin-get-one">
-                    {player.person.firstName} {player.person.lastName}
+                  {this.name}
                   </td>
                 </tr>
                 <tr className="tr-admin-get-one">
@@ -194,24 +223,7 @@ class PlayerInfo extends Component {
                 </tr>
               </tbody>
             </table>
-            <table className="table-admin-but">
-              <tbody>
-                <tr>
-
-
-                  <td className="td-admin-but" onClick={()=>this.props.editPlayer(this.props.id)}>
-                    EDIT
-                  </td>
-
-                  <td
-                    className="td-admin-but"
-                    onClick={this.props.previousPage}
-                  >
-                    DELETE
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+            {buttons}
           </div>
           <button className="btn-admin-player" onClick={this.props.close}>
             Back
@@ -219,85 +231,14 @@ class PlayerInfo extends Component {
         </div>
       );
 
-    } 
-    if (this.props.canEdit === false) {
-      return (
-        <div>
-          <div className="div-admin-get-all">
-            <h1>
-              {player.person.firstName} {player.person.lastName}
-            </h1>
-            <table className="table-admin-get-one">
-              <tbody>
-                <tr className="tr-admin-get-one">
-                  <th className="th-admin-get-one"> Player ID</th>
-                  <td className="td-admin-get-one">{player.playerId}</td>
-                </tr>
-                <tr className="tr-admin-get-one">
-                  <th className="th-admin-get-one"> Name</th>
-                  <td className="td-admin-get-one">
-                    {player.person.firstName} {player.person.lastName}
-                  </td>
-                </tr>
-                <tr className="tr-admin-get-one">
-                  <th className="th-admin-get-one"> Team</th>
-                  <td className="td-admin-get-one">{player.team.name}</td>
-                </tr>
-                <tr className="tr-admin-get-one">
-                  <th className="th-admin-get-one"> Number</th>
-                  <td className="td-admin-get-one">{player.number}</td>
-                </tr>
-                <tr className="tr-admin-get-one">
-                  <th className="th-admin-get-one"> Position</th>
-                  <td className="td-admin-get-one">{player.normalPosition}</td>
-                </tr>
-                <tr className="tr-admin-get-one">
-                  <th className="th-admin-get-one"> Date Of Birth</th>
-                  <td className="td-admin-get-one">
-                    {player.person.dateOfBirth}
-                  </td>
-                </tr>
-                <tr className="tr-admin-get-one">
-                  <th className="th-admin-get-one"> Address</th>
-                  <td className="td-admin-get-one">
-                    {player.person.address.addressLine1}{" "}
-                    {player.person.address.addressLine2}{" "}
-                    {player.person.address.addressLine3},{" "}
-                    {player.person.address.postalCode},{" "}
-                    {player.person.address.city},{" "}
-                    {player.person.address.country}
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <table className="table-admin-but">
-              <tbody>
-                <tr>
-
-                  <td
-                    className="td-admin-but"
-                    onClick={() => this.addToWatchList(name)}
-                  >
-                    {this.state.watchListText} 
-
-            
-                </td>
-               
-
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <button className="btn-admin-player" onClick={this.props.close}>
-            Back
-          </button>
-        </div>
-      );
 
     }
     
 
 
+
+    if (this.state.ready === true && this.state.edit === true) {
+      return <PlayersForm id={this.props.id} edit={"edit"} />;
     } else {
       return <Loading icon={true} text={"Loading player..."}/>;
     }
