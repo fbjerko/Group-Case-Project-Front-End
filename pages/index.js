@@ -17,7 +17,9 @@ class Index extends Component {
       showLogin: false,
       showRegister: false,
       matches: false,
-      teams: false
+      teams: false,
+      lng:'en'
+
     };
 
     this._onLoginClick = this._onLoginClick.bind(this);
@@ -59,19 +61,22 @@ class Index extends Component {
 
   
   componentDidMount() {
-      //console.log(process.env.API_URL);
+      i18n.on('languageChanged', this.onLanguageChanged)
 
+  }
+  onLanguageChanged = (lng)=>{
+    this.setState({lng:lng});
   }
 
   render() {
-    console.log(i18n);
+    let lng = this.state.lng;
     return (
 
         <LayoutGlobal >
 
         <div className="btn-group-index-login-reg">
           <button className="btn-index-login-reg " onClick={this._onLoginClick}>
-              {i18n.t("name.label")}
+              {i18n.t("login",{lng})}
         </button>
 
           <button className="btn-index-login-reg " onClick={this._onRegisterClick}>

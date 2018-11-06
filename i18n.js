@@ -1,5 +1,6 @@
 import i18next from 'i18next';
 
+
 i18next
     .init({
         interpolation: {
@@ -7,18 +8,18 @@ i18next
             escapeValue: false,
         },
         lng: 'no', // 'en' | 'es'
-        // Using simple hardcoded resources for simple example
+
         resources: {
             en: {
                 translation: {
-                    age: { label: 'Age', },
+                    login: "Login",
                     home: { label: 'Home', },
                     name: { label: 'Name', },
                 },
             },
             no: {
                 translation: {
-                    age: { label: 'Alder', },
+                    login :"Logg inn",
                     home: { label: 'Hjem', },
                     name: { label: 'Navn', },
                 },
