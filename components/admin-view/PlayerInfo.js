@@ -122,15 +122,6 @@ class PlayerInfo extends Component {
     };
   }
 
-
-  render() {
-
-    if(this.state.ready === true){
-
-
-    const player = this.state.playerInfo;
-
-
   render() {
 
 
