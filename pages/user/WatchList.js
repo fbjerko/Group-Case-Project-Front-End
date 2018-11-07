@@ -36,7 +36,7 @@ class WatchList extends Component {
 
     xhttp.open(
       "GET",
-      process.env.API_URL + "/api/watchlist/" + id + "/delete",
+      process.env.API_URL + "/api/watchlist/" + id + "/clear",
       true
     );
     xhttp.setRequestHeader("Content-type", "application/json");
@@ -157,7 +157,7 @@ class WatchList extends Component {
                   className="td-admin-but"
                   onClick={() => this.deleteWatchList(this.state.userId)}
                 >
-                  Delete Watchlist
+                   Clear Watchlist
                 </td>
               </tr>
             </tbody>

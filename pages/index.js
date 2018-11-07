@@ -4,6 +4,7 @@ import Login from "../components/Login";
 import Register from "../components/Register";
 import IndexInfo from "../components/IndexInfo";
 import Loading from "../components/buttons/loading";
+import ListInfo from "../components/admin-view/ListInfo";
 
 
 const context = React.createContext();
@@ -15,14 +16,23 @@ class Index extends Component {
     this.state = {
       showLogin: false,
       showRegister: false,
-      matches: false,
-      teams: false
+      players: false,
+      players: false,
+      playersArray: [],
+      canEdit: false,
+      ready: false,
+      currentPage: 0
     };
 
     this._onLoginClick = this._onLoginClick.bind(this);
     this._onRegisterClick = this._onRegisterClick.bind(this);
     this._matches = this._matches.bind(this);
-    this._teams = this._teams.bind(this);
+    this._players = this._players.bind(this);
+
+    this.previousPage = this.previousPage.bind(this);
+    this.nextPage = this.nextPage.bind(this);
+    this.firstPage = this.firstPage.bind(this);
+    this.lastPage = this.lastPage.bind(this);
   }
 
   _onLoginClick() {
@@ -42,27 +52,66 @@ class Index extends Component {
   _matches() {
     this.setState({
       matches: !this.state.matches,
-      tables: false,
-      teams: false
+      players: false
     });
   }
 
-
-  _teams() {
+  _players() {
     this.setState({
-      teams: !this.state.teams,
-      matches: false,
-      tables: false
+      players: !this.state.players,
+      matches: false
     });
+  }
+
+  firstPage() {
+    this.setState({ currentPage: 0 });
+  }
+  lastPage() {
+    this.setState({ currentPage: Math.floor(this.state.playersArray.length / 10) });
+    console.log(this.state.currentPage);
+  }
+
+  previousPage() {
+    if (this.state.currentPage !== 0)
+      this.setState(prevState => ({ currentPage: prevState.currentPage - 1 }));
+    console.log(this.state.currentPage);
+  }
+
+  nextPage() {
+    
+    console.log(this.playersArray/ 10);
+    if (this.state.currentPage + 1 < this.playersArray/ 10) {
+      this.setState({ currentPage: this.state.currentPage + 1 });
+    }
+    console.log(this.state.currentPage);
   }
 
   
-  componentDidMount() {
-      //console.log(process.env.API_URL);
+  async componentDidMount() {
+    try {
+      const response = await fetch(process.env.API_URL + "/api/player/all");
+      const json = await response.json();
+      console.log(json);
+      this.setState({
+        playersArray: json,
+        ready: true
+      });
+    } catch (error) {
+      console.log(error);
+    }
 
   }
 
   render() {
+
+    console.log(this.state.playersArray);
+
+    const players = this.state.playersArray.slice(
+      this.state.currentPage * 10,
+      (this.state.currentPage + 1) * 10
+    );
+
+    console.log(players);
     return (
 
         <LayoutGlobal >
@@ -83,12 +132,26 @@ class Index extends Component {
             Matches
           </button>
 
-          <button className="btn-index-toggle" onClick={this._teams}>
+          <button className="btn-index-toggle" onClick={this._players}>
             Players
           </button>
 
           {this.state.matches ? <IndexInfo matches={this.state.matches}/> : null}
-          {this.state.teams ? <IndexInfo teams={this.state.teams}/> : null}
+          {this.state.players ? <ListInfo
+              data={players}
+              name = {"Players"}
+              content={['Players','Teams']}
+              contentFields={["Name", "Team"]}
+              ready={this.state.ready}
+              nextPage={this.nextPage}
+              previousPage={this.previousPage}
+              firstPage={this.firstPage}
+              lastPage={this.lastPage}
+              canEdit={this.state.canEdit}
+              userId={0}
+              currentPage={this.state.currentPage}
+              canLoad={false}
+            /> : null}
         </div>
 
         

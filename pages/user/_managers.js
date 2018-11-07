@@ -103,9 +103,7 @@ class Managers extends Component {
           <LayoutGlobal />
 
           <div className="container">
-            <div className="btn-admin-config">
-              <UserReturn />
-            </div>
+          
 
             <ListInfo
               data={managers}
