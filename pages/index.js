@@ -60,7 +60,7 @@ class Index extends Component {
   }
 
   
-  componentDidMount() {
+  componentWillMount() {
       i18n.on('languageChanged', this.onLanguageChanged)
   }
   onLanguageChanged = (lng)=>{
@@ -68,6 +68,7 @@ class Index extends Component {
   }
 
   render() {
+
     let lng = this.state.lng;
     return (
 

@@ -1,11 +1,11 @@
-import i18nextConfig from 'i18next';
+import i18next from 'i18next';
 import lngDetect from 'i18next-browser-languagedetector';
 
 
-i18nextConfig
+i18next
     .use(lngDetect)
     .init({
-        debug:false,
+        debug:true,
         detection:{
             // order and from where user language should be detected
             order: ['localStorage','cookie','querystring', 'navigator', 'htmlTag', 'path', 'subdomain'],
@@ -31,7 +31,7 @@ i18nextConfig
         },
         interpolation: {
             // React already does escaping
-            //escapeValue: false,
+            escapeValue: false,
         },
         //lng: 'no', // 'en' | 'es'
         resources: {
@@ -162,4 +162,4 @@ i18nextConfig
 
     });
 
-export default i18nextConfig;
+export default i18next;
