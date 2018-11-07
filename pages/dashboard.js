@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import LayoutGlobal from "../components/LayoutGlobal";
 import EditUser from "../components/EditUser";
-import IndexReturn from "../components/buttons/IndexReturn";
 import { Router } from "../routes";
 import PlayerInfo from "../components/admin-view/PlayerInfo";
 import TeamInfo from "../components/admin-view/TeamInfo";
@@ -11,6 +10,9 @@ import Teams from "./user/_teams";
 import Managers from "./user/_managers";
 import Matches from "./user/_matches";
 import Stadiums from "./user/_stadiums";
+import i18n from "../i18n"
+import NavbarUser from "../components/NavbarUser";
+
 
 class Dashboard extends Component {
   constructor(props) {
@@ -22,7 +24,9 @@ class Dashboard extends Component {
       activeId: 0,
       display: 99,
       ready: false,
-      showContent: ""
+      showContent: "",
+      lng:i18n.language
+
     };
 
     this._onEditClick = this._onEditClick.bind(this);
@@ -55,6 +59,11 @@ class Dashboard extends Component {
     }
     return "";
   }
+
+
+    onLanguageChanged = (lng)=>{
+    this.setState({lng:lng});
+    }
 
   async showWatchlist(id, action) {
     await this.setState({
@@ -130,6 +139,7 @@ class Dashboard extends Component {
     });
 
     this.getWatchList();
+    i18n.on('languageChanged', this.onLanguageChanged)
     console.log(this.state.userId + " is userId");
   }
 
@@ -145,6 +155,7 @@ class Dashboard extends Component {
   }
 
   render() {
+    let lng = this.state.lng;
     if (this.state.ready === true) {
       if (this.state.display === 1) {
         return (
@@ -285,7 +296,7 @@ class Dashboard extends Component {
         return (
           <div>
             <LayoutGlobal />
-
+            <NavbarUser onEditClick={this._onEditClick}/>
             <div className="container">
             <WatchList
               watchList={this.state.watchList}
@@ -297,7 +308,7 @@ class Dashboard extends Component {
                   id="btn-players"
                   onClick={() => this.changeContent("Players")}
                 >
-                  Players
+                  {i18n.t("PLAYERS",{lng})}
                 </button>
 
                 <button
@@ -305,7 +316,7 @@ class Dashboard extends Component {
                   id="btn-teams"
                   onClick={() => this.changeContent("Teams")}
                 >
-                  Teams
+                  {i18n.t("TEAMS",{lng})}
                 </button>
               </div>
 
@@ -315,7 +326,7 @@ class Dashboard extends Component {
                   id="btn-managers"
                   onClick={() => this.changeContent("Managers")}
                 >
-                  Managers
+                  {i18n.t("MANAGERS",{lng})}
                 </button>
 
                 <button
@@ -323,7 +334,7 @@ class Dashboard extends Component {
                   id="btn-matches"
                   onClick={() => this.changeContent("Matches")}
                 >
-                  Matches
+                  {i18n.t("MATCHES",{lng})}
                 </button>
 
                 <button
@@ -331,30 +342,25 @@ class Dashboard extends Component {
                   id="btn-stadium"
                   onClick={() => this.changeContent("Stadiums")}
                 >
-                  Stadiums
+                  {i18n.t("STADIUMS",{lng})}
                 </button>
               </div>
-              <button
-                type="button"
-                className="btn-edit"
-                onClick={this._onEditClick}
-              >
-                Edit account
-              </button>
+
               <div className="div-edituser">
                 {this.state.showEdit ? <EditUser /> : null}
               </div>
             </div>
 
-            <IndexReturn />
+
           </div>
         );
       }
     } else {
       return (
         <div>
-          <LayoutGlobal />
-          <h2>Loading...</h2>
+          <LayoutGlobal/>
+          <h2>{i18n.t("LOADING",{lng})}</h2>
+
         </div>
       );
     }
