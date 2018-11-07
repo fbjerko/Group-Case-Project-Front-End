@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PlayersForm from "../../components/forms/playersForm";
 import Loading from "../buttons/loading";
+import i18n from "../i18n"
 
 class PlayerInfo extends Component {
   constructor(props) {
@@ -13,7 +14,8 @@ class PlayerInfo extends Component {
       edit: false,
       ready: false,
       watchListText: "",
-      inWatchList: false
+      inWatchList: false,
+      lng:i18n.language
     };
 
     this._edit = this._edit.bind(this);
@@ -21,6 +23,14 @@ class PlayerInfo extends Component {
 
 
   }
+
+  componentDidMount() {
+    i18n.on('languageChanged', this.onLanguageChanged)
+    
+    }
+    onLanguageChanged = (lng)=>{
+    this.setState({lng:lng});
+    }
 
   _edit() {
     this.setState({
@@ -128,7 +138,7 @@ class PlayerInfo extends Component {
 
   render(){
 
-
+    let lng = this.state.lng;
     let buttons; // Decides if we can edit or not
     if (this.props.canEdit === true) {
       buttons = (
@@ -136,10 +146,10 @@ class PlayerInfo extends Component {
           <tbody>
             <tr>
               <td className="td-admin-but" onClick={()=>this.props.editPlayer(this.props.id)}>
-                EDIT
+              {i18n.t("EDIT",{lng})}
               </td>
               <td className="td-admin-but" onClick={this.props.previousPage}>
-                DELETE
+              {i18n.t("DELETE",{lng})}
               </td>
             </tr>
           </tbody>
@@ -178,35 +188,35 @@ class PlayerInfo extends Component {
             <table className="table-admin-get-one">
               <tbody>
                 <tr className="tr-admin-get-one">
-                  <th className="th-admin-get-one"> Player ID</th>
+                  <th className="th-admin-get-one"> {i18n.t("PLAYER",{lng})} ID</th>
                   <td className="td-admin-get-one">{player.playerId}</td>
                 </tr>
                 <tr className="tr-admin-get-one">
-                  <th className="th-admin-get-one"> Name</th>
+                  <th className="th-admin-get-one"> {i18n.t("NAME",{lng})}</th>
                   <td className="td-admin-get-one">
                   {this.name}
                   </td>
                 </tr>
                 <tr className="tr-admin-get-one">
-                  <th className="th-admin-get-one"> Team</th>
+                  <th className="th-admin-get-one"> {i18n.t("TEAM",{lng})}</th>
                   <td className="td-admin-get-one">{player.team.name}</td>
                 </tr>
                 <tr className="tr-admin-get-one">
-                  <th className="th-admin-get-one"> Number</th>
+                  <th className="th-admin-get-one"> {i18n.t("NUMBER",{lng})}</th>
                   <td className="td-admin-get-one">{player.number}</td>
                 </tr>
                 <tr className="tr-admin-get-one">
-                  <th className="th-admin-get-one"> Position</th>
+                  <th className="th-admin-get-one"> {i18n.t("POSITION",{lng})}</th>
                   <td className="td-admin-get-one">{player.normalPosition}</td>
                 </tr>
                 <tr className="tr-admin-get-one">
-                  <th className="th-admin-get-one"> Date Of Birth</th>
+                  <th className="th-admin-get-one"> {i18n.t("DATE_OF_BIRTH",{lng})}</th>
                   <td className="td-admin-get-one">
                     {player.person.dateOfBirth}
                   </td>
                 </tr>
                 <tr className="tr-admin-get-one">
-                  <th className="th-admin-get-one"> Address</th>
+                  <th className="th-admin-get-one"> {i18n.t("ADDRESS",{lng})}</th>
                   <td className="td-admin-get-one">
                     {player.person.address.addressLine1}{" "}
                     {player.person.address.addressLine2}{" "}
@@ -221,7 +231,7 @@ class PlayerInfo extends Component {
             {buttons}
           </div>
           <button className="btn-admin-player" onClick={this.props.close}>
-            Back
+          {i18n.t("BACK",{lng})}
           </button>
         </div>
       );

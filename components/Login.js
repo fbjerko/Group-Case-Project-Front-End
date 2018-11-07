@@ -26,9 +26,9 @@ class Login extends React.Component {
         let lng = this.state.lng;
         let loading;
         if(this.state.loading){
-            loading = <Loading text={"'" + i18n.t("AUTH",{lng}) + "'"} icon={true}/>;
+            loading = <Loading text={i18n.t("AUTH",{lng})} icon={true}/>;
         }else if(this.state.failed){
-            loading=<Loading text={"'" + i18n.t("AUTH",{lng}) + " " + i18n.t("FAIL",{lng}) +"'"} icon={false}/>
+            loading=<Loading text={i18n.t("AUTH",{lng}) + " " + i18n.t("FAIL",{lng})} icon={false}/>
         }
 
         return(

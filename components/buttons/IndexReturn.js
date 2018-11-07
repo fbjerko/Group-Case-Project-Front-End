@@ -1,5 +1,6 @@
 import React from "react";
 import { Router } from "../../routes";
+import i18n from "../i18n"
 
 const IndexReturn = () => (
 
@@ -13,7 +14,7 @@ const IndexReturn = () => (
     }
         }
   >
-   Log Out
+   {i18n.t("LOG_OUT")}
   </button>
   </div>
 

@@ -100,6 +100,13 @@ i18next
                     CREATING_USER: "Creating user",
                     CREATING_FAILED: "Failed creating user!",
                     USER_CREATED: "User created",
+                    LOG_OUT: "Log out",
+                    PAGE: "Page",
+                    FIRSTP: "First",
+                    LASTP: "Last",
+                    NEXT: "Next",
+                    PREV: "Previous"
+                
 
                 },
             },
@@ -110,7 +117,7 @@ i18next
                     MANAGERS: "Trenere",
                     MANAGER: "Trener",
                     MATCH: "Kamp",
-                    STADIUMS: "Stadiums",
+                    STADIUMS: "Stadioner",
                     LOCATION: "Lokasjon",
                     NAME: "Navn",
                     TEAM: "Lag",
@@ -167,6 +174,12 @@ i18next
                     CREATING_USER: "Oppretter bruker",
                     CREATING_FAILED: "Oppretting feilet",
                     USER_CREATED: "Bruker opprettet",
+                    LOG_OUT: "Logg ut",
+                    PAGE: "Side",
+                    FIRSTP: "Første",
+                    LASTP: "Siste",
+                    NEXT: "Neste",
+                    PREV: "Forrige"
 
                 },
             },
