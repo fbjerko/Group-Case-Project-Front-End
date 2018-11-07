@@ -92,7 +92,7 @@ class ListInfo extends Component {
         } else {
           columns.push(
             <td
-              key={data[i * 2] + data[4] + i}
+              key={data[i * 2] + data[4] }
               className="td-admin-get-all"
               onClick={() => this.showFirst(id, action)}
             >
@@ -168,7 +168,6 @@ class ListInfo extends Component {
             content={this.props.content[1]}
             canEdit={this.props.canEdit}
             userId={this.props.userId}
-
           />
         </div>
       );
@@ -180,8 +179,6 @@ class ListInfo extends Component {
             close={this.close}
             content={this.props.content[2]}
             canEdit={this.props.canEdit}
-
-            
           />
         </div>
       );
@@ -278,19 +275,19 @@ class ListInfo extends Component {
               <table className="table-admin-but">
                 <tbody>
                   <tr>
-                    <td className="td-admin-but" onClick={this.props.firstPage}>
+                    <td className="td-admin-but" onClick={() => this.props.changePage(0)}>
                       First Page
                     </td>
                     <td
                       className="td-admin-but"
-                      onClick={this.props.previousPage}
+                      onClick={() => this.props.changePage(1)}
                     >
                       Previous Page
                     </td>
-                    <td className="td-admin-but" onClick={this.props.nextPage}>
+                    <td className="td-admin-but" onClick={() => this.props.changePage(2)}>
                       Next Page
                     </td>
-                    <td className="td-admin-but" onClick={this.props.lastPage}>
+                    <td className="td-admin-but" onClick={() => this.props.changePage(3)}>
                       Last Page
                     </td>
                   </tr>

@@ -13,7 +13,7 @@ class Players extends Component {
       players: [],
       ready: false,
       createPlayer: false,
-      editPlayer:false,
+      editPlayer: false,
       currentPage: 0,
       content: ["Players", "Teams"], // Attribute variable names
       contentFields: ["Name", "Team"],
@@ -22,33 +22,29 @@ class Players extends Component {
     };
 
     this._createPlayer = this._createPlayer.bind(this);
-    this.previousPage = this.previousPage.bind(this);
-    this.nextPage = this.nextPage.bind(this);
-    this.firstPage = this.firstPage.bind(this);
-    this.lastPage = this.lastPage.bind(this);
+    this.changePage = this.changePage.bind(this);
   }
 
-  firstPage() {
-    this.setState({ currentPage: 0 });
-  }
-  lastPage() {
-    this.setState({ currentPage: Math.floor(this.state.players.length / 10) });
-    console.log(this.state.currentPage);
-  }
-
-  previousPage() {
-    if (this.state.currentPage !== 0)
-      this.setState(prevState => ({ currentPage: prevState.currentPage - 1 }));
-    console.log(this.state.currentPage);
-  }
-
-  nextPage() {
-    console.log(this.state.players.length);
-    console.log(this.state.players.length / 10);
-    if (this.state.currentPage + 1 < this.state.players.length / 10) {
-      this.setState({ currentPage: this.state.currentPage + 1 });
+  changePage(command) {
+    if (command === 0) {
+      this.setState({ currentPage: 0 });
     }
-    console.log(this.state.currentPage);
+    if (command === 1) {
+      if (this.state.currentPage !== 0)
+        this.setState(prevState => ({
+          currentPage: prevState.currentPage - 1
+        }));
+    }
+    if (command === 2) {
+      if (this.state.currentPage + 1 < this.state.players.length / 10) {
+        this.setState({ currentPage: this.state.currentPage + 1 });
+      }
+    }
+    if (command === 3) {
+      this.setState({
+        currentPage: Math.floor(this.state.players.length / 10)
+      });
+    }
   }
 
   _createPlayer() {
@@ -59,16 +55,15 @@ class Players extends Component {
     console.log(this.state.createPlayer + " ");
   }
 
-  edit=(playerId)=>{
+  edit = playerId => {
     console.log(playerId);
-      this.setState({
-          updatePlayer: !this.state.updatePlayer,
-          playerId:playerId
-      });
-  }
+    this.setState({
+      updatePlayer: !this.state.updatePlayer,
+      playerId: playerId
+    });
+  };
 
   async componentDidMount() {
-
     try {
       const response = await fetch(process.env.API_URL + "/api/player/all");
       const json = await response.json();
@@ -83,69 +78,63 @@ class Players extends Component {
   }
 
   render() {
-    const players = this.state.players.slice(
-      this.state.currentPage * 10,
-      (this.state.currentPage + 1) * 10
-    );
-
-    if (this.state.createPlayer === true && this.state.ready===true) {
-      return (
-        <div>
-          <LayoutGlobal />
-          <PlayersForm edit={"create"}/>
-
-        </div>
+    if (this.state.ready === true) {
+      const players = this.state.players.slice(
+        this.state.currentPage * 10,
+        (this.state.currentPage + 1) * 10
       );
-    } else if (this.state.updatePlayer === true && this.state.ready===true) {
+
+      if (this.state.createPlayer === true) {
         return (
-            <div>
-                <LayoutGlobal />
-                <PlayersForm edit={"edit"} id={this.state.playerId}/>
-
-            </div>
+          <div>
+            <LayoutGlobal />
+            <PlayersForm edit={"create"} />
+          </div>
         );
-    }else if(this.state.createPlayer === false && this.state.ready===true){
+      } else if (this.state.updatePlayer === true) {
+        return (
+          <div>
+            <LayoutGlobal />
+            <PlayersForm edit={"edit"} id={this.state.playerId} />
+          </div>
+        );
+      } else if (this.state.createPlayer === false) {
+        return (
+          <div>
+            <LayoutGlobal />
+
+            <div className="container">
+              <div className="btn-admin-config">
+                <button className="btn-create" onClick={this._createPlayer}>
+                  Create
+                </button>
+                <AdminReturn />
+              </div>
+
+              <ListInfo
+                data={players}
+                name={this.state.content[0]}
+                content={this.state.content}
+                contentFields={this.state.contentFields}
+                ready={this.state.ready}
+                changePage={this.changePage}
+                canEdit={this.state.canEdit}
+                currentPage={this.state.currentPage}
+                edit={this.edit}
+              />
+
+              {this.state.createPlayer ? <CreateUser /> : null}
+            </div>
+          </div>
+        );
+      }
+    } else {
       return (
         <div>
           <LayoutGlobal />
-
-          <div className="container">
-            <div className="btn-admin-config">
-              <button className="btn-create" onClick={this._createPlayer}>
-                Create
-              </button>
-              <AdminReturn />
-            </div>
-
-            <ListInfo
-
-              data={players}
-              name = {this.state.content[0]}
-              content={this.state.content}
-              contentFields={this.state.contentFields}
-              ready={this.state.ready}
-              nextPage={this.nextPage}
-              previousPage={this.previousPage}
-              firstPage={this.firstPage}
-              lastPage={this.lastPage}
-              canEdit={this.state.canEdit}
-              currentPage={this.state.currentPage}
-              edit={this.edit}
-
-            />
-
-            {this.state.createPlayer ? <CreateUser /> : null}
-
-          </div>
+          <Loading icon={true} text={"Loading players..."} />
         </div>
       );
-    }
-    else{
-      return(<div>
-          <LayoutGlobal />
-          <Loading icon={true} text={"Loading players..."}/>
-      </div>);
-
     }
   }
 }

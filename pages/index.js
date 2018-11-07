@@ -30,11 +30,7 @@ class Index extends Component {
     this._onRegisterClick = this._onRegisterClick.bind(this);
     this._matches = this._matches.bind(this);
     this._players = this._players.bind(this);
-
-    this.previousPage = this.previousPage.bind(this);
-    this.nextPage = this.nextPage.bind(this);
-    this.firstPage = this.firstPage.bind(this);
-    this.lastPage = this.lastPage.bind(this);
+    this.changePage = this.changePage.bind(this);
   }
 
   _onLoginClick() {
@@ -69,30 +65,28 @@ class Index extends Component {
     });
   }
 
-  firstPage() {
-    this.setState({ currentPage: 0 });
-  }
-  lastPage() {
-    this.setState({
-      currentPage: Math.floor(this.state.playersArray.length / 10)
-    });
-    console.log(this.state.currentPage);
-  }
+  changePage(command) {
 
-  previousPage() {
-    if (this.state.currentPage !== 0)
+    if(command === 0) {
+      this.setState({ currentPage: 0 });
+    }
+    if(command === 1) {
+      if (this.state.currentPage !== 0)
       this.setState(prevState => ({ currentPage: prevState.currentPage - 1 }));
-    console.log(this.state.currentPage);
-  }
-
-  nextPage() {
-    console.log(this.state.playersArray.length + "    HDUHASDUSAHUDHSA");
-    
+    }
+    if (command === 2) {
+     
     if (this.state.currentPage + 1 < this.state.playersArray.length / 10) {
       this.setState({ currentPage: this.state.currentPage + 1 });
     }
-    console.log(this.state.currentPage);
+    } if(command === 3) {
+      this.setState({
+        currentPage: Math.floor(this.state.playersArray.length / 10)
+      });
+    }
   }
+
+  
 
   async componentDidMount() {
     try {
@@ -227,10 +221,9 @@ class Index extends Component {
               content={["Players", "Teams"]}
               contentFields={["Name", "Team"]}
               ready={this.state.ready}
-              nextPage={this.nextPage}
-              previousPage={this.previousPage}
-              firstPage={this.firstPage}
-              lastPage={this.lastPage}
+              
+              changePage={this.changePage}
+              
               canEdit={this.state.canEdit}
               userId={0}
               currentPage={this.state.currentPage}
