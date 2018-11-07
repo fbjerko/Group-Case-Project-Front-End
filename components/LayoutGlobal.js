@@ -2,22 +2,18 @@ import React from "react";
 import Head from "next/head";
 import i18n from "../i18n";
 
-i18n.changeLanguage('en',(err,t)=>{
-    console.log(err);
-});
+
 
 
 class LayoutGlobal extends React.Component{
   constructor(props){
     super(props);
-    this.state={
-        language:'en'
-      }
+
   }
 
   changeLanguage = (event)=>{
-        console.log(event.target.value);
-      this.setState({language:event.target.value});
+
+
       i18n.changeLanguage(event.target.value,(err,t)=>{
           if(err==null){
 

@@ -18,7 +18,7 @@ class Index extends Component {
       showRegister: false,
       matches: false,
       teams: false,
-      lng:'en'
+      lng:i18n.language
 
     };
 
@@ -60,15 +60,15 @@ class Index extends Component {
   }
 
   
-  componentDidMount() {
+  componentWillMount() {
       i18n.on('languageChanged', this.onLanguageChanged)
-
   }
   onLanguageChanged = (lng)=>{
     this.setState({lng:lng});
   }
 
   render() {
+
     let lng = this.state.lng;
     return (
 

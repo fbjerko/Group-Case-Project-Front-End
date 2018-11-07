@@ -1,17 +1,43 @@
 import i18next from 'i18next';
+import lngDetect from 'i18next-browser-languagedetector';
 
 
 i18next
+    .use(lngDetect)
     .init({
+        debug:true,
+        detection:{
+            // order and from where user language should be detected
+            order: ['localStorage','cookie','querystring', 'navigator', 'htmlTag', 'path', 'subdomain'],
+
+            // keys or params to lookup language from
+            lookupQuerystring: 'lng',
+            lookupCookie: 'lng',
+            lookupLocalStorage: 'lng',
+            lookupFromPathIndex: 0,
+            lookupFromSubdomainIndex: 0,
+
+            // cache user language on
+            caches: ['cookie','localStorage'],
+            excludeCacheFor: ['cimode'], // languages to not persist (cookie, localStorage)
+
+            // optional expire and domain for set cookie
+            cookieMinutes: 10,
+            cookieDomain: 'football-manager'
+
+
+            // optional htmlTag with lang attribute, the default is:
+            //htmlTag: document.documentElement
+        },
         interpolation: {
             // React already does escaping
             escapeValue: false,
         },
-        lng: 'no', // 'en' | 'es'
-
+        //lng: 'no', // 'en' | 'es'
         resources: {
             en: {
                 translation: {
+
                     PLAYERS: "Players",
                     TEAMS: "Teams",
                     MANAGERS: "Managers",
@@ -24,7 +50,6 @@ i18next
                     TEAM: "Team",
                     LOG_IN: "Log in",
                     REGISTER: "Register",
-                    MATCHES: "Matches",                
                     GENERAL: "General",
                     ADDRESS: "Address",
                     GOAL_TYPES: "Goal types",
@@ -76,7 +101,6 @@ i18next
                     CREATING_FAILED: "Failed creating user!",
                     USER_CREATED: "User created",
 
-                
                 },
             },
             no: {
@@ -85,7 +109,6 @@ i18next
                     TEAMS: "Lag",
                     MANAGERS: "Trenere",
                     MANAGER: "Trener",
-                    MATCHES: "Kamper",
                     MATCH: "Kamp",
                     STADIUMS: "Stadiums",
                     LOCATION: "Lokasjon",
@@ -147,7 +170,8 @@ i18next
 
                 },
             },
-        },
-    })
+        }
 
-export default i18next
+    });
+
+export default i18next;
