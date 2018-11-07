@@ -75,22 +75,22 @@ class Index extends Component {
 
         <div className="btn-group-index-login-reg">
           <button className="btn-index-login-reg " onClick={this._onLoginClick}>
-              {i18n.t("login",{lng})}
+              {i18n.t("LOG_IN",{lng})}
         </button>
 
           <button className="btn-index-login-reg " onClick={this._onRegisterClick}>
-            Register
+          {i18n.t("REGISTER",{lng})}
           </button>
         </div>
 
         <div className="btn-group-index-toggle-info">
 
           <button className="btn-index-toggle" onClick={this._matches}>
-            Matches
+          {i18n.t("MATCHES",{lng})}
           </button>
 
           <button className="btn-index-toggle" onClick={this._teams}>
-            Players
+          {i18n.t("PLAYERS",{lng})}
           </button>
 
           {this.state.matches ? <IndexInfo matches={this.state.matches}/> : null}
