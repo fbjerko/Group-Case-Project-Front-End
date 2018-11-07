@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PlayersForm from "../../components/forms/playersForm";
 import Loading from "../buttons/loading";
-import i18n from "../i18n"
+import i18n from "../../i18n"
 
 class PlayerInfo extends Component {
   constructor(props) {
@@ -15,7 +15,9 @@ class PlayerInfo extends Component {
       ready: false,
       watchListText: "",
       inWatchList: false,
-      lng:i18n.language
+      lng:i18n.language,
+      failed: false,
+      success: false
     };
 
     this._edit = this._edit.bind(this);
@@ -65,6 +67,25 @@ class PlayerInfo extends Component {
         watchListText: "Add to Watchlist"
       });
     }
+  }
+
+  deletePlayer(){
+
+    xhttp.open("DELETE", process.env.API_URL + "/api/player/" + this.props.id + "/delete", true);
+    xhttp.setRequestHeader("Content-type", "application/json");
+
+    xhttp.onreadystatechange = () => {
+      if (xhttp.readyState == XMLHttpRequest.DONE) {
+        if (xhttp.status === 200) {
+          this.setState({success: true, failed: false});
+        } else if (xhttp.status !== 403) {
+          this.setState({failed: true, success: false});
+        }
+      }
+    };
+
+
+
   }
 
   addToWatchList(name) {
@@ -138,9 +159,17 @@ class PlayerInfo extends Component {
 
   render(){
 
+    let loading;
     let lng = this.state.lng;
+
+    if(this.state.success){
+      loading = <Loading text={i18n.t("PLAYER",{lng}) + ' ' + i18n.t("DELETED", {lng})} icon={false}/>;
+  }else if(this.state.failed){
+      loading=<Loading text={i18n.t("DELETE",{lng}) + " " + i18n.t("FAIL",{lng})} icon={false}/>
+  }
     let buttons; // Decides if we can edit or not
     if (this.props.canEdit === true) {
+      {loading}
       buttons = (
         <table className="table-admin-but">
           <tbody>

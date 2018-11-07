@@ -40,6 +40,7 @@ i18next
                 translation: {
 
                     PLAYERS: "Players",
+                    PLAYER: "Player",
                     TEAMS: "Teams",
                     MANAGERS: "Managers",
                     MANAGER: "Manager",
@@ -53,12 +54,14 @@ i18next
                     REGISTER: "Register",
                     GENERAL: "General",
                     ADDRESS: "Address",
+                    ADDRESSES: "Addresses",
                     GOAL_TYPES: "Goal types",
                     PERSONS: "Persons",
                     PERSON: "Person",
                     OWNERS: "Owners",
                     OWNER: "Owner",
                     RET_GENERAL: "Return to General",
+                    RET_DASH: "Return to Dashboard",
                     SEASONS: "Seasons",
                     SEASON: "Season",
                     USERS: "Users",
@@ -87,7 +90,7 @@ i18next
                     DATE: "Date",
                     FIRST: "First",
                     LAST: "Last",
-                    OF_BIRTH: "of birth",
+                    DATE_OF_BIRTH: "Date of birth",
                     NUMBER: "Number",
                     POSITION: "Position",
                     START: "Start",
@@ -106,7 +109,9 @@ i18next
                     FIRSTP: "First",
                     LASTP: "Last",
                     NEXT: "Next",
-                    PREV: "Previous"
+                    PREV: "Previous",
+                    RET_DASH: "Return to dashboard",
+                    INFO: "Information"
                 
 
                 },
@@ -114,6 +119,7 @@ i18next
             no: {
                 translation: {
                     PLAYERS: "Spillere",
+                    PLAYER: "Spiller",
                     TEAMS: "Lag",
                     MANAGERS: "Trenere",
                     MANAGER: "Trener",
@@ -126,7 +132,8 @@ i18next
                     REGISTER: "Registrer",
                     MATCHES: "Kamper",
                     GENERAL: "Generelt",
-                    ADDRESS: "Addresse",
+                    ADDRESS: "Adresse",
+                    ADDRESSES: "Adresser",
                     GOAL_TYPES: "Mål type",
                     PERSONS: "Personer",
                     PERSON: "Person",
@@ -180,7 +187,10 @@ i18next
                     FIRSTP: "Første",
                     LASTP: "Siste",
                     NEXT: "Neste",
-                    PREV: "Forrige"
+                    PREV: "Forrige",
+                    RET_DASH: "Tilbake til hovedsiden",
+                    INFO: "Informasjon"
+
 
                 },
             },

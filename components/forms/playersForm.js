@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import SearchField from "../admin-create/SearchField";
 import Popupp from "../popupp";
 import Loading from "../buttons/loading";
-import i18n from "../i18n"
+import i18n from "../../i18n"
 
 class PlayersForm extends Component {
     constructor(props){
@@ -142,7 +142,7 @@ class PlayersForm extends Component {
                     <div className="seasons-container">
                         {this.state.loading}
                         <div className="top">
-                            <h2>{i18n.t("CREATE",{lng})+ i18n.t("NEW",{lng}) + i18n.t("PLAYER",{lng})}</h2>
+                            <h2>{i18n.t("PLAYER",{lng})  +' '+ i18n.t("INFO",{lng})}</h2>
                         </div>
                         <p>{i18n.t("PERSON",{lng})} </p>
                         <SearchField type={'person'} id={this.state.personId} handleChange={this.updateSearchFieldPerson}/>

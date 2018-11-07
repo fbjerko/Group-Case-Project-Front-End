@@ -5,6 +5,7 @@ import ListInfo from "../../components/admin-view/ListInfo";
 import PlayersForm from "../../components/forms/playersForm";
 import CreateUser from "../../components/admin-create/CreateUsers";
 import Loading from "../../components/buttons/loading";
+import i18n from "../../i18n"
 
 class Players extends Component {
   constructor(props) {
@@ -18,7 +19,8 @@ class Players extends Component {
       content: ["Players", "Teams"], // Attribute variable names
       contentFields: ["Name", "Team"],
       canEdit: true, // Names/Values of variables,
-      playerId: -1
+      playerId: -1,
+      lng:i18n.language
     };
 
     this._createPlayer = this._createPlayer.bind(this);
@@ -27,6 +29,14 @@ class Players extends Component {
     this.firstPage = this.firstPage.bind(this);
     this.lastPage = this.lastPage.bind(this);
   }
+
+  componentDidMount() {
+    i18n.on('languageChanged', this.onLanguageChanged)
+    
+    }
+    onLanguageChanged = (lng)=>{
+    this.setState({lng:lng});
+    }
 
   firstPage() {
     this.setState({ currentPage: 0 });
@@ -83,6 +93,9 @@ class Players extends Component {
   }
 
   render() {
+    this.state.content = [i18n.t("PLAYERS",this.state.lng) , i18n.t("TEAMS",this.state.lng)];
+    this.state.contentFields = [i18n.t("PLAYERS",this.state.lng) , i18n.t("TEAMS",this.state.lng)];
+    
     const players = this.state.players.slice(
       this.state.currentPage * 10,
       (this.state.currentPage + 1) * 10
@@ -112,7 +125,7 @@ class Players extends Component {
           <div className="container">
             <div className="btn-admin-config">
               <button className="btn-create" onClick={this._createPlayer}>
-                Create
+              {i18n.t("CREATE",this.state.lng)}
               </button>
               <AdminReturn />
             </div>

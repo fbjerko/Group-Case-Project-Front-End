@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import GatewayInfo from "./GatewayInfo";
-import i18n from "../i18n"
+import i18n from "../../i18n"
 
 class ListInfo extends Component {
   constructor(props) {
@@ -286,19 +286,19 @@ class ListInfo extends Component {
                 <tbody>
                   <tr>
                     <td className="td-admin-but" onClick={this.props.firstPage}>
-                    {i18n.t("FIRSTP",{lng}) + i18n.t("PAGE",{lng})}
+                    {i18n.t("FIRSTP",{lng}) +' '+ i18n.t("PAGE",{lng})}
                     </td>
                     <td
                       className="td-admin-but"
                       onClick={this.props.previousPage}
                     >
-                    {i18n.t("PREV",{lng}) + i18n.t("PAGE",{lng})}
+                    {i18n.t("PREV",{lng}) + ' ' + i18n.t("PAGE",{lng})}
                     </td>
                     <td className="td-admin-but" onClick={this.props.nextPage}>
-                    {i18n.t("NEXT",{lng}) + i18n.t("PAGE",{lng})}
+                    {i18n.t("NEXT",{lng}) + ' ' + i18n.t("PAGE",{lng})}
                     </td>
                     <td className="td-admin-but" onClick={this.props.lastPage}>
-                    {i18n.t("LASTP",{lng}) + i18n.t("PAGE",{lng})}
+                    {i18n.t("LASTP",{lng}) + ' ' + i18n.t("PAGE",{lng})}
                     </td>
                   </tr>
                 </tbody>
