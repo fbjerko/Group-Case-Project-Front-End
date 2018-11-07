@@ -10,7 +10,7 @@ class Login extends React.Component {
             loading : false,
             loadingText : "Authenticating",
             failed:false,
-            lng:'en'
+            lng:i18n.language
         }
     }
 

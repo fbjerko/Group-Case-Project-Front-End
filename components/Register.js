@@ -13,7 +13,7 @@ class Register extends React.Component
     super(props);
     this.state={
       status:"Fill out user information",
-      lng:'en'
+      lng:i18n.language
     }
   }
 
@@ -185,7 +185,7 @@ componentDidMount() {
                 <b>{i18n.t("USERNAME",{lng})}</b>
                 <input
                     type="text"
-                    placeholder={i18n.t("ENTER",{lng}) + i18n.t("USERNAME",{lng})}
+                    placeholder={i18n.t("ENTER",{lng}) +" "+ i18n.t("USERNAME",{lng})}
                     id="userName"
                     onInput={this.checkUserName}
                 />
@@ -193,7 +193,7 @@ componentDidMount() {
                 <b>{i18n.t("EMAIL",{lng})}</b>
                 <input
                     type="text"
-                    placeholder={i18n.t("ENTER",{lng}) + i18n.t("EMAIL",{lng})}
+                    placeholder={i18n.t("ENTER",{lng}) + " " + i18n.t("EMAIL",{lng})}
                     id="email"
                     onInput={this.checkEmail}
                 />
@@ -201,7 +201,7 @@ componentDidMount() {
                 <b>{i18n.t("PASS",{lng})}</b>
                 <input
                     type="password"
-                    placeholder={i18n.t("ENTER",{lng}) + i18n.t("PASSWORD",{lng})}
+                    placeholder={i18n.t("ENTER",{lng}) +" "+ i18n.t("PASS",{lng})}
                     id="psw"
                     onInput={this.checkPassword}
                 />

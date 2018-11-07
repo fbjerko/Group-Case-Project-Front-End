@@ -18,7 +18,7 @@ class Dashboard extends Component {
       activeId: 0,
       display: 99,
       ready: false,
-      lng:'en'
+      lng:i18n.language
     };
 
     this._onEditClick = this._onEditClick.bind(this);
