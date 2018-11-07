@@ -44,7 +44,7 @@ class Login extends React.Component {
                         type="button"
                         className="btn"
                         onClick={() => {
-
+                            console.log("sending")
                             this.setState({loading:true});
                             var xhttp = new XMLHttpRequest();
 
@@ -53,7 +53,7 @@ class Login extends React.Component {
                             xhttp.send(
                                 JSON.stringify({
                                     password: document.getElementById('psw').value,
-                                    email: document.getElementById("email").value
+                                    userName: document.getElementById("userName").value
                                 })
                             );
                             xhttp.onreadystatechange = ()=>{
