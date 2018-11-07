@@ -16,11 +16,13 @@ class ListInfo extends Component {
   }
 
   async showFirst(id, action) {
-    console.log(id + " " + action);
+    if(this.props.canLoad === undefined) {
+  
     await this.setState({
       activeId: id,
       display: action
     });
+  }
   }
 
   close() {

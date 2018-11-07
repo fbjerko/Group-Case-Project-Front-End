@@ -157,7 +157,7 @@ class WatchList extends Component {
                   className="td-admin-but"
                   onClick={() => this.deleteWatchList(this.state.userId)}
                 >
-                  Clear Watchlist
+                   Clear Watchlist
                 </td>
               </tr>
             </tbody>

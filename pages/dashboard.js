@@ -125,7 +125,8 @@ class Dashboard extends Component {
 
   async componentDidMount() {
     await this.setState({
-      userId: this.getCookie()
+      userId: this.getCookie(),
+      
     });
 
     this.getWatchList();
@@ -286,10 +287,10 @@ class Dashboard extends Component {
             <LayoutGlobal />
 
             <div className="container">
-              <WatchList
-                watchList={this.state.watchList}
-                showWatchlist={this.showWatchlist}
-              />
+            <WatchList
+              watchList={this.state.watchList}
+              showWatchlist={this.showWatchlist}
+            />
               <div className="btn-admin-nav">
                 <button
                   className="btn-nav"
