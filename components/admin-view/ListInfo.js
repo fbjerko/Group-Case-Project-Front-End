@@ -77,10 +77,11 @@ class ListInfo extends Component {
 
         if (this.props.contentFields.length === 5) {
           if (i === 2) {
-            
+
             columns.push(
               <td
-                key={data[i * 2] + data[4] + i}
+                key={data[i * 2] + data[3] + i}
+
                 className="td-admin-get-all-matches-result"
                 onClick={() => this.showFirst(id, action)}
               >
@@ -92,7 +93,7 @@ class ListInfo extends Component {
            else {
             columns.push(
               <td
-                key={data[i * 2] + data[4] + i}
+                key={data[i * 2] + data[3] + i}
                 className="td-admin-get-all-matches"
                 onClick={() => this.showFirst(id, action)}
               >
@@ -103,7 +104,7 @@ class ListInfo extends Component {
         } else {
           columns.push(
             <td
-              key={data[i * 2] + data[4] + i}
+              key={data[i * 2] + data[3] + i}
               className="td-admin-get-all"
               onClick={() => this.showFirst(id, action)}
             >

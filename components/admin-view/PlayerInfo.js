@@ -103,7 +103,7 @@ class PlayerInfo extends Component {
 
         var json = JSON.stringify({
             playerId: this.props.id,
-            playerName: this.name,
+            playerName: name,
             userId: this.props.userId
         });
 
@@ -114,7 +114,7 @@ class PlayerInfo extends Component {
         xhttp.send(
             JSON.stringify({
                 playerId: this.props.id,
-                playerName: this.name,
+                playerName: name,
                 teamId: "",
                 teamName: "",
                 userId: this.props.userId
@@ -127,11 +127,11 @@ class PlayerInfo extends Component {
 
                     if (this.state.inWatchList === true) {
                         this.setState({
-                            watchListText: this.name + " Removed from Watchlist"
+                            watchListText: name + " Removed from Watchlist"
                         });
                     } else {
                         this.setState({
-                            watchListText: this.name + " Added to Watchlist"
+                            watchListText: name + " Added to Watchlist"
                         });
                         this.props.updateWatchList;
                         setTimeout(
@@ -158,6 +158,7 @@ class PlayerInfo extends Component {
 
         let loading;
         let lng = this.state.lng;
+        let name;
 
 
         if (this.state.success) {
@@ -205,14 +206,14 @@ class PlayerInfo extends Component {
         if (this.state.ready === true) {
             const player = this.state.playerInfo;
 
-            this.name = player.person.firstName + " " + player.person.lastName
+            name = player.person.firstName + " " + player.person.lastName
 
 
             return (
                 <div>
                     <div className="div-admin-get-all">
                         <h1>
-                            {this.name}
+                            {name}
                         </h1>
                         <table className="table-admin-get-one">
                             <tbody>
@@ -223,7 +224,7 @@ class PlayerInfo extends Component {
                             <tr className="tr-admin-get-one">
                                 <th className="th-admin-get-one"> {i18n.t("NAME", {lng})}</th>
                                 <td className="td-admin-get-one">
-                                    {this.name}
+                                    {name}
                                 </td>
                             </tr>
                             <tr className="tr-admin-get-one">

@@ -19,8 +19,8 @@ class GatewayInfo extends Component {
   }
 
   render() {
-    console.log(this.props.canEdit + "");
-    if (this.props.content === "Players" || "Spillere") {
+
+    if (this.props.content === "Players") {
       return (
         <div>
           <PlayerInfo editPlayer={this.props.edit} id={this.props.id} close={this.props.close} canEdit={this.props.canEdit} userId={this.props.userId}/>
