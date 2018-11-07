@@ -11,25 +11,14 @@ class LayoutGlobal extends React.Component{
 
   }
 
-  changeLanguage = (event)=>{
 
-
-      i18n.changeLanguage(event.target.value,(err,t)=>{
-          if(err==null){
-
-          }else{
-              console.log(err);
-          }
-
-      })
-
-  }
 
 
   render(){
 
       return (
           <div>
+
               <Head>
                   <link
                       rel="stylesheet"
@@ -61,16 +50,18 @@ class LayoutGlobal extends React.Component{
                       type="text/css"
                       href="/static/style/loading.css"
                   />
+                  <link
+                      rel="stylesheet"
+                      type="text/css"
+                      href="/static/style/navbar.css"
+                  />
 
                   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" />
                   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" />
               </Head>
 
-              <img src="../static/images/logo.png" alt="" className="logo" />
-              <button value={'no'} onClick={this.changeLanguage}>Norsk</button>
-              <button value={'en'} onClick={this.changeLanguage}>English</button>
-
               {this.props.children}
+
 
 
 

@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import LayoutGlobal from "../components/LayoutGlobal";
 import EditUser from "../components/EditUser";
-import IndexReturn from "../components/buttons/IndexReturn";
 import { Router } from "../routes";
 import PlayerInfo from "../components/admin-view/PlayerInfo";
 import TeamInfo from "../components/admin-view/TeamInfo";
 import WatchList from "./user/WatchList"
 import i18n from "../i18n"
+import NavbarUser from "../components/NavbarUser";
 
 class Dashboard extends Component {
   constructor(props) {
@@ -51,10 +51,7 @@ class Dashboard extends Component {
     return "";
   }
 
-  componentDidMount() {
-    i18n.on('languageChanged', this.onLanguageChanged)
-    
-    }
+
     onLanguageChanged = (lng)=>{
     this.setState({lng:lng});
     }
@@ -131,6 +128,7 @@ class Dashboard extends Component {
     });
 
     this.getWatchList();
+    i18n.on('languageChanged', this.onLanguageChanged)
     console.log(this.state.userId + " is userId");
   
   }
@@ -183,7 +181,7 @@ class Dashboard extends Component {
         return (
           <div>
             <LayoutGlobal />
-
+            <NavbarUser onEditClick={this._onEditClick}/>
             <div className="container">
             <WatchList watchList = {this.state.watchList} showWatchlist={this.showWatchlist}/>
               <div className="btn-admin-nav">
@@ -229,19 +227,13 @@ class Dashboard extends Component {
                   {i18n.t("STADIUMS",{lng})}
                 </button>
               </div>
-              <button
-                type="button"
-                className="btn-edit"
-                onClick={this._onEditClick}
-              >
-                {i18n.t("EDIT_ACC",{lng})}
-              </button>
+
               <div className="div-edituser">
                 {this.state.showEdit ? <EditUser /> : null}
               </div>
             </div>
 
-            <IndexReturn />
+
           </div>
         );
       }

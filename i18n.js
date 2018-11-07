@@ -34,6 +34,7 @@ i18next
             escapeValue: false,
         },
         //lng: 'no', // 'en' | 'es'
+        fallbackLng: [ 'en' ],
         resources: {
             en: {
                 translation: {

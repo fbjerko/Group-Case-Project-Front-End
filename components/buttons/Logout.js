@@ -1,22 +1,21 @@
 import React from "react";
 import { Router } from "../../routes";
 
-const IndexReturn = () => (
+const Logout = () => (
 
     <div >
 
-    <button
-    type="button"
-    className="btn-ret"
+    <option
+    className="btn-lng"
     onClick={() => {
         window.location=process.env.FRONT_END_URL+'/logout';
     }
         }
   >
    Log Out
-  </button>
+  </option>
   </div>
 
 )
 
-export default IndexReturn;
+export default Logout;

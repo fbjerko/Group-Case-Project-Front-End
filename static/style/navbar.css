@@ -1,0 +1,20 @@
+.nav-bar-index{
+    display:flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: flex-end;
+    padding-right: 1rem;
+    background-color: black;
+
+}
+.btn-lng{
+    font-size: 2rem;
+    color: white;
+    padding: 1rem;
+    background-color: black;
+}
+.btn-lng:hover{
+    background-color: #262626;
+    cursor: pointer;
+
+}
