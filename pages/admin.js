@@ -1,11 +1,10 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import LayoutGlobal from "../components/LayoutGlobal";
-import IndexReturn from "../components/buttons/IndexReturn";
-import { Router } from "../routes";
+import IndexReturn from "../components/buttons/Logout";
+import {Router} from "../routes";
 import EditUser from "../components/EditUser";
 import i18n from "../i18n"
-
-
+import NavbarUser from "../components/NavbarUser";
 
 
 class Admin extends Component {
@@ -34,13 +33,13 @@ class Admin extends Component {
     });
   }
 
-  componentDidMount() {}
 
   render() {
     let lng = this.state.lng;
     return (
       <div>
   <LayoutGlobal />
+  <NavbarUser onEditClick={this._onEditClick}/>
         
         <div className="container">
        
@@ -57,11 +56,10 @@ class Admin extends Component {
               <button className="btn-nav" id="btn-teams" onClick={() => Router.pushRoute("/admin/teams")}>
               {i18n.t("TEAMS",{lng})}
               </button>
+              </div>
 
-            </div>
 
-             <div className="btn-admin-nav-bottom">
-              
+              <div className="btn-admin-nav-bottom">
 
                <button className="btn-nav" id="btn-matches" onClick={() => Router.pushRoute("/admin/matches")}>
                {i18n.t("MATCHES",{lng})}
@@ -70,33 +68,27 @@ class Admin extends Component {
               <button className="btn-nav"  id="btn-stadium" onClick={() => Router.pushRoute("/admin/stadiums")}>
               {i18n.t("STADIUMS",{lng})}
               </button>
-
-
+              
               <button className="btn-nav" id="btn-general" onClick={() => Router.pushRoute("/admin/general")}>
               {i18n.t("GENERAL",{lng})}
-
-
               </button>
-            </div>
-            <button
-              type="button"
-              className="btn-edit"
-              onClick={this._onEditClick}
-              >
-              {i18n.t("EDIT_ACC",{lng})}
-              </button>
-              <div className="div-edituser">
-              {this.state.showEdit ? <EditUser /> : null}
               </div>
 
-             </div>
-              
-             <IndexReturn/>
+
+                    <div className="div-edituser">
+                        {this.state.showEdit ? <EditUser/> : null}
+                    </div>
+
+                </div>
+
+
+            </div>
+
            
-     
-      </div>
-    );
-  }
+
+  
+        );
+    }
 }
 
 export default Admin;
