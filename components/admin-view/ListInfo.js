@@ -54,6 +54,7 @@ class ListInfo extends Component {
         }
         i++;
       }
+    
 
       /* Creating columns with rows */
 
@@ -65,21 +66,22 @@ class ListInfo extends Component {
 
         if (this.props.contentFields.length === 5) {
           if (i === 2) {
-            console.log(data[i * 2] + data[4] + " dasdsa");
-            console.log( id + " " +  action + "    ") ;
+            
             columns.push(
               <td
-                key={data[i * 2] + data[4]}
+                key={data[i * 2] + data[4] + i}
                 className="td-admin-get-all-matches-result"
                 onClick={() => this.showFirst(id, action)}
               >
                 {data[i * 2 + 1]}
               </td>
             );
-          } else {
+          
+          }
+           else {
             columns.push(
               <td
-                key={data[i * 2] + data[4]}
+                key={data[i * 2] + data[4] + i}
                 className="td-admin-get-all-matches"
                 onClick={() => this.showFirst(id, action)}
               >
@@ -90,11 +92,11 @@ class ListInfo extends Component {
         } else {
           columns.push(
             <td
-              key={data[i * 2] + data[4]}
+              key={data[i * 2] + data[4] + i}
               className="td-admin-get-all"
               onClick={() => this.showFirst(id, action)}
             >
-              {data[i * 2 + 1]}{" "}
+              {data[i * 2 + 1]}
             </td>
           );
         }
@@ -114,7 +116,7 @@ class ListInfo extends Component {
 
     const fields = this.props.contentFields.map(field => {
       if (this.props.contentFields.length === 5) {
-        if (field === "Date") {
+        if (field === "Result") {
           return (
             <th key={field} className="th-admin-get-all-matches-result">
               {field}{" "}
