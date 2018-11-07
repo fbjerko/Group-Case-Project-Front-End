@@ -69,6 +69,12 @@ i18next
                     EDIT: "Edit",
                     DELETE: "Delete",
                     USER: "User",
+                    AUTH: "Authenticating",
+                    FAIL: "failed",
+                    FILL_USER: "Fill out user information",
+                    CREATING_USER: "Creating user",
+                    CREATING_FAILED: "Failed creating user!",
+                    USER_CREATED: "User created",
 
                 
                 },
@@ -132,6 +138,12 @@ i18next
                     EDIT: "Endre",
                     DELETE: "Slett",
                     USER: "Bruker",
+                    AUTH: "Autentisering",
+                    FAIL: "feilet",
+                    FILL_USER: "Fyll ut bruker information",
+                    CREATING_USER: "Oppretter bruker",
+                    CREATING_FAILED: "Oppretting feilet",
+                    USER_CREATED: "Bruker opprettet",
 
                 },
             },

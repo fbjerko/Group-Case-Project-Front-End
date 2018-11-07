@@ -6,6 +6,7 @@ import { Router } from "../routes";
 import PlayerInfo from "../components/admin-view/PlayerInfo";
 import TeamInfo from "../components/admin-view/TeamInfo";
 import WatchList from "./user/WatchList"
+import i18n from "../i18n"
 
 class Dashboard extends Component {
   constructor(props) {
@@ -16,7 +17,8 @@ class Dashboard extends Component {
       watchList: [],
       activeId: 0,
       display: 99,
-      ready: false
+      ready: false,
+      lng:'en'
     };
 
     this._onEditClick = this._onEditClick.bind(this);
@@ -48,6 +50,14 @@ class Dashboard extends Component {
     }
     return "";
   }
+
+  componentDidMount() {
+    i18n.on('languageChanged', this.onLanguageChanged)
+    
+    }
+    onLanguageChanged = (lng)=>{
+    this.setState({lng:lng});
+    }
 
   async showWatchlist(id, action) {
 
@@ -132,6 +142,7 @@ class Dashboard extends Component {
   
 
   render() {
+    let lng = this.state.lng;
     if (this.state.ready === true) {
 
       if (this.state.display === 1) {
@@ -181,7 +192,7 @@ class Dashboard extends Component {
                   id="btn-players"
                   onClick={() => Router.pushRoute("/dashboard/players")}
                 >
-                  Players
+                  {i18n.t("PLAYERS",{lng})}
                 </button>
 
                 <button
@@ -189,7 +200,7 @@ class Dashboard extends Component {
                   id="btn-teams"
                   onClick={() => Router.pushRoute("/dashboard/teams")}
                 >
-                  Teams
+                  {i18n.t("TEAMS",{lng})}
                 </button>
               </div>
 
@@ -199,7 +210,7 @@ class Dashboard extends Component {
                   id="btn-managers"
                   onClick={() => Router.pushRoute("/dashboard/managers")}
                 >
-                  Managers
+                  {i18n.t("MANAGERS",{lng})}
                 </button>
 
                 <button
@@ -207,7 +218,7 @@ class Dashboard extends Component {
                   id="btn-matches"
                   onClick={() => Router.pushRoute("/dashboard/matches")}
                 >
-                  Matches
+                  {i18n.t("MATCHES",{lng})}
                 </button>
 
                 <button
@@ -215,7 +226,7 @@ class Dashboard extends Component {
                   id="btn-stadium"
                   onClick={() => Router.pushRoute("/dashboard/stadiums")}
                 >
-                  Stadiums
+                  {i18n.t("STADIUMS",{lng})}
                 </button>
               </div>
               <button
@@ -223,7 +234,7 @@ class Dashboard extends Component {
                 className="btn-edit"
                 onClick={this._onEditClick}
               >
-                Edit account
+                {i18n.t("EDIT_ACC",{lng})}
               </button>
               <div className="div-edituser">
                 {this.state.showEdit ? <EditUser /> : null}
@@ -238,7 +249,7 @@ class Dashboard extends Component {
       return (
         <div>
           <LayoutGlobal/>
-          <h2>Loading...</h2>
+          <h2>{i18n.t("LOADING",{lng})}</h2>
         </div>
       );
     }
