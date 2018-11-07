@@ -133,13 +133,14 @@ class Register extends React.Component
     this.setState({status:"Creating user"});
     var xhttp = new XMLHttpRequest();
 
-    xhttp.open("POST", process.env.FRONT_END_URL + "/register", true);
+    xhttp.open("POST", process.env.API_URL + "/auth/signup", true);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send(
         JSON.stringify({
             userName: document.getElementById("userName").value,
             email: document.getElementById("email").value,
-            password: document.getElementById("psw").value
+            password: document.getElementById("psw").value,
+            role:["user"]
         })
     );
     xhttp.onreadystatechange = () => {
