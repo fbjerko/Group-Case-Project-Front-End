@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import LayoutGlobal from "../../components/LayoutGlobal";
-
 import TeamsForm from "../../components/forms/teamsForm";
-
 import AdminReturn from "../../components/buttons/AdminReturn";
-
 import ListInfo from "../../components/admin-view/ListInfo";
+import Loading from "../../components/buttons/loading";
 
 class Teams extends Component {
   constructor(props) {
@@ -21,31 +19,29 @@ class Teams extends Component {
     };
 
     this._createTeam = this._createTeam.bind(this);
-    this.previousPage = this.previousPage.bind(this);
-    this.nextPage = this.nextPage.bind(this);
-    this.firstPage = this.firstPage.bind(this);
-    this.lastPage = this.lastPage.bind(this);
+    this.changePage = this.changePage.bind(this);
   }
 
-  firstPage() {
-    this.setState({ currentPage: 0 });
-  }
-  lastPage() {
-    this.setState({ currentPage: Math.floor(this.state.teams.length / 10) });
-    console.log(this.state.currentPage);
-  }
-
-  previousPage() {
-    if (this.state.currentPage !== 0)
-      this.setState(prevState => ({ currentPage: prevState.currentPage - 1 }));
-    console.log(this.state.currentPage);
-  }
-
-  nextPage() {
-    if (this.state.currentPage + 1 < this.state.teams.length / 10) {
-      this.setState({ currentPage: this.state.currentPage + 1 });
+  changePage(command) {
+    if (command === 0) {
+      this.setState({ currentPage: 0 });
     }
-    console.log(this.state.currentPage);
+    if (command === 1) {
+      if (this.state.currentPage !== 0)
+        this.setState(prevState => ({
+          currentPage: prevState.currentPage - 1
+        }));
+    }
+    if (command === 2) {
+      if (this.state.currentPage + 1 < this.state.teams.length / 10) {
+        this.setState({ currentPage: this.state.currentPage + 1 });
+      }
+    }
+    if (command === 3) {
+      this.setState({
+        currentPage: Math.floor(this.state.teams.length / 10)
+      });
+    }
   }
 
   _createTeam() {
@@ -112,10 +108,7 @@ class Teams extends Component {
               content={this.state.content}
               contentFields={this.state.contentFields}
               ready={this.state.ready}
-              nextPage={this.nextPage}
-              previousPage={this.previousPage}
-              firstPage={this.firstPage}
-              lastPage={this.lastPage}
+              changePage={this.changePage}
               canEdit={this.state.canEdit}
               currentPage={this.state.currentPage}
             />

@@ -16,7 +16,7 @@ class ManagerInfo extends Component {
     console.log("Hey");
     try {
       const response = await fetch(
-          process.env.API_URL+"/api/coach/" + this.props.id
+        process.env.API_URL + "/api/coach/" + this.props.id
       );
       const json = await response.json();
       console.log(json);
@@ -30,8 +30,30 @@ class ManagerInfo extends Component {
   }
 
   render() {
-    const manager = this.state.managerInfo;
+    let buttons; // Decides if we can edit or not
+    if (this.props.canEdit === true) {
+      buttons = (
+        <table className="table-admin-but">
+          <tbody>
+            <tr>
+              <td className="td-admin-but" onClick={this.props.firstPage}>
+                EDIT
+              </td>
+              <td className="td-admin-but" onClick={this.props.previousPage}>
+                DELETE
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      );
+    } else {
+      buttons = ( <br></br>
+       
+      );
+    }
+  
     if (this.state.ready === true) {
+      const manager = this.state.managerInfo;
       return (
         <div>
           <div className="div-admin-get-all">
@@ -50,7 +72,7 @@ class ManagerInfo extends Component {
                     {manager.person.firstName} {manager.person.lastName}
                   </td>
                 </tr>
-                
+
                 <tr className="tr-admin-get-one">
                   <th className="th-admin-get-one"> Date Of Birth</th>
                   <td className="td-admin-get-one">
@@ -70,25 +92,9 @@ class ManagerInfo extends Component {
                 </tr>
               </tbody>
             </table>
-            <table className="table-admin-but">
-              <tbody>
-                <tr>
-                  <td className="td-admin-but" onClick={this.props.firstPage}>
-                    EDIT
-                  </td>
-                  <td
-                    className="td-admin-but"
-                    onClick={this.props.previousPage}
-                  >
-                    DELETE
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+            {buttons}
           </div>
-          <button  onClick={this.props.close}>
-            Back
-          </button>
+          <button onClick={this.props.close}>Back</button>
         </div>
       );
     } else {

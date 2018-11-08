@@ -12,40 +12,89 @@ import NavbarIndex from "../components/NavbarIndex";
 const context = React.createContext();
 
 class Index extends Component {
+  constructor(props) {
+    super(props);
 
-    constructor(props) {
-        super(props);
+    this.state = {
+      showLogin: false,
+      showRegister: false,
+      players: false,
+      matches: false,
+      playersArray: [],
+      homeTeams: [],
+      awayTeam: [],
+      matchesArray: [],
+      canEdit: false,
+      ready: false,
+      currentPage: 0
+    };
 
-        this.state = {
-            showLogin: false,
-            showRegister: false,
-            players: false,
-            matches: false,
-            playersArray: [],
-            homeTeams: [],
-            awayTeam: [],
-            matchesArray: [],
-            canEdit: false,
-            ready: false,
-            currentPage: 0,
-            lng: i18n.language
-        };
+    this._onLoginClick = this._onLoginClick.bind(this);
+    this._onRegisterClick = this._onRegisterClick.bind(this);
+    this._matches = this._matches.bind(this);
+    this._players = this._players.bind(this);
+    this.changePage = this.changePage.bind(this);
+  }
 
-        this._onLoginClick = this._onLoginClick.bind(this);
-        this._onRegisterClick = this._onRegisterClick.bind(this);
-        this._matches = this._matches.bind(this);
-        this._players = this._players.bind(this);
+  onLanguageChanged = (lng) => {
+    this.setState({lng: lng});
 
+}
 
-        this.previousPage = this.previousPage.bind(this);
-        this.nextPage = this.nextPage.bind(this);
-        this.firstPage = this.firstPage.bind(this);
-        this.lastPage = this.lastPage.bind(this);
+  _onLoginClick() {
+    this.setState({
+      showLogin: !this.state.showLogin,
+      showRegister: false
+    });
+  }
+
+  _onRegisterClick() {
+    this.setState({
+      showRegister: !this.state.showRegister,
+      showLogin: false
+    });
+  }
+
+  _matches() {
+    this.setState({
+      currentPage: 0,
+      matches: !this.state.matches,
+      players: false,
+  
+    });
+  }
+
+  _players() {
+    this.setState({
+      currentPage: 0,
+      players: !this.state.players,
+      matches: false,
+      
+    });
+  }
+
+  changePage(command) {
+
+    if(command === 0) {
+      this.setState({ currentPage: 0 });
     }
-
-    onLanguageChanged = (lng) => {
-        this.setState({lng: lng});
+    if(command === 1) {
+      if (this.state.currentPage !== 0)
+      this.setState(prevState => ({ currentPage: prevState.currentPage - 1 }));
     }
+    if (command === 2) {
+     
+    if (this.state.currentPage + 1 < this.state.playersArray.length / 10) {
+      this.setState({ currentPage: this.state.currentPage + 1 });
+    }
+    } if(command === 3) {
+      this.setState({
+        currentPage: Math.floor(this.state.playersArray.length / 10)
+      });
+    }
+  }
+
+
 
 
     _onLoginClick() {
@@ -80,31 +129,7 @@ class Index extends Component {
         });
     }
 
-    firstPage() {
-        this.setState({currentPage: 0});
-    }
 
-    lastPage() {
-        this.setState({
-            currentPage: Math.floor(this.state.playersArray.length / 10)
-        });
-        console.log(this.state.currentPage);
-    }
-
-    previousPage() {
-        if (this.state.currentPage !== 0)
-            this.setState(prevState => ({currentPage: prevState.currentPage - 1}));
-        console.log(this.state.currentPage);
-    }
-
-    nextPage() {
-        console.log(this.state.playersArray.length + "    HDUHASDUSAHUDHSA");
-
-        if (this.state.currentPage + 1 < this.state.playersArray.length / 10) {
-            this.setState({currentPage: this.state.currentPage + 1});
-        }
-        console.log(this.state.currentPage);
-    }
 
     async componentDidMount() {
         i18n.on('languageChanged', this.onLanguageChanged);

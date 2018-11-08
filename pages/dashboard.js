@@ -74,8 +74,7 @@ class Dashboard extends Component {
             activeId: id,
             display: action
         });
-
-
+        console.log( id + "   " + action );
 
     }
 
@@ -158,6 +157,46 @@ class Dashboard extends Component {
 
         let lng = this.state.lng;
         if (this.state.ready === true) {
+          if (this.state.display === 1) {
+            return (
+              <div>
+                <LayoutGlobal />
+    
+                <div className="container">
+                  <WatchList
+                    watchList={this.state.watchList}
+                    showWatchlist={this.showWatchlist}
+                  />
+                  <PlayerInfo
+                    id={this.state.activeId}
+                    close={this.close}
+                    canEdit={false}
+                    userId={this.state.userId}
+                    updateWatchList={this.updateWatchlist}
+                  />
+                </div>
+              </div>
+            );
+          } else if (this.state.display === 2) {
+            return (
+              <div>
+                <LayoutGlobal />
+    
+                <div className="container">
+                  <WatchList
+                    watchList={this.state.watchList}
+                    showWatchlist={this.showWatchlist}
+                  />
+                  <TeamInfo
+                    id={this.state.activeId}
+                    close={this.close}
+                    canEdit={false}
+                    userId={this.state.userId}
+                  />
+                </div>
+              </div>
+            );
+          }
             if (this.state.showContent === "Players") {
                 return (
                     <div>

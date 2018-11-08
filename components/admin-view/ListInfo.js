@@ -65,15 +65,31 @@ class ListInfo extends Component {
         }
         i++;
       }
-    
 
       /* Creating columns with rows */
 
       const columns = [];
 
+      
+
       for (var i = 0; i < this.props.contentFields.length; i++) {
         let id = data[i * 2];
         let action = i;
+
+        if(data.length === 2){
+          id= data[i];
+console.log(data[i] +  " | " + data[i+1])
+          
+          columns.push(
+            <td
+              key={data[i]}
+              className="td-admin-get-all-persons"
+              onClick={() => this.showFirst(id, action)}
+            >
+              {data[i]}
+            </td>
+          );
+        } else
 
         if (this.props.contentFields.length === 5) {
           if (i === 2) {
@@ -180,7 +196,6 @@ class ListInfo extends Component {
             content={this.props.content[1]}
             canEdit={this.props.canEdit}
             userId={this.props.userId}
-
           />
         </div>
       );
@@ -192,8 +207,6 @@ class ListInfo extends Component {
             close={this.close}
             content={this.props.content[2]}
             canEdit={this.props.canEdit}
-
-            
           />
         </div>
       );
@@ -290,19 +303,20 @@ class ListInfo extends Component {
               <table className="table-admin-but">
                 <tbody>
                   <tr>
-                    <td className="td-admin-but" onClick={this.props.firstPage}>
+                    <td className="td-admin-but" onClick={() => this.props.changePage(0)}>
                     {i18n.t("FIRSTP",{lng}) +' '+ i18n.t("PAGE",{lng})}
                     </td>
+
                     <td
                       className="td-admin-but"
-                      onClick={this.props.previousPage}
+                      onClick={() => this.props.changePage(1)}
                     >
                     {i18n.t("PREV",{lng}) + ' ' + i18n.t("PAGE",{lng})}
                     </td>
-                    <td className="td-admin-but" onClick={this.props.nextPage}>
+                    <td className="td-admin-but" onClick={() => this.props.changePage(2)}>
                     {i18n.t("NEXT",{lng}) + ' ' + i18n.t("PAGE",{lng})}
                     </td>
-                    <td className="td-admin-but" onClick={this.props.lastPage}>
+                    <td className="td-admin-but" onClick={() => this.props.changePage(3)}>
                     {i18n.t("LASTP",{lng}) + ' ' + i18n.t("PAGE",{lng})}
                     </td>
                   </tr>
