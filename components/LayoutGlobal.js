@@ -1,7 +1,11 @@
 import React from "react";
 import Head from "next/head";
 
+
 export default props => {
+
+  let imagePath = "../static/images/logo.png";
+
   return (
     <div>
       <Head>
@@ -40,7 +44,7 @@ export default props => {
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" />
       </Head>
 
-      <img src="../static/images/logo.png" alt="" className="logo" />
+      <img src={imagePath} alt="" className="logo" />
 
       {props.children}
 

@@ -54,15 +54,31 @@ class ListInfo extends Component {
         }
         i++;
       }
-    
 
       /* Creating columns with rows */
 
       const columns = [];
 
+      
+
       for (var i = 0; i < this.props.contentFields.length; i++) {
         let id = data[i * 2];
         let action = i;
+
+        if(data.length === 2){
+          id= data[i];
+console.log(data[i] +  " | " + data[i+1])
+          
+          columns.push(
+            <td
+              key={data[i]}
+              className="td-admin-get-all-persons"
+              onClick={() => this.showFirst(id, action)}
+            >
+              {data[i]}
+            </td>
+          );
+        } else
 
         if (this.props.contentFields.length === 5) {
           if (i === 2) {
