@@ -17,37 +17,36 @@ class Matches extends Component {
       ready: false,
       createManager: false,
       currentPage: 0,
-      content: ["Stadium", "Teams", "Matches", "Teams", "League"], // Attribute variable names
+      content: ["Date", "Teams", "Matches", "Teams", "League"], // Attribute variable names
       contentFields: ["Date", "Home Team", "Result", "Away Team", "Arena"],
       canEdit: true // Names/Values of variables
     };
 
     this._createManager = this._createManager.bind(this);
-    this.previousPage = this.previousPage.bind(this);
-    this.nextPage = this.nextPage.bind(this);
-    this.firstPage = this.firstPage.bind(this);
-    this.lastPage = this.lastPage.bind(this);
+    this.changePage = this.changePage.bind(this);
+  
   }
 
-  firstPage() {
-    this.setState({ currentPage: 0 });
-  }
-  lastPage() {
-    this.setState({ currentPage: Math.floor(this.state.matches.length / 10) });
-    console.log(this.state.currentPage);
-  }
-
-  previousPage() {
-    if (this.state.currentPage !== 0)
-      this.setState(prevState => ({ currentPage: prevState.currentPage - 1 }));
-    console.log(this.state.currentPage);
-  }
-
-  nextPage() {
-    if (this.state.currentPage + 1 < this.state.matches.length / 10) {
-      this.setState({ currentPage: this.state.currentPage + 1 });
+  changePage(command) {
+    if (command === 0) {
+      this.setState({ currentPage: 0 });
     }
-    console.log(this.state.currentPage);
+    if (command === 1) {
+      if (this.state.currentPage !== 0)
+        this.setState(prevState => ({
+          currentPage: prevState.currentPage - 1
+        }));
+    }
+    if (command === 2) {
+      if (this.state.currentPage + 1 < this.state.matches.length / 10) {
+        this.setState({ currentPage: this.state.currentPage + 1 });
+      }
+    }
+    if (command === 3) {
+      this.setState({
+        currentPage: Math.floor(this.state.matches.length / 10)
+      });
+    }
   }
 
   _createManager() {
@@ -169,10 +168,7 @@ class Matches extends Component {
               content={this.state.content}
               contentFields={this.state.contentFields}
               ready={this.state.ready}
-              nextPage={this.nextPage}
-              previousPage={this.previousPage}
-              firstPage={this.firstPage}
-              lastPage={this.lastPage}
+              changePage={this.changePage}
               canEdit={this.state.canEdit}
               currentPage={this.state.currentPage}
             />
