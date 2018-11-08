@@ -21,7 +21,7 @@ class NavbarIndex extends Component {
 
     changeLanguage = (event) => {
 
-        console.log(event.target.value);
+
         i18n.changeLanguage(event.target.value, (err, t) => {
         });
 
@@ -39,8 +39,8 @@ class NavbarIndex extends Component {
                     <option className="btn-lng" onClick={this.props.onRegisterClick}>
                         {i18n.t("REGISTER", {lng})}
                     </option>
-                    <option className="btn-lng" value={'no'} onClick={this.changeLanguage}>Norsk</option>
-                    <option className="btn-lng" value={'en'} onClick={this.changeLanguage}>English</option>
+                    <option className="btn-lng" value={'no'} onClick={()=>this.changeLanguage}>Norsk</option>
+                    <option className="btn-lng" value={'en'} onClick={()=>this.changeLanguage}>English</option>
                 </div>
                 <img src="../static/images/logo.png" alt="" className="logo" />
             </div>

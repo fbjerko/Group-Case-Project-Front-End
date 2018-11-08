@@ -60,101 +60,7 @@ app.prepare()
         // Authenticate middleware
 
 
-        server.get('/logout', (req, res) => {
-            res.clearCookie("token");
-            res.clearCookie("id");
-            res.redirect('/');
-        })
-        server.post('/login', (req, res) => {
-            console.log('User whishes to login as Admin');
-            console.log(req.body.password);
-            console.log(req.body.email);
-            let url = process.env.API_URL + "/api/user/findByEmail/" + req.body.email;
 
-            const options = {
-                method: 'GET',
-                uri: url,
-                json: true, // Automatically stringifies the body to JSON
-                resolveWithFullResponse: true,
-                headers: {
-                    'content-type': "application/json"
-                },
-                simple: false
-            };
-            console.log(url);
-            request(options).then(response => {
-                if (response.statusCode == 200) {
-                    console.log("User exists");
-                    let user = response.body;
-
-                    bcrypt.compare(req.body.password, user.password, (err, hashResponse) => {
-                        if (hashResponse) {
-                            if (user.admin == false) {
-                                const JWTToken = jwt.sign({
-                                        email: user.email,
-                                        id: user.userId,
-                                        admin: false
-
-                                    },
-                                    'secretNotAdmin',
-                                    {
-                                        expiresIn: '2h'
-                                    });
-                                res.cookie('token', JWTToken, {maxAge: 2 * 60 * 60 * 1000, httpOnly: true});
-                                res.cookie('id', user.userId, {maxAge: 2 * 60 * 60 * 1000, httpOnly: false});
-                                res.status(200).json({
-                                    message: "user",
-                                    token: JWTToken
-
-                                });
-                            } else if (user.admin == true) {
-                                const JWTToken = jwt.sign({
-                                        email: user.email,
-                                        id: user.userId,
-                                        admin: true
-
-                                    },
-                                    'secretAdmin',
-                                    {
-                                        expiresIn: '2h'
-                                    });
-                                console.log(user);
-                                res.cookie('token', JWTToken, {maxAge: 2 * 60 * 60 * 1000, httpOnly: true});
-                                res.cookie('id', user.userId, {maxAge: 2 * 60 * 60 * 1000, httpOnly: false});
-                                res.status(200).json({
-                                    message: "admin",
-                                });
-                            }
-                        } else {
-                            res.status(401).end();
-                        }
-                    })
-                } else {
-                    console.log("User Not exists");
-                    res.status(401).json({
-                        message: "failed"
-                    });
-                }
-
-            }).catch((err) => {
-                console.log(err);
-            });
-
-
-        });
-        server.get('/', (req, res) => {
-            try {
-                const decode = jwt.verify(req.cookies.token, 'secretNotAdmin');
-                res.redirect('/dashboard')
-            } catch (error) {
-                try {
-                    const decode = jwt.verify(req.cookies.token, 'secretAdmin');
-                    res.redirect('/admin')
-                } catch (error) {
-                    return handle(req, res);
-                }
-            }
-        })
 
         server.get('/logout', (req, res) => {
             res.clearCookie("token");
@@ -163,10 +69,9 @@ app.prepare()
         })
         server.post('/login', (req, res) => {
             console.log('User wishes to login as Admin');
-            console.log(req.body.password);
-            console.log(req.body.email);
-            let url = process.env.API_URL + "/api/auth/signin/";
 
+            let url = process.env.API_URL + "/api/auth/signin";
+            console.log(req.body);
             const options = {
                 method: 'POST',
                 uri: url,
@@ -178,7 +83,7 @@ app.prepare()
                 },
                 simple: false
             };
-            console.log(url);
+
             request(options).then(response => {
                 console.log(response.body);
 
@@ -188,19 +93,7 @@ app.prepare()
 
 
         });
-        server.get('/', (req, res) => {
-            try {
-                const decode = jwt.verify(req.cookies.token, 'secretNotAdmin');
-                res.redirect('/dashboard')
-            } catch (error) {
-                try {
-                    const decode = jwt.verify(req.cookies.token, 'secretAdmin');
-                    res.redirect('/admin')
-                } catch (error) {
-                    return handle(req, res);
-                }
-            }
-        })
+
 
         server.post('/register', (req, res) => {
             let body = req.body;
