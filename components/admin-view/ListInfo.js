@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import GatewayInfo from "./GatewayInfo";
-import i18n from "../../i18n"
+import i18n from "../../i18n";
 
 class ListInfo extends Component {
   constructor(props) {
@@ -10,7 +10,7 @@ class ListInfo extends Component {
       activeId: "",
       display: 99,
       userId: "",
-      lng:i18n.language
+      lng: i18n.language
     };
 
     this.showFirst = this.showFirst.bind(this);
@@ -18,21 +18,19 @@ class ListInfo extends Component {
   }
 
   componentDidMount() {
-    i18n.on('languageChanged', this.onLanguageChanged)
-    
-    }
-    onLanguageChanged = (lng)=>{
-    this.setState({lng:lng});
-    }
+    i18n.on("languageChanged", this.onLanguageChanged);
+  }
+  onLanguageChanged = lng => {
+    this.setState({ lng: lng });
+  };
 
   async showFirst(id, action) {
-    if(this.props.canLoad === undefined) {
-  
-    await this.setState({
-      activeId: id,
-      display: action
-    });
-  }
+    if (this.props.canLoad === undefined) {
+      await this.setState({
+        activeId: id,
+        display: action
+      });
+    }
   }
 
   close() {
@@ -47,7 +45,7 @@ class ListInfo extends Component {
     const rows = [];
     let lng = this.state.lng;
 
-  this.props.data.map(data => {
+    this.props.data.map(data => {
       var i = 0;
       var temp = 0;
 
@@ -70,43 +68,35 @@ class ListInfo extends Component {
 
       const columns = [];
 
-      
-
       for (var i = 0; i < this.props.contentFields.length; i++) {
         let id = data[i * 2];
         let action = i;
 
-        if(data.length === 2){
-          id= data[i];
-console.log(data[i] +  " | " + data[i+1])
-          
+        if (data.length === 2) {
+          id = data[i];
+          console.log(data[i] + " | " + data[i + 1]);
+
           columns.push(
             <td
               key={data[i]}
               className="td-admin-get-all-persons"
               onClick={() => this.showFirst(id, action)}
             >
-              {data[i]}
+              {data[i+1]}
             </td>
           );
-        } else
-
-        if (this.props.contentFields.length === 5) {
+        } else if (this.props.contentFields.length === 5) {
           if (i === 2) {
-
             columns.push(
               <td
                 key={data[i * 2] + data[3] + i}
-
                 className="td-admin-get-all-matches-result"
                 onClick={() => this.showFirst(id, action)}
               >
                 {data[i * 2 + 1]}
               </td>
             );
-          
-          }
-           else {
+          } else {
             columns.push(
               <td
                 key={data[i * 2] + data[3] + i}
@@ -131,7 +121,6 @@ console.log(data[i] +  " | " + data[i+1])
       }
 
       /* Assining each row from each column in tr tag */
-
 
       rows.push(
         <tr key={rows.length} className="tr-admin-get-all">
@@ -173,7 +162,6 @@ console.log(data[i] +  " | " + data[i+1])
           <h2>Loading...</h2>
         </div>
       );
-
     } else if (this.state.display === 0) {
       return (
         <div>
@@ -210,7 +198,6 @@ console.log(data[i] +  " | " + data[i+1])
           />
         </div>
       );
-
     } else {
       if (this.props.contentFields.length === 5 && this.state.display === 99) {
         table = (
@@ -223,7 +210,18 @@ console.log(data[i] +  " | " + data[i+1])
             </tbody>
           </table>
         );
+      } else if (this.props.contentFields.length === 1 && this.state.display === 99) {
+        table = ( <table key="table" className="table-admin-get-all-persons">
+        <tbody key="tbody">
+          <tr key="Attri" className="tr-admin-get-all">
+            {fields}
+          </tr>
+          {rows}
+        </tbody>
+      </table>
+        );
       } else {
+        console.log("DADASDDA");
         table = (
           <table key="table" className="table-admin-get-all">
             <tbody key="tbody_1">
@@ -303,26 +301,39 @@ console.log(data[i] +  " | " + data[i+1])
               <table className="table-admin-but">
                 <tbody>
                   <tr>
-                    <td className="td-admin-but" onClick={() => this.props.changePage(0)}>
-                    {i18n.t("FIRSTP",{lng}) +' '+ i18n.t("PAGE",{lng})}
+                    <td
+                      className="td-admin-but"
+                      onClick={() => this.props.changePage(0)}
+                    >
+                      {i18n.t("FIRSTP", { lng }) +
+                        " " +
+                        i18n.t("PAGE", { lng })}
                     </td>
 
                     <td
                       className="td-admin-but"
                       onClick={() => this.props.changePage(1)}
                     >
-                    {i18n.t("PREV",{lng}) + ' ' + i18n.t("PAGE",{lng})}
+                      {i18n.t("PREV", { lng }) + " " + i18n.t("PAGE", { lng })}
                     </td>
-                    <td className="td-admin-but" onClick={() => this.props.changePage(2)}>
-                    {i18n.t("NEXT",{lng}) + ' ' + i18n.t("PAGE",{lng})}
+                    <td
+                      className="td-admin-but"
+                      onClick={() => this.props.changePage(2)}
+                    >
+                      {i18n.t("NEXT", { lng }) + " " + i18n.t("PAGE", { lng })}
                     </td>
-                    <td className="td-admin-but" onClick={() => this.props.changePage(3)}>
-                    {i18n.t("LASTP",{lng}) + ' ' + i18n.t("PAGE",{lng})}
+                    <td
+                      className="td-admin-but"
+                      onClick={() => this.props.changePage(3)}
+                    >
+                      {i18n.t("LASTP", { lng }) + " " + i18n.t("PAGE", { lng })}
                     </td>
                   </tr>
                 </tbody>
               </table>
-              <h2>{i18n.t("PAGE",{lng})} {this.props.currentPage + 1}</h2>
+              <h2>
+                {i18n.t("PAGE", { lng })} {this.props.currentPage + 1}
+              </h2>
             </div>
           </div>
         );

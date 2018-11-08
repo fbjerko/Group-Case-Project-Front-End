@@ -4,6 +4,7 @@ import PersonsForm from "../../../components/forms/personsForm";
 import { Router } from "../../../routes";
 import ListInfo from "../../../components/admin-view/ListInfo";
 import Loading from "../../../components/buttons/loading";
+import AdminReturn from "../../../components/buttons/AdminReturn";
 
 class Person extends Component {
   constructor(props) {
@@ -15,7 +16,7 @@ class Person extends Component {
       ready: false,
       currentPage: 0,
       content: ["Persons"], // Attribute variable names
-      contentFields: ["ID", "Name"], // Names/Values of variables
+      contentFields: ["Name"], // Names/Values of variables
       create: false,
       canEdit: true
     };
@@ -91,17 +92,12 @@ class Person extends Component {
             <LayoutGlobal path = {"General"} />
 
             <div className="container">
-              <div className="btn-admin-config">
-                <button className="btn-create" onClick={this.create}>
-                  Create person
-                </button>
-                <button
-                className="btn-ret-admin"
-                onClick={() => Router.pushRoute("/admin/general")}
-              >
-                Return to General
+            <div className="btn-admin-config">
+              <button className="btn-create" onClick={this.create}>
+                Configure
               </button>
-              </div>
+              <AdminReturn />
+            </div>
              
 
               <ListInfo
