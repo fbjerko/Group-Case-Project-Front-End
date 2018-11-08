@@ -2,17 +2,11 @@ import React from "react";
 import Head from "next/head";
 import i18n from "../i18n";
 
-
-
-
 class LayoutGlobal extends React.Component{
   constructor(props){
     super(props);
 
   }
-
-
-
 
   render(){
 
@@ -71,6 +65,3 @@ class LayoutGlobal extends React.Component{
 }
 
 
-
-
-export default LayoutGlobal;

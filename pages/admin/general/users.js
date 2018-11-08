@@ -70,7 +70,6 @@ class users extends Component {
  
 
   render() {
-
       
     const users = this.state.users.slice(
       this.state.currentPage * 10,

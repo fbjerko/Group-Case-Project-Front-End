@@ -34,6 +34,7 @@ div.btn-admin-config {
   position: absolute;
   top: 4vh;
   right: 3vw;
+  display: grid;
 }
 
 div.btn-admin-nav {
@@ -156,8 +157,8 @@ td.td-admin-but:hover {
 /***********************************/
 
 table.table-admin-get-all-matches {
-  width: 100rem;
-  font-size: 120%;
+  width: 110rem;
+  font-size: 130%;
   
 }
 

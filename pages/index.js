@@ -8,105 +8,93 @@ import ListInfo from "../components/admin-view/ListInfo";
 import i18n from "../i18n"
 import NavbarIndex from "../components/NavbarIndex";
 
-
 const context = React.createContext();
 
 class Index extends Component {
 
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
 
-        this.state = {
-            showLogin: false,
-            showRegister: false,
-            players: false,
-            matches: false,
-            playersArray: [],
-            homeTeams: [],
-            awayTeam: [],
-            matchesArray: [],
-            canEdit: false,
-            ready: false,
-            currentPage: 0,
-            lng: i18n.language
-        };
+    this.state = {
+      showLogin: false,
+      showRegister: false,
+      players: false,
+      matches: false,
+      playersArray: [],
+      homeTeams: [],
+      awayTeam: [],
+      matchesArray: [],
+      canEdit: false,
+      ready: false,
+      currentPage: 0,
+       lng: i18n.language
+    };
 
-        this._onLoginClick = this._onLoginClick.bind(this);
-        this._onRegisterClick = this._onRegisterClick.bind(this);
-        this._matches = this._matches.bind(this);
-        this._players = this._players.bind(this);
-
-
-        this.previousPage = this.previousPage.bind(this);
-        this.nextPage = this.nextPage.bind(this);
-        this.firstPage = this.firstPage.bind(this);
-        this.lastPage = this.lastPage.bind(this);
-    }
-
-    onLanguageChanged = (lng) => {
+    this._onLoginClick = this._onLoginClick.bind(this);
+    this._onRegisterClick = this._onRegisterClick.bind(this);
+    this._matches = this._matches.bind(this);
+    this._players = this._players.bind(this);
+    this.changePage = this.changePage.bind(this);
+  }
+      
+         onLanguageChanged = (lng) => {
         this.setState({lng: lng});
+
+  _onLoginClick() {
+    this.setState({
+      showLogin: !this.state.showLogin,
+      showRegister: false
+    });
+  }
+
+  _onRegisterClick() {
+    this.setState({
+      showRegister: !this.state.showRegister,
+      showLogin: false
+    });
+  }
+
+  _matches() {
+    this.setState({
+      currentPage: 0,
+      matches: !this.state.matches,
+      players: false,
+  
+    });
+  }
+
+  _players() {
+    this.setState({
+      currentPage: 0,
+      players: !this.state.players,
+      matches: false,
+      
+    });
+  }
+
+  changePage(command) {
+
+    if(command === 0) {
+      this.setState({ currentPage: 0 });
     }
-
-
-    _onLoginClick() {
-        this.setState({
-            showLogin: !this.state.showLogin,
-            showRegister: false
-        });
+    if(command === 1) {
+      if (this.state.currentPage !== 0)
+      this.setState(prevState => ({ currentPage: prevState.currentPage - 1 }));
     }
-
-    _onRegisterClick() {
-        this.setState({
-            showRegister: !this.state.showRegister,
-            showLogin: false
-        });
+    if (command === 2) {
+     
+    if (this.state.currentPage + 1 < this.state.playersArray.length / 10) {
+      this.setState({ currentPage: this.state.currentPage + 1 });
     }
-
-    _matches() {
-        this.setState({
-            currentPage: 0,
-            matches: !this.state.matches,
-            players: false,
-
-        });
+    } if(command === 3) {
+      this.setState({
+        currentPage: Math.floor(this.state.playersArray.length / 10)
+      });
     }
+  }
 
-    _players() {
-        this.setState({
-            currentPage: 0,
-            players: !this.state.players,
-            matches: false,
 
-        });
-    }
-
-    firstPage() {
-        this.setState({currentPage: 0});
-    }
-
-    lastPage() {
-        this.setState({
-            currentPage: Math.floor(this.state.playersArray.length / 10)
-        });
-        console.log(this.state.currentPage);
-    }
-
-    previousPage() {
-        if (this.state.currentPage !== 0)
-            this.setState(prevState => ({currentPage: prevState.currentPage - 1}));
-        console.log(this.state.currentPage);
-    }
-
-    nextPage() {
-        console.log(this.state.playersArray.length + "    HDUHASDUSAHUDHSA");
-
-        if (this.state.currentPage + 1 < this.state.playersArray.length / 10) {
-            this.setState({currentPage: this.state.currentPage + 1});
-        }
-        console.log(this.state.currentPage);
-    }
-
-    async componentDidMount() {
+ async componentDidMount() {
         i18n.on('languageChanged', this.onLanguageChanged);
 
         try {
@@ -145,6 +133,7 @@ class Index extends Component {
 
         await this.createMatchesArray();
     }
+
 
     createMatchesArray() {
         const homeTeams = this.state.homeTeams;
@@ -252,6 +241,6 @@ class Index extends Component {
         );
     }
 
-}
+
 
 export default Index;

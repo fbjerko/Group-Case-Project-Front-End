@@ -3,6 +3,7 @@ import LayoutGlobal from "../../components/LayoutGlobal";
 import AdminReturn from "../../components/buttons/AdminReturn";
 import ListInfo from "../../components/admin-view/ListInfo";
 import LocationsForm from "../../components/forms/locationsForm";
+import Loading from "../../components/buttons/loading";
 
 class Stadiums extends Component {
   constructor(props) {
@@ -13,37 +14,34 @@ class Stadiums extends Component {
       createStadium: false,
       currentPage: 0,
       content: ["Stadium", "Team", "Address"], // Attribute variable names
-      contentFields: ["Name", "Team", "Address"] // Names/Values of variables
+      contentFields: ["Name", "Team", "Address"], // Names/Values of variables
+      canEdit: true // Names/Values of variables
     };
 
     this._createStadium = this._createStadium.bind(this);
-    this.previousPage = this.previousPage.bind(this);
-    this.nextPage = this.nextPage.bind(this);
-    this.firstPage = this.firstPage.bind(this);
-    this.lastPage = this.lastPage.bind(this);
+    this.changePage = this.changePage.bind(this);
   }
 
-  firstPage() {
-    this.setState({ currentPage: 0 });
-  }
-  lastPage() {
-    this.setState({ currentPage: Math.floor(this.state.players.length / 10) });
-    console.log(this.state.currentPage);
-  }
-
-  previousPage() {
-    if (this.state.currentPage !== 0)
-      this.setState(prevState => ({ currentPage: prevState.currentPage - 1 }));
-    console.log(this.state.currentPage);
-  }
-
-  nextPage() {
-    console.log(this.state.players.length);
-    console.log(this.state.players.length / 10);
-    if (this.state.currentPage + 1 < this.state.players.length / 10) {
-      this.setState({ currentPage: this.state.currentPage + 1 });
+  changePage(command) {
+    if (command === 0) {
+      this.setState({ currentPage: 0 });
     }
-    console.log(this.state.currentPage);
+    if (command === 1) {
+      if (this.state.currentPage !== 0)
+        this.setState(prevState => ({
+          currentPage: prevState.currentPage - 1
+        }));
+    }
+    if (command === 2) {
+      if (this.state.currentPage + 1 < this.state.stadiums.length / 5) {
+        this.setState({ currentPage: this.state.currentPage + 1 });
+      }
+    }
+    if (command === 3) {
+      this.setState({
+        currentPage: Math.floor(this.state.stadiums.length / 5)
+      });
+    }
   }
 
   _createStadium() {
@@ -55,7 +53,7 @@ class Stadiums extends Component {
   async componentDidMount() {
     console.log("Hey");
     try {
-      const response = await fetch(process.env.API_URL+'/api/location/all');
+      const response = await fetch(process.env.API_URL + "/api/location/all");
       const json = await response.json();
 
       this.setState({
@@ -68,52 +66,56 @@ class Stadiums extends Component {
   }
 
   render() {
-    const stadiums = this.state.stadiums.slice(
-      this.state.currentPage * 10,
-      (this.state.currentPage + 1) * 10
-    );
-    if (this.state.createStadium === true) {
-      return (
-        <div>
-              <LayoutGlobal />
-              <LocationsForm />
-              <div className = "btn-admin-create-bottom">
-              <button className="btn-create" onClick={this._createStadium}>
-              Back
-            </button>
-              </div>
-            </div>
+    if (this.state.ready === true) {
+      const stadiums = this.state.stadiums.slice(
+        this.state.currentPage * 5,
+        (this.state.currentPage + 1) * 5
       );
+      if (this.state.createStadium === true) {
+        return (
+          <div>
+            <LayoutGlobal />
+            <LocationsForm />
+            <div className="btn-admin-create-bottom">
+              <button className="btn-create" onClick={this._createStadium}>
+                Back
+              </button>
+            </div>
+          </div>
+        );
+      } else {
+        return (
+          <div>
+            <LayoutGlobal />
+
+            <div className="container">
+              <div className="btn-admin-config">
+                <button className="btn-create" onClick={this._createStadium}>
+                  Create location
+                </button>
+                <AdminReturn />
+              </div>
+
+              <ListInfo
+                data={stadiums}
+                name={this.state.content[0]}
+                content={this.state.content}
+                contentFields={this.state.contentFields}
+                ready={this.state.ready}
+                changePage={this.changePage}
+                currentPage={this.state.currentPage}
+              />
+
+              {this.state.createPlayer ? <CreateUser /> : null}
+            </div>
+          </div>
+        );
+      }
     } else {
       return (
         <div>
-
-        <LayoutGlobal />
-
-        <div className="container">
-          <div className="btn-admin-config">
-            <button className="btn-create" onClick={this._createStadium}>
-              Create location
-            </button>
-            <AdminReturn />
-          </div>
-          
-          <ListInfo
-
-              data={stadiums}
-              name = {this.state.content[0]}
-              content={this.state.content}
-              contentFields={this.state.contentFields}
-              ready={this.state.ready}
-              nextPage={this.nextPage}
-              previousPage={this.previousPage}
-              firstPage={this.firstPage}
-              lastPage={this.lastPage}
-              currentPage={this.state.currentPage}
-            />
-
-            {this.state.createPlayer ? <CreateUser /> : null}
-          </div>
+          <LayoutGlobal />
+          <Loading icon={true} text={"Loading players..."} />
         </div>
       );
     }

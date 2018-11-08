@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import LayoutGlobal from "../../components/LayoutGlobal";
-
 import ManagerForm from "../../components/forms/managerForm";
-
 import AdminReturn from "../../components/buttons/AdminReturn";
-
 import ListInfo from "../../components/admin-view/ListInfo";
+import Loading from "../../components/buttons/loading";
 
 class Managers extends Component {
   constructor(props) {
@@ -23,31 +21,29 @@ class Managers extends Component {
     };
 
     this._createManager = this._createManager.bind(this);
-    this.previousPage = this.previousPage.bind(this);
-    this.nextPage = this.nextPage.bind(this);
-    this.firstPage = this.firstPage.bind(this);
-    this.lastPage = this.lastPage.bind(this);
+    this.changePage = this.changePage.bind(this);
   }
 
-  firstPage() {
-    this.setState({ currentPage: 0 });
-  }
-  lastPage() {
-    this.setState({ currentPage: Math.floor(this.state.managers.length / 10) });
-    console.log(this.state.currentPage);
-  }
-
-  previousPage() {
-    if (this.state.currentPage !== 0)
-      this.setState(prevState => ({ currentPage: prevState.currentPage - 1 }));
-    console.log(this.state.currentPage);
-  }
-
-  nextPage() {
-    if (this.state.currentPage + 1 < this.state.managers.length / 10) {
-      this.setState({ currentPage: this.state.currentPage + 1 });
+  changePage(command) {
+    if (command === 0) {
+      this.setState({ currentPage: 0 });
     }
-    console.log(this.state.currentPage);
+    if (command === 1) {
+      if (this.state.currentPage !== 0)
+        this.setState(prevState => ({
+          currentPage: prevState.currentPage - 1
+        }));
+    }
+    if (command === 2) {
+      if (this.state.currentPage + 1 < this.state.managers.length / 10) {
+        this.setState({ currentPage: this.state.currentPage + 1 });
+      }
+    }
+    if (command === 3) {
+      this.setState({
+        currentPage: Math.floor(this.state.managers.length / 10)
+      });
+    }
   }
 
   _createManager() {
@@ -73,69 +69,69 @@ class Managers extends Component {
   }
 
   render() {
-    const managers = this.state.managers.slice(
-      this.state.currentPage * 10,
-      (this.state.currentPage + 1) * 10
-    );
-    if (this.state.createManager === true) {
-      return (
-        <div>
-          <LayoutGlobal />
-
-          <ManagerForm />
-          <div className = "btn-admin-create-bottom">
-
-
-          <div className="container">
-            <h1>Managers</h1>
-
-            <div className="btn-admin-create-top">
-              <button className="btn-create">Create</button>
-
-              <button className="btn-create">Update</button>
-
-              <button className="btn-create">Delete</button>
-            </div>
-
-            <div className="btn-admin-create-bottom">
-
-              <button className="btn-create" onClick={this._createManager}>
-              Back
-            </button>
-              </div>
-        </div>
-        </div>
-        </div>
+    if (this.state.ready === true) {
+      const managers = this.state.managers.slice(
+        this.state.currentPage * 10,
+        (this.state.currentPage + 1) * 10
       );
+      if (this.state.createManager === true) {
+        return (
+          <div>
+            <LayoutGlobal />
+            <ManagerForm />
+            <div className="btn-admin-create-bottom">
+              <div className="container">
+                <h1>Managers</h1>
+
+                <div className="btn-admin-create-top">
+                  <button className="btn-create">Create</button>
+                  <button className="btn-create">Update</button>
+                  <button className="btn-create">Delete</button>
+                </div>
+
+                <div className="btn-admin-create-bottom">
+                  <button className="btn-create" onClick={this._createManager}>
+                    Back
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      } else {
+        return (
+          <div>
+            <LayoutGlobal />
+
+            <div className="container">
+              <div className="btn-admin-config">
+                <button className="btn-create" onClick={this._createManager}>
+                  Create Manager
+                </button>
+                <AdminReturn />
+              </div>
+
+              <ListInfo
+                data={managers}
+                name={this.state.content[0]}
+                content={this.state.content}
+                contentFields={this.state.contentFields}
+                ready={this.state.ready}
+                changePage={this.changePage}
+                canEdit={this.state.canEdit}
+                currentPage={this.state.currentPage}
+              />
+
+              {this.state.createManager ? <CreateUser /> : null}
+            </div>
+          </div>
+        );
+      }
     } else {
       return (
         <div>
           <LayoutGlobal />
-
-          <div className="container">
-            <div className="btn-admin-config">
-              <button className="btn-create" onClick={this._createManager}>
-                Create Manager
-              </button>
-              <AdminReturn />
-            </div>
-
-            <ListInfo
-              data={managers}
-              name = {this.state.content[0]}
-              content={this.state.content}
-              contentFields={this.state.contentFields}
-              ready={this.state.ready}
-              nextPage={this.nextPage}
-              previousPage={this.previousPage}
-              firstPage={this.firstPage}
-              lastPage={this.lastPage}
-              canEdit={this.state.canEdit}
-              currentPage={this.state.currentPage}
-            />
-
-            {this.state.createManager ? <CreateUser /> : null}
-          </div>
+          <Loading icon={true} text={"Loading players..."} />
         </div>
       );
     }
@@ -144,17 +140,4 @@ class Managers extends Component {
 
 export default Managers;
 
-/*
 
-
-    let filteredData = (search) => {
-      return this.state.managers[3].filter((el) => {
-        el.toLowerCase().indexOf(search.toLowerCase()) > -1;
-      })
-    }
-
-
-  
-    console.log("Filtered data "  + filteredData('a'));
-
-    */
