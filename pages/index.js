@@ -1,14 +1,17 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import LayoutGlobal from "../components/LayoutGlobal";
 import Login from "../components/Login";
 import Register from "../components/Register";
 import IndexInfo from "../components/IndexInfo";
 import Loading from "../components/buttons/loading";
 import ListInfo from "../components/admin-view/ListInfo";
+import i18n from "../i18n"
+import NavbarIndex from "../components/NavbarIndex";
 
 const context = React.createContext();
 
 class Index extends Component {
+
   constructor(props) {
     super(props);
 
@@ -23,7 +26,8 @@ class Index extends Component {
       matchesArray: [],
       canEdit: false,
       ready: false,
-      currentPage: 0
+      currentPage: 0,
+       lng: i18n.language
     };
 
     this._onLoginClick = this._onLoginClick.bind(this);
@@ -32,6 +36,9 @@ class Index extends Component {
     this._players = this._players.bind(this);
     this.changePage = this.changePage.bind(this);
   }
+      
+         onLanguageChanged = (lng) => {
+        this.setState({lng: lng});
 
   _onLoginClick() {
     this.setState({
@@ -86,157 +93,154 @@ class Index extends Component {
     }
   }
 
-  
 
-  async componentDidMount() {
-    try {
-      const response = await fetch(process.env.API_URL + "/api/player/all");
-      const json = await response.json();
-      this.setState({
-        playersArray: json
-      });
-    } catch (error) {
-      console.log(error);
+ async componentDidMount() {
+        i18n.on('languageChanged', this.onLanguageChanged);
+
+        try {
+            const response = await fetch(process.env.API_URL + "/api/player/all");
+            const json = await response.json();
+            this.setState({
+                playersArray: json
+            });
+        } catch (error) {
+            console.log(error);
+        }
+
+        try {
+            const response = await fetch(
+                process.env.API_URL + "/api/teamResult/homeTeam"
+            );
+            const json = await response.json();
+            this.setState({
+                homeTeams: json
+            });
+        } catch (error) {
+            console.log(error);
+        }
+        try {
+            const response = await fetch(
+                process.env.API_URL + "/api/teamResult/awayTeam"
+            );
+            const json = await response.json();
+            this.setState({
+                awayTeams: json,
+                ready: true
+            });
+        } catch (error) {
+            console.log(error);
+        }
+
+        await this.createMatchesArray();
     }
 
-    try {
-      const response = await fetch(
-        process.env.API_URL + "/api/teamResult/homeTeam"
-      );
-      const json = await response.json();
-      this.setState({
-        homeTeams: json
-      });
-    } catch (error) {
-      console.log(error);
-    }
-    try {
-      const response = await fetch(
-        process.env.API_URL + "/api/teamResult/awayTeam"
-      );
-      const json = await response.json();
-      this.setState({
-        awayTeams: json,
-        ready: true
-      });
-    } catch (error) {
-      console.log(error);
-    }
 
-    await this.createMatchesArray();
-  }
+    createMatchesArray() {
+        const homeTeams = this.state.homeTeams;
+        const awayTeams = this.state.awayTeams;
 
-  createMatchesArray() {
-    const homeTeams = this.state.homeTeams;
-    const awayTeams = this.state.awayTeams;
+        console.log(homeTeams.length + " is Length");
+        const matches = [];
+        for (let i = 0; i < homeTeams.length; i++) {
+            console.log("IN LOOP");
+            matches.push([
+                i,
+                homeTeams[i][1],
+                i,
+                homeTeams[i][3],
+                i,
+                homeTeams[i][7] + " - " + awayTeams[i][7],
+                i,
+                awayTeams[i][3],
+                i,
+                awayTeams[i][5]
+            ]);
+            //  -- Date --     -- HomeTeam --   -- Win/Loss --   -- Win/Loss --   -- AwayTeam --    -- Arena --
+        }
 
-    console.log(homeTeams.length + " is Length");
-    const matches = [];
-    for (let i = 0; i < homeTeams.length; i++) {
-      console.log("IN LOOP");
-      matches.push([
-        i,
-        homeTeams[i][1],
-        i,
-        homeTeams[i][3],
-        i,
-        homeTeams[i][7] + " - " + awayTeams[i][7],
-        i,
-        awayTeams[i][3],
-        i,
-        awayTeams[i][5]
-      ]);
-      //  -- Date --     -- HomeTeam --   -- Win/Loss --   -- Win/Loss --   -- AwayTeam --    -- Arena --
+        this.setState({
+            matchesArray: matches
+        });
+
+        console.log(this.state.matchesArray);
     }
 
-    this.setState({
-      matchesArray: matches
-    });
+    render() {
+        const players = this.state.playersArray.slice(
+            this.state.currentPage * 10,
+            (this.state.currentPage + 1) * 10
+        );
 
-    console.log(this.state.matchesArray);
-  }
+        const matches = this.state.matchesArray.slice(
+            this.state.currentPage * 10,
+            (this.state.currentPage + 1) * 10
+        );
 
-  render() {
-    const players = this.state.playersArray.slice(
-      this.state.currentPage * 10,
-      (this.state.currentPage + 1) * 10
-    );
+        return (
+            <LayoutGlobal>
+                <NavbarIndex
+                    onLoginClick={this._onLoginClick}
+                    onRegisterClick={this._onRegisterClick}
+                />
 
-    const matches = this.state.matchesArray.slice(
-      this.state.currentPage * 10,
-      (this.state.currentPage + 1) * 10
-    );
 
-    return (
-      <LayoutGlobal>
-        <div className="btn-group-index-login-reg">
-          <button className="btn-index-login-reg " onClick={this._onLoginClick}>
-            Log in
-          </button>
+                <div className="btn-group-index-toggle-info">
+                    <button className="btn-index-toggle" onClick={this._matches}>
+                        {i18n.t("MATCHES", this.state.lng)}
+                    </button>
 
-          <button
-            className="btn-index-login-reg "
-            onClick={this._onRegisterClick}
-          >
-            Register
-          </button>
-        </div>
+                    <button className="btn-index-toggle" onClick={this._players}>
+                        {i18n.t("PLAYERS", this.state.lng)}
+                    </button>
 
-        <div className="btn-group-index-toggle-info">
-          <button className="btn-index-toggle" onClick={this._matches}>
-            Matches
-          </button>
+                    {this.state.matches ? (
+                        <ListInfo
+                            data={matches}
+                            name={"Matches"}
+                            content={["Stadium", "Teams", "Matches", "Teams", "League"]}
+                            contentFields={[
+                                "Date",
+                                "Home Team",
+                                "Result",
+                                "Away Team",
+                                "Arena"
+                            ]}
+                            ready={this.state.ready}
+                            nextPage={this.nextPage}
+                            previousPage={this.previousPage}
+                            firstPage={this.firstPage}
+                            lastPage={this.lastPage}
+                            canEdit={this.state.canEdit}
+                            userId={0}
+                            currentPage={this.state.currentPage}
+                            canLoad={false}
+                        />
+                    ) : null}
+                    {this.state.players ? (
+                        <ListInfo
+                            data={players}
+                            name={"Players"}
+                            content={["Players", "Teams"]}
+                            contentFields={["Name", "Team"]}
+                            ready={this.state.ready}
+                            nextPage={this.nextPage}
+                            previousPage={this.previousPage}
+                            firstPage={this.firstPage}
+                            lastPage={this.lastPage}
+                            canEdit={this.state.canEdit}
+                            userId={0}
+                            currentPage={this.state.currentPage}
+                            canLoad={false}
+                        />
+                    ) : null}
+                </div>
 
-          <button className="btn-index-toggle" onClick={this._players}>
-            Players
-          </button>
+                {this.state.showLogin ? <Login close={this._onLoginClick}/> : null}
+                {this.state.showRegister ? <Register/> : null}
+            </LayoutGlobal>
+        );
+    }
 
-          {this.state.matches ? (
-            <ListInfo
-              data={matches}
-              name={"Matches"}
-              content={["Stadium", "Teams", "Matches", "Teams", "League"]}
-              contentFields={[
-                "Date",
-                "Home Team",
-                "Result",
-                "Away Team",
-                "Arena"
-              ]}
-              ready={this.state.ready}
-              nextPage={this.nextPage}
-              previousPage={this.previousPage}
-              firstPage={this.firstPage}
-              lastPage={this.lastPage}
-              canEdit={this.state.canEdit}
-              userId={0}
-              currentPage={this.state.currentPage}
-              canLoad={false}
-            />
-          ) : null}
-          {this.state.players ? (
-            <ListInfo
-              data={players}
-              name={"Players"}
-              content={["Players", "Teams"]}
-              contentFields={["Name", "Team"]}
-              ready={this.state.ready}
-              
-              changePage={this.changePage}
-              
-              canEdit={this.state.canEdit}
-              userId={0}
-              currentPage={this.state.currentPage}
-              canLoad={false}
-            />
-          ) : null}
-        </div>
 
-        {this.state.showLogin ? <Login close={this._onLoginClick} /> : null}
-        {this.state.showRegister ? <Register /> : null}
-      </LayoutGlobal>
-    );
-  }
-}
 
 export default Index;

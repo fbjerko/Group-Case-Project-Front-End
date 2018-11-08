@@ -1,4 +1,3 @@
-
 div.info-container {
   position: relative;
   display: flex;
@@ -120,7 +119,7 @@ form {
 
 /* Set a style for the submit/login button */
 .form-container .btn {
-  background-color: #53eb35;
+  background-color: white;
   color: black;
   padding: 16px 20px;
   border: solid;
