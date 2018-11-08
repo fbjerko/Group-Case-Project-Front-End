@@ -1,7 +1,6 @@
 import React from "react";
 import { Router } from "../routes";
 import Loading from "./buttons/loading";
-import i18n from "../i18n"
 
 
 
@@ -12,8 +11,7 @@ class Register extends React.Component
   constructor(props){
     super(props);
     this.state={
-      status:"Fill out user information",
-      lng:i18n.language
+      status:"Fill out user information"
     }
   }
 
@@ -157,65 +155,56 @@ class Register extends React.Component
     };
 }
 
-componentDidMount() {
-    i18n.on('languageChanged', this.onLanguageChanged)
-    
-    }
-    onLanguageChanged = (lng)=>{
-    this.setState({lng:lng});
-    }
-
     render(){
-    let lng = this.state.lng;
     let loading;
     if(this.state.status=="Fill out user information"){
-      loading=<Loading icon={false} text={i18n.t("FILL_USER",{lng})}/>;
+      loading=<Loading icon={false} text={"Fill out user information"}/>;
     }else if(this.state.status=="Creating user"){
-        loading=<Loading icon={true} text={i18n.t("CREATING_USER",{lng})}/>;
+        loading=<Loading icon={true} text={"Creating User"}/>;
     }else if(this.state.status=="Could not create user"){
-        loading=<Loading icon={false} text={i18n.t("CREATED_FAILED",{lng})}/>;
+        loading=<Loading icon={false} text={"Failed creating user!"}/>;
     }else if(this.state.status=="User created!"){
-        loading=<Loading icon={false} text={i18n.t("USER_CREATED",{lng})}/>;
+        loading=<Loading icon={false} text={"User created"}/>;
     }
         return(<div className="form-div" id="myForm">
             <form className="form-container">
                 {loading}
-                <h2>{i18n.t("REGISTER",{lng})}</h2>
+                <h2>Register</h2>
 
-                <b>{i18n.t("USERNAME",{lng})}</b>
+                <b>User name</b>
                 <input
                     type="text"
-                    placeholder={i18n.t("ENTER",{lng}) +" "+ i18n.t("USERNAME",{lng})}
+                    placeholder="Enter User name"
                     id="userName"
                     onInput={this.checkUserName}
                 />
 
-                <b>{i18n.t("EMAIL",{lng})}</b>
+                <b>Email</b>
                 <input
                     type="text"
-                    placeholder={i18n.t("ENTER",{lng}) + " " + i18n.t("EMAIL",{lng})}
+                    placeholder="Enter Email"
                     id="email"
                     onInput={this.checkEmail}
                 />
 
-                <b>{i18n.t("PASS",{lng})}</b>
+                <b>Password</b>
                 <input
                     type="password"
-                    placeholder={i18n.t("ENTER",{lng}) +" "+ i18n.t("PASS",{lng})}
+                    placeholder="Enter psw"
                     id="psw"
                     onInput={this.checkPassword}
                 />
 
-                <b>{i18n.t("REP_PASS",{lng})}</b>
+                <b>Repeat Password</b>
                 <input
                     type="password"
-                    placeholder={i18n.t("REP_PASS",{lng})}
+                    placeholder="Repeat psw"
                     id="psw-rep"
                     onInput={this.checkPassword}
                 />
 
                 <button type="button" className="btn-" onClick={this.validate}>
-                {i18n.t("REGISTER",{lng})}
+                    Register
                 </button>
             </form>
         </div>)

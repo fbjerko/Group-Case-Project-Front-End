@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import i18n from "../../i18n"
 
 class SearchField extends Component {
 
@@ -12,8 +11,7 @@ class SearchField extends Component {
             filteredData:[],
             url:this.chooseUrl(this.props.type),
             active:false,
-            id:this.props.id,
-            lng:i18n.language
+            id:this.props.id
 
         }
 
@@ -21,14 +19,6 @@ class SearchField extends Component {
         this.getData=this.getData.bind(this);
 
     }
-
-    componentDidMount() {
-        i18n.on('languageChanged', this.onLanguageChanged)
-        
-        }
-        onLanguageChanged = (lng)=>{
-        this.setState({lng:lng});
-        }
 
 
     getData(){
@@ -144,7 +134,6 @@ class SearchField extends Component {
 
 
     render() {
-        let lng = this.state.lng;
 
 
         let filteredData = this.state.data.filter((element)=>{

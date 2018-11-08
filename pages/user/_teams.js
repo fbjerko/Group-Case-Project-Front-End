@@ -17,12 +17,12 @@ class Teams extends Component {
       content: ["Teams", "Managers"], // Attribute variable names
       contentFields: ["Name", "Manager", "Country"], // Names/Values of variables
       canEdit: false,
-      userId: this.props.userId,
+      userId: "",
       activeId: 0,
       display: 99,
     };
 
-
+    this._createTeam = this._createTeam.bind(this);
     this.previousPage = this.previousPage.bind(this);
     this.nextPage = this.nextPage.bind(this);
     this.firstPage = this.firstPage.bind(this);
@@ -52,7 +52,15 @@ class Teams extends Component {
     console.log(this.state.currentPage);
   }
 
+  _createTeam() {
+    this.setState({
+      createTeam: !this.state.createTeam
+    });
 
+    console.log(this.state.createTeam + " ");
+  }
+
+  
 
   async componentDidMount() {
  
@@ -60,9 +68,9 @@ class Teams extends Component {
     console.log(this.state.userId);
 
     try {
-        const response = await fetch(process.env.API_URL + "/api/team/all");
-        const json = await response.json();
-
+      const response = await fetch(process.env.API_URL + "/api/team/all");
+      const json = await response.json();
+      console.log(json);
       this.setState({
         teams: json,
         ready: true
@@ -92,7 +100,7 @@ class Teams extends Component {
               close={this.close}
               canEdit={false}
               userId={this.state.userId}
-              updateWatchList={this.props.updateWatchlist}
+              updateWatchList={this.updateWatchlist}
 
             />
           </div>
@@ -115,34 +123,59 @@ class Teams extends Component {
         </div>
       );
     }
-     return (
+    if (this.state.createTeam === true) {
+      return (
         <div>
           <LayoutGlobal />
 
           <div className="container">
+            <h1>Teams</h1>
 
+            <div className="btn-admin-create-top">
+              <button className="btn-create">Create</button>
 
+              <button className="btn-create">Update</button>
 
-              <ListInfo
-                  data={teams}
-                  name = {this.state.content[0]}
-                  content={this.state.content}
-                  contentFields={this.state.contentFields}
-                  ready={this.state.ready}
-                  nextPage={this.nextPage}
-                  previousPage={this.previousPage}
-                  firstPage={this.firstPage}
-                  lastPage={this.lastPage}
-                  canEdit={this.state.canEdit}
-                  userId={this.state.userId}
-                  currentPage={this.state.currentPage}
-              />
+              <button className="btn-create">Delete</button>
+            </div>
+
+            <div className="btn-admin-create-bottom">
+              <button className="btn-create" onClick={this._createTeam}>
+                Back
+              </button>
+            </div>
+          </div>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <LayoutGlobal />
+
+          <div className="container">
+         
+            
+
+            <ListInfo
+              data={teams}
+              name = {this.state.content[0]}
+              content={this.state.content}
+              contentFields={this.state.contentFields}
+              ready={this.state.ready}
+              nextPage={this.nextPage}
+              previousPage={this.previousPage}
+              firstPage={this.firstPage}
+              lastPage={this.lastPage}
+              canEdit={this.state.canEdit}
+              userId={this.state.userId}
+              currentPage={this.state.currentPage}
+            />
 
             {this.state.createTeam ? <CreateUser /> : null}
           </div>
         </div>
       );
-
+    }
   }
 }
 

@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import SearchField from "../admin-create/SearchField";
 import Popupp from "../popupp";
 import Loading from "../buttons/loading";
-import i18n from "../../i18n"
 
 class PlayersForm extends Component {
     constructor(props){
@@ -19,20 +18,11 @@ class PlayersForm extends Component {
             personId:-1,
             ready:false,
             playerId:-1,
-            loading:null,
-            lng:i18n.language
+            loading:null
         }
         this.switchMethods(this.props.edit);
 
     }
-
-    componentDidMount() {
-        i18n.on('languageChanged', this.onLanguageChanged)
-        
-        }
-        onLanguageChanged = (lng)=>{
-        this.setState({lng:lng});
-        }
 
 
     updateInput = (event)=>{
@@ -132,7 +122,6 @@ class PlayersForm extends Component {
     }
 
     render(){
-        let lng = this.state.lng;
         if(this.state.ready){
 
 
@@ -142,25 +131,25 @@ class PlayersForm extends Component {
                     <div className="seasons-container">
                         {this.state.loading}
                         <div className="top">
-                            <h2>{i18n.t("PLAYER",{lng})  +' '+ i18n.t("INFO",{lng})}</h2>
+                            <h2>Create new player</h2>
                         </div>
-                        <p>{i18n.t("PERSON",{lng})} </p>
+                        <p>Person </p>
                         <SearchField type={'person'} id={this.state.personId} handleChange={this.updateSearchFieldPerson}/>
                         <br></br>
                         <br></br>
-                        <p>{i18n.t("NUMBER",{lng})}</p>
+                        <p>Number</p>
                         <input onChange={this.updateInput} value={this.state.number} type="text" placeholder="Write a number:" id="number" />
                         <br></br>
                         <br></br>
-                        <p>{i18n.t("POSITION",{lng})}</p>
+                        <p>Position</p>
                         <input onChange={this.updateInput} value={this.state.position} type="text" placeholder="Write a position" id="position" />
                         <br></br>
                         <br></br>
-                        <p>{i18n.t("TEAM",{lng})}</p>
+                        <p>Team</p>
                         <SearchField type={'team'} id={this.state.teamId} handleChange={this.updateSearchFieldTeam} value={this.state.teamId}/>
                         <br></br>
                         <br></br>
-                        <input className="btn-index" type="button" value={i18n.t("SUBMIT",{lng})} onClick={this.sendPlayer}></input>
+                        <input className="btn-index" type="button" value="Submit" onClick={this.sendPlayer}></input>
                     </div>
 
                 </div>

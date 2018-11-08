@@ -1,7 +1,5 @@
 import React from "react";
 import { Router } from "../../routes";
-import i18n from "../../i18n"
-
 
 const AdminReturn = () => (
 
@@ -12,7 +10,7 @@ const AdminReturn = () => (
     className="btn-ret-admin"
     onClick={() => Router.pushRoute("/admin")}
   >
-      {i18n.t("RET_DASH")}
+   Return to Dashboard
   </button>
   </div>
 

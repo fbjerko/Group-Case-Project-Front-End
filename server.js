@@ -7,9 +7,7 @@ const http = require('https');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
-
 const request = require('request-promise');
-
 process.env.API_URL= process.env.NODE_ENV == 'production'?"https://experis-football-manager-back.herokuapp.com":"http://localhost:5000";
 
 
@@ -23,8 +21,7 @@ const handle = app.getRequestHandler();
 app.prepare()
 .then(() => {
   const server = express();
-
-
+  
 
   server.use(cookieParser());
   server.use(bodyParser.json());

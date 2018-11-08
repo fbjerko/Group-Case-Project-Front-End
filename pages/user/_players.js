@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import LayoutGlobal from "../../components/LayoutGlobal";
 import ListInfo from "../../components/admin-view/ListInfo";
 import PlayerInfo from "../../components/admin-view/PlayerInfo";
@@ -7,8 +7,6 @@ import WatchList from "./WatchList";
 import Loading from "../../components/buttons/loading";
 
 class Players extends Component {
-
-
   constructor(props) {
     super(props);
     this.state = {
@@ -50,7 +48,13 @@ class Players extends Component {
     }
   }
 
+  _createPlayer() {
+    this.setState({
+      createPlayer: !this.state.createPlayer
+    });
 
+    console.log(this.state.createPlayer + " ");
+  }
 
   async componentDidMount() {
     try {
@@ -163,8 +167,8 @@ class Players extends Component {
           <Loading icon={true} text={"Loading players..."} />
         </div>
       );
-
     }
+  }
 }
 
 export default Players;
