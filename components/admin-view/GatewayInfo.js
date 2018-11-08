@@ -19,7 +19,7 @@ class GatewayInfo extends Component {
   }
 
   render() {
-    console.log(this.props.canEdit + "");
+
     if (this.props.content === "Players") {
       return (
         <div>

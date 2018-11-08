@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import GatewayInfo from "./GatewayInfo";
+import i18n from "../../i18n"
 
 class ListInfo extends Component {
   constructor(props) {
@@ -8,12 +9,21 @@ class ListInfo extends Component {
     this.state = {
       activeId: "",
       display: 99,
-      userId: ""
+      userId: "",
+      lng:i18n.language
     };
 
     this.showFirst = this.showFirst.bind(this);
     this.close = this.close.bind(this);
   }
+
+  componentDidMount() {
+    i18n.on('languageChanged', this.onLanguageChanged)
+    
+    }
+    onLanguageChanged = (lng)=>{
+    this.setState({lng:lng});
+    }
 
   async showFirst(id, action) {
     if(this.props.canLoad === undefined) {
@@ -35,6 +45,7 @@ class ListInfo extends Component {
   render() {
     /* Code for checking wether even values are number/id, pretty weak as for now as it just checks one row ahead for a number value */
     const rows = [];
+    let lng = this.state.lng;
 
   this.props.data.map(data => {
       var i = 0;
@@ -66,10 +77,11 @@ class ListInfo extends Component {
 
         if (this.props.contentFields.length === 5) {
           if (i === 2) {
-            
+
             columns.push(
               <td
-                key={data[i * 2] + data[4] + i}
+                key={data[i * 2] + data[3] + i}
+
                 className="td-admin-get-all-matches-result"
                 onClick={() => this.showFirst(id, action)}
               >
@@ -81,7 +93,7 @@ class ListInfo extends Component {
            else {
             columns.push(
               <td
-                key={data[i * 2] + data[4] + i}
+                key={data[i * 2] + data[3] + i}
                 className="td-admin-get-all-matches"
                 onClick={() => this.showFirst(id, action)}
               >
@@ -92,7 +104,7 @@ class ListInfo extends Component {
         } else {
           columns.push(
             <td
-              key={data[i * 2] + data[4] + i}
+              key={data[i * 2] + data[3] + i}
               className="td-admin-get-all"
               onClick={() => this.showFirst(id, action)}
             >
@@ -279,24 +291,24 @@ class ListInfo extends Component {
                 <tbody>
                   <tr>
                     <td className="td-admin-but" onClick={this.props.firstPage}>
-                      First Page
+                    {i18n.t("FIRSTP",{lng}) +' '+ i18n.t("PAGE",{lng})}
                     </td>
                     <td
                       className="td-admin-but"
                       onClick={this.props.previousPage}
                     >
-                      Previous Page
+                    {i18n.t("PREV",{lng}) + ' ' + i18n.t("PAGE",{lng})}
                     </td>
                     <td className="td-admin-but" onClick={this.props.nextPage}>
-                      Next Page
+                    {i18n.t("NEXT",{lng}) + ' ' + i18n.t("PAGE",{lng})}
                     </td>
                     <td className="td-admin-but" onClick={this.props.lastPage}>
-                      Last Page
+                    {i18n.t("LASTP",{lng}) + ' ' + i18n.t("PAGE",{lng})}
                     </td>
                   </tr>
                 </tbody>
               </table>
-              <h2>Page {this.props.currentPage + 1}</h2>
+              <h2>{i18n.t("PAGE",{lng})} {this.props.currentPage + 1}</h2>
             </div>
           </div>
         );
