@@ -73,15 +73,15 @@ class Login extends React.Component {
                             xhttp.send(body);
                             xhttp.onreadystatechange = () => {
                                 if (xhttp.readyState == XMLHttpRequest.DONE) {
-                                    console.log(xhttp);
+                                    console.log(xhttp.status);
                                     if (xhttp.status == 200) {
                                         let body = JSON.parse(xhttp.responseText);
                                         console.log(body);
-                                        if (body.message == 'admin') {
+                                        if (body.role == 'admin') {
                                             console.log("Admin logged in");
                                             Router.pushRoute("/admin");
                                         }
-                                        else if (body.message == 'user') {
+                                        else if (body.role == 'user') {
                                             console.log("user logged in");
                                             Router.pushRoute("/dashboard");
                                         }

@@ -29,13 +29,14 @@ app.prepare()
 
 
         server.use('/admin', (req, res, next) => {
-            console.log("Checking authentication for Admin");
+            console.log(jwt.decode(req.cookies.token));
 
             try {
-                const decode = jwt.verify(req.cookies.token, 'secretAdmin');
+                const decode = jwt.verify(req.cookies.token, Buffer.from("secretAdmin").toString('base64'),{ algorithms: ['HS512'] });
+                console.log(decode);
                 next();
             } catch (error) {
-
+                console.log(error);
                 res.redirect('/')
             }
 
@@ -47,7 +48,7 @@ app.prepare()
             console.log("Checking authentication for User");
 
             try {
-                const decode = jwt.verify(req.cookies.token, 'secretNotAdmin');
+                const decode = jwt.verify(req.cookies.token, Buffer.from("secretAdmin").toString('base64'),{ algorithms: ['HS512'] });
                 next();
             } catch (error) {
 
@@ -72,6 +73,7 @@ app.prepare()
 
             let url = process.env.API_URL + "/api/auth/signin";
             console.log(req.body);
+
             const options = {
                 method: 'POST',
                 uri: url,
@@ -85,7 +87,18 @@ app.prepare()
             };
 
             request(options).then(response => {
-                console.log(response.body);
+                console.log();
+                if(response.statusCode==200){
+                    res.cookie("token",response.body.accessToken,{ maxAge: 1000*60*60*4, httpOnly: true });
+                    res.status(200).send({
+                        token: response.body.tokenType+ " "+response.body.accessToken,
+                        role: response.headers.role
+                    })
+                }else if(response.statusCode==401){
+                    res.status(401).end();
+                }
+
+
 
             }).catch((err) => {
                 console.log(err);
@@ -95,52 +108,7 @@ app.prepare()
         });
 
 
-        server.post('/register', (req, res) => {
-            let body = req.body;
-            bcrypt.hash(body.password, 10, (err, hash) => {
-                if (hash) {
-                    body.password = hash;
-                    let url = process.env.API_URL + "/api/user";
 
-                    const options = {
-                        method: 'POST',
-                        uri: url,
-                        body: body,
-                        json: true, // Automatically stringifies the body to JSON
-                        resolveWithFullResponse: true,
-                        headers: {
-                            'content-type': "application/json"
-                        },
-                        simple: false
-                    };
-
-                    request(options).then(response => {
-                        //console.log(response.status);
-                        if (response.statusCode == 201) {
-                            res.status(201).json({
-                                message: "Created"
-                            });
-                        } else {
-                            res.status(401).json({
-                                message: "Failed"
-                            });
-                        }
-
-                    }).catch((err) => {
-                        console.log(err);
-
-                    });
-                } else {
-                    console.log(err);
-                    res.status(401).json({
-                        message: "Failed"
-                    });
-                }
-
-            });
-
-
-        });
 
         server.get('*', (req, res) => {
 
