@@ -17,7 +17,7 @@ class Matches extends Component {
       ready: false,
       createManager: false,
       currentPage: 0,
-      content: ["Stadium", "Teams", "Matches", "Teams", "League"], // Attribute variable names
+      content: ["Date", "Teams", "Matches", "Teams", "Arena"], // Attribute variable names
       contentFields: ["Date", "Home Team", "Result", "Away Team", "Arena"],
       canEdit: true // Names/Values of variables
     };

@@ -17,8 +17,8 @@ class Players extends Component {
             createPlayer: false,
             editPlayer: false,
             currentPage: 0,
-            content: ["Players","Teams"], // Attribute variable names
-            contentFields: [i18n.t("NAME", lng), i18n.t("TEAMS", lng)],
+            content: [i18n.t("PLAYERS", lng), i18n.t("TEAMS", lng)], // Attribute variable names
+            contentFields: [i18n.t("NAME", lng), i18n.t("TEAM", lng)],
             canEdit: true, // Names/Values of variables,
             playerId: -1,
             lng: lng

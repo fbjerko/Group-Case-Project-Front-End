@@ -22,6 +22,8 @@ class PlayerInfo extends Component {
 
         this._edit = this._edit.bind(this);
         this.addToWatchList = this.addToWatchList.bind(this);
+        this.deletePlayer = this.deletePlayer.bind(this);
+        
 
 
     }
@@ -70,17 +72,20 @@ class PlayerInfo extends Component {
         }
     }
 
-    deletePlayer() {
-
-        xhttp.open("DELETE", process.env.API_URL + "/api/player/" + this.props.id + "/delete", true);
-        xhttp.setRequestHeader("Content-type", "application/json");
+    deletePlayer(id) {
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("DELETE", process.env.API_URL + "/api/player/" + id + "/delete", true);
+        xhttp.send(null);
 
         xhttp.onreadystatechange = () => {
             if (xhttp.readyState == XMLHttpRequest.DONE) {
+                console.log(xhttp.status);
                 if (xhttp.status === 200) {
                     this.setState({success: true, failed: false});
-                } else if (xhttp.status !== 403) {
+                    console.log("Yay");
+                } else if (xhttp.status == 403) {
                     this.setState({failed: true, success: false});
+                    console.log("Damn");
                 }
             }
         };
@@ -178,7 +183,7 @@ class PlayerInfo extends Component {
                         <td className="td-admin-but" onClick={() => this.props.editPlayer(this.props.id)}>
                             {i18n.t("EDIT", {lng})}
                         </td>
-                        <td className="td-admin-but" onClick={this.props.previousPage}>
+                        <td className="td-admin-but" onClick={() => this.deletePlayer(this.props.id)}>
                             {i18n.t("DELETE", {lng})}
                         </td>
                     </tr>

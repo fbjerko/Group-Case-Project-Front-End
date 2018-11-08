@@ -6,6 +6,7 @@ import UserInfo from "./UserInfo";
 import TeamInfo from "./TeamInfo";
 import StadiumInfo from "./StadiumInfo";
 import MatchInfo from "./MatchInfo";
+import i18n from "../../i18n"
 
 
 class GatewayInfo extends Component {
@@ -15,12 +16,22 @@ class GatewayInfo extends Component {
     this.state = {
       activeId: "",
       displayFirst: false,
+      lng: i18n.language
     };
   }
 
+  componentDidMount() {
+    i18n.on('languageChanged', this.onLanguageChanged)
+
+}
+
+onLanguageChanged = (lng) => {
+    this.setState({lng: lng});
+}
+
   render() {
 
-    if (this.props.content === "Players") {
+    if (this.props.content === i18n.t("PLAYERS", this.state.lng)) {
       return (
         <div>
           <PlayerInfo editPlayer={this.props.edit} id={this.props.id} close={this.props.close} canEdit={this.props.canEdit} userId={this.props.userId}/>
@@ -36,7 +47,7 @@ class GatewayInfo extends Component {
       );
     }
 
-    if (this.props.content === "Teams") {
+    if (this.props.content === i18n.t("TEAMS", this.state.lng)) {
           
       return (
         <div>

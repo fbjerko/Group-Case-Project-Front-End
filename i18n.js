@@ -110,7 +110,8 @@ i18next
                     LASTP: "Last",
                     NEXT: "Next",
                     PREV: "Previous",
-                    INFO: "Information"
+                    INFO: "Information",
+                    DOCUMENTATION: "Documentation"
                 
 
                 },
@@ -188,7 +189,8 @@ i18next
                     NEXT: "Neste",
                     PREV: "Forrige",
                     RET_DASH: "Tilbake til hovedsiden",
-                    INFO: "Informasjon"
+                    INFO: "Informasjon",
+                    DOCUMENTATION: "Dokumentasjon"
 
 
                 },
