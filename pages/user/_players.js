@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import LayoutGlobal from "../../components/LayoutGlobal";
 import ListInfo from "../../components/admin-view/ListInfo";
 import PlayerInfo from "../../components/admin-view/PlayerInfo";
@@ -22,7 +22,6 @@ class Players extends Component {
       display: 99
     };
 
-    this._createPlayer = this._createPlayer.bind(this);
     this.changePage = this.changePage.bind(this);
   }
 
@@ -48,13 +47,7 @@ class Players extends Component {
     }
   }
 
-  _createPlayer() {
-    this.setState({
-      createPlayer: !this.state.createPlayer
-    });
 
-    console.log(this.state.createPlayer + " ");
-  }
 
   async componentDidMount() {
     try {
@@ -86,7 +79,7 @@ class Players extends Component {
                 id={this.state.activeId}
                 close={this.close}
                 canEdit={false}
-                userId={this.state.userId}
+                userId={this.props.userId}
                 updateWatchList={this.updateWatchlist}
               />
             </div>
@@ -102,7 +95,7 @@ class Players extends Component {
                 id={this.state.activeId}
                 close={this.close}
                 canEdit={false}
-                userId={this.state.userId}
+                userId={this.props.userId}
               />
             </div>
           </div>
@@ -151,7 +144,7 @@ class Players extends Component {
                 ready={this.state.ready}
                 changePage={this.changePage}
                 canEdit={this.state.canEdit}
-                userId={this.state.userId}
+                userId={this.props.userId}
                 currentPage={this.state.currentPage}
               />
 
