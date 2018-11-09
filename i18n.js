@@ -5,7 +5,7 @@ import lngDetect from 'i18next-browser-languagedetector';
 i18next
     .use(lngDetect)
     .init({
-        debug:false,
+        debug:true,
         detection:{
             // order and from where user language should be detected
             order: ['localStorage','cookie','querystring', 'navigator', 'htmlTag', 'path', 'subdomain'],

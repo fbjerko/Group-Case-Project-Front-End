@@ -71,6 +71,14 @@ class MatchesForm extends React.Component {
               locationId: this.state.location_id 
             })
         );
+        console.log(JSON.stringify({
+            playersId: this.state.selectedPlayers,
+            date: this.state.match_date,
+            homeTeamId: this.state.team_1,
+            awayTeamId: this.state.team_2,
+            seasonId: this.state.season_id,
+            locationId: this.state.location_id
+        }));
         xhttp.onreadystatechange = ()=>{
           if (xhttp.readyState == XMLHttpRequest.DONE) {
             if(xhttp.status==201){
@@ -113,9 +121,9 @@ class MatchesForm extends React.Component {
 
         <h2>Create new match</h2>
 
-       <p>Team 1 </p>
+       <p>Home team</p>
        <SearchField type={'team'} handleChange={this.updateSearchFieldTeam1}/>
-       <p>Team 2</p>
+       <p>Away team</p>
        <SearchField type={'team'} handleChange={this.updateSearchFieldTeam2}/>
        <br></br>
        <br></br>
@@ -135,7 +143,7 @@ class MatchesForm extends React.Component {
 
         </div>
                 <div style={{width:'300px',marginLeft:'50px'}}>
-                    <h2>Team 1:</h2>
+                    <h2>Home team:</h2>
                     <table>
                         <tbody>
                         {this.state.team_1_players.map((player)=>{
@@ -160,7 +168,7 @@ class MatchesForm extends React.Component {
                     </table>
                 </div>
                 <div style={{width:'300px',marginLeft:'50px'}}>
-                    <h2>Team 2:</h2>
+                    <h2>Away team</h2>
 
                     <table>
                         <tbody>
