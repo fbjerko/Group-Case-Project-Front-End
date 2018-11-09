@@ -45,6 +45,19 @@ class ListInfo extends Component {
     const rows = [];
     let lng = this.state.lng;
 
+    let backButton;
+
+    if(this.props.canLoad === undefined) {
+      backButton = ( <button
+        className="btn-dashboard-back"
+        onClick={() => this.props.close("")}
+      >
+        Back
+      </button>);
+    } else {
+      backButton = (<br/>);
+    }
+
     this.props.data.map(data => {
       var i = 0;
       var temp = 0;
@@ -294,6 +307,7 @@ class ListInfo extends Component {
       } else {
         return (
           <div>
+            
             <h1>{this.props.name}</h1>
             <div className="div-admin-get-all">
               {table}
@@ -334,6 +348,7 @@ class ListInfo extends Component {
               <h2>
                 {i18n.t("PAGE", { lng })} {this.props.currentPage + 1}
               </h2>
+             {backButton}
             </div>
           </div>
         );

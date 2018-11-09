@@ -108,7 +108,7 @@ class Managers extends Component {
                 <button className="btn-create" onClick={this._createManager}>
                   Create Manager
                 </button>
-                <AdminReturn />
+              
               </div>
 
               <ListInfo
@@ -120,8 +120,9 @@ class Managers extends Component {
                 changePage={this.changePage}
                 canEdit={this.state.canEdit}
                 currentPage={this.state.currentPage}
+                close={this.props.close}
               />
-
+             
               {this.state.createManager ? <CreateUser /> : null}
             </div>
           </div>
@@ -139,5 +140,3 @@ class Managers extends Component {
 }
 
 export default Managers;
-
-

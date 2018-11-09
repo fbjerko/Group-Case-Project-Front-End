@@ -43,6 +43,12 @@ div.btn-admin-config-create{
   right: 2.1vw;
   display: grid;
 }
+button.btn-admin-back {
+  position: absolute;
+  bottom: 3vh;
+   margin-top: 1rem;
+  align-items: center;
+}
 
 div.btn-admin-nav {
   width: 100%;
@@ -139,7 +145,7 @@ table.table-admin-but {
   width: 50rem;
   margin: auto;
   margin-top: 2rem;
-  margin-bottom: 1rem;
+ 
   
 }
 
@@ -162,8 +168,9 @@ td.td-admin-but:hover {
 table.table-admin-get-all-matches {
   width: 110rem;
   font-size: 130%;
-  
 }
+
+
 
 table.table-admin-get-all-persons {
   width: 30rem;
@@ -180,6 +187,11 @@ th.th-admin-get-all-matches {
   width: 25rem;
   text-align: center;
 }
+
+td.td-admin-get-all-matches {
+  text-align: center;
+}
+
 th.th-admin-get-all-matches-result {
   width: 8rem;
   text-align: center;
@@ -189,8 +201,39 @@ td.td-admin-get-all-matches-result {
   width: 12rem;
   text-align: center;
 }
-td.td-admin-get-all-matches {
-  text-align: center;
+
+table.table-admin-get-one-match {
+  width: 40rem;
+  font-size: 120%;
+
+  margin: auto;
+  margin-top: 2rem;
+}
+
+td.td-admin-get-one-match {
+  width: 12rem;
+  font-size: 120%;
+}
+
+th.th-admin-get-one-match {
+  width: 12rem;
+  font-size: 120%;
+}
+
+table.table-admin-get-one-match-header {
+  width: 60rem;
+  font-size: 120%;
+  margin-bottom: 2rem;
+  margin: auto;
+}
+
+th.th-admin-get-one-match-small {
+  width: 5rem;
+  font-size: 120%;
+}
+td.td-admin-get-one-match-small {
+  width: 5rem;
+  font-size: 120%;
 }
 
 
@@ -213,6 +256,11 @@ button.btn-admin-get-users {
 
 button.btn-admin-get-players {
   width: 30rem;
+}
+
+button.btn-dashboard-back {
+  margin: auto;
+  margin-top: 2rem;
 }
 
 button.btn-nav {
@@ -376,7 +424,7 @@ button.btn-nav-general {
 
 
 button.btn-create {
-  margin: 2vh;
+  margin-top: 10rem;
   margin-bottom: 0.5rem;
   height: 10vh;
 }
