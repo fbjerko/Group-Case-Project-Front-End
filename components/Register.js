@@ -142,7 +142,7 @@ class Register extends React.Component
             userName: document.getElementById("userName").value,
             email: document.getElementById("email").value,
             password: document.getElementById("psw").value,
-            role:["user"]
+            role:["admin"]
         })
     );
     xhttp.onreadystatechange = () => {
