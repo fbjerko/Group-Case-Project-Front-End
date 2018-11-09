@@ -8,33 +8,29 @@ import Loading from "../../components/buttons/loading";
 import i18n from "../../i18n";
 
 class Players extends Component {
-    constructor(props) {
-        const lng = i18n.language;
-        super(props);
-        this.state = {
-            players: [],
-            ready: false,
-            createPlayer: false,
-            editPlayer: false,
-            currentPage: 0,
-            content: [i18n.t("PLAYERS", lng), i18n.t("TEAMS", lng)], // Attribute variable names
-            contentFields: [i18n.t("NAME", lng), i18n.t("TEAM", lng)],
-            canEdit: true, // Names/Values of variables,
-            playerId: -1,
-            lng: lng
-        };
+  constructor(props) {
+    const lng = i18n.language;
+    super(props);
+    this.state = {
+      players: [],
+      ready: false,
+      crudOption: 0,
+      currentPage: 0,
+      content: [i18n.t("PLAYERS", lng), i18n.t("TEAMS", lng)], // Attribute variable names
+      contentFields: [i18n.t("NAME", lng), i18n.t("TEAM", lng)],
+      canEdit: true, // Names/Values of variables,
+      playerId: -1,
+      lng: lng
+    };
 
+    this._createPlayer = this._createPlayer.bind(this);
+    this.changePage = this.changePage.bind(this);
+    this.close = this.close.bind(this);
+  }
 
-        this._createPlayer = this._createPlayer.bind(this);
-        this.changePage = this.changePage.bind(this);
-
-
-    }
-
-
-    onLanguageChanged = (lng) => {
-        this.setState({lng: lng});
-    }
+  onLanguageChanged = lng => {
+    this.setState({ lng: lng });
+  };
 
   componentWillMount() {
     if (this.props.players === undefined) {
@@ -53,7 +49,7 @@ class Players extends Component {
     } else {
       this.setState({
         players: this.props.players,
-        ready:true
+        ready: true
       });
     }
   }
@@ -82,7 +78,7 @@ class Players extends Component {
 
   _createPlayer() {
     this.setState({
-      createPlayer: !this.state.createPlayer
+      crudOption: 1
     });
 
     console.log(this.state.createPlayer + " ");
@@ -91,30 +87,36 @@ class Players extends Component {
   edit = playerId => {
     console.log(playerId);
     this.setState({
-      updatePlayer: !this.state.updatePlayer,
+      crudOption: 1,
       playerId: playerId
     });
   };
 
   async componentDidMount() {
-    i18n.on('languageChanged', this.onLanguageChanged)
+    i18n.on("languageChanged", this.onLanguageChanged);
     try {
-        fetch(process.env.API_URL + "/api/player/all",{
-                credentials: 'include'
-            }
-        ).then(
-            (response) => response.json()
-        ).then((json) => {
-            console.log(json);
-            this.setState({
-                players: json,
-                ready: true
-            })
+      fetch(process.env.API_URL + "/api/player/all", {
+        credentials: "include"
+      })
+        .then(response => response.json())
+        .then(json => {
+          console.log(json);
+          this.setState({
+            players: json,
+            ready: true
+          });
         });
     } catch (error) {
-        console.log(error);
+      console.log(error);
     }
-}
+  }
+
+  close() {
+    console.log("HEHEUHUHE");
+    this.setState({
+      crudOption: 0
+    });
+  }
 
   render() {
     if (this.state.ready === true) {
@@ -123,21 +125,22 @@ class Players extends Component {
         (this.state.currentPage + 1) * 10
       );
 
-      if (this.state.createPlayer === true) {
+      if (this.state.crudOption === 1) {
         return (
-          <div>
-            <LayoutGlobal />
-            <PlayersForm edit={"create"} />
-          </div>
+         
+            <div>
+              <LayoutGlobal />
+              <PlayersForm edit={"create"} />
+              <button
+            className="btn-dashboard-back"
+            onClick={this.close}
+          >
+            Back
+          </button>
+            </div>
+           
         );
-      } else if (this.state.updatePlayer === true) {
-        return (
-          <div>
-            <LayoutGlobal />
-            <PlayersForm edit={"edit"} id={this.state.playerId} />
-          </div>
-        );
-      } else if (this.state.createPlayer === false) {
+      }  else if (this.state.crudOption === 0) {
         return (
           <div>
             <LayoutGlobal />

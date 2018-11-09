@@ -117,10 +117,7 @@ class users extends Component {
               contentFields={this.state.contentFields}
               ready={this.state.ready}
               changePage={this.changePage}
-              
-              
-
-
+              currentPage={this.state.currentPage}
               close={this.props.close}
             />
 

@@ -25,6 +25,7 @@ class Managers extends Component {
   }
 
   changePage(command) {
+    console.log("CHANGEPAGE" +  command);  
     if (command === 0) {
       this.setState({ currentPage: 0 });
     }
