@@ -37,6 +37,13 @@ div.btn-admin-config {
   display: grid;
 }
 
+div.btn-admin-config-create{
+  position: absolute;
+  top: 8vh;
+  right: 2.1vw;
+  display: grid;
+}
+
 div.btn-admin-nav {
   width: 100%;
   margin-top: 5rem;

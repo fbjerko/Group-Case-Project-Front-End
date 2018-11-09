@@ -10,7 +10,8 @@ class ContactForm extends React.Component {
             contact_type:-1,
             contact_detail:'',
             showPop:false,
-            status:'Nothing'       
+            status:'Nothing' ,
+            name: ''  
           }
     }
 
@@ -70,14 +71,14 @@ class ContactForm extends React.Component {
 
             <div className="seasons-container">
                 <div className="top">
-                    <h2>Create new contact</h2>
+                    <h2>Create new contact for {this.props.name}</h2>
                 </div>
-                <p>Person</p>
-                <SearchField type={'person'} handleChange={this.updateSearchFieldPerson}/>
-                <br></br>
                 <br></br>
                 <p>Contact type</p>
-                <SearchField type={'contact'} handleChange={this.updateSearchFieldContactType}/>
+                <select>
+                    <option value="email">Email</option>
+                    <option value="phone">Phone</option>
+                </select>
                 <br></br>
                 <br></br>
                 <p>Contact detail</p>

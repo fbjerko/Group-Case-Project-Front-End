@@ -98,7 +98,7 @@ class PlayersForm extends Component {
 
 
     sendPlayer = ()=>{
-        this.setState({loading:<Loading icon={true} text={"Creating address..."}/>});
+        this.setState({loading:<Loading icon={true} text={"Creating player..."}/>});
         let xhttp = new XMLHttpRequest();
 
         xhttp.open(this.state.method,  process.env.API_URL+"/api/player", true);
