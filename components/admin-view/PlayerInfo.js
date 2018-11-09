@@ -48,7 +48,9 @@ class PlayerInfo extends Component {
 
         try {
             const response = await fetch(
-                process.env.API_URL + "/api/player/" + this.props.id
+                process.env.API_URL + "/api/player/" + this.props.id,{
+                    credentials: 'include',
+                }
             );
             const json = await response.json();
 
@@ -72,14 +74,15 @@ class PlayerInfo extends Component {
         }
     }
 
-    deletePlayer(id) {
-        var xhttp = new XMLHttpRequest();
-        xhttp.open("DELETE", process.env.API_URL + "/api/player/" + id + "/delete", true);
-        xhttp.send(null);
-
+    deletePlayer=()=> {
+        console.log(process.env.API_URL + "/api/player/" + this.props.id )
+        let xhttp = new XMLHttpRequest();
+        xhttp.open("DELETE", process.env.API_URL + "/api/player/" + this.props.id, true);
+        xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.withCredentials = true;
         xhttp.onreadystatechange = () => {
             if (xhttp.readyState == XMLHttpRequest.DONE) {
-                console.log(xhttp.status);
+                console.log("DONE");
                 if (xhttp.status === 200) {
                     this.setState({success: true, failed: false});
                     console.log("Yay");
@@ -89,6 +92,7 @@ class PlayerInfo extends Component {
                 }
             }
         };
+        xhttp.send(null);
 
 
     }
@@ -114,8 +118,9 @@ class PlayerInfo extends Component {
 
         console.log(json);
 
-        xhttp.open("PUT", process.env.API_URL + "/api/watchlist", true);
+        xhttp.open("PUT", process.env.API_URL + "/api/favouriteList", true);
         xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.withCredentials = true;
         xhttp.send(
             JSON.stringify({
                 playerId: this.props.id,
@@ -183,7 +188,7 @@ class PlayerInfo extends Component {
                         <td className="td-admin-but" onClick={() => this.props.editPlayer(this.props.id)}>
                             {i18n.t("EDIT", {lng})}
                         </td>
-                        <td className="td-admin-but" onClick={() => this.deletePlayer(this.props.id)}>
+                        <td className="td-admin-but" onClick={this.deletePlayer}>
                             {i18n.t("DELETE", {lng})}
                         </td>
                     </tr>

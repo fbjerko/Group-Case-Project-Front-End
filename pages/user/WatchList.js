@@ -37,10 +37,11 @@ class WatchList extends Component {
 
         xhttp.open(
             "GET",
-            process.env.API_URL + "/api/watchlist/" + id + "/clear",
+            process.env.API_URL + "/api/favouriteList/" + id + "/clear",
             true
         );
         xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.withCredentials=true;
         xhttp.send();
         xhttp.onreadystatechange = () => {
             if (xhttp.readyState == XMLHttpRequest.DONE) {
@@ -64,7 +65,9 @@ class WatchList extends Component {
 
             try {
                 fetch(
-                    process.env.API_URL + "/api/watchlist/" + this.state.userId + "/byUserId"
+                    process.env.API_URL + "/api/favouriteList/" + this.state.userId + "/byUserId",{
+                        credentials: 'include'
+                    }
                 ).then((response)=>response.json()).then((json) => {
 
                         this.setState({

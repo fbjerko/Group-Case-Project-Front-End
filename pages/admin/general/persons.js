@@ -56,7 +56,9 @@ class Person extends Component {
 
   async componentDidMount() {
     try {
-      const response = await fetch(process.env.API_URL + "/api/person/all");
+      const response = await fetch(process.env.API_URL + "/api/person/all",{
+          credentials: 'include'
+      });
       const json = await response.json();
       this.setState({
         persons: json,

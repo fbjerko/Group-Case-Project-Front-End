@@ -21,7 +21,7 @@ class NavbarIndex extends Component {
 
     changeLanguage = (event) => {
 
-        console.log(event.target.value);
+
         i18n.changeLanguage(event.target.value, (err, t) => {
         });
 
