@@ -1,56 +1,58 @@
 import React, {Component} from "react";
 import LayoutGlobal from "../../components/LayoutGlobal";
 import ContactForm from "../../components/forms/contactForm";
+import { type } from "os";
 
 
 class PersonInfo extends Component {
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
 
-        this.state = {
-            userId: "0",
-            personInfo: [],
-            ready: false,
-            create: false,
-            contactInfo: []
-        };
-        this._create = this._create.bind(this);
+    this.state = {
+      userId: "0",
+      personInfo: [],
+      ready: false,
+      create: false,
+      contactInfo: [],
+      type:[],
+      detail:[]
+    };
+    this._create = this._create.bind(this);
 
-    }
+  }
 
-    async componentWillMount() {
-        try {
-
-            fetch(process.env.API_URL + "/api/person/" + this.props.id, {credentials: 'include'})
-                .then(resp => resp.json()).then((resp => {
-                this.setState({
-                    personInfo: resp,
-                    ready: true
-                })
-            }));
-            this.fetchcontact();
-
-        } catch (error) {
-            console.log(error);
-        }
-
-    }
-
-    fetchcontact() {
-        const response = fetch(
-            process.env.API_URL + "/api/contact/byPersonId/" + this.props.id, {
-                credentials: 'include'
-            }
-        );
-
-        const json = response.json();
-
+  async componentWillMount() {
+    try {
+      const urls = [process.env.API_URL + "/api/person/" + this.props.id, process.env.API_URL + "/api/contact/byPersonId/" + this.props.id]
+      Promise.all(urls.map(url => fetch(url, {credentials: 'include'
+    })))
+      .then(resp => Promise.all( resp.map(r => r.json()) ))
+      .then(result => {
         this.setState({
-            contactInfo: json,
-            ready: true
-        });
+          personInfo: result[0],
+          contactInfo: result[1],
+          ready: true
+        })
+          console.log(result);
+});
+      /*const response = await fetch(
+        process.env.API_URL + "/api/person/" + this.props.id, {
+          credentials: 'include'
+        }
+      );
+      console.log(response);
+      const json = await response.json();
+      console.log(json);
+      this.setState({
+        personInfo: json,
+        ready: true
+      });*/
+    } catch (error) {
+      console.log(error);
+   
 
     }
+  }
 
     _create() {
         this.setState({
@@ -62,11 +64,17 @@ class PersonInfo extends Component {
     render() {
 
         if (this.state.ready === true) {
-            console.log("peronsifno");
-            console.log(this.state.personInfo.personId);
+
             const person = this.state.personInfo;
             const contact = this.state.contactInfo;
 
+            contact.forEach(element => {
+              this.state.type.push(element[1]);
+              this.state.detail.push(element[2]);             
+           
+            });
+
+            let info = this.state.type + '\n' + this.state.detail;
 
             let name = person.firstName + " " + person.lastName;
             if (this.state.create === true) {
@@ -116,7 +124,7 @@ class PersonInfo extends Component {
                                 </tr>
                                 <tr className="tr-admin-get-one">
                                     <th className="th-admin-get-one"> Contact information</th>
-                                    <td className="td-admin-get-one">{}</td>
+                                    <td className="td-admin-get-one">{info}</td>
                                 </tr>
 
                                 </tbody>
