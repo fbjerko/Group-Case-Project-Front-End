@@ -20,7 +20,9 @@ class PersonInfo extends Component {
   async componentWillMount() {
     try {
       const response = await fetch(
-        process.env.API_URL + "/api/person/" + this.props.id
+        process.env.API_URL + "/api/person/" + this.props.id, {
+          credentials: 'include'
+        }
       );
       console.log(response);
       const json = await response.json();
