@@ -23,7 +23,7 @@ class Matches extends Component {
       canEdit: true // Names/Values of variables
     };
 
-    this._createManager = this._createManager.bind(this);
+
     this.changePage = this.changePage.bind(this);
   
   }

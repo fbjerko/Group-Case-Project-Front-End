@@ -30,6 +30,8 @@ app.prepare()
             console.log(req.cookies);
         })
 
+
+
         server.use('/admin', (req, res, next) => {
             console.log(req.cookies.token);
             console.log(req.headers);
