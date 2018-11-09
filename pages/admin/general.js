@@ -9,6 +9,7 @@ import Owners from "./general/owners";
 import Persons from "./general/persons";
 import Seasons from "./general/season";
 import Users from "./general/users";
+import Players from "../admin/players";
 
 
 class General extends Component {
@@ -32,7 +33,6 @@ class General extends Component {
     this.setState({
       showContent: contentType
     });
-    console.log("HDDA");
   }
 
   render() {

@@ -26,10 +26,8 @@ class Players extends Component {
 
 
         this._createPlayer = this._createPlayer.bind(this);
-        this.previousPage = this.previousPage.bind(this);
-        this.nextPage = this.nextPage.bind(this);
-        this.firstPage = this.firstPage.bind(this);
-        this.lastPage = this.lastPage.bind(this);
+
+
     }
 
 
