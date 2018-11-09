@@ -19,7 +19,8 @@ class Admin extends Component {
       showEdit: false,
       players: false,
       showContent: "",
-      lng: i18n.language
+      lng: i18n.language,
+      players: []
     };
 
     this._onEditClick = this._onEditClick.bind(this);
@@ -28,6 +29,19 @@ class Admin extends Component {
 
   componentDidMount() {
     i18n.on("languageChanged", this.onLanguageChanged);
+
+    try {
+      fetch(process.env.API_URL + "/api/player/all").then(
+          (response) => response.json()
+      ).then((json) => {
+          this.setState({
+              players: json,
+              ready: true
+          })
+      });
+  } catch (error) {
+      console.log(error);
+  }
   }
   onLanguageChanged = lng => {
     this.setState({ lng: lng });
@@ -54,7 +68,7 @@ class Admin extends Component {
         <div>
          
 
-          <Players  close={this.changeContent} />
+          <Players players={this.state.players}  close={this.changeContent} />
         </div>
       );
     } else if (this.state.showContent === "Managers") {

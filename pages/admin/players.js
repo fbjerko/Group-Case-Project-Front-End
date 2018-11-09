@@ -1,38 +1,58 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import LayoutGlobal from "../../components/LayoutGlobal";
 import AdminReturn from "../../components/buttons/AdminReturn";
 import ListInfo from "../../components/admin-view/ListInfo";
 import PlayersForm from "../../components/forms/playersForm";
 import CreateUser from "../../components/admin-create/CreateUsers";
 import Loading from "../../components/buttons/loading";
-import i18n from "../../i18n"
+import i18n from "../../i18n";
 
 class Players extends Component {
   constructor(props) {
     const lng = i18n.language;
     super(props);
     this.state = {
-        players: [],
-        ready: false,
-        createPlayer: false,
-        editPlayer: false,
-        currentPage: 0,
-        content: ["Players","Teams"], // Attribute variable names
-        contentFields: [i18n.t("NAME", lng), i18n.t("TEAMS", lng)],
-        canEdit: true, // Names/Values of variables,
-        playerId: -1,
-        lng: lng
+      players: [],
+      ready: false,
+      createPlayer: false,
+      editPlayer: false,
+      currentPage: 0,
+      content: ["Players", "Teams"], // Attribute variable names
+      contentFields: [i18n.t("NAME", lng), i18n.t("TEAMS", lng)],
+      canEdit: true, // Names/Values of variables,
+      playerId: -1,
+      lng: lng
     };
 
-   
     this._createPlayer = this._createPlayer.bind(this);
     this.changePage = this.changePage.bind(this);
   }
 
-  onLanguageChanged = (lng) => {
-    this.setState({lng: lng});
-}
+  onLanguageChanged = lng => {
+    this.setState({ lng: lng });
+  };
 
+  componentWillMount() {
+    if (this.props.players === undefined) {
+      try {
+        fetch(process.env.API_URL + "/api/player/all")
+          .then(response => response.json())
+          .then(json => {
+            this.setState({
+              players: json,
+              ready: true
+            });
+          });
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      this.setState({
+        players: this.props.players,
+        ready:true
+      });
+    }
+  }
 
   changePage(command) {
     if (command === 0) {
@@ -73,20 +93,8 @@ class Players extends Component {
   };
 
   async componentDidMount() {
-    i18n.on('languageChanged', this.onLanguageChanged)
-    try {
-        fetch(process.env.API_URL + "/api/player/all").then(
-            (response) => response.json()
-        ).then((json) => {
-            this.setState({
-                players: json,
-                ready: true
-            })
-        });
-    } catch (error) {
-        console.log(error);
-    }
-}
+    i18n.on("languageChanged", this.onLanguageChanged);
+  }
 
   render() {
     if (this.state.ready === true) {
@@ -115,14 +123,11 @@ class Players extends Component {
             <LayoutGlobal />
 
             <div className="container">
-            
-            <div className="btn-admin-config">
+              <div className="btn-admin-config">
                 <button className="btn-create" onClick={this._createPlayer}>
                   Create Player
                 </button>
-                
               </div>
-               
 
               <ListInfo
                 data={players}
@@ -136,7 +141,6 @@ class Players extends Component {
                 edit={this.edit}
                 close={this.props.close}
               />
-            
 
               {this.state.createPlayer ? <CreateUser /> : null}
             </div>
