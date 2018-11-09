@@ -309,6 +309,7 @@ class ListInfo extends Component {
           <div>
             
             <h1>{this.props.name}</h1>
+           
             <div className="div-admin-get-all">
               {table}
 

@@ -8,30 +8,34 @@ import Loading from "../../components/buttons/loading";
 import i18n from "../../i18n"
 
 class Players extends Component {
-  constructor(props) {
-    const lng = i18n.language;
-    super(props);
-    this.state = {
-        players: [],
-        ready: false,
-        createPlayer: false,
-        editPlayer: false,
-        currentPage: 0,
-        content: ["Players","Teams"], // Attribute variable names
-        contentFields: [i18n.t("NAME", lng), i18n.t("TEAMS", lng)],
-        canEdit: true, // Names/Values of variables,
-        playerId: -1,
-        lng: lng
-    };
+    constructor(props) {
+        const lng = i18n.language;
+        super(props);
+        this.state = {
+            players: [],
+            ready: false,
+            createPlayer: false,
+            editPlayer: false,
+            currentPage: 0,
+            content: [i18n.t("PLAYERS", lng), i18n.t("TEAMS", lng)], // Attribute variable names
+            contentFields: [i18n.t("NAME", lng), i18n.t("TEAM", lng)],
+            canEdit: true, // Names/Values of variables,
+            playerId: -1,
+            lng: lng
+        };
 
-   
-    this._createPlayer = this._createPlayer.bind(this);
-    this.changePage = this.changePage.bind(this);
-  }
 
-  onLanguageChanged = (lng) => {
-    this.setState({lng: lng});
-}
+        this._createPlayer = this._createPlayer.bind(this);
+        this.previousPage = this.previousPage.bind(this);
+        this.nextPage = this.nextPage.bind(this);
+        this.firstPage = this.firstPage.bind(this);
+        this.lastPage = this.lastPage.bind(this);
+    }
+
+
+    onLanguageChanged = (lng) => {
+        this.setState({lng: lng});
+    }
 
 
   changePage(command) {

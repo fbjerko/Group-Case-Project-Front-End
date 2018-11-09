@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import LayoutGlobal from "../../../components/LayoutGlobal";
-import PersonsForm from "../../../components/forms/personsForm";
+import PersonForm from "../../../components/forms/personsForm";
 import { Router } from "../../../routes";
 import ListInfo from "../../../components/admin-view/ListInfo";
 import Loading from "../../../components/buttons/loading";
@@ -29,6 +29,7 @@ class Person extends Component {
     this.setState({
       create: !this.state.create
     });
+    console.log(this.state.create);
   }
 
   changePage(command) {
@@ -59,7 +60,6 @@ class Person extends Component {
           credentials: 'include'
       });
       const json = await response.json();
-      console.log(json);
       this.setState({
         persons: json,
         ready: true
@@ -79,7 +79,7 @@ class Person extends Component {
         return (
           <div>
             <LayoutGlobal />
-            <PersonsForm />
+            <PersonForm />
             <div className="btn-admin-create-bottom">
               <button className="btn-create" onClick={this._create}>
                 Back
@@ -93,15 +93,15 @@ class Person extends Component {
           <div>
             <LayoutGlobal path = {"General"} />
 
-            <div className="container">
-            <div className="btn-admin-config">
-              <button className="btn-create" onClick={this.create}>
-                Configure
+    <div className="btn-admin-config-create">
+              <AdminReturn/>
+            <button className="btn-create" onClick={this._create}>
+                Create Person
               </button>
-           
             </div>
-             
-
+            <div className="container">
+          
+      
               <ListInfo
                 data={persons}
                 name={this.state.content[0]}
@@ -121,7 +121,7 @@ class Person extends Component {
       return (
         <div>
           <LayoutGlobal />
-          <Loading icon={true} text={"Loading players..."} />
+          <Loading icon={true} text={"Loading persons..."} />
         </div>
       );
     }

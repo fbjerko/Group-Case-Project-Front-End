@@ -95,7 +95,7 @@ class SearchField extends Component {
                 url = process.env.API_URL+"/api/owner/all";
                 break;
             case 'goalType':
-                url = process.env.API_URL+"/api/goalType/all";
+                url = process.env.API_URL+"/api/matchGoal/goalType";
                 break;
         }
         return url;

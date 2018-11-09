@@ -7,26 +7,28 @@ import Loading from "../../components/buttons/loading";
 import MatchesForm from "../../components/forms/matchesForm";
 
 class Matches extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            matches: [],
-            homeTeams: [],
-            awayTeams: [],
-            filteredData: [],
-            search: "a",
-            ready: false,
-            createManager: false,
-            currentPage: 0,
-            content: ["Date", "Teams", "Matches", "Teams", "League"], // Attribute variable names
-            contentFields: ["Date", "Home Team", "Result", "Away Team", "Arena"],
-            canEdit: true // Names/Values of variables
-        };
+  constructor(props) {
+    super(props);
+    this.state = {
+      matches: [],
+      homeTeams: [],
+      awayTeams: [],
+      filteredData: [],
+      search: "a",
+      ready: false,
+      createManager: false,
+      currentPage: 0,
+      content: ["Date", "Teams", "Matches", "Teams", "Arena"], // Attribute variable names
+      contentFields: ["Date", "Home Team", "Result", "Away Team", "Arena"],
+      canEdit: true // Names/Values of variables
+    };
 
+    this._createManager = this._createManager.bind(this);
+    this.changePage = this.changePage.bind(this);
+  
+  }
 
-        this.changePage = this.changePage.bind(this);
-
-    }
+    
 
     changePage(command) {
         if (command === 0) {

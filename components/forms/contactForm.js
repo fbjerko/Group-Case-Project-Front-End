@@ -6,28 +6,27 @@ class ContactForm extends React.Component {
     constructor(props){
         super(props);
         this.state={
-            person_id:-1,
-            contact_type:-1,
+            personId:-1,
             contact_detail:'',
             showPop:false,
-            status:'Nothing'       
+            status:'Nothing' ,
+            name: '',
+            detailName: ''
           }
     }
-
-    updateSearchFieldPerson = (id)=>{
-      console.log(id);
-      this.setState({person_id:id});
-  }
-    updateSearchFieldContactType = (id)=>{
-      console.log(id);
-      this.setState({contact_type:id});
-  }
-
 
   updateInput = (event)=>{
     if(event.target.id=='contact_detail'){
         this.setState({contact_detail:event.target.value});
       }
+
+  }
+
+
+  updateText = (event)=>{
+        this.setState({detailName:event.target.value});
+        console.log(this.props.personId);
+      
 
   }
 
@@ -40,8 +39,8 @@ class ContactForm extends React.Component {
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send(
             JSON.stringify({
-              personId: this.state.person_id,
-              contactType: this.state.contact_type,
+              personId: this.props.personId,
+              contactType: this.state.detailName,
               contactDetail: this.state.contact_detail
             })
         );
@@ -67,21 +66,23 @@ class ContactForm extends React.Component {
       if(this.state.showPop){
         return(<Popupp text={this.state.status}/>);
     }
+
+    if(this.state.detailName != ''){
         return(<div className="info-container">
 
             <div className="seasons-container">
                 <div className="top">
-                    <h2>Create new contact</h2>
+                    <h2>Create new contact for {this.props.name}</h2>
                 </div>
-                <p>Person</p>
-                <SearchField type={'person'} handleChange={this.updateSearchFieldPerson}/>
-                <br></br>
                 <br></br>
                 <p>Contact type</p>
-                <SearchField type={'contact'} handleChange={this.updateSearchFieldContactType}/>
+                <select>
+                    <option value="Email" onClick={this.updateText}>Email</option>
+                    <option value="Phone" onClick={this.updateText}>Phone</option>
+                </select>
                 <br></br>
                 <br></br>
-                <p>Contact detail</p>
+                <p>{this.state.detailName} </p>
                 <input onChange={this.updateInput} value={this.state.contact_detail} type="text" placeholder="Write contact detail" id="contact_detail" />
                 <br></br>
                 <br></br>
@@ -90,6 +91,27 @@ class ContactForm extends React.Component {
 
         </div>
         );
+
+    } else{
+        return(<div className="info-container">
+
+        <div className="seasons-container">
+            <div className="top">
+                <h2>Create new contact for {this.props.name}</h2>
+            </div>
+            <br></br>
+            <p>Contact type</p>
+            <select>
+                <option value="Email" onClick={this.updateText}>Email</option>
+                <option value="Phone" onClick={this.updateText}>Phone</option>
+            </select>
+        </div>
+
+    </div>
+    );
+
+
+    }
 
     }
 

@@ -22,6 +22,8 @@ class PlayerInfo extends Component {
 
         this._edit = this._edit.bind(this);
         this.addToWatchList = this.addToWatchList.bind(this);
+        this.deletePlayer = this.deletePlayer.bind(this);
+        
 
 
     }
@@ -83,8 +85,10 @@ class PlayerInfo extends Component {
                 console.log("DONE");
                 if (xhttp.status === 200) {
                     this.setState({success: true, failed: false});
-                } else if (xhttp.status !== 403) {
+                    console.log("Yay");
+                } else if (xhttp.status == 403) {
                     this.setState({failed: true, success: false});
+                    console.log("Damn");
                 }
             }
         };

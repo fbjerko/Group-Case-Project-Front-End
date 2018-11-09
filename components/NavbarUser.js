@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import i18n from "../i18n";
 import Logout from "./buttons/Logout";
+import {Router} from "../routes";
 
 
 class NavbarUser extends Component {
@@ -33,6 +34,8 @@ class NavbarUser extends Component {
         return (
             <div>
                 <div className="nav-bar-index">
+                    <option className="btn-lng" onClick={() => Router.pushRoute("/admin/documentation")}>{i18n.t("DOCUMENTATION", {lng})}
+</option>
                     <option className="btn-lng" onClick={this.props.onEditClick}>
                         {i18n.t("EDIT_ACC", {lng})}
                     </option>

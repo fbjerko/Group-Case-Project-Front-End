@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import LayoutGlobal from "../../components/LayoutGlobal";
+import ContactForm from "../../components/forms/contactForm";
+
 
 class PersonInfo extends Component {
   constructor(props) {
@@ -7,14 +10,31 @@ class PersonInfo extends Component {
     this.state = {
       userId: "0",
       personInfo: [],
-      ready: false
+      ready: false,
+      create: false,
+      contactInfo: []
     };
+    this._create = this._create.bind(this);
+
   }
 
   async componentWillMount() {
     try {
-      const response = await fetch(
-        process.env.API_URL + "/api/person/" + this.props.id
+      const urls = [process.env.API_URL + "/api/person/" + this.props.id, process.env.API_URL + "/api/contact/byPersonId/" + this.props.id]
+      Promise.all(urls.map(url => fetch(url, {credentials: 'include'
+    })))
+.then(resp => Promise.all( resp.map(r => r.text()) ))
+.then(result => {
+  this.setState({
+    personInfo: result[0],
+    ready: true
+  })
+    console.log(result);
+});
+      /*const response = await fetch(
+        process.env.API_URL + "/api/person/" + this.props.id, {
+          credentials: 'include'
+        }
       );
       console.log(response);
       const json = await response.json();
@@ -22,19 +42,63 @@ class PersonInfo extends Component {
       this.setState({
         personInfo: json,
         ready: true
-      });
+      });*/
     } catch (error) {
       console.log(error);
     }
+
+  }
+
+  fetchcontact(){
+      const response = fetch(
+        process.env.API_URL + "/api/contact/byPersonId/" + this.props.id, {
+          credentials: 'include'
+        }
+      );
+      console.log(response);
+      const json = response.json();
+      console.log(json);
+      this.setState({
+        contactInfo: json,
+        ready: true
+      });
+      
+  }
+
+  _create() {
+    this.setState({
+      create: !this.state.create
+    });
+    console.log(this.state.create);
   }
 
   render() {
     if (this.state.ready === true) {
       const person = this.state.personInfo;
+      const contact = this.state.contactInfo;
+
 
       name = person.firstName + " " + person.lastName;
+      if (this.state.create === true) {
+        return (
+          <div>
+            <LayoutGlobal />
+            <ContactForm name={name} personId={person.personId}/>
+            <div className="btn-admin-create-bottom">
+              <button className="btn-create" onClick={this._create}>
+                Back
+              </button>
+            </div>
+          </div>
+        );
+      } else {
       return (
         <div>
+             <div className="btn-admin-config-create">
+              <button className="btn-create" onClick={this._create}>
+                Create contact
+              </button>
+            </div>
           <div className="div-admin-get-all">
             <h1>{name}</h1>
             <table className="table-admin-get-one">
@@ -52,7 +116,7 @@ class PersonInfo extends Component {
                   <td className="td-admin-get-one">{person.dateOfBirth}</td>
                 </tr>
                 <tr className="tr-admin-get-one">
-                  <th className="th-admin-get-one"> Date of Birth</th>
+                  <th className="th-admin-get-one"> Address</th>
                   <td className="td-admin-get-one">
                     {person.address.addressLine1}{" "}
                     {person.address.addressLine2} {person.address.addressLine3},{" "}
@@ -60,6 +124,11 @@ class PersonInfo extends Component {
                     {person.address.country}
                   </td>
                 </tr>
+                <tr className="tr-admin-get-one">
+                  <th className="th-admin-get-one"> Contact information</th>
+                  <td className="td-admin-get-one">{}</td>
+                </tr>
+
               </tbody>
             </table>
             <table className="table-admin-but">
@@ -81,6 +150,7 @@ class PersonInfo extends Component {
           <button onClick={this.props.close}>Back</button>
         </div>
       );
+    }
     } else {
       return <div>Loading</div>;
     }
