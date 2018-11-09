@@ -12,11 +12,12 @@ class ManagerInfo extends Component {
   }
 
   async componentWillMount() {
-    // "await fetch(`http://localhost:5000/api/user/all`);"
-    console.log("Hey");
+
     try {
       const response = await fetch(
-        process.env.API_URL + "/api/coach/" + this.props.id
+        process.env.API_URL + "/api/coach/" + this.props.id,{
+              credentials: 'include'
+          }
       );
       const json = await response.json();
       console.log(json);

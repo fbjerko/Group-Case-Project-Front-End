@@ -60,7 +60,9 @@ class Teams extends Component {
     console.log(this.state.userId);
 
     try {
-        const response = await fetch(process.env.API_URL + "/api/team/all");
+        const response = await fetch(process.env.API_URL + "/api/team/all",{
+            credentials: 'include'
+        });
         const json = await response.json();
 
       this.setState({

@@ -76,8 +76,7 @@ class Players extends Component {
     i18n.on('languageChanged', this.onLanguageChanged)
     try {
         fetch(process.env.API_URL + "/api/player/all",{
-                method:'GET',
-                credentials: 'include',
+                credentials: 'include'
             }
         ).then(
             (response) => response.json()

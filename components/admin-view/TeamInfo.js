@@ -17,7 +17,9 @@ class TeamInfo extends Component {
   async componentWillMount() {
     try {
       const response = await fetch(
-        process.env.API_URL + "/api/team/" + this.props.id
+        process.env.API_URL + "/api/team/" + this.props.id,{
+              credentials: 'include'
+          }
       );
       const json = await response.json();
       console.log("hduashduas " + json);

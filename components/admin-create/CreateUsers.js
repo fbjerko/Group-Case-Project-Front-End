@@ -20,6 +20,7 @@ function postPlayer() {
   };
   xhttp.open("POST", process.env.API_URL+"/api/person", true);
   xhttp.setRequestHeader("Content-type", "application/json");
+  xhttp.withCredentials=true;
   xhttp.send(
     JSON.stringify({
         firstName: document.getElementById("firstName").value,

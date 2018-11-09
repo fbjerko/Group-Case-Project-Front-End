@@ -88,6 +88,7 @@ class Dashboard extends Component {
         );
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send();
+        xhttp.withCredentials=true;
         xhttp.onreadystatechange = () => {
             if (xhttp.readyState == XMLHttpRequest.DONE) {
                 if (xhttp.status === 200 || xhttp.status === 201) {
@@ -116,9 +117,11 @@ class Dashboard extends Component {
         try {
             const response = await fetch(
                 process.env.API_URL +
-                "/api/watchlist/" +
+                "/api/favouriteList/" +
                 this.state.userId +
-                "/byUserId"
+                "/byUserId",{
+                    credentials: 'include'
+                }
             );
             const json = await response.json();
 

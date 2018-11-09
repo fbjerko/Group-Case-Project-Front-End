@@ -39,6 +39,7 @@ class PersonForm extends React.Component {
 
         xhttp.open("POST",  process.env.API_URL+"/api/person", true);
         xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.withCredentials=true;
         xhttp.send(
             JSON.stringify({
                 addressId:this.state.addressId,

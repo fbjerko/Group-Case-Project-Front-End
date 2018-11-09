@@ -60,7 +60,9 @@ class Matches extends Component {
   async componentDidMount() {
     try {
       const response = await fetch(
-        process.env.API_URL + "/api/footballMatch/all"
+        process.env.API_URL + "/api/footballMatch/all",{
+              credentials: 'include'
+          }
       );
       const json = await response.json();
       console.log(json);

@@ -135,7 +135,9 @@ class Index extends Component {
         i18n.on('languageChanged', this.onLanguageChanged);
 
         try {
-            const response = await fetch(process.env.API_URL + "/api/player/all");
+            const response = await fetch(process.env.API_URL + "/api/player/all",{
+                credentials: 'include'
+            });
             const json = await response.json();
             this.setState({
                 playersArray: json
@@ -146,7 +148,9 @@ class Index extends Component {
 
         try {
             const response = await fetch(
-                process.env.API_URL + "/api/teamResult/homeTeam"
+                process.env.API_URL + "/api/teamResult/homeTeam",{
+                    credentials: 'include'
+                }
             );
             const json = await response.json();
             this.setState({
@@ -157,7 +161,9 @@ class Index extends Component {
         }
         try {
             const response = await fetch(
-                process.env.API_URL + "/api/teamResult/awayTeam"
+                process.env.API_URL + "/api/teamResult/awayTeam",{
+                    credentials: 'include'
+                }
             );
             const json = await response.json();
             this.setState({

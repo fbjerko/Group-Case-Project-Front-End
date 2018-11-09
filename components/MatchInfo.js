@@ -4,6 +4,7 @@ function getMatchInfo(){
   const Http = new XMLHttpRequest();
   const url=process.env.API_URL+"/api/match";
   Http.open("GET", url);
+  Http.withCredentials=true;
   Http.send();
   Http.onreadystatechange=(e)=>{
   console.log(Http.responseText)

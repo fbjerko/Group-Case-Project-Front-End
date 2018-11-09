@@ -51,7 +51,9 @@ class Players extends Component {
 
   async componentDidMount() {
     try {
-      const response = await fetch(process.env.API_URL + "/api/player/all");
+      const response = await fetch(process.env.API_URL + "/api/player/all",{
+          credentials: 'include'
+      });
       const json = await response.json();
       console.log(json);
       this.setState({

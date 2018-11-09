@@ -14,7 +14,9 @@ class StadiumInfo extends Component {
   async componentWillMount() {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/location/` + this.props.id
+        `http://localhost:5000/api/location/` + this.props.id,{
+              credentials: 'include'
+          }
       );
       const json = await response.json();
       console.log("hduashduas " + json);

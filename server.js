@@ -35,8 +35,15 @@ app.prepare()
             console.log(req.headers);
             try {
                 const decode = jwt.verify(req.cookies.token, Buffer.from("secretAdmin").toString('base64'), {algorithms: ['HS512']});
-                console.log(decode);
-                next();
+                if(req.cookies.role=="admin"){
+                    next();
+                }else if(req.cookies.role=="user"){
+                    res.redirect('/dashboard')
+                }else {
+                    res.redirect('/')
+                }
+
+
             } catch (error) {
                 console.log(error);
                 res.redirect('/')
@@ -49,7 +56,15 @@ app.prepare()
 
             try {
                 const decode = jwt.verify(req.cookies.token, Buffer.from("secretAdmin").toString('base64'), {algorithms: ['HS512']});
-                next();
+                if(req.cookies.role=="user"){
+                    next();
+                }else if(req.cookies.role=="admin"){
+                    res.redirect('/admin')
+                }else {
+                    res.redirect('/')
+                }
+
+
             } catch (error) {
 
                 res.redirect('/')
@@ -82,9 +97,11 @@ app.prepare()
             };
 
             request(options).then(response => {
-                console.log();
+
                 if (response.statusCode == 200) {
                     res.cookie("token", response.body.accessToken, {maxAge: 1000 * 60 * 60 * 4, httpOnly: true});
+                    res.cookie("id",response.headers.id,{maxAge: 1000 * 60 * 60 * 4, httpOnly: false})
+                    res.cookie("role",response.headers.role,{maxAge: 1000 * 60 * 60 * 4, httpOnly: true})
                     res.status(200).send({
                         token: response.body.tokenType + " " + response.body.accessToken,
                         role: response.headers.role

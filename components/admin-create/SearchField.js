@@ -33,7 +33,9 @@ class SearchField extends Component {
 
     getData(){
 
-        fetch(this.state.url).then(
+        fetch(this.state.url,{
+            credentials: 'include'
+        }).then(
             (res)=>res.json().then(
                 (res)=>{
                     if(res.length>0){
