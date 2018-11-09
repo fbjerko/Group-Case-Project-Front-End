@@ -23,13 +23,14 @@ class PersonInfo extends Component {
       const urls = [process.env.API_URL + "/api/person/" + this.props.id, process.env.API_URL + "/api/contact/byPersonId/" + this.props.id]
       Promise.all(urls.map(url => fetch(url, {credentials: 'include'
     })))
-.then(resp => Promise.all( resp.map(r => r.text()) ))
-.then(result => {
-  this.setState({
-    personInfo: result[0],
-    ready: true
-  })
-    console.log(result);
+      .then(resp => Promise.all( resp.map(r => r.text()) ))
+      .then(result => {
+        this.setState({
+          personInfo: result[0],
+          contactInfo: result[1],
+          ready: true
+        })
+          console.log(result);
 });
       /*const response = await fetch(
         process.env.API_URL + "/api/person/" + this.props.id, {
