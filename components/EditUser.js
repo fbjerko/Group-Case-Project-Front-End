@@ -1,22 +1,19 @@
 import React from "react";
 
 function editUser() {
-  console.log(document.getElementById("userName").value);
 
   var xhttp = new XMLHttpRequest();
 
-  xhttp.open("PUT", process.env.API_URL+"/api/user", true);
+  xhttp.open("PUT", process.env.API_URL+"/api/users", true);
   xhttp.setRequestHeader("Content-type", "application/json");
   xhttp.send(
     JSON.stringify({
-      userName: document.getElementById("userName").value,
       email: document.getElementById("email").value,
       password: document.getElementById("psw").value
-    })
+        })
   );
 
   var json = JSON.stringify({
-    userName: document.getElementById("userName").value,
     email: document.getElementById("email").value,
     password: document.getElementById("psw").value
   });

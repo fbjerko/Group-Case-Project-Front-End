@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import LayoutGlobal from "../../../components/LayoutGlobal";
-import ContactForm from "../../../components/forms/contactForm";
+import PersonForm from "../../../components/forms/personsForm";
 import { Router } from "../../../routes";
 import ListInfo from "../../../components/admin-view/ListInfo";
 import Loading from "../../../components/buttons/loading";
@@ -77,7 +77,7 @@ class Person extends Component {
         return (
           <div>
             <LayoutGlobal />
-            <ContactForm />
+            <PersonForm />
             <div className="btn-admin-create-bottom">
               <button className="btn-create" onClick={this._create}>
                 Back
@@ -91,10 +91,14 @@ class Person extends Component {
           <div>
             <LayoutGlobal path = {"General"} />
 
-            <div className="container">
-            <div className="btn-admin-config">
+    <div className="btn-admin-config-create">
               <AdminReturn/>
+            <button className="btn-create" onClick={this._create}>
+                Create Person
+              </button>
             </div>
+            <div className="container">
+          
       
               <ListInfo
                 data={persons}
