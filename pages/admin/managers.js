@@ -108,7 +108,7 @@ class Managers extends Component {
                 <button className="btn-create" onClick={this._createManager}>
                   Create Manager
                 </button>
-                <AdminReturn />
+              
               </div>
 
               <ListInfo

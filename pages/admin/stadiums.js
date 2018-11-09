@@ -93,7 +93,7 @@ class Stadiums extends Component {
                 <button className="btn-create" onClick={this._createStadium}>
                   Create location
                 </button>
-                <AdminReturn />
+                
               </div>
 
               <ListInfo

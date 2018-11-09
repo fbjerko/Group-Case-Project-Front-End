@@ -23,33 +23,31 @@ class Teams extends Component {
     };
 
 
-    this.previousPage = this.previousPage.bind(this);
-    this.nextPage = this.nextPage.bind(this);
-    this.firstPage = this.firstPage.bind(this);
-    this.lastPage = this.lastPage.bind(this);
+    this.changePage = this.changePage.bind(this);
 
 
   }
 
-  firstPage() {
-    this.setState({ currentPage: 0 });
-  }
-  lastPage() {
-    this.setState({ currentPage: Math.floor(this.state.teams.length / 10) });
-    console.log(this.state.currentPage);
-  }
-
-  previousPage() {
-    if (this.state.currentPage !== 0)
-      this.setState(prevState => ({ currentPage: prevState.currentPage - 1 }));
-    console.log(this.state.currentPage);
-  }
-
-  nextPage() {
-    if (this.state.currentPage + 1 < this.state.teams.length / 10) {
-      this.setState({ currentPage: this.state.currentPage + 1 });
+  changePage(command) {
+    if (command === 0) {
+      this.setState({ currentPage: 0 });
     }
-    console.log(this.state.currentPage);
+    if (command === 1) {
+      if (this.state.currentPage !== 0)
+        this.setState(prevState => ({
+          currentPage: prevState.currentPage - 1
+        }));
+    }
+    if (command === 2) {
+      if (this.state.currentPage + 1 < this.state.teams.length / 8) {
+        this.setState({ currentPage: this.state.currentPage + 1 });
+      }
+    }
+    if (command === 3) {
+      this.setState({
+        currentPage: Math.floor(this.state.teams.length / 8)
+      });
+    }
   }
 
 
@@ -77,8 +75,8 @@ class Teams extends Component {
 
   render() {
     const teams = this.state.teams.slice(
-      this.state.currentPage * 10,
-      (this.state.currentPage + 1) * 10
+      this.state.currentPage * 8,
+      (this.state.currentPage + 1) * 8
     );
     if (this.state.display === 1) {
       return (
@@ -129,10 +127,7 @@ class Teams extends Component {
                   content={this.state.content}
                   contentFields={this.state.contentFields}
                   ready={this.state.ready}
-                  nextPage={this.nextPage}
-                  previousPage={this.previousPage}
-                  firstPage={this.firstPage}
-                  lastPage={this.lastPage}
+                  changePage={this.changePage}
                   canEdit={this.state.canEdit}
                   userId={this.state.userId}
                   currentPage={this.state.currentPage}

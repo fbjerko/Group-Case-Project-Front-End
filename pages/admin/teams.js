@@ -99,7 +99,7 @@ class Teams extends Component {
               <button className="btn-create" onClick={this._createTeam}>
                 Create team
               </button>
-              <AdminReturn />
+            
             </div>
 
             <ListInfo

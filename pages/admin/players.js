@@ -118,7 +118,7 @@ class Players extends Component {
             
             <div className="btn-admin-config">
                 <button className="btn-create" onClick={this._createPlayer}>
-                  Create Manager
+                  Create Player
                 </button>
                 
               </div>
