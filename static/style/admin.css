@@ -34,6 +34,7 @@ div.btn-admin-config {
   position: absolute;
   top: 4vh;
   right: 3vw;
+  display: grid;
 }
 
 div.btn-admin-nav {
@@ -119,11 +120,7 @@ table.table-admin-get-one {
   width: 60rem;
 }
 
-th.th-admin-get-one {
-  
-}
 td.td-admin-get-one {
-
   width: 50%;
 }
 
@@ -156,9 +153,20 @@ td.td-admin-but:hover {
 /***********************************/
 
 table.table-admin-get-all-matches {
-  width: 100rem;
-  font-size: 120%;
+  width: 110rem;
+  font-size: 130%;
   
+}
+
+table.table-admin-get-all-persons {
+  width: 30rem;
+  font-size: 130%;
+  margin: auto;
+ 
+}
+td.td-admin-get-all-persons:hover {
+  background-color: rgb(99, 97, 97);
+  opacity: 0.8;
 }
 
 th.th-admin-get-all-matches {
@@ -177,6 +185,8 @@ td.td-admin-get-all-matches-result {
 td.td-admin-get-all-matches {
   text-align: center;
 }
+
+
 
 td.td-admin-get-all-matches-result:hover {
   background-color: rgb(99, 97, 97);
