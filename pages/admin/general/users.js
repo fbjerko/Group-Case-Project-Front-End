@@ -8,13 +8,13 @@ class users extends Component {
     super(props);
     this.state = {
       users: [],
-      filteredData:[],
-      search:'a',
+      filteredData: [],
+      search: "a",
       ready: false,
       createUser: false,
       currentPage: 0,
-      content: ['Users'], // Attribute variable names
-      contentFields: ['Name', 'E-Mail'] // Names/Values of variables
+      content: ["Users"], // Attribute variable names
+      contentFields: ["Name", "E-Mail"] // Names/Values of variables
     };
 
     this._createUser = this._createUser.bind(this);
@@ -24,11 +24,11 @@ class users extends Component {
     this.lastPage = this.lastPage.bind(this);
   }
 
-  firstPage() { 
-    this.setState({currentPage: 0})
+  firstPage() {
+    this.setState({ currentPage: 0 });
   }
-  lastPage() { 
-    this.setState({currentPage: Math.floor(this.state.users.length/10 )});
+  lastPage() {
+    this.setState({ currentPage: Math.floor(this.state.users.length / 10) });
     console.log(this.state.currentPage);
   }
 
@@ -55,7 +55,7 @@ class users extends Component {
 
   async componentDidMount() {
     try {
-      const response = await fetch(process.env.API_URL+"/api/user/all");
+      const response = await fetch(process.env.API_URL + "/api/user/all");
       const json = await response.json();
       console.log(json);
       this.setState({
@@ -67,10 +67,7 @@ class users extends Component {
     }
   }
 
- 
-
   render() {
-      
     const users = this.state.users.slice(
       this.state.currentPage * 10,
       (this.state.currentPage + 1) * 10
@@ -84,17 +81,11 @@ class users extends Component {
             <h1>users</h1>
 
             <div className="btn-admin-create-top">
-              <button className="btn-create" >
-                Create
-              </button>
+              <button className="btn-create">Create</button>
 
-              <button className="btn-create" >
-                Update
-              </button>
+              <button className="btn-create">Update</button>
 
-              <button className="btn-create" >
-                Delete
-              </button>
+              <button className="btn-create">Delete</button>
             </div>
 
             <div className="btn-admin-create-bottom">
@@ -115,23 +106,22 @@ class users extends Component {
               <button className="btn-create" onClick={this._createUser}>
                 Configure
               </button>
-              <AdminReturn />
+       
             </div>
 
-              <ListInfo
-                data={users}
-                content= {this.state.content}
-                contentFields = {this.state.contentFields}
-                ready={this.state.ready}
-                nextPage={this.nextPage}
-                previousPage={this.previousPage}
-                firstPage= {this.firstPage}
-                lastPage={this.lastPage}
-                currentPage={this.state.currentPage}
-                
-              />
-          
-        
+            <ListInfo
+              data={users}
+              content={this.state.content}
+              contentFields={this.state.contentFields}
+              ready={this.state.ready}
+              nextPage={this.nextPage}
+              previousPage={this.previousPage}
+              firstPage={this.firstPage}
+              lastPage={this.lastPage}
+              currentPage={this.state.currentPage}
+              close={this.props.close}
+            />
+
             {this.state.createUser ? <CreateUser /> : null}
           </div>
         </div>
@@ -141,7 +131,6 @@ class users extends Component {
 }
 
 export default users;
-
 
 /*
 

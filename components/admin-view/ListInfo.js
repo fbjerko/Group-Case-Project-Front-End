@@ -294,6 +294,7 @@ class ListInfo extends Component {
       } else {
         return (
           <div>
+            
             <h1>{this.props.name}</h1>
             <div className="div-admin-get-all">
               {table}
@@ -334,6 +335,12 @@ class ListInfo extends Component {
               <h2>
                 {i18n.t("PAGE", { lng })} {this.props.currentPage + 1}
               </h2>
+              <button
+                className="btn-dashboard-back"
+                onClick={() => this.props.close("")}
+              >
+                Back
+              </button>
             </div>
           </div>
         );

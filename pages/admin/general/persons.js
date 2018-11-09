@@ -96,7 +96,7 @@ class Person extends Component {
               <button className="btn-create" onClick={this.create}>
                 Configure
               </button>
-              <AdminReturn />
+           
             </div>
              
 
@@ -109,6 +109,7 @@ class Person extends Component {
                 changePage={this.changePage}
                 canEdit={this.state.canEdit}
                 currentPage={this.state.currentPage}
+                close={this.props.close}
               />
             </div>
           </div>

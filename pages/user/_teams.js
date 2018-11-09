@@ -136,6 +136,7 @@ class Teams extends Component {
                   canEdit={this.state.canEdit}
                   userId={this.state.userId}
                   currentPage={this.state.currentPage}
+                  close={this.props.close}
               />
 
             {this.state.createTeam ? <CreateUser /> : null}

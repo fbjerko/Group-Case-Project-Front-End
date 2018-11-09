@@ -104,6 +104,7 @@ class Stadiums extends Component {
                 ready={this.state.ready}
                 changePage={this.changePage}
                 currentPage={this.state.currentPage}
+                close={this.props.close}
               />
 
               {this.state.createPlayer ? <CreateUser /> : null}
