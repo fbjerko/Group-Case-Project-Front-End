@@ -131,22 +131,24 @@ class Register extends React.Component
     this.checkAll();
 }
    registerUser=()=> {
-    console.log(document.getElementById("userName").value);
+
     this.setState({status:"Creating user"});
     var xhttp = new XMLHttpRequest();
-
-    xhttp.open("POST", process.env.FRONT_END_URL + "/register", true);
+    console.log(process.env.API_URL + "/api/auth/signup");
+    xhttp.open("POST", process.env.API_URL + "/api/auth/signup", true);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send(
         JSON.stringify({
             userName: document.getElementById("userName").value,
             email: document.getElementById("email").value,
-            password: document.getElementById("psw").value
+            password: document.getElementById("psw").value,
+            role:["admin"]
         })
     );
     xhttp.onreadystatechange = () => {
         if (xhttp.readyState == XMLHttpRequest.DONE) {
-            if (xhttp.status == 201) {
+
+            if (xhttp.status == 200) {
                 console.log("Registered User");
                 this.setState({status:"User created!"});
             } else if (xhttp.status != 200) {

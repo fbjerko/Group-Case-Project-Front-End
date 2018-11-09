@@ -4,37 +4,31 @@ import SearchField from "../admin-create/SearchField";
 
 
 
-class MatchesForm extends React.Component {
+class MatchGoal extends React.Component {
     constructor(props){
         super(props);
         this.state={
             team_1:'',
             team_2:'',
-            match_date: '',
-            season_id:'',
-            location_id:'',
+            goalType: '',
+            desc:'',
             showPop:false,
             status:'Nothing',
             team_1_players: [],
             team_2_players: [],
-            selectedPlayers:[]
-          }
+            selectedPlayers:[]          }
     }
 
-    updateSearchFieldSeason = (id)=>{
+    updateSearchFieldGoal = (id)=>{
       console.log(id);
-      this.setState({season_id:id});
-  }
-    updateSearchFieldLocation = (id)=>{
-      console.log(id);
-      this.setState({location_id:id});
+      this.setState({goalType:id});
   }
     updateSearchFieldTeam1 = (id)=>{
       console.log(id);
 
 
       const url = process.env.API_URL+"/api/team/getPlayersByTeamId/"+id;
-      fetch(url,{credentials:'include'}).then((response)=>response.json().then((body)=>{
+      fetch(url).then((response)=>response.json().then((body)=>{
           this.setState({team_1_players:body,team_1:id});
       }));
 
@@ -43,42 +37,39 @@ class MatchesForm extends React.Component {
       console.log(id);
 
         const url = process.env.API_URL+"/api/team/getPlayersByTeamId/"+id;
-        fetch(url,{credentials:'include'}).then((response)=>response.json().then((body)=>{
+        fetch(url).then((response)=>response.json().then((body)=>{
             this.setState({team_2_players:body,team_2:id});
         }));
   }
     updateInput = (event)=>{
-      if(event.target.id=='match_date'){
-          this.setState({match_date:event.target.value});
+      if(event.target.id=='description'){
+          this.setState({desc:event.target.value});
         }
 
     }
-    sendMatch = ()=>{
+
+    componentWillMount(){
+        this.updateSearchFieldTeam2(this.props.team_2);
+        this.updateSearchFieldTeam1(this.props.team_1);
+    }
+    sendMatchGoal = ()=>{
 
         var xhttp = new XMLHttpRequest();
 
 
-        xhttp.open("POST",  process.env.API_URL+"/api/footballMatch", true);
-        xhttp.withCredentials=true;
+        xhttp.open("POST",  process.env.API_URL+"/api/matchGoal", true);
+        xhttp.withCredentials = true;
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send(
             JSON.stringify({
-              playersId: this.state.selectedPlayers,
-              date: this.state.match_date,
-              homeTeamId: this.state.team_1,
-              awayTeamId: this.state.team_2,
-              seasonId: this.state.season_id,
-              locationId: this.state.location_id 
+              playerId: this.state.selectedPlayers,
+              description: this.state.desc,
+              goalTypeId: this.state.matchGoal,
+              fotballMatchId: this.props.fotballMatchId,
+
+
             })
         );
-        console.log(JSON.stringify({
-            playersId: this.state.selectedPlayers,
-            date: this.state.match_date,
-            homeTeamId: this.state.team_1,
-            awayTeamId: this.state.team_2,
-            seasonId: this.state.season_id,
-            locationId: this.state.location_id
-        }));
         xhttp.onreadystatechange = ()=>{
           if (xhttp.readyState == XMLHttpRequest.DONE) {
             if(xhttp.status==201){
@@ -119,31 +110,25 @@ class MatchesForm extends React.Component {
       
         <div style={{marginRight:'50px'}}>
 
-        <h2>Create new match</h2>
+        <h2>Create new match goal</h2>
 
-       <p>Home team</p>
-       <SearchField type={'team'} handleChange={this.updateSearchFieldTeam1}/>
-       <p>Away team</p>
-       <SearchField type={'team'} handleChange={this.updateSearchFieldTeam2}/>
+       <p>Team 1 </p>
+       <p>{this.props.team_1}</p>
+       <p>Team 2</p>
+       <p>{this.props.team_2}</p>
+       <p>Goal type</p>
+       <SearchField type={'goalType'} handleChange={this.updateSearchFieldGoal}/>
        <br></br>
        <br></br>
-       <p>Match date</p>
-       <input onChange={this.updateInput} value={this.state.match_date} type="date" placeholder="Write a match_date" id="match_date" />
+       <p>Description</p>
+       <input onChange={this.updateInput} value={this.state.desc} type="text" placeholder="Write a description" id="description" />
        <br></br>
        <br></br>
-       <p>Season</p>
-       <SearchField type={'season'} handleChange={this.updateSearchFieldSeason}/>
-       <br></br>
-       <br></br>
-       <p>Location</p>
-       <SearchField type={'location'} handleChange={this.updateSearchFieldLocation}/>
-       <br></br>
-       <br></br>
-       <input className="btn-index" type="button" value="Submit" onClick={this.sendMatch}></input>
+       <input className="btn-index" type="button" value="Submit" onClick={this.sendMatchGoal}></input>
 
         </div>
                 <div style={{width:'300px',marginLeft:'50px'}}>
-                    <h2>Home team:</h2>
+                    <h2>Team 1:</h2>
                     <table>
                         <tbody>
                         {this.state.team_1_players.map((player)=>{
@@ -168,7 +153,7 @@ class MatchesForm extends React.Component {
                     </table>
                 </div>
                 <div style={{width:'300px',marginLeft:'50px'}}>
-                    <h2>Away team</h2>
+                    <h2>Team 2:</h2>
 
                     <table>
                         <tbody>
@@ -205,5 +190,4 @@ class MatchesForm extends React.Component {
 }
 
 
-
-export default MatchesForm;
+export default MatchGoal;

@@ -18,6 +18,7 @@ routes
     .add('/admin/teams', '/admin/teams')
     .add('/admin/matches', '/admin/matches')
     .add('/admin/stadiums', '/admin/stadiums')
+    .add('/admin/documentation', 'admin/documentation')
 
     .add('/admin/general', '/admin/general')
     .add('/admin/general/users', '/admin/general/users')

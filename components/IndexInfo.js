@@ -17,6 +17,7 @@ class IndexInfo extends Component {
   getPlayersInfo(params) {
     const Http = new XMLHttpRequest();
     const url='http://localhost:5000/api/player/all';
+    Http.withCredentials=true;
     Http.open("GET", url);
     Http.send();
     Http.onreadystatechange=(e)=>{

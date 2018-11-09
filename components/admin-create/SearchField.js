@@ -33,7 +33,9 @@ class SearchField extends Component {
 
     getData(){
 
-        fetch(this.state.url).then(
+        fetch(this.state.url,{
+            credentials: 'include'
+        }).then(
             (res)=>res.json().then(
                 (res)=>{
                     if(res.length>0){
@@ -93,7 +95,7 @@ class SearchField extends Component {
                 url = process.env.API_URL+"/api/owner/all";
                 break;
             case 'goalType':
-                url = process.env.API_URL+"/api/goalType/all";
+                url = process.env.API_URL+"/api/matchGoal/goalType";
                 break;
         }
         return url;

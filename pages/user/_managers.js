@@ -46,7 +46,9 @@ class Managers extends Component {
 
   async componentDidMount() {
     try {
-      const response = await fetch(process.env.API_URL + "/api/coach/all");
+      const response = await fetch(process.env.API_URL + "/api/coach/all",{
+          credentials: 'include'
+      });
       const json = await response.json();
       console.log(json);
       this.setState({

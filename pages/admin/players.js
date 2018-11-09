@@ -8,29 +8,33 @@ import Loading from "../../components/buttons/loading";
 import i18n from "../../i18n";
 
 class Players extends Component {
-  constructor(props) {
-    const lng = i18n.language;
-    super(props);
-    this.state = {
-      players: [],
-      ready: false,
-      createPlayer: false,
-      editPlayer: false,
-      currentPage: 0,
-      content: ["Players", "Teams"], // Attribute variable names
-      contentFields: [i18n.t("NAME", lng), i18n.t("TEAMS", lng)],
-      canEdit: true, // Names/Values of variables,
-      playerId: -1,
-      lng: lng
-    };
+    constructor(props) {
+        const lng = i18n.language;
+        super(props);
+        this.state = {
+            players: [],
+            ready: false,
+            createPlayer: false,
+            editPlayer: false,
+            currentPage: 0,
+            content: [i18n.t("PLAYERS", lng), i18n.t("TEAMS", lng)], // Attribute variable names
+            contentFields: [i18n.t("NAME", lng), i18n.t("TEAM", lng)],
+            canEdit: true, // Names/Values of variables,
+            playerId: -1,
+            lng: lng
+        };
 
-    this._createPlayer = this._createPlayer.bind(this);
-    this.changePage = this.changePage.bind(this);
-  }
 
-  onLanguageChanged = lng => {
-    this.setState({ lng: lng });
-  };
+        this._createPlayer = this._createPlayer.bind(this);
+        this.changePage = this.changePage.bind(this);
+
+
+    }
+
+
+    onLanguageChanged = (lng) => {
+        this.setState({lng: lng});
+    }
 
   componentWillMount() {
     if (this.props.players === undefined) {
@@ -93,8 +97,24 @@ class Players extends Component {
   };
 
   async componentDidMount() {
-    i18n.on("languageChanged", this.onLanguageChanged);
-  }
+    i18n.on('languageChanged', this.onLanguageChanged)
+    try {
+        fetch(process.env.API_URL + "/api/player/all",{
+                credentials: 'include'
+            }
+        ).then(
+            (response) => response.json()
+        ).then((json) => {
+            console.log(json);
+            this.setState({
+                players: json,
+                ready: true
+            })
+        });
+    } catch (error) {
+        console.log(error);
+    }
+}
 
   render() {
     if (this.state.ready === true) {

@@ -3,7 +3,7 @@ import SearchField from "../admin-create/SearchField";
 import Popupp from "../popupp";
 
 
-class ManagerForm extends React.Component {
+class OwnerForm extends React.Component {
     constructor(props){
         super(props);
         this.state={
@@ -24,8 +24,7 @@ class ManagerForm extends React.Component {
 
         var xhttp = new XMLHttpRequest();
 
-        xhttp.open("POST",  process.env.API_URL+"/api/coach", true);
-        xhttp.withCredentials=true;
+        xhttp.open("POST",  process.env.API_URL+"/api/owner", true);
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send(
             JSON.stringify({
@@ -61,7 +60,7 @@ class ManagerForm extends React.Component {
 
             <div className="seasons-container">
                 <div className="top">
-                    <h2>Create new manager</h2>
+                    <h2>Create new owner</h2>
                 </div>
                 <p>Person </p>
                 <SearchField type={'person'} handleChange={this.updateSearchField}/>
@@ -78,4 +77,4 @@ class ManagerForm extends React.Component {
 
 }
 
-export default ManagerForm;
+export default OwnerForm;

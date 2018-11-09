@@ -37,6 +37,13 @@ div.btn-admin-config {
   display: grid;
 }
 
+div.btn-admin-config-create{
+  position: absolute;
+  top: 0.1rem;
+  right: 3vw;
+  display: grid;
+}
+
 button.btn-admin-back {
   position: absolute;
   bottom: 3vh;
@@ -427,6 +434,24 @@ button.btn-create {
   margin-top: 0.1rem;
   /* Må fikses posisjonen her*/
 
+}
+
+.doc-div {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 10vh;
+  padding: 3rem;
+}
+
+.btn-doc{
+  font-family: Verdana;
+  text-shadow: 2px 2px 2px #000000;
+  font-size: 40px;
+  color: white;
+  padding: 3rem;
 }
 
 .div-ret-general{

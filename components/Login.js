@@ -39,9 +39,9 @@ class Login extends React.Component {
                 <form className="form-container">
                     <h2>{i18n.t("LOG_IN", {lng})}</h2>
 
-                    <b>{i18n.t("EMAIL", {lng})}</b>
+                    <b>{i18n.t("USERNAME", {lng})}</b>
 
-                    <input type="text" id="email" placeholder={i18n.t("ENTER", {lng}) + " " + i18n.t("EMAIL", {lng})}
+                    <input type="text" id="username" placeholder={i18n.t("ENTER", {lng}) + " " + i18n.t("USERNAME", {lng})}
                            className="email" required/>
 
                     <b>{i18n.t("PASS", {lng})}</b>
@@ -59,28 +59,29 @@ class Login extends React.Component {
                         className="btn-"
                         onClick={() => {
 
-                            this.setState({loading: true});
-                            var xhttp = new XMLHttpRequest();
+                            console.log("sending")
+                            this.setState({loading:true});
 
+                            var xhttp = new XMLHttpRequest();
+                            const body = JSON.stringify({
+                                password: document.getElementById('psw').value,
+                                userName: document.getElementById('username').value
+                            });
+                            console.log(body);
                             xhttp.open("POST", process.env.FRONT_END_URL + "/login", true);
                             xhttp.setRequestHeader("Content-type", "application/json");
-                            xhttp.send(
-                                JSON.stringify({
-                                    password: document.getElementById('psw').value,
-                                    email: document.getElementById("email").value
-                                })
-                            );
+                            xhttp.send(body);
                             xhttp.onreadystatechange = () => {
                                 if (xhttp.readyState == XMLHttpRequest.DONE) {
-                                    console.log(xhttp);
+                                    console.log(xhttp.status);
                                     if (xhttp.status == 200) {
                                         let body = JSON.parse(xhttp.responseText);
                                         console.log(body);
-                                        if (body.message == 'admin') {
+                                        if (body.role == 'admin') {
                                             console.log("Admin logged in");
                                             Router.pushRoute("/admin");
                                         }
-                                        else if (body.message == 'user') {
+                                        else if (body.role == 'user') {
                                             console.log("user logged in");
                                             Router.pushRoute("/dashboard");
                                         }

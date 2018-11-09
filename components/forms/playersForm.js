@@ -67,7 +67,7 @@ class PlayersForm extends Component {
         if(this.state.edit == 'edit'){
             try {
                 const response = await fetch(
-                    process.env.API_URL+"/api/player/" + this.props.id
+                    process.env.API_URL+"/api/player/" + this.props.id,{credentials:'include'}
                 );
                 const json = await response.json();
 
@@ -98,10 +98,11 @@ class PlayersForm extends Component {
 
 
     sendPlayer = ()=>{
-        this.setState({loading:<Loading icon={true} text={"Creating address..."}/>});
+        this.setState({loading:<Loading icon={true} text={"Creating player..."}/>});
         let xhttp = new XMLHttpRequest();
 
         xhttp.open(this.state.method,  process.env.API_URL+"/api/player", true);
+        xhttp.withCredentials=true;
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send(
             JSON.stringify({

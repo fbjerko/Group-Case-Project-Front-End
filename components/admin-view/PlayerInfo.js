@@ -22,6 +22,8 @@ class PlayerInfo extends Component {
 
         this._edit = this._edit.bind(this);
         this.addToWatchList = this.addToWatchList.bind(this);
+        this.deletePlayer = this.deletePlayer.bind(this);
+        
 
 
     }
@@ -46,7 +48,9 @@ class PlayerInfo extends Component {
 
         try {
             const response = await fetch(
-                process.env.API_URL + "/api/player/" + this.props.id
+                process.env.API_URL + "/api/player/" + this.props.id,{
+                    credentials: 'include',
+                }
             );
             const json = await response.json();
 
@@ -70,20 +74,25 @@ class PlayerInfo extends Component {
         }
     }
 
-    deletePlayer() {
-
-        xhttp.open("DELETE", process.env.API_URL + "/api/player/" + this.props.id + "/delete", true);
+    deletePlayer=()=> {
+        console.log(process.env.API_URL + "/api/player/" + this.props.id )
+        let xhttp = new XMLHttpRequest();
+        xhttp.open("DELETE", process.env.API_URL + "/api/player/" + this.props.id, true);
         xhttp.setRequestHeader("Content-type", "application/json");
-
+        xhttp.withCredentials = true;
         xhttp.onreadystatechange = () => {
             if (xhttp.readyState == XMLHttpRequest.DONE) {
+                console.log("DONE");
                 if (xhttp.status === 200) {
                     this.setState({success: true, failed: false});
-                } else if (xhttp.status !== 403) {
+                    console.log("Yay");
+                } else if (xhttp.status == 403) {
                     this.setState({failed: true, success: false});
+                    console.log("Damn");
                 }
             }
         };
+        xhttp.send(null);
 
 
     }
@@ -109,8 +118,9 @@ class PlayerInfo extends Component {
 
         console.log(json);
 
-        xhttp.open("PUT", process.env.API_URL + "/api/watchlist", true);
+        xhttp.open("PUT", process.env.API_URL + "/api/favouriteList", true);
         xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.withCredentials = true;
         xhttp.send(
             JSON.stringify({
                 playerId: this.props.id,
@@ -178,7 +188,7 @@ class PlayerInfo extends Component {
                         <td className="td-admin-but" onClick={() => this.props.editPlayer(this.props.id)}>
                             {i18n.t("EDIT", {lng})}
                         </td>
-                        <td className="td-admin-but" onClick={this.props.previousPage}>
+                        <td className="td-admin-but" onClick={this.deletePlayer}>
                             {i18n.t("DELETE", {lng})}
                         </td>
                     </tr>
