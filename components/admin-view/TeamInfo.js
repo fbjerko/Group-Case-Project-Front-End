@@ -22,7 +22,7 @@ class TeamInfo extends Component {
           }
       );
       const json = await response.json();
-      console.log("hduashduas " + json);
+
       this.setState({
         teamInfo: json,
         ready: true
@@ -63,8 +63,9 @@ class TeamInfo extends Component {
 
     console.log(json);
 
-    xhttp.open("PUT", process.env.API_URL + "/api/watchlist", true);
+    xhttp.open("PUT", process.env.API_URL + "/api/favouriteList", true);
     xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.withCredentials=true;
     xhttp.send(
       JSON.stringify({
         teamId: this.props.id,
@@ -79,11 +80,11 @@ class TeamInfo extends Component {
         if (xhttp.status === 200 || xhttp.status === 201) {
           if (this.state.inWatchList === true) {
             this.setState({
-              watchListText: name + " Removed from Watchlist"
+              watchListText: this.name + " Removed from Watchlist"
             });
           } else {
             this.setState({
-              watchListText: name + " Added to Watchlist"
+              watchListText: this.name + " Added to Watchlist"
             });
             this.props.updateWatchList;
             setTimeout(

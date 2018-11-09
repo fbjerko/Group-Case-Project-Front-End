@@ -33,13 +33,13 @@ class Teams extends Component {
         }));
     }
     if (command === 2) {
-      if (this.state.currentPage + 1 < this.state.teams.length / 10) {
+      if (this.state.currentPage + 1 < this.state.teams.length / 8) {
         this.setState({ currentPage: this.state.currentPage + 1 });
       }
     }
     if (command === 3) {
       this.setState({
-        currentPage: Math.floor(this.state.teams.length / 10)
+        currentPage: Math.floor(this.state.teams.length / 8)
       });
     }
   }
@@ -72,8 +72,8 @@ class Teams extends Component {
   render() {
     console.log(this.state.teams.length);
     const teams = this.state.teams.slice(
-      this.state.currentPage * 10,
-      (this.state.currentPage + 1) * 10
+      this.state.currentPage * 8,
+      (this.state.currentPage + 1) * 8
     );
     if (this.state.createTeam === true) {
       return (
@@ -101,7 +101,7 @@ class Teams extends Component {
               <button className="btn-create" onClick={this._createTeam}>
                 Create team
               </button>
-              <AdminReturn />
+            
             </div>
 
             <ListInfo
@@ -113,7 +113,9 @@ class Teams extends Component {
               changePage={this.changePage}
               canEdit={this.state.canEdit}
               currentPage={this.state.currentPage}
+              close={this.props.close}
             />
+            
 
             {this.state.createTeam ? <CreateUser /> : null}
           </div>

@@ -105,6 +105,7 @@ class Managers extends Component {
                 changePage={this.changePage}
                 canEdit={this.state.canEdit}
                 currentPage={this.state.currentPage}
+                close={this.props.close}
               />
 
               {this.state.createManager ? <CreateUser /> : null}

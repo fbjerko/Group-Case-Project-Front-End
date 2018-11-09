@@ -248,10 +248,7 @@ class Index extends Component {
                                 "Arena"
                             ]}
                             ready={this.state.ready}
-                            nextPage={this.nextPage}
-                            previousPage={this.previousPage}
-                            firstPage={this.firstPage}
-                            lastPage={this.lastPage}
+                            changePage={this.changePage}
                             canEdit={this.state.canEdit}
                             userId={0}
                             currentPage={this.state.currentPage}
@@ -265,10 +262,7 @@ class Index extends Component {
                             content={["Players", "Teams"]}
                             contentFields={["Name", "Team"]}
                             ready={this.state.ready}
-                            nextPage={this.nextPage}
-                            previousPage={this.previousPage}
-                            firstPage={this.firstPage}
-                            lastPage={this.lastPage}
+                            changePage={this.changePage}
                             canEdit={this.state.canEdit}
                             userId={0}
                             currentPage={this.state.currentPage}

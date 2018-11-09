@@ -161,7 +161,7 @@ class Matches extends Component {
               <button className="btn-create" onClick={this._createManager}>
                 Create Match
               </button>
-              <AdminReturn />
+             
             </div>
 
             <ListInfo
@@ -173,7 +173,9 @@ class Matches extends Component {
               changePage={this.changePage}
               canEdit={this.state.canEdit}
               currentPage={this.state.currentPage}
+              close={this.props.close}
             />
+            
 
             {this.state.createManager ? <CreateUser /> : null}
           </div>

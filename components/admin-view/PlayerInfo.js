@@ -114,7 +114,7 @@ class PlayerInfo extends Component {
 
         console.log(json);
 
-        xhttp.open("PUT", process.env.API_URL + "/api/watchlist", true);
+        xhttp.open("PUT", process.env.API_URL + "/api/favouriteList", true);
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.withCredentials = true;
         xhttp.send(
