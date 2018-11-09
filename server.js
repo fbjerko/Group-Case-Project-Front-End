@@ -22,17 +22,19 @@ app.prepare()
 
     .then(() => {
         const server = express();
-
-
         server.use(cookieParser());
         server.use(bodyParser.json());
 
+        server.get("/test",(req,res)=>{
+            console.log(req.headers);
+            console.log(req.cookies);
+        })
 
         server.use('/admin', (req, res, next) => {
-            console.log(jwt.decode(req.cookies.token));
-
+            console.log(req.cookies.token);
+            console.log(req.headers);
             try {
-                const decode = jwt.verify(req.cookies.token, Buffer.from("secretAdmin").toString('base64'),{ algorithms: ['HS512'] });
+                const decode = jwt.verify(req.cookies.token, Buffer.from("secretAdmin").toString('base64'), {algorithms: ['HS512']});
                 console.log(decode);
                 next();
             } catch (error) {
@@ -42,13 +44,11 @@ app.prepare()
 
 
         });
-
-
         server.use('/dashboard', (req, res, next) => {
             console.log("Checking authentication for User");
 
             try {
-                const decode = jwt.verify(req.cookies.token, Buffer.from("secretAdmin").toString('base64'),{ algorithms: ['HS512'] });
+                const decode = jwt.verify(req.cookies.token, Buffer.from("secretAdmin").toString('base64'), {algorithms: ['HS512']});
                 next();
             } catch (error) {
 
@@ -57,12 +57,7 @@ app.prepare()
 
 
         });
-
         // Authenticate middleware
-
-
-
-
         server.get('/logout', (req, res) => {
             res.clearCookie("token");
             res.clearCookie("id");
@@ -88,16 +83,15 @@ app.prepare()
 
             request(options).then(response => {
                 console.log();
-                if(response.statusCode==200){
-                    res.cookie("token",response.body.accessToken,{ maxAge: 1000*60*60*4, httpOnly: true });
+                if (response.statusCode == 200) {
+                    res.cookie("token", response.body.accessToken, {maxAge: 1000 * 60 * 60 * 4, httpOnly: true});
                     res.status(200).send({
-                        token: response.body.tokenType+ " "+response.body.accessToken,
+                        token: response.body.tokenType + " " + response.body.accessToken,
                         role: response.headers.role
                     })
-                }else if(response.statusCode==401){
+                } else if (response.statusCode == 401) {
                     res.status(401).end();
                 }
-
 
 
             }).catch((err) => {
@@ -106,17 +100,11 @@ app.prepare()
 
 
         });
-
-
-
-
         server.get('*', (req, res) => {
 
 
             return handle(req, res);
         });
-
-
         server.listen(port, (err) => {
             console.log(process.env.NODE_ENV);
             console.log(">" + port)

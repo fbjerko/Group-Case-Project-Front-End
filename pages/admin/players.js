@@ -75,9 +75,14 @@ class Players extends Component {
   async componentDidMount() {
     i18n.on('languageChanged', this.onLanguageChanged)
     try {
-        fetch(process.env.API_URL + "/api/player/all").then(
+        fetch(process.env.API_URL + "/api/player/all",{
+                method:'GET',
+                credentials: 'include',
+            }
+        ).then(
             (response) => response.json()
         ).then((json) => {
+            console.log(json);
             this.setState({
                 players: json,
                 ready: true

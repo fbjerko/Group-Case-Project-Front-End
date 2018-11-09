@@ -46,7 +46,9 @@ class PlayerInfo extends Component {
 
         try {
             const response = await fetch(
-                process.env.API_URL + "/api/player/" + this.props.id
+                process.env.API_URL + "/api/player/" + this.props.id,{
+                    credentials: 'include',
+                }
             );
             const json = await response.json();
 

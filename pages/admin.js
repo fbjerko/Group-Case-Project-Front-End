@@ -20,7 +20,8 @@ class Admin extends Component {
   }
 
   componentDidMount() {
-    i18n.on('languageChanged', this.onLanguageChanged)
+    i18n.on('languageChanged', this.onLanguageChanged);
+
     
     }
     onLanguageChanged = (lng)=>{
@@ -35,6 +36,7 @@ class Admin extends Component {
 
 
   render() {
+
     let lng = this.state.lng;
     return (
       <div>
