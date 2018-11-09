@@ -93,7 +93,7 @@ class Stadiums extends Component {
                 <button className="btn-create" onClick={this._createStadium}>
                   Create location
                 </button>
-                <AdminReturn />
+                
               </div>
 
               <ListInfo
@@ -104,6 +104,7 @@ class Stadiums extends Component {
                 ready={this.state.ready}
                 changePage={this.changePage}
                 currentPage={this.state.currentPage}
+                close={this.props.close}
               />
 
               {this.state.createPlayer ? <CreateUser /> : null}

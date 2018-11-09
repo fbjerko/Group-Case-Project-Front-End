@@ -115,12 +115,14 @@ class Players extends Component {
             <LayoutGlobal />
 
             <div className="container">
-              <div className="btn-admin-config">
+            
+            <div className="btn-admin-config">
                 <button className="btn-create" onClick={this._createPlayer}>
-                  Create
+                  Create Player
                 </button>
-                <AdminReturn />
+                
               </div>
+               
 
               <ListInfo
                 data={players}
@@ -132,7 +134,9 @@ class Players extends Component {
                 canEdit={this.state.canEdit}
                 currentPage={this.state.currentPage}
                 edit={this.edit}
+                close={this.props.close}
               />
+            
 
               {this.state.createPlayer ? <CreateUser /> : null}
             </div>

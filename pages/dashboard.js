@@ -200,15 +200,7 @@ class Dashboard extends Component {
             if (this.state.showContent === "Players") {
                 return (
                     <div>
-                        <div className="btn-admin-config">
-                            <button
-                                type="button"
-                                className="btn-ret-admin"
-                                onClick={() => this.changeContent("")}
-                            >
-                                Return to Dashboard
-                            </button>
-                        </div>
+                        
 
                         <WatchList
                             watchList={this.state.watchList}
@@ -216,40 +208,26 @@ class Dashboard extends Component {
                         />
                         <Players
                         userId={this.state.userId}
-                        updateWatchList={this.updateWatchList}/>
+                        updateWatchList={this.updateWatchList}
+                        close={this.changeContent}/>
                     </div>
                 );
             } else if (this.state.showContent === "Managers") {
                 return (
                     <div>
-                        <div className="btn-admin-config">
-                            <button
-                                type="button"
-                                className="btn-ret-admin"
-                                onClick={() => this.changeContent("")}
-                            >
-                                Return to Dashboard
-                            </button>
-                        </div>
+                        
                         <WatchList
                             watchList={this.state.watchList}
                             showWatchlist={this.showWatchlist}
+                          
                         />
-                        <Managers/>
+                        <Managers close={this.changeContent}/>
                     </div>
                 );
             } else if (this.state.showContent === "Teams") {
                 return (
                     <div>
-                        <div className="btn-admin-config">
-                            <button
-                                type="button"
-                                className="btn-ret-admin"
-                                onClick={() => this.changeContent("")}
-                            >
-                                Return to Dashboard
-                            </button>
-                        </div>
+                        
                         <WatchList
                             watchList={this.state.watchList}
                             showWatchlist={this.showWatchlist}
@@ -257,45 +235,30 @@ class Dashboard extends Component {
                         <Teams
                             userId={this.state.userId}
                             updateWatchList={this.updateWatchList}
+                            close={this.changeContent}
                         />
                     </div>
                 );
             } else if (this.state.showContent === "Matches") {
                 return (
                     <div>
-                        <div className="btn-admin-config">
-                            <button
-                                type="button"
-                                className="btn-ret-admin"
-                                onClick={() => this.changeContent("")}
-                            >
-                                Return to Dashboard
-                            </button>
-                        </div>
+                        
                         <WatchList
                             watchList={this.state.watchList}
                             showWatchlist={this.showWatchlist}
                         />
-                        <Matches/>
+                        <Matches close={this.changeContent}/>
                     </div>
                 );
             } else if (this.state.showContent === "Stadiums") {
                 return (
                     <div>
-                        <div className="btn-admin-config">
-                            <button
-                                type="button"
-                                className="btn-ret-admin"
-                                onClick={() => this.changeContent("")}
-                            >
-                                Return to Dashboard
-                            </button>
-                        </div>
+                        
                         <WatchList
                             watchList={this.state.watchList}
                             showWatchlist={this.showWatchlist}
                         />
-                        <Stadiums/>
+                        <Stadiums close={this.changeContent}/>
                     </div>
                 );
             } else {

@@ -146,6 +146,7 @@ class Players extends Component {
                 canEdit={this.state.canEdit}
                 userId={this.props.userId}
                 currentPage={this.state.currentPage}
+                close={this.props.close}
               />
 
               {this.state.createPlayer ? <CreateUser /> : null}

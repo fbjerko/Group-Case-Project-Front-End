@@ -3,9 +3,6 @@ import LayoutGlobal from "../../../components/LayoutGlobal";
 import GoalsForm from "../../../components/forms/goalsForm";
 import { Router } from "../../../routes";
 
-
-
-
 class Goals extends Component {
   constructor(props) {
     super(props);
@@ -14,37 +11,33 @@ class Goals extends Component {
     };
 
     this._createGoal = this._createGoal.bind(this);
-}
+  }
 
-_createGoal() {
-  this.setState({
-    createGoal: !this.state.createGoal
-  });
-
-} 
+  _createGoal() {
+    this.setState({
+      createGoal: !this.state.createGoal
+    });
+  }
 
   render() {
-
-    if(this.state.createGoal === true){
-
-        return (
-            <div>
-              <LayoutGlobal />
-              <GoalsForm />
-              <div className = "btn-admin-create-bottom">
-              <button className="btn-create" onClick={this._createGoal}>
-              Back
-            </button>
-              </div>
-            </div>
-          );
-
-    } else {
-        //This return is going to display a list of addresses and a create address button
-    return (
+    if (this.state.createGoal === true) {
+      return (
         <div>
           <LayoutGlobal />
-       
+          <GoalsForm />
+          <div className="btn-admin-create-bottom">
+            <button className="btn-create" onClick={this._createGoal}>
+              Back
+            </button>
+          </div>
+        </div>
+      );
+    } else {
+      //This return is going to display a list of addresses and a create address button
+      return (
+        <div>
+          <LayoutGlobal />
+
           <div className="container">
             <h1>Goal Types</h1>
 
@@ -53,21 +46,16 @@ _createGoal() {
                 Create Goal Type
               </button>
             </div>
-            <div className="div-ret-general">
-
-        <button
-        type="button"
-        className="btn-ret-admin"
-        onClick={() => Router.pushRoute("/admin/general")}
-        >
-        Return to General
-        </button>
-        </div>
+            <button
+                className="btn-dashboard-back"
+                onClick={() => this.props.close("")}
+              >
+                Back
+              </button>
           </div>
-          
         </div>
       );
-    }  
+    }
   }
 }
 
