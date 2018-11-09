@@ -39,10 +39,11 @@ div.btn-admin-config {
 
 div.btn-admin-config-create{
   position: absolute;
-  top: 8vh;
-  right: 2.1vw;
+  top: 0.1rem;
+  right: 3vw;
   display: grid;
 }
+
 button.btn-admin-back {
   position: absolute;
   bottom: 3vh;

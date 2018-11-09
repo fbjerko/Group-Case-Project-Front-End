@@ -50,7 +50,7 @@ class PersonInfo extends Component {
         return (
           <div>
             <LayoutGlobal />
-            <ContactForm name={name}/>
+            <ContactForm name={name} personId={person.personId}/>
             <div className="btn-admin-create-bottom">
               <button className="btn-create" onClick={this._create}>
                 Back
