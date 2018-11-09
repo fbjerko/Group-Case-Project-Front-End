@@ -12,6 +12,7 @@ class PersonInfo extends Component {
       personInfo: [],
       ready: false,
       create: false,
+      contactInfo: []
     };
     this._create = this._create.bind(this);
 
@@ -19,7 +20,18 @@ class PersonInfo extends Component {
 
   async componentWillMount() {
     try {
-      const response = await fetch(
+      const urls = [process.env.API_URL + "/api/person/" + this.props.id, process.env.API_URL + "/api/contact/byPersonId/" + this.props.id]
+      Promise.all(urls.map(url => fetch(url, {credentials: 'include'
+    })))
+.then(resp => Promise.all( resp.map(r => r.text()) ))
+.then(result => {
+  this.setState({
+    personInfo: result[0],
+    ready: true
+  })
+    console.log(result);
+});
+      /*const response = await fetch(
         process.env.API_URL + "/api/person/" + this.props.id, {
           credentials: 'include'
         }
@@ -30,10 +42,27 @@ class PersonInfo extends Component {
       this.setState({
         personInfo: json,
         ready: true
-      });
+      });*/
     } catch (error) {
       console.log(error);
     }
+
+  }
+
+  fetchcontact(){
+      const response = fetch(
+        process.env.API_URL + "/api/contact/byPersonId/" + this.props.id, {
+          credentials: 'include'
+        }
+      );
+      console.log(response);
+      const json = response.json();
+      console.log(json);
+      this.setState({
+        contactInfo: json,
+        ready: true
+      });
+      
   }
 
   _create() {
@@ -46,6 +75,8 @@ class PersonInfo extends Component {
   render() {
     if (this.state.ready === true) {
       const person = this.state.personInfo;
+      const contact = this.state.contactInfo;
+
 
       name = person.firstName + " " + person.lastName;
       if (this.state.create === true) {
@@ -93,6 +124,11 @@ class PersonInfo extends Component {
                     {person.address.country}
                   </td>
                 </tr>
+                <tr className="tr-admin-get-one">
+                  <th className="th-admin-get-one"> Contact information</th>
+                  <td className="td-admin-get-one">{}</td>
+                </tr>
+
               </tbody>
             </table>
             <table className="table-admin-but">
