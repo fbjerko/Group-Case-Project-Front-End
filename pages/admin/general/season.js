@@ -22,14 +22,11 @@ class Seasons extends Component {
   render() {
     if (this.state.create === true) {
       return (
-        <div>
+        <div className="container">
           <LayoutGlobal />
-          <SeasonsForm />
-          <div className="btn-admin-create-bottom">
-            <button className="btn-create" onClick={this._create}>
-              Back
-            </button>
-          </div>
+          <SeasonsForm close={this._create}/>
+         
+        
         </div>
       );
     } else {

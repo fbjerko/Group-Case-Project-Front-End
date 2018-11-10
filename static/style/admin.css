@@ -11,6 +11,15 @@
   margin-top: 1vh;
 }
 
+div.info-container {
+
+  display: block;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 10vh; 
+}
+
 .container-general {
   display: column;
   flex-direction: column;
@@ -468,14 +477,7 @@ button.btn-create {
     width: 25vw;
     margin-left: 1vw;
   }
-  div.info-container {
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    margin-top: 10vh; 
-  }
 
 .create-match-container {
   display: flex;

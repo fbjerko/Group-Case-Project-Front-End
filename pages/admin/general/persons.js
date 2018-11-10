@@ -79,12 +79,10 @@ class Person extends Component {
         return (
           <div>
             <LayoutGlobal />
-            <PersonForm />
-            <div className="btn-admin-create-bottom">
-              <button className="btn-create" onClick={this._create}>
-                Back
-              </button>
-            </div>
+            <PersonForm close = {this._create} />
+           
+              
+         
           </div>
         );
       } else {
@@ -93,8 +91,8 @@ class Person extends Component {
           <div>
             <LayoutGlobal path = {"General"} />
 
-    <div className="btn-admin-config-create">
-              <AdminReturn/>
+          <div className="btn-admin-config-create">
+              
             <button className="btn-create" onClick={this._create}>
                 Create Person
               </button>
