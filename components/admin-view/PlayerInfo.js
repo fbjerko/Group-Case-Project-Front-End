@@ -41,7 +41,7 @@ class PlayerInfo extends Component {
 
     try {
       const response = await fetch(
-        process.env.FRONT_END_URL+"/test",
+          process.env.API_URL + "/api/player/" + this.props.id,
         {
           credentials: "include"
         }
