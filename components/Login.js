@@ -79,6 +79,8 @@ class Login extends React.Component {
                                         console.log(body);
                                         if (body.role == 'admin') {
                                             console.log("Admin logged in");
+                                            document.cookie="token1="+body.token+";samesite=lax";
+
                                             Router.pushRoute("/admin");
                                         }
                                         else if (body.role == 'user') {

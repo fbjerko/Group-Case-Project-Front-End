@@ -101,11 +101,16 @@ app.prepare()
             request(options).then(response => {
 
                 if (response.statusCode == 200) {
-                    res.cookie("token", response.body.accessToken, {maxAge: 1000 * 60 * 60 * 4, httpOnly: true,domain:process.env.API_URL});
-                    res.cookie("id",response.headers.id,{maxAge: 1000 * 60 * 60 * 4, httpOnly: false,domain:process.env.API_URL})
-                    res.cookie("role",response.headers.role,{maxAge: 1000 * 60 * 60 * 4, httpOnly: true,domain:process.env.API_URL})
+                    //res.cookie("token", response.body.accessToken, {maxAge: 1000 * 60 * 60 * 4, httpOnly: true, domain:process.env.API_URL});
+                    res.cookie("token", response.body.accessToken, {maxAge: 1000 * 60 * 60 * 4, httpOnly: true,sameSite:"lax"});
+                    res.cookie("id",response.headers.id,{maxAge: 1000 * 60 * 60 * 4, httpOnly: false})
+                    res.cookie("role",response.headers.role,{maxAge: 1000 * 60 * 60 * 4, httpOnly: true})
+
+
+
+                    console.log(response.cookies);
                     res.status(200).send({
-                        token: response.body.tokenType + " " + response.body.accessToken,
+                        token: response.body.accessToken,
                         role: response.headers.role
                     })
                 } else if (response.statusCode == 401) {
