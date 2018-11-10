@@ -22,14 +22,12 @@ class Associations extends Component {
   render() {
     if (this.state.createAssoc === true) {
       return (
-        <div>
+        <div className="container">
           <LayoutGlobal />
-          <AssociationForm />
-          <div className="btn-admin-create-bottom">
-            <button className="btn-create" onClick={this._createAssoc}>
-              Back
-            </button>
-          </div>
+          <AssociationForm close={this._createAssoc}/>
+         
+           
+          
         </div>
       );
     } else {

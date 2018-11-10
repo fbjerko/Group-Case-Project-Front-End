@@ -24,12 +24,8 @@ class Owner extends Component {
       return (
         <div>
           <LayoutGlobal />
-          <OwnerForm />
-          <div className="btn-admin-create-bottom">
-            <button className="btn-create" onClick={this._create}>
-              Back
-            </button>
-          </div>
+          <OwnerForm close={this._create}/>
+          
         </div>
       );
     } else {

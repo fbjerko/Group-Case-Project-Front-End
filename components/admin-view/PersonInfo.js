@@ -91,7 +91,7 @@ class PersonInfo extends Component {
                         <LayoutGlobal/>
                         <ContactForm name={name} personId={person.personId}/>
                         <div className="btn-admin-create-bottom">
-                            <button className="btn-create" onClick={this._create}>
+                            <button className="btn-dashboard-back" onClick={this._create}>
                                 Back
                             </button>
                         </div>

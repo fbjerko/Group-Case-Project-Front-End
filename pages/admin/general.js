@@ -38,23 +38,7 @@ class General extends Component {
   render() {
     let lng = this.state.lng;
 
-    if (this.state.showContent === "Players") {
-      return (
-        <div>
-          <div className="btn-admin-config">
-            <button
-              type="button"
-              className="btn-ret-admin"
-              onClick={() => this.changeContent("")}
-            >
-              Return to Dashboard
-            </button>
-          </div>
-
-          <Players  close={this.changeContent} />
-        </div>
-      );
-    } else if (this.state.showContent === "Address") {
+    if (this.state.showContent === "Address") {
       return (
         <div>
 
