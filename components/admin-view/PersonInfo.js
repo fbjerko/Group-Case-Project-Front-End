@@ -67,14 +67,22 @@ class PersonInfo extends Component {
 
             const person = this.state.personInfo;
             const contact = this.state.contactInfo;
+            let contactRows = [];
 
             contact.forEach(element => {
-              this.state.type.push(element[1]);
-              this.state.detail.push(element[2]);             
-           
+              contactRows.push(
+                <tr className="tr-admin-get-one">
+                <th className="th-admin-get-one"> {element[1]} </th>
+                
+         
+                <td className="td-admin-get-one">{element[2]}</td>
+                </tr>  
+              );         
             });
 
-            let info = this.state.type + '\n' + this.state.detail;
+           console.log(this.state.type[1]);
+
+          
 
             let name = person.firstName + " " + person.lastName;
             if (this.state.create === true) {
@@ -123,9 +131,11 @@ class PersonInfo extends Component {
                                     </td>
                                 </tr>
                                 <tr className="tr-admin-get-one">
-                                    <th className="th-admin-get-one"> Contact information</th>
-                                    <td className="td-admin-get-one">{info}</td>
+                                    <th colspan="2" className="th-admin-get-one"> Contact Information</th>
+                                    
+                                    
                                 </tr>
+                                {contactRows}
 
                                 </tbody>
                             </table>
