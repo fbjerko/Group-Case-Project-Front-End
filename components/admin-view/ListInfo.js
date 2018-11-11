@@ -10,7 +10,8 @@ class ListInfo extends Component {
       activeId: "",
       display: 99,
       userId: "",
-      lng: i18n.language
+      lng: i18n.language, 
+      score: ""
     };
 
     this.showFirst = this.showFirst.bind(this);
@@ -24,11 +25,13 @@ class ListInfo extends Component {
     this.setState({ lng: lng });
   };
 
-  async showFirst(id, action) {
+  async showFirst(id, action, score) {
     if (this.props.canLoad === undefined) {
       await this.setState({
         activeId: id,
-        display: action
+        display: action,
+        score: score
+
       });
     }
   }
@@ -100,11 +103,12 @@ class ListInfo extends Component {
           );
         } else if (this.props.contentFields.length === 5) {
           if (i === 2) {
+            let score = data[i * 2 + 1];
             columns.push(
               <td
                 key={data[i * 2] + data[3] + i}
                 className="td-admin-get-all-matches-result"
-                onClick={() => this.showFirst(id, action)}
+                onClick={() => this.showFirst(id, action, score)}
               >
                 {data[i * 2 + 1]}
               </td>
@@ -208,6 +212,7 @@ class ListInfo extends Component {
             close={this.close}
             content={this.props.content[2]}
             canEdit={this.props.canEdit}
+            score={this.state.score}
           />
         </div>
       );
@@ -279,6 +284,7 @@ class ListInfo extends Component {
               close={this.close}
               content={this.props.content[2]}
               canEdit={this.props.canEdit}
+              score={this.state.score}
             />
           </div>
         );
