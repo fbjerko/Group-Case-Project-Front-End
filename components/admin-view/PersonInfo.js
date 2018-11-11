@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import LayoutGlobal from "../../components/LayoutGlobal";
 import ContactForm from "../../components/forms/contactForm";
+import Loading from "../buttons/loading";
 import { type } from "os";
 
 
@@ -15,7 +16,9 @@ class PersonInfo extends Component {
       create: false,
       contactInfo: [],
       type:[],
-      detail:[]
+      detail:[],
+      failed: false,
+      success: false
     };
     this._create = this._create.bind(this);
 
@@ -23,7 +26,8 @@ class PersonInfo extends Component {
 
   async componentWillMount() {
     try {
-      const urls = [process.env.API_URL + "/api/person/" + this.props.id, process.env.API_URL + "/api/contact/byPersonId/" + this.props.id]
+      const urls = [process.env.API_URL + "/api/person/" + this.props.id, process.env.API_URL + "/api/contact/byPersonId/" + this.props.id];
+      console.log(urls);
       Promise.all(urls.map(url => fetch(url, {credentials: 'include',headers:{Authorization:"Bearer "+localStorage.getItem("token")}
     })))
       .then(resp => Promise.all( resp.map(r => r.json()) ))
@@ -63,10 +67,12 @@ class PersonInfo extends Component {
       true
     );
     xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.setRequestHeader("Authorization","Bearer "+localStorage.getItem("token"));
     xhttp.withCredentials = true;
     xhttp.onreadystatechange = () => {
       if (xhttp.readyState == XMLHttpRequest.DONE) {
         console.log("DONE");
+        console.log(xhttp.status)
         if (xhttp.status === 200) {
           this.setState({ success: true, failed: false });
           console.log("Yay");
@@ -91,20 +97,40 @@ class PersonInfo extends Component {
         if (this.state.ready === true) {
 
             const person = this.state.personInfo;
-            const contact = this.state.contactInfo;
+            let contact = this.state.contactInfo;
             let contactRows = [];
+            let loading;
 
-            contact.forEach(element => {
-              contactRows.push(
-                <tr className="tr-admin-get-one">
-                <th className="th-admin-get-one"> {element[1]} </th>
-                
-         
-                <td className="td-admin-get-one">{element[2]}</td>
-                </tr>  
-              );         
-            });
+            if(contact.status != 403){
+              contact.forEach(element => {
+                contactRows.push(
+                  <tr className="tr-admin-get-one">
+                  <th className="th-admin-get-one"> {element[1]} </th>
+                  
+           
+                  <td className="td-admin-get-one">{element[2]}</td>
+                  </tr>  
+                );         
+              });
 
+            }
+
+            if (this.state.success) {
+              loading = (
+                  <Loading
+                      text="Deleted"
+                      icon={false}
+                  />
+              );
+          } else if (this.state.failed) {
+              loading = (
+                  <Loading
+                      text="Delete failed"
+                      icon={false}
+                  />
+              );
+          }
+          
            console.log(this.state.type[1]);
 
           
