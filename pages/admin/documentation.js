@@ -113,11 +113,11 @@ class Documentation extends React.Component {
             <LayoutGlobal>
                 <NavbarIndex/>
                 <div className="doc-div">
-                    <option className="btn-doc" onClick= {() => this.changeContent("UseCase")}>Use Case</option>
-                    <option className="btn-doc" onClick= {() => this.changeContent("PDF2")}>PDF2</option>
-                    <option className="btn-doc" onClick= {() => this.changeContent("PDF3")}>PDF3</option>
-                    <option className="btn-doc" onClick= {() => this.changeContent("PDF4")}>PDF4</option>
-                    <option className="btn-doc" onClick= {() => this.changeContent("PDF5")}>PDF5</option>
+                    <option style={{cursor:"pointer"}} className="btn-doc" onClick= {() => this.changeContent("UseCase")}>User Case</option>
+                    <option style={{cursor:"pointer"}} className="btn-doc" onClick= {() => this.changeContent("PDF2")}>API Architecture</option>
+                    <option style={{cursor:"pointer"}} className="btn-doc" onClick= {() => this.changeContent("PDF3")}>User Case</option>
+                    <option style={{cursor:"pointer"}} className="btn-doc" onClick= {() => this.changeContent("PDF4")}>PDF4</option>
+                    <option style={{cursor:"pointer"}} className="btn-doc" onClick= {() => this.changeContent("PDF5")}>PDF5</option>
                 </div>
 
             </LayoutGlobal>
