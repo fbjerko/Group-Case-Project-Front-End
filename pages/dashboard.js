@@ -87,8 +87,10 @@ class Dashboard extends Component {
             true
         );
         xhttp.setRequestHeader("Content-type", "application/json");
-        xhttp.send();
+        xhttp.setRequestHeader("Authorization","Bearer "+localStorage.getItem("token"));
         xhttp.withCredentials=true;
+        xhttp.send();
+
         xhttp.onreadystatechange = () => {
             if (xhttp.readyState == XMLHttpRequest.DONE) {
                 if (xhttp.status === 200 || xhttp.status === 201) {
@@ -120,7 +122,7 @@ class Dashboard extends Component {
                 "/api/favouriteList/" +
                 this.state.userId +
                 "/byUserId",{
-                    credentials: 'include'
+                    credentials: 'include',headers:{Authorization:"Bearer "+localStorage.getItem("token")}
                 }
             );
             const json = await response.json();

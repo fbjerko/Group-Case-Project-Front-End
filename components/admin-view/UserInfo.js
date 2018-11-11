@@ -16,7 +16,7 @@ class UserInfo extends Component {
     try {
       const response = await fetch(
           process.env.API_URL+"/api/user/findById/" + this.props.id,{
-              credentials: 'include'
+              credentials: 'include',headers:{Authorization:"Bearer "+localStorage.getItem("token")}
           }
       );
       console.log(response);

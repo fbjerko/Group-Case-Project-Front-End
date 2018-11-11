@@ -6,6 +6,7 @@ function editUser() {
 
   xhttp.open("PUT", process.env.API_URL+"/api/users", true);
   xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.setRequestHeader("Autherization","Bearer "+localStorage.getItem("token"));
   xhttp.send(
     JSON.stringify({
       email: document.getElementById("email").value,

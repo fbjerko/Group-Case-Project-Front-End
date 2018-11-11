@@ -16,7 +16,7 @@ class ManagerInfo extends Component {
     try {
       const response = await fetch(
         process.env.API_URL + "/api/coach/" + this.props.id,{
-              credentials: 'include'
+              credentials: 'include',headers:{Authorization:"Bearer "+localStorage.getItem("token")}
           }
       );
       const json = await response.json();

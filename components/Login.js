@@ -79,10 +79,13 @@ class Login extends React.Component {
                                         console.log(body);
                                         if (body.role == 'admin') {
                                             console.log("Admin logged in");
+                                            localStorage.setItem("token",body.token);
+
                                             Router.pushRoute("/admin");
                                         }
                                         else if (body.role == 'user') {
                                             console.log("user logged in");
+                                            localStorage.setItem("token",body.token);
                                             Router.pushRoute("/dashboard");
                                         }
                                     } else if (xhttp.status != 200) {

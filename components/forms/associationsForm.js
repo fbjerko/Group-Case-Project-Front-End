@@ -25,6 +25,7 @@ class AssociationForm extends React.Component {
 
     xhttp.open("POST", process.env.API_URL + "/api/association", true);
     xhttp.withCredentials = true;
+      xhttp.setRequestHeader("Authorization","Bearer "+localStorage.getItem("token"));
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send(
       JSON.stringify({

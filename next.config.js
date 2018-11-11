@@ -7,7 +7,7 @@ module.exports = {
     webpack(config) {
         config.plugins.push(new webpack.DefinePlugin({
             'process.env.API_URL': process.env.NODE_ENV=='production' ? "'https://experis-football-manager-back.herokuapp.com'":"'http://localhost:5000'",
-            'process.env.FRONT_END_URL': process.env.NODE_ENV=='production' ?"'https://experis-fotball-manager.herokuapp.com'":"'http://localhost:3000'"
+            'process.env.FRONT_END_URL': process.env.NODE_ENV=='production' ?"'https://football-manager-front.herokuapp.com'":"'http://localhost:3000'"
         }));
 
 

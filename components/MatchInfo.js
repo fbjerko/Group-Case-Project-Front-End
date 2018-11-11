@@ -5,6 +5,7 @@ function getMatchInfo(){
   const url=process.env.API_URL+"/api/match";
   Http.open("GET", url);
   Http.withCredentials=true;
+    Http.setRequestHeader("Authorization","Bearer "+localStorage.getItem("token"));
   Http.send();
   Http.onreadystatechange=(e)=>{
   console.log(Http.responseText)

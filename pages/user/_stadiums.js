@@ -53,7 +53,7 @@ class Stadiums extends Component {
   async componentDidMount() {
     console.log("Hey");
     try {
-      const response = await fetch(process.env.API_URL + "/api/location/all");
+      const response = await fetch(process.env.API_URL + "/api/location/all",{credentials:true,headers:{Authorization:"Bearer "+localStorage.getItem("token")}});
       const json = await response.json();
 
       this.setState({

@@ -36,6 +36,7 @@ class LocationsForm extends React.Component {
 
         xhttp.open("POST",  process.env.API_URL+"/api/location", true);
         xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.setRequestHeader("Authorization","Bearer "+localStorage.getItem("token"));
         xhttp.withCredentials=true;
         xhttp.send(
             JSON.stringify({

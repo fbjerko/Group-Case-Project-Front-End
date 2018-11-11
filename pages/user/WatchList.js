@@ -41,6 +41,7 @@ class WatchList extends Component {
             true
         );
         xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.setRequestHeader("Authorization","Bearer "+localStorage.getItem("token"))
         xhttp.withCredentials=true;
         xhttp.send();
         xhttp.onreadystatechange = () => {
@@ -66,7 +67,7 @@ class WatchList extends Component {
             try {
                 fetch(
                     process.env.API_URL + "/api/favouriteList/" + this.state.userId + "/byUserId",{
-                        credentials: 'include'
+                        credentials: 'include',headers:{Authorization:"Bearer "+localStorage.getItem("token")}
                     }
                 ).then((response)=>response.json()).then((json) => {
 
