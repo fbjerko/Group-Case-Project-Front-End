@@ -17,7 +17,7 @@ div.info-container {
   justify-content: center;
   align-items: center;
   text-align: center;
-  margin-top: 10vh; 
+  margin-top: 10vh;
 }
 
 .container-general {
@@ -484,6 +484,11 @@ button.btn-create {
   justify-content: center;
 
 }
+
+.create-match-container table{
+  font-size: 1.5rem;
+
+}
 .create-match-container ul{
   color:white;
   opacity: 100%;
@@ -498,7 +503,11 @@ button.btn-create {
 }
 .create-match-container td{
   cursor: pointer;
-  padding-left: 10px;
+  padding-left: 0px;
+  border-style: hidden;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-right: 1rem;
 }
 
 

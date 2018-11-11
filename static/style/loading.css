@@ -1,9 +1,9 @@
 .loadingIcon {
-    border: 6px solid #f3f3f3;
+    border: .6rem solid #f3f3f3;
     border-radius: 50%;
-    border-top: 6px solid rgb(194, 204, 224);
-    width: 30px;
-    height: 30px;
+    border-top: .6rem solid rgb(194, 204, 224);
+    width: 20px;
+    height: 20px;
     -webkit-animation: spin 2s linear infinite; /* Safari */
     animation: spin 2s linear infinite;
 
@@ -21,6 +21,7 @@
 }
 
 .loadingContainer{
+    font-size: 1rem;
     position: fixed;
     left:10px;
     top: 10px;
@@ -29,4 +30,5 @@
 }
 .loadingContainer p{
     padding-left: 10px;
+    margin:0;
 }

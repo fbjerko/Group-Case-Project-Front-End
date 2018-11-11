@@ -22,7 +22,7 @@ class Admin extends Component {
             lng: i18n.language
         };
 
-        this._onEditClick = this._onEditClick.bind(this);
+
         this.changeContent = this.changeContent.bind(this);
     }
 
@@ -35,11 +35,7 @@ class Admin extends Component {
     };
 
 
-    _onEditClick() {
-        this.setState({
-            showEdit: !this.state.showEdit
-        });
-    }
+
 
     changeContent(contentType) {
         this.setState({
@@ -105,27 +101,27 @@ class Admin extends Component {
             return (
                 <div>
                     <LayoutGlobal/>
-                    <NavbarUser onEditClick={this._onEditClick}/>
+                    <NavbarUser/>
                     <div className="container">
                         <div className="btn-admin-nav">
                             <button
                                 className="btn-nav"
                                 id="btn-players"
-                                onClick={() => this.changeContent("Players")}
+                                onClick={() => Router.pushRoute("/admin/players")}
                             >
                                 {i18n.t("PLAYERS", {lng})}
                             </button>
                             <button
                                 className="btn-nav"
                                 id="btn-managers"
-                                onClick={() => this.changeContent("Managers")}
+                                onClick={() => Router.pushRoute("/admin/managers")}
                             >
                                 {i18n.t("MANAGERS", {lng})}
                             </button>
                             <button
                                 className="btn-nav"
                                 id="btn-teams"
-                                onClick={() => this.changeContent("Teams")}
+                                onClick={() => Router.pushRoute("/admin/teams")}
                             >
                                 {i18n.t("TEAMS", {lng})}
                             </button>
@@ -135,7 +131,7 @@ class Admin extends Component {
                             <button
                                 className="btn-nav"
                                 id="btn-matches"
-                                onClick={() => this.changeContent("Matches")}
+                                onClick={() => Router.pushRoute("/admin/matches")}
                             >
                                 {i18n.t("MATCHES", {lng})}
                             </button>
@@ -143,7 +139,7 @@ class Admin extends Component {
                             <button
                                 className="btn-nav"
                                 id="btn-stadium"
-                                onClick={() => this.changeContent("Stadiums")}
+                                onClick={() => Router.pushRoute("/admin/stadiums")}
                             >
                                 {i18n.t("STADIUMS", {lng})}
                             </button>
@@ -151,15 +147,13 @@ class Admin extends Component {
                             <button
                                 className="btn-nav"
                                 id="btn-general"
-                                onClick={() => this.changeContent("General")}
+                                onClick={() => Router.pushRoute("/admin/general")}
                             >
                                 {i18n.t("GENERAL", {lng})}
                             </button>
                         </div>
 
-                        <div className="div-edituser">
-                            {this.state.showEdit ? <EditUser/> : null}
-                        </div>
+
                     </div>
                 </div>
             );

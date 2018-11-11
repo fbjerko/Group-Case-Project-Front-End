@@ -5,6 +5,7 @@ import PlayerInfo from "../../components/admin-view/PlayerInfo";
 import TeamInfo from "../../components/admin-view/TeamInfo";
 import WatchList from "./WatchList";
 import Loading from "../../components/buttons/loading";
+import NavbarDash from "../../components/NavbarDash";
 
 class Players extends Component {
   constructor(props) {
@@ -75,6 +76,7 @@ class Players extends Component {
         return (
           <div>
             <LayoutGlobal />
+            <NavbarDash/>
 
             <div className="container">
               <PlayerInfo
@@ -91,7 +93,7 @@ class Players extends Component {
         return (
           <div>
             <LayoutGlobal />
-
+            <NavbarDash/>
             <div className="container">
               <TeamInfo
                 id={this.state.activeId}
@@ -131,7 +133,7 @@ class Players extends Component {
         return (
           <div>
             <LayoutGlobal />
-
+            <NavbarDash/>
             <div className="container">
               <WatchList
                 showWatchlist={this.showWatchlist}
@@ -160,7 +162,8 @@ class Players extends Component {
       return (
         <div>
           <LayoutGlobal />
-          <Loading icon={true} text={"Loading players..."} />
+          <NavbarDash/>
+          <Loading icon={true} text={"Loading..."} />
         </div>
       );
     }

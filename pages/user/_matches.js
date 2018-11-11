@@ -4,6 +4,7 @@ import ManagerForm from "../../components/forms/managerForm";
 import AdminReturn from "../../components/buttons/AdminReturn";
 import ListInfo from "../../components/admin-view/ListInfo";
 import Loading from "../../components/buttons/loading";
+import NavbarDash from "../../components/NavbarDash";
 
 class Matches extends Component {
   constructor(props) {
@@ -19,7 +20,7 @@ class Matches extends Component {
       currentPage: 0,
       content: ["Date", "Teams", "Matches", "Teams", "League"], // Attribute variable names
       contentFields: ["Date", "Home Team", "Result", "Away Team", "Arena"],
-      canEdit: true // Names/Values of variables
+      canEdit: false // Names/Values of variables
     };
 
     this._createManager = this._createManager.bind(this);
@@ -159,7 +160,7 @@ class Matches extends Component {
       return (
         <div>
           <LayoutGlobal />
-
+        <NavbarDash/>
           <div className="container">
            
 
@@ -175,7 +176,7 @@ class Matches extends Component {
               close={this.props.close}
             />
 
-            {this.state.createManager ? <CreateUser /> : null}
+
           </div>
         </div>
       );
@@ -183,7 +184,8 @@ class Matches extends Component {
       return (
         <div>
           <LayoutGlobal />
-          <Loading icon={true} text={"Loading players..."} />
+          <NavbarDash/>
+          <Loading icon={true} text={"Loading..."} />
         </div>
       );
     }

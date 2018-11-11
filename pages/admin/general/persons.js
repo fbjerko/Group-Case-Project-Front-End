@@ -5,6 +5,7 @@ import { Router } from "../../../routes";
 import ListInfo from "../../../components/admin-view/ListInfo";
 import Loading from "../../../components/buttons/loading";
 import AdminReturn from "../../../components/buttons/AdminReturn";
+import NavbarUser from "../../../components/NavbarUser";
 
 class Person extends Component {
   constructor(props) {
@@ -24,6 +25,15 @@ class Person extends Component {
     this._create = this._create.bind(this);
     this.changePage = this.changePage.bind(this);
   }
+
+    componentWillReceiveProps(nextProps) {
+
+        if (nextProps.url!=undefined &&nextProps.url.query.create == "true") {
+            this.setState({create: true});
+        } else {
+            this.setState({create: false});
+        }
+    }
 
   _create() {
     this.setState({
@@ -55,6 +65,11 @@ class Person extends Component {
   }
 
   async componentDidMount() {
+
+          if(this.props.url.query.create=="true"){
+              this.setState({create:true});
+          }
+
     try {
       const response = await fetch(process.env.API_URL + "/api/person/all",{
           credentials: 'include',headers:{Authorization:"Bearer "+localStorage.getItem("token")}
@@ -90,13 +105,8 @@ class Person extends Component {
         return (
           <div>
             <LayoutGlobal path = {"General"} />
+            <NavbarUser/>
 
-          <div className="btn-admin-config-create">
-              
-            <button className="btn-create" onClick={this._create}>
-                Create Person
-              </button>
-            </div>
             <div className="container">
           
       
@@ -119,6 +129,7 @@ class Person extends Component {
       return (
         <div>
           <LayoutGlobal />
+          <NavbarUser/>
           <Loading icon={true} text={"Loading persons..."} />
         </div>
       );

@@ -234,7 +234,7 @@ class ListInfo extends Component {
       </table>
         );
       } else {
-        console.log("DADASDDA");
+
         table = (
           <table key="table" className="table-admin-get-all">
             <tbody key="tbody_1">
@@ -349,7 +349,7 @@ class ListInfo extends Component {
               <h2>
                 {i18n.t("PAGE", { lng })} {this.props.currentPage + 1}
               </h2>
-             {backButton}
+
             </div>
           </div>
         );

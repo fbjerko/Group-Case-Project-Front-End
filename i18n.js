@@ -111,7 +111,10 @@ i18next
                     NEXT: "Next",
                     PREV: "Previous",
                     INFO: "Information",
-                    DOCUMENTATION: "Documentation"
+                    DOCUMENTATION: "Documentation",
+                    SHOW_ALL:"Show all",
+                    HOME:"Home",
+                    USER_NAME:"User name"
                 
 
                 },
@@ -190,7 +193,10 @@ i18next
                     PREV: "Forrige",
                     RET_DASH: "Tilbake til hovedsiden",
                     INFO: "Informasjon",
-                    DOCUMENTATION: "Dokumentasjon"
+                    DOCUMENTATION: "Dokumentasjon",
+                    SHOW_ALL:"Vis alle",
+                    HOME:"Hjem",
+                    USER_NAME:"Brukernavn"
 
 
                 },

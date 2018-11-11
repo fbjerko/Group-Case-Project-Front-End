@@ -4,6 +4,7 @@ import AdminReturn from "../../components/buttons/AdminReturn";
 import ListInfo from "../../components/admin-view/ListInfo";
 import LocationsForm from "../../components/forms/locationsForm";
 import Loading from "../../components/buttons/loading";
+import NavbarDash from "../../components/NavbarDash";
 
 class Stadiums extends Component {
   constructor(props) {
@@ -53,7 +54,8 @@ class Stadiums extends Component {
   async componentDidMount() {
     console.log("Hey");
     try {
-      const response = await fetch(process.env.API_URL + "/api/location/all",{credentials:true,headers:{Authorization:"Bearer "+localStorage.getItem("token")}});
+      const response = await fetch(process.env.API_URL + "/api/location/all",
+          {credentials:'include',headers:{Authorization:"Bearer "+localStorage.getItem("token")}});
       const json = await response.json();
 
       this.setState({
@@ -87,7 +89,7 @@ class Stadiums extends Component {
         return (
           <div>
             <LayoutGlobal />
-
+            <NavbarDash/>
             <div className="container">
 
               <ListInfo
@@ -110,7 +112,8 @@ class Stadiums extends Component {
       return (
         <div>
           <LayoutGlobal />
-          <Loading icon={true} text={"Loading players..."} />
+          <NavbarDash/>
+          <Loading icon={true} text={"Loading..."} />
         </div>
       );
     }

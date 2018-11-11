@@ -6,11 +6,13 @@ import PlayersForm from "../../components/forms/playersForm";
 import CreateUser from "../../components/admin-create/CreateUsers";
 import Loading from "../../components/buttons/loading";
 import i18n from "../../i18n";
+import NavbarUser from "../../components/NavbarUser";
 
 class Players extends Component {
   constructor(props) {
     const lng = i18n.language;
     super(props);
+
     this.state = {
       players: [],
       ready: false,
@@ -92,7 +94,21 @@ class Players extends Component {
     });
   };
 
-  async componentDidMount() {
+    componentWillReceiveProps(nextProps) {
+
+        if(nextProps.url.query.create=="true"){
+            this.setState({crudOption:1});
+        }else{
+            this.setState({crudOption:0});
+        }
+    }
+
+    async componentDidMount() {
+
+    if(this.props.url.query.create=="true"){
+      this.setState({crudOption:1});
+    }
+
     i18n.on("languageChanged", this.onLanguageChanged);
     try {
       fetch(process.env.API_URL + "/api/player/all", {
@@ -119,7 +135,10 @@ class Players extends Component {
   }
 
   render() {
+
+
     if (this.state.ready === true) {
+
       const players = this.state.players.slice(
         this.state.currentPage * 10,
         (this.state.currentPage + 1) * 10
@@ -129,28 +148,21 @@ class Players extends Component {
         return (
          
             <div>
-              <LayoutGlobal />
+                <LayoutGlobal />
+                <NavbarUser />
               <PlayersForm edit={"create"} />
-              <button
-            className="btn-dashboard-back"
-            onClick={this.close}
-          >
-            Back
-          </button>
+
             </div>
            
         );
       }  else if (this.state.crudOption === 0) {
         return (
           <div>
-            <LayoutGlobal />
+              <LayoutGlobal />
+              <NavbarUser />
 
             <div className="container">
-              <div className="btn-admin-config">
-                <button className="btn-create" onClick={this._createPlayer}>
-                  Create Player
-                </button>
-              </div>
+
 
               <ListInfo
                 data={players}
@@ -165,7 +177,7 @@ class Players extends Component {
                 close={this.props.close}
               />
 
-              {this.state.createPlayer ? <CreateUser /> : null}
+
             </div>
           </div>
         );
@@ -173,7 +185,8 @@ class Players extends Component {
     } else {
       return (
         <div>
-          <LayoutGlobal />
+            <LayoutGlobal />
+            <NavbarUser />
           <Loading icon={true} text={"Loading players..."} />
         </div>
       );
