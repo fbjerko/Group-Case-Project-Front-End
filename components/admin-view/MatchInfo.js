@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import MatchGoalForm from "../forms/matchgoalForm";
+import PlayerInfo from "./PlayerInfo";
+import TeamInfo from "./TeamInfo";
 
 class MatchInfo extends Component {
   constructor(props) {
@@ -14,9 +16,13 @@ class MatchInfo extends Component {
       status: "Nothing",
       showPop: false,
       showPopDelete: false,
+      content: "",
+      contentId: ""
     };
 
     this.addGoal = this.addGoal.bind(this);
+    this.showContent = this.showContent.bind(this);
+    this.closeContent = this.closeContent.bind(this);
   }
 
   async componentWillMount() {
@@ -40,7 +46,7 @@ class MatchInfo extends Component {
 
     try {
       const response = await fetch(
-        process.env.API_URL + "/api/matchGoal/allInfo",
+        process.env.API_URL + "/api/matchGoal/all",
         {
           credentials: "include",
           headers: { Authorization: "Bearer " + localStorage.getItem("token") }
@@ -60,7 +66,7 @@ class MatchInfo extends Component {
   async update() {
     try {
       const response = await fetch(
-        process.env.API_URL + "/api/matchGoal/allInfo",
+        process.env.API_URL + "/api/matchGoal/all",
         {
           credentials: "include",
           headers: { Authorization: "Bearer " + localStorage.getItem("token") }
@@ -139,11 +145,34 @@ class MatchInfo extends Component {
         }
     };
     xhttp.send(null);
-    
 }
+
+  showContent(id, type) {
+    this.setState({
+      contentId: id,
+      content: type
+    })
+    console.log(this.state.contentId + this.state.content);
+  }
+
+  closeContent() {
+    this.setState({
+      content: ""
+    })
+  }
   
 
   render() {
+    if(this.state.content === "Player") {
+      return (
+        <PlayerInfo id={this.state.contentId} canEdit={this.props.canEdit} close={this.closeContent}/>
+      )
+    }
+    if(this.state.content === "Team") {
+      return (
+        <TeamInfo id={this.state.contentId} canEdit={this.props.canEdit} close={this.closeContent}/>
+      )
+    }
     if (this.state.showPop) {
       setTimeout(
         function() {
@@ -216,34 +245,56 @@ class MatchInfo extends Component {
       let homeGoals = 0;
       let awayGoals = 0;
 
+      let edit;
+     
+
       this.state.matchGoals.map(goal => {
+        if(this.props.canEdit === true) {
+          edit = (
+            <td className="td-admin-get-one-match-smaller"
+            onClick={() => this.removeGoal(goal[0])}
+            >
+             x
+            </td>
+          )
+        } else {
+          edit = ("");
+        }
         if (
-          goal.footballMatch.footballMatchId ===
+          goal[4] ===
           this.state.matchInfo.footballMatchId
         ) {
+          let teamId = goal[6];
           goals.push(
-            <tr key={goal.matchGoalId} className="tr-admin-get-one">
-              <td className="td-admin-get-one-match">
-                {goal.player.team.name}
+            <tr key={goal[0]} className="tr-admin-get-one">
+              <td id={goal[6]} className="td-admin-get-one-match"
+              onClick={() => this.setState({
+                contentId: goal[6],
+                content: "Team"
+              })}
+              >
+                {goal[7]}
               </td>
-              <td className="td-admin-get-one-match">
-                {goal.player.person.firstName} {goal.player.person.lastName}
+              <td className="td-admin-get-one-match"
+              onClick={() => this.setState({
+                contentId: goal[8],
+                content: "Player"
+              })}
+              >
+              {goal[9]}
               </td>
               <td className="td-admin-get-one-match-small">
-                {goal.goalType.type}
+                {goal[3]}
               </td>
-              <td className="td-admin-get-one-match-smaller"
-              onClick={() => this.removeGoal(goal.matchGoalId)}
-              >
-               x
-              </td>
+              {edit}
+             
             </tr>
           );
 
-          if (goal.player.team.name === this.state.matchInfo.homeTeam.name) {
+          if (goal[7] === this.state.matchInfo.homeTeam.name) {
             homeGoals++;
           }
-          if (goal.player.team.name === this.state.matchInfo.awayTeam.name) {
+          if (goal[7] === this.state.matchInfo.awayTeam.name) {
             awayGoals++;
           }
         }
@@ -253,15 +304,30 @@ class MatchInfo extends Component {
 
       const match = this.state.matchInfo;
 
-      console.log(match);
-      return (
-        <div className="div-admin-get-all">
-        
+      let deleteGoal;
+      let addGoal;
+
+      if(this.props.canEdit === true) {
+        deleteGoal = (
+          <th className="th-admin-get-one-match-small">Delete</th>
+        );
+        addGoal = (
           <div className="admin-config">
             <button className="btn-create" onClick={this.addGoal}>
               Add Goal
             </button>
           </div>
+        );
+      } else {
+        deleteGoal = ("");
+        addGoal = ("");
+      }
+
+      console.log(match);
+      return (
+        <div className="div-admin-get-all">
+        
+          {addGoal}
 
             <h1>Match</h1>
            <table className="table-admin-get-one-match-header">
@@ -272,9 +338,19 @@ class MatchInfo extends Component {
                 <th className="th-admin-get-one-match-header"> Away Team</th>
               </tr>
               <tr className="tr-admin-get-one">
-                <th className="th-admin-get-one-match-header"> {match.homeTeam.name}</th>
+              <th className="th-admin-get-one-match-header-team"
+                onClick={() => this.setState({
+                  contentId: match.homeTeam.teamId,
+                  content: "Team"
+                })}
+                > {match.homeTeam.name}</th>
                 <th className="th-admin-get-one-match-small"> {result}</th>
-                <th className="th-admin-get-one-match-header"> {match.awayTeam.name}</th>
+                <th className="th-admin-get-one-match-header-team"
+                onClick={() => this.setState({
+                  contentId: match.awayTeam.teamId,
+                  content: "Team"
+                })}
+                > {match.awayTeam.name}</th>
               </tr>
             </tbody>
           </table>
@@ -287,7 +363,7 @@ class MatchInfo extends Component {
                 <th className="th-admin-get-one-match">Team</th>
                 <th className="th-admin-get-one-match"> Player</th>
                 <th className="th-admin-get-one-match-small">Goal Type</th>
-                <th className="th-admin-get-one-match-small">Delete</th>
+                {deleteGoal}
               </tr>
 
               {goals}
