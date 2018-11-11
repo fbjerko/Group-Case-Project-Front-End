@@ -40,7 +40,7 @@ class MatchInfo extends Component {
 
     try {
       const response = await fetch(
-        process.env.API_URL + "/api/matchGoal/allInfo",
+        process.env.API_URL + "/api/matchGoal/all",
         {
           credentials: "include",
           headers: { Authorization: "Bearer " + localStorage.getItem("token") }
@@ -60,7 +60,7 @@ class MatchInfo extends Component {
   async update() {
     try {
       const response = await fetch(
-        process.env.API_URL + "/api/matchGoal/allInfo",
+        process.env.API_URL + "/api/matchGoal/all",
         {
           credentials: "include",
           headers: { Authorization: "Bearer " + localStorage.getItem("token") }
@@ -216,34 +216,45 @@ class MatchInfo extends Component {
       let homeGoals = 0;
       let awayGoals = 0;
 
+      let edit;
+     
+
       this.state.matchGoals.map(goal => {
+        if(this.state.canEdit === true) {
+          edit = (
+            <td className="td-admin-get-one-match-smaller"
+            onClick={() => this.removeGoal(goal[0])}
+            >
+             x
+            </td>
+          )
+        } else {
+          edit = ("");
+        }
         if (
-          goal.footballMatch.footballMatchId ===
+          goal[4] ===
           this.state.matchInfo.footballMatchId
         ) {
           goals.push(
-            <tr key={goal.matchGoalId} className="tr-admin-get-one">
+            <tr key={goal[0]} className="tr-admin-get-one">
               <td className="td-admin-get-one-match">
-                {goal.player.team.name}
+                {goal[7]}
               </td>
               <td className="td-admin-get-one-match">
-                {goal.player.person.firstName} {goal.player.person.lastName}
+              {goal[9]}
               </td>
               <td className="td-admin-get-one-match-small">
-                {goal.goalType.type}
+                {goal[3]}
               </td>
-              <td className="td-admin-get-one-match-smaller"
-              onClick={() => this.removeGoal(goal.matchGoalId)}
-              >
-               x
-              </td>
+              {edit}
+             
             </tr>
           );
 
-          if (goal.player.team.name === this.state.matchInfo.homeTeam.name) {
+          if (goal[7] === this.state.matchInfo.homeTeam.name) {
             homeGoals++;
           }
-          if (goal.player.team.name === this.state.matchInfo.awayTeam.name) {
+          if (goal[7] === this.state.matchInfo.awayTeam.name) {
             awayGoals++;
           }
         }
@@ -253,15 +264,30 @@ class MatchInfo extends Component {
 
       const match = this.state.matchInfo;
 
-      console.log(match);
-      return (
-        <div className="div-admin-get-all">
-        
+      let deleteGoal;
+      let addGoal;
+
+      if(this.state.canEdit === true) {
+        deleteGoal = (
+          <th className="th-admin-get-one-match-small">Delete</th>
+        );
+        addGoal = (
           <div className="admin-config">
             <button className="btn-create" onClick={this.addGoal}>
               Add Goal
             </button>
           </div>
+        );
+      } else {
+        deleteGoal = ("");
+        addGoal = ("");
+      }
+
+      console.log(match);
+      return (
+        <div className="div-admin-get-all">
+        
+          {addGoal}
 
             <h1>Match</h1>
            <table className="table-admin-get-one-match-header">
@@ -287,7 +313,7 @@ class MatchInfo extends Component {
                 <th className="th-admin-get-one-match">Team</th>
                 <th className="th-admin-get-one-match"> Player</th>
                 <th className="th-admin-get-one-match-small">Goal Type</th>
-                <th className="th-admin-get-one-match-small">Delete</th>
+                {deleteGoal}
               </tr>
 
               {goals}
