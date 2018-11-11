@@ -94,6 +94,7 @@ class Person extends Component {
         return (
           <div>
             <LayoutGlobal />
+            <NavbarUser/>
             <PersonForm close = {this._create} />
            
               

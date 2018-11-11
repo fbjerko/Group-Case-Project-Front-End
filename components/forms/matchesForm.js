@@ -177,7 +177,7 @@ class MatchesForm extends React.Component {
                     </table>
                 </div>
                 <div style={{width: '300px', marginLeft: '50px'}}>
-                    <h2>Away team</h2>
+                    <h2>Away team:</h2>
 
                     <table>
                         <tbody>
