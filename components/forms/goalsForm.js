@@ -26,6 +26,7 @@ class GoalForm extends React.Component {
 
         xhttp.open("POST",  process.env.API_URL+"/api/matchGoal/goalType", true);
         xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.setRequestHeader("token","Bearer "+localStorage.getItem("token"));
         xhttp.withCredentials=true;
         xhttp.send(
             JSON.stringify({

@@ -15,7 +15,7 @@ class StadiumInfo extends Component {
     try {
       const response = await fetch(
         `http://localhost:5000/api/location/` + this.props.id,{
-              credentials: 'include'
+              credentials: 'include',Authorization:"Bearer "+localStorage.getItem("token")
           }
       );
       const json = await response.json();

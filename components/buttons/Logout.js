@@ -8,6 +8,7 @@ const Logout = () => (
     <option
     className="btn-lng"
     onClick={() => {
+        localStorage.clear();
         window.location=process.env.FRONT_END_URL+'/logout';
     }
         }

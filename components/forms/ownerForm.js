@@ -22,6 +22,7 @@ class OwnerForm extends React.Component {
 
     xhttp.open("POST", process.env.API_URL + "/api/owner", true);
     xhttp.setRequestHeader("Content-type", "application/json");
+      xhttp.setRequestHeader("token","Bearer "+localStorage.getItem("token"));
     xhttp.send(
       JSON.stringify({
         personId: this.state.personId

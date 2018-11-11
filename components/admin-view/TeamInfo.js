@@ -18,7 +18,7 @@ class TeamInfo extends Component {
     try {
       const response = await fetch(
         process.env.API_URL + "/api/team/" + this.props.id,{
-              credentials: 'include'
+              credentials: 'include',Authorization:"Bearer "+localStorage.getItem("token")
           }
       );
       const json = await response.json();

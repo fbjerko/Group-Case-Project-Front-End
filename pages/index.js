@@ -136,7 +136,7 @@ class Index extends Component {
 
         try {
             const response = await fetch(process.env.API_URL + "/api/player/all",{
-                credentials: 'include'
+                credentials: 'include',Authorization:"Bearer "+localStorage.getItem("token")
             });
             const json = await response.json();
             this.setState({
@@ -149,7 +149,7 @@ class Index extends Component {
         try {
             const response = await fetch(
                 process.env.API_URL + "/api/teamResult/homeTeam",{
-                    credentials: 'include'
+                    credentials: 'include',Authorization:"Bearer "+localStorage.getItem("token")
                 }
             );
             const json = await response.json();
@@ -162,7 +162,7 @@ class Index extends Component {
         try {
             const response = await fetch(
                 process.env.API_URL + "/api/teamResult/awayTeam",{
-                    credentials: 'include'
+                    credentials: 'include',Authorization:"Bearer "+localStorage.getItem("token")
                 }
             );
             const json = await response.json();

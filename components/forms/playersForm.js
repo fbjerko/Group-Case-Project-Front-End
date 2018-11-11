@@ -68,7 +68,7 @@ class PlayersForm extends Component {
       try {
         const response = await fetch(
           process.env.API_URL + "/api/player/" + this.props.id,
-          { credentials: "include" }
+          { credentials: "include",Authorization:"Bearer "+localStorage.getItem("token") }
         );
         const json = await response.json();
 
@@ -102,6 +102,7 @@ class PlayersForm extends Component {
 
     xhttp.open(this.state.method, process.env.API_URL + "/api/player", true);
     xhttp.withCredentials = true;
+      xhttp.setRequestHeader("token","Bearer "+localStorage.getItem("token"));
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send(
       JSON.stringify({

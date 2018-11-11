@@ -56,7 +56,7 @@ class Teams extends Component {
     console.log("Hey");
     try {
       const response = await fetch(process.env.API_URL + "/api/team/all",{
-          credentials: 'include'
+          credentials: 'include',Authorization:"Bearer "+localStorage.getItem("token")
       });
       const json = await response.json();
       console.log(json);

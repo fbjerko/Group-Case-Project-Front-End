@@ -62,7 +62,7 @@ class CreatMatches extends Component {
   _getTeams(){
 
     const url= process.env.API_URL+"/api/team/all";
-    fetch(url,{credentials:'include'}).then(
+    fetch(url,{credentials:'include',Authorization:"Bearer "+localStorage.getItem("token")}).then(
       (res)=>res.json().then(
       (res)=>{
         if(res.length>0){

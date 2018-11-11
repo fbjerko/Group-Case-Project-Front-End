@@ -24,7 +24,7 @@ class PersonInfo extends Component {
   async componentWillMount() {
     try {
       const urls = [process.env.API_URL + "/api/person/" + this.props.id, process.env.API_URL + "/api/contact/byPersonId/" + this.props.id]
-      Promise.all(urls.map(url => fetch(url, {credentials: 'include'
+      Promise.all(urls.map(url => fetch(url, {credentials: 'include',Authorization:"Bearer "+localStorage.getItem("token")
     })))
       .then(resp => Promise.all( resp.map(r => r.json()) ))
       .then(result => {

@@ -80,6 +80,7 @@ class PlayerInfo extends Component {
             true
         );
         xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.setRequestHeader("token","Bearer "+localStorage.getItem("token"));
         xhttp.withCredentials = true;
         xhttp.onreadystatechange = () => {
             if (xhttp.readyState == XMLHttpRequest.DONE) {
@@ -119,6 +120,7 @@ class PlayerInfo extends Component {
 
         xhttp.open("PUT", process.env.API_URL + "/api/favouriteList", true);
         xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.setRequestHeader("token","Bearer "+localStorage.getItem("token"));
         xhttp.withCredentials = true;
         xhttp.send(
             JSON.stringify({
