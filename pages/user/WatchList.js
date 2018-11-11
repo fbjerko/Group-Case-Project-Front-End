@@ -41,7 +41,7 @@ class WatchList extends Component {
             true
         );
         xhttp.setRequestHeader("Content-type", "application/json");
-        xhttp.setRequestHeader("Athorization","Bearer "+localStorage.getItem("token"))
+        xhttp.setRequestHeader("Authorization","Bearer "+localStorage.getItem("token"))
         xhttp.withCredentials=true;
         xhttp.send();
         xhttp.onreadystatechange = () => {
