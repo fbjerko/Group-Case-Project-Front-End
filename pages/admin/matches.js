@@ -239,6 +239,7 @@ class Matches extends Component {
                 canEdit={this.state.canEdit}
                 currentPage={this.state.currentPage}
                 close={this.props.close}
+                
               />
             </div>
           </div>

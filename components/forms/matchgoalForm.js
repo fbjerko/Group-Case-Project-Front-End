@@ -100,7 +100,8 @@ class MatchGoal extends React.Component {
         goalTypeId: this.state.goalType,
         footballMatchId: this.props.matchId,
         description: this.state.desc,
-        playerId: this.state.activePlayer 
+        playerId: this.state.activePlayer,
+        teamId: this.state.activeId
       })
     );
     xhttp.onreadystatechange = () => {

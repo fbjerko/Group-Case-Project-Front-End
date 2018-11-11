@@ -344,7 +344,7 @@ class MatchInfo extends Component {
                   content: "Team"
                 })}
                 > {match.homeTeam.name}</th>
-                <th className="th-admin-get-one-match-small"> {result}</th>
+                <th className="th-admin-get-one-match-small"> {this.props.score}</th>
                 <th className="th-admin-get-one-match-header-team"
                 onClick={() => this.setState({
                   contentId: match.awayTeam.teamId,
