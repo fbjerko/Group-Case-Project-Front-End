@@ -73,7 +73,8 @@ class NavbarUser extends Component {
                         <option className="btn-lng"
                                 onClick={() => Router.pushRoute("/admin")}>{i18n.t("HOME", {lng})}</option>
                         <div className="dropdown">
-                            <option className="btn-lng">{i18n.t("PLAYERS", {lng})}</option>
+                            <option className="btn-lng"
+                                    onClick={() => Router.push("/admin/players")}>{i18n.t("PLAYERS", {lng})}</option>
                             <div className="dropdown-content">
                                 <option className="btn-lng"
                                         onClick={() => Router.pushRoute("/admin/players?create=true")}>{i18n.t("CREATE", {lng})}</option>
@@ -83,7 +84,8 @@ class NavbarUser extends Component {
                         </div>
 
                         <div className="dropdown">
-                            <option className="btn-lng">{i18n.t("MANAGERS", {lng})}</option>
+                            <option className="btn-lng"
+                                    onClick={() => Router.push("/admin/managers")}>{i18n.t("MANAGERS", {lng})}</option>
                             <div className="dropdown-content">
                                 <option className="btn-lng"
                                         onClick={() => Router.pushRoute("/admin/managers?create=true")}>{i18n.t("CREATE", {lng})}</option>
@@ -92,7 +94,8 @@ class NavbarUser extends Component {
                             </div>
                         </div>
                         <div className="dropdown">
-                            <option className="btn-lng">{i18n.t("TEAMS", {lng})}</option>
+                            <option className="btn-lng"
+                                    onClick={() => Router.push("/admin/teams")}>{i18n.t("TEAMS", {lng})}</option>
                             <div className="dropdown-content">
                                 <option className="btn-lng"
                                         onClick={() => Router.pushRoute("/admin/teams?create=true")}>{i18n.t("CREATE", {lng})}</option>
@@ -101,7 +104,8 @@ class NavbarUser extends Component {
                             </div>
                         </div>
                         <div className="dropdown">
-                            <option className="btn-lng">{i18n.t("MATCHES", {lng})}</option>
+                            <option className="btn-lng"
+                                    onClick={() => Router.push("/admin/matches")}>{i18n.t("MATCHES", {lng})}</option>
                             <div className="dropdown-content">
                                 <option className="btn-lng"
                                         onClick={() => Router.pushRoute("/admin/matches?create=true")}>{i18n.t("CREATE", {lng})}</option>
@@ -110,7 +114,8 @@ class NavbarUser extends Component {
                             </div>
                         </div>
                         <div className="dropdown">
-                            <option className="btn-lng">{i18n.t("STADIUMS", {lng})}</option>
+                            <option className="btn-lng"
+                                    onClick={() => Router.push("/admin/stadiums")}>{i18n.t("STADIUMS", {lng})}</option>
                             <div className="dropdown-content">
                                 <option className="btn-lng"
                                         onClick={() => Router.pushRoute("/admin/stadiums?create=true")}>{i18n.t("CREATE", {lng})}</option>
@@ -120,74 +125,75 @@ class NavbarUser extends Component {
                         </div>
 
                         <div className="dropdown">
-                            <option className="btn-lng">{i18n.t("GENERAL", {lng})}</option>
+                            <option className="btn-lng"
+                                    onClick={() => Router.push("/admin/general")}>{i18n.t("GENERAL", {lng})}</option>
                             <div className="dropdown-content">
-                            <div className="dropdown-content2">
-                                <option className="btn-lng"
-                                        onClick={() => Router.pushRoute("/admin/general/users")}>{i18n.t("USERS", {lng})}</option>
-
-                            </div>
-                            <div className="dropdown-content2">
-                                <option className="btn-lng"
-                                        onClick={() => Router.push("/admin/general/address")}>{i18n.t("ADDRESSES", {lng})}</option>
-                                <div className="dropdown-content1">
+                                <div className="dropdown-content2">
                                     <option className="btn-lng"
-                                            onClick={() => Router.pushRoute("/admin/general/address?create=true")}>{i18n.t("CREATE", {lng})}</option>
+                                            onClick={() => Router.pushRoute("/admin/general/users")}>{i18n.t("USERS", {lng})}</option>
 
                                 </div>
-                            </div>
-                            <div className="dropdown-content2">
-                                <option className="btn-lng"
-                                        onClick={() => Router.push("/admin/general/associations")}>{i18n.t("ASSOCIATIONS", {lng})}</option>
-
-                                <div className="dropdown-content1">
+                                <div className="dropdown-content2">
                                     <option className="btn-lng"
-                                            onClick={() => Router.pushRoute("/admin/general/associations?create=true")}>{i18n.t("CREATE", {lng})}</option>
+                                            onClick={() => Router.push("/admin/general/address")}>{i18n.t("ADDRESSES", {lng})}</option>
+                                    <div className="dropdown-content1">
+                                        <option className="btn-lng"
+                                                onClick={() => Router.pushRoute("/admin/general/address?create=true")}>{i18n.t("CREATE", {lng})}</option>
 
+                                    </div>
                                 </div>
-                            </div>
-
-                            <div className="dropdown-content2">
-                                <option className="btn-lng"
-                                        onClick={() => Router.push("/admin/general/goaltypes")}>{i18n.t("GOAL_TYPES", {lng})}</option>
-
-                                <div className="dropdown-content1">
+                                <div className="dropdown-content2">
                                     <option className="btn-lng"
-                                            onClick={() => Router.pushRoute("/admin/general/goaltypes?create=true")}>{i18n.t("CREATE", {lng})}</option>
+                                            onClick={() => Router.push("/admin/general/associations")}>{i18n.t("ASSOCIATIONS", {lng})}</option>
 
-                                </div>
-                            </div>
-                            <div className="dropdown-content2">
-                                <option className="btn-lng"
-                                        onClick={() => Router.push("/admin/general/owners")}>{i18n.t("OWNERS", {lng})}</option>
+                                    <div className="dropdown-content1">
+                                        <option className="btn-lng"
+                                                onClick={() => Router.pushRoute("/admin/general/associations?create=true")}>{i18n.t("CREATE", {lng})}</option>
 
-                                <div className="dropdown-content1">
-                                    <option className="btn-lng"
-                                            onClick={() => Router.pushRoute("/admin/general/owners?create=true")}>{i18n.t("CREATE", {lng})}</option>
-
-                                </div>
-                            </div>
-                            <div className="dropdown-content2">
-                                <option className="btn-lng"
-                                        onClick={() => Router.push("/admin/general/persons")}>{i18n.t("PERSONS", {lng})}</option>
-
-                                <div className="dropdown-content1">
-                                    <option className="btn-lng"
-                                            onClick={() => Router.pushRoute("/admin/general/persons?create=true")}>{i18n.t("CREATE", {lng})}</option>
-
-                                </div>
-                            </div>
-                            <div className="dropdown-content2">
-                                <option className="btn-lng"
-                                        onClick={() => Router.push("/admin/general/season")}>{i18n.t("SEASONS", {lng})}</option>
-
-                                <div className="dropdown-content1">
-                                    <option className="btn-lng"
-                                            onClick={() => Router.pushRoute("/admin/general/season?create=true")}>{i18n.t("CREATE", {lng})}</option>
-
+                                    </div>
                                 </div>
 
-</div>
+                                <div className="dropdown-content2">
+                                    <option className="btn-lng"
+                                            onClick={() => Router.push("/admin/general/goaltypes")}>{i18n.t("GOAL_TYPES", {lng})}</option>
+
+                                    <div className="dropdown-content1">
+                                        <option className="btn-lng"
+                                                onClick={() => Router.pushRoute("/admin/general/goaltypes?create=true")}>{i18n.t("CREATE", {lng})}</option>
+
+                                    </div>
+                                </div>
+                                <div className="dropdown-content2">
+                                    <option className="btn-lng"
+                                            onClick={() => Router.push("/admin/general/owners")}>{i18n.t("OWNERS", {lng})}</option>
+
+                                    <div className="dropdown-content1">
+                                        <option className="btn-lng"
+                                                onClick={() => Router.pushRoute("/admin/general/owners?create=true")}>{i18n.t("CREATE", {lng})}</option>
+
+                                    </div>
+                                </div>
+                                <div className="dropdown-content2">
+                                    <option className="btn-lng"
+                                            onClick={() => Router.push("/admin/general/persons")}>{i18n.t("PERSONS", {lng})}</option>
+
+                                    <div className="dropdown-content1">
+                                        <option className="btn-lng"
+                                                onClick={() => Router.pushRoute("/admin/general/persons?create=true")}>{i18n.t("CREATE", {lng})}</option>
+
+                                    </div>
+                                </div>
+                                <div className="dropdown-content2">
+                                    <option className="btn-lng"
+                                            onClick={() => Router.push("/admin/general/season")}>{i18n.t("SEASONS", {lng})}</option>
+
+                                    <div className="dropdown-content1">
+                                        <option className="btn-lng"
+                                                onClick={() => Router.pushRoute("/admin/general/season?create=true")}>{i18n.t("CREATE", {lng})}</option>
+
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
                     </div>
