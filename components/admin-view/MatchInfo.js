@@ -40,7 +40,7 @@ class MatchInfo extends Component {
 
     try {
       const response = await fetch(
-        process.env.API_URL + "/api/matchGoal/allinfo",
+        process.env.API_URL + "/api/matchGoal/allInfo",
         {
           credentials: "include",
           headers: { Authorization: "Bearer " + localStorage.getItem("token") }
