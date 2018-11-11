@@ -79,7 +79,7 @@ class Login extends React.Component {
                                         console.log(body);
                                         if (body.role == 'admin') {
                                             console.log("Admin logged in");
-                                            document.cookie="token1="+body.token+";domain=experis-football-manager-back.herokuapp.com";
+                                            localStorage.setItem("token",body.token);
 
                                             Router.pushRoute("/admin");
                                         }

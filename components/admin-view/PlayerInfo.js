@@ -43,6 +43,9 @@ class PlayerInfo extends Component {
                 process.env.API_URL + "/api/player/" + this.props.id,
                 {
                     credentials: "include",
+                    headers:{
+                        Authorization:"Bearer "+localStorage.getItem("token")
+                    }
 
                 }
             );
