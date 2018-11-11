@@ -78,6 +78,8 @@ app.prepare()
         server.get('/logout', (req, res) => {
             res.clearCookie("token");
             res.clearCookie("id");
+            res.clearCookie("role");
+            res.clearCookie("userName");
             res.redirect('/');
         })
         server.post('/login', (req, res) => {
@@ -105,6 +107,7 @@ app.prepare()
                     res.cookie("token", response.body.accessToken, {maxAge: 1000 * 60 * 60 * 4, httpOnly: true,sameSite:"lax"});
                     res.cookie("id",response.headers.id,{maxAge: 1000 * 60 * 60 * 4, httpOnly: false})
                     res.cookie("role",response.headers.role,{maxAge: 1000 * 60 * 60 * 4, httpOnly: true})
+                    res.cookie("userName",req.body.userName,{maxAge: 1000 * 60 * 60 * 4, httpOnly: false})
 
 
 

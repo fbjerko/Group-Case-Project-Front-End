@@ -13,11 +13,11 @@
 
 div.info-container {
 
-  display: block;
+  display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  margin-top: 10vh; 
+  margin-top: 10vh;
 }
 
 .container-general {
@@ -541,6 +541,13 @@ button.btn-create {
 .create-match-container {
   display: flex;
   justify-content: center;
+  align-items: center;
+  
+
+}
+
+.create-match-container table{
+  font-size: 1.5rem;
 
 }
 .create-match-container ul{
@@ -557,7 +564,11 @@ button.btn-create {
 }
 .create-match-container td{
   cursor: pointer;
-  padding-left: 10px;
+  padding-left: 0px;
+  border-style: hidden;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-right: 1rem;
 }
 
 

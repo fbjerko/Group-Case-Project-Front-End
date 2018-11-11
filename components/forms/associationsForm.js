@@ -82,9 +82,7 @@ class AssociationForm extends React.Component {
       
         </div>
         <br />
-        <button className="btn-dashboard-back" onClick={this.props.close}>
-          Back
-        </button>
+
       </div>
     );
   }

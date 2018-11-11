@@ -5,6 +5,7 @@ import AdminReturn from "../../components/buttons/AdminReturn";
 import ListInfo from "../../components/admin-view/ListInfo";
 import Loading from "../../components/buttons/loading";
 import MatchesForm from "../../components/forms/matchesForm";
+import NavbarUser from "../../components/NavbarUser";
 
 class Matches extends Component {
   constructor(props) {
@@ -16,7 +17,7 @@ class Matches extends Component {
       filteredData: [],
       search: "a",
       ready: false,
-      createManager: false,
+      createMatch: false,
       currentPage: 0,
       content: ["Date", "Teams", "Matches", "Teams", "Arena"], // Attribute variable names
       contentFields: ["Date", "Home Team", "Result", "Away Team", "Arena"],
@@ -26,10 +27,43 @@ class Matches extends Component {
     this.changePage = this.changePage.bind(this);
     this.createMatch = this.createMatch.bind(this);
   }
+    componentWillReceiveProps(nextProps) {
 
-  changePage(command) {
+
+        if (nextProps.url!=undefined &&nextProps.url.query.create == "true") {
+            this.setState({createMatch: true});
+        } else {
+            this.setState({createMatch: false});
+        }
+    }
+    
+
+    changePage(command) {
+        if (command === 0) {
+            this.setState({currentPage: 0});
+        }
+        if (command === 1) {
+            if (this.state.currentPage !== 0)
+                this.setState(prevState => ({
+                    currentPage: prevState.currentPage - 1
+                }));
+        }
+        if (command === 2) {
+            if (this.state.currentPage + 1 < this.state.matches.length / 10) {
+                this.setState({currentPage: this.state.currentPage + 1});
+            }
+        }
+        if (command === 3) {
+            this.setState({
+                currentPage: Math.floor(this.state.matches.length / 10)
+            });
+        }
+    }
+
+  changePage(command){
     if (command === 0) {
       this.setState({ currentPage: 0 });
+
     }
     if (command === 1) {
       if (this.state.currentPage !== 0)
@@ -49,6 +83,7 @@ class Matches extends Component {
     }
   }
 
+
   createMatch = () => {
     this.setState({
       createMatch: !this.state.createMatch
@@ -56,12 +91,17 @@ class Matches extends Component {
   };
 
   async componentDidMount() {
+            if(this.props.url.query.create=="true"){
+            this.setState({createMatch:true});
+        }
+
     try {
       const response = await fetch(
         process.env.API_URL + "/api/footballMatch/all",
         {
           credentials: "include",
           headers: { Authorization: "Bearer " + localStorage.getItem("token") }
+
         }
       );
       const json = await response.json();
@@ -115,6 +155,7 @@ class Matches extends Component {
     });
   }
 
+
   checkIfPlayed() {
     const playedMatches = [];
     const playedMatchesHomeResult = [];
@@ -137,6 +178,7 @@ class Matches extends Component {
       let found = playedMatches.find(function(id) {
         if (id === matchId) {
           return matchId;
+
         }
       });
 
@@ -171,6 +213,7 @@ class Matches extends Component {
         return (
           <div>
             <LayoutGlobal />
+              <NavbarUser/>
             <MatchesForm close={this.createMatch} edit={"create"} />
           </div>
         );
@@ -178,7 +221,7 @@ class Matches extends Component {
         return (
           <div>
             <LayoutGlobal />
-
+              <NavbarUser/>
             <div className="container">
               <div className="btn-admin-config">
                 <button className="btn-create" onClick={this.createMatch}>
@@ -205,7 +248,8 @@ class Matches extends Component {
       return (
         <div>
           <LayoutGlobal />
-          <Loading icon={true} text={"Loading players..."} />
+            <NavbarUser/>
+          <Loading icon={true} text={"Loading..."} />
         </div>
       );
     }

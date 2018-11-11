@@ -42,7 +42,7 @@ class NavbarIndex extends Component {
                     <option className="btn-lng" value={'no'} onClick={this.changeLanguage}>Norsk</option>
                     <option className="btn-lng" value={'en'} onClick={this.changeLanguage}>English</option>
                 </div>
-                <img src="../static/images/logo.png" alt="" className="logo" />
+                <img style={{marginTop: "8rem"}} src="../static/images/logo.png" alt="" className="logo" />
             </div>
 
         );

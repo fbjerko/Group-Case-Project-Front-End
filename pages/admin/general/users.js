@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import LayoutGlobal from "../../../components/LayoutGlobal";
 import AdminReturn from "../../../components/buttons/AdminReturn";
 import ListInfo from "../../../components/admin-view/ListInfo";
+import NavbarUser from "../../../components/NavbarUser";
 
 class users extends Component {
   constructor(props) {
@@ -78,6 +79,7 @@ class users extends Component {
       return (
         <div>
           <LayoutGlobal />
+          <NavbarUser/>
 
           <div className="container">
             <h1>users</h1>
@@ -90,11 +92,7 @@ class users extends Component {
               <button className="btn-create">Delete</button>
             </div>
 
-            <div className="btn-admin-create-bottom">
-              <button className="btn-create" onClick={this._createUser}>
-                Back
-              </button>
-            </div>
+
           </div>
         </div>
       );
@@ -102,14 +100,10 @@ class users extends Component {
       return (
         <div>
           <LayoutGlobal />
+          <NavbarUser/>
 
           <div className="container">
-            <div className="btn-admin-config">
-              <button className="btn-create" onClick={this._createUser}>
-                Configure
-              </button>
-       
-            </div>
+
 
             <ListInfo
               data={users}

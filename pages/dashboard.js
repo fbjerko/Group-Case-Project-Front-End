@@ -12,6 +12,7 @@ import Matches from "./user/_matches";
 import Stadiums from "./user/_stadiums";
 import i18n from "../i18n"
 import NavbarUser from "../components/NavbarUser";
+import NavbarDash from "../components/NavbarDash";
 
 
 class Dashboard extends Component {
@@ -270,7 +271,7 @@ class Dashboard extends Component {
                 return (
                     <div>
                         <LayoutGlobal/>
-                        <NavbarUser onEditClick={this._onEditClick}/>
+                        <NavbarDash/>
                         <div className="container">
                             <WatchList
                                 watchList={this.state.watchList}
@@ -333,6 +334,7 @@ class Dashboard extends Component {
             return (
                 <div>
                     <LayoutGlobal/>
+                    <NavbarDash/>
                     <h2>{i18n.t("LOADING", {lng})}</h2>
 
                 </div>

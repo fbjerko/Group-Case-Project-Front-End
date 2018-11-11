@@ -4,6 +4,7 @@ import UserReturn from "../../components/buttons/UserReturn";
 import ListInfo from "../../components/admin-view/ListInfo";
 import PlayerInfo from "../../components/admin-view/PlayerInfo";
 import TeamInfo from "../../components/admin-view/TeamInfo";
+import NavbarDash from "../../components/NavbarDash";
 
 
 class Teams extends Component {
@@ -84,6 +85,7 @@ class Teams extends Component {
       return (
         <div>
           <LayoutGlobal />
+            <NavbarDash/>
 
           <div className="container">
        
@@ -102,7 +104,7 @@ class Teams extends Component {
       return (
         <div>
           <LayoutGlobal />
-
+    <NavbarDash/>
           <div className="container">
         
             <TeamInfo
@@ -118,7 +120,7 @@ class Teams extends Component {
      return (
         <div>
           <LayoutGlobal />
-
+<NavbarDash/>
           <div className="container">
 
 

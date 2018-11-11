@@ -40,9 +40,10 @@ class AddressForm extends React.Component {
         this.setState({loading:<Loading icon={true} text={"Creating address..."}/>});
         var xhttp = new XMLHttpRequest();
         xhttp.withCredentials=true;
-        xhttp.setRequestHeader("Authorization","Bearer "+localStorage.getItem("token"));
+
         xhttp.open("POST", process.env.API_URL+"/api/address", true);
         xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.setRequestHeader("Authorization","Bearer "+localStorage.getItem("token"));
         xhttp.send(
             JSON.stringify({
               addressLine1: this.state.address_line_1,

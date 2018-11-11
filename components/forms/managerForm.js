@@ -58,12 +58,12 @@ class ManagerForm extends React.Component {
         return(<Popupp text={this.state.status}/>);
     }
 
-        return(<div className="info-container">
+        return(<div className="create-match-container">
 
             <div className="seasons-container">
-                <div className="top">
+
                     <h2>Create new manager</h2>
-                </div>
+
                 <p>Person </p>
                 <SearchField type={'person'} handleChange={this.updateSearchField}/>
                 <br></br>
