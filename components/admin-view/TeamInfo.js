@@ -18,7 +18,7 @@ class TeamInfo extends Component {
     try {
       const response = await fetch(
         process.env.API_URL + "/api/team/" + this.props.id,{
-              credentials: 'include',Authorization:"Bearer "+localStorage.getItem("token")
+              credentials: 'include',headers:{Authorization:"Bearer "+localStorage.getItem("token")}
           }
       );
       const json = await response.json();
@@ -65,6 +65,7 @@ class TeamInfo extends Component {
 
     xhttp.open("PUT", process.env.API_URL + "/api/favouriteList", true);
     xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.setRequestHeader("Authorization","Bearer "+localStorage.getItem("token"))
     xhttp.withCredentials=true;
     xhttp.send(
       JSON.stringify({

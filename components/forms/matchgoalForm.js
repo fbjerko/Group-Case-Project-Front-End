@@ -28,7 +28,7 @@ class MatchGoal extends React.Component {
 
 
       const url = process.env.API_URL+"/api/team/getPlayersByTeamId/"+id;
-      fetch(url,{credentials:true,Authorization:"Bearer "+localStorage.getItem("token")}).then((response)=>response.json().then((body)=>{
+      fetch(url,{credentials:true,headers:{Authorization:"Bearer "+localStorage.getItem("token")}}).then((response)=>response.json().then((body)=>{
           this.setState({team_1_players:body,team_1:id});
       }));
 
@@ -37,7 +37,7 @@ class MatchGoal extends React.Component {
       console.log(id);
 
         const url = process.env.API_URL+"/api/team/getPlayersByTeamId/"+id;
-        fetch(url,{credentials:true,Authorization:"Bearer "+localStorage.getItem("token")}).then((response)=>response.json().then((body)=>{
+        fetch(url,{credentials:true,headers:{Authorization:"Bearer "+localStorage.getItem("token")}}).then((response)=>response.json().then((body)=>{
             this.setState({team_2_players:body,team_2:id});
         }));
   }
@@ -59,7 +59,7 @@ class MatchGoal extends React.Component {
 
         xhttp.open("POST",  process.env.API_URL+"/api/matchGoal", true);
         xhttp.withCredentials = true;
-        xhttp.setRequestHeader("token","Bearer "+localStorage.getItem("token"));
+        xhttp.setRequestHeader("Authorization","Bearer "+localStorage.getItem("token"));
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send(
             JSON.stringify({

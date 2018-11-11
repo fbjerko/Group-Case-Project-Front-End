@@ -63,7 +63,7 @@ class Matches extends Component {
         try {
             const response = await fetch(
                 process.env.API_URL + "/api/footballMatch/all", {
-                    credentials: 'include',Authorization:"Bearer "+localStorage.getItem("token")
+                    credentials: 'include',headers:{Authorization:"Bearer "+localStorage.getItem("token")}
                 }
             );
             const json = await response.json();
@@ -78,7 +78,7 @@ class Matches extends Component {
         try {
             const response = await fetch(
                 process.env.API_URL + "/api/teamResult/homeTeam", {
-                    credentials: 'include',Authorization:"Bearer "+localStorage.getItem("token")
+                    credentials: 'include',headers:{Authorization:"Bearer "+localStorage.getItem("token")}
                 }
             );
             const json = await response.json();
@@ -92,7 +92,7 @@ class Matches extends Component {
         try {
             const response = await fetch(
                 process.env.API_URL + "/api/teamResult/awayTeam", {
-                    credentials: 'include',Authorization:"Bearer "+localStorage.getItem("token")
+                    credentials: 'include',headers:{Authorization:"Bearer "+localStorage.getItem("token")}
                 }
             );
             const json = await response.json();

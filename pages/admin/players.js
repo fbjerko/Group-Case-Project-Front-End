@@ -96,7 +96,7 @@ class Players extends Component {
     i18n.on("languageChanged", this.onLanguageChanged);
     try {
       fetch(process.env.API_URL + "/api/player/all", {
-        credentials: "include",Authorization:"Bearer "+localStorage.getItem("token")
+        credentials: "include",headers:{Authorization:"Bearer "+localStorage.getItem("token")}
       })
         .then(response => response.json())
         .then(json => {

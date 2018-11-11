@@ -36,7 +36,7 @@ class ContactForm extends React.Component {
 
         xhttp.open("POST",  process.env.API_URL+"/api/contact", true);
         xhttp.withCredentials=true;
-        xhttp.setRequestHeader("token","Bearer "+localStorage.getItem("token"));
+        xhttp.setRequestHeader("Authorization","Bearer "+localStorage.getItem("token"));
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send(
             JSON.stringify({

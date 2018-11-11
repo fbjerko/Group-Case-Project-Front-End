@@ -28,7 +28,7 @@ class SearchField extends Component {
 
   getData() {
     fetch(this.state.url, {
-      credentials: "include",Authorization:"Bearer "+localStorage.getItem("token")
+      credentials: "include",headers:{Authorization:"Bearer "+localStorage.getItem("token")}
     }).then(res =>
       res.json().then(res => {
         if (res.length > 0) {
