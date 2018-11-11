@@ -30,7 +30,16 @@ app.prepare()
             console.log(req.cookies);
         })
 
+        server.get("/",(req,res)=>{
+            if(req.cookies.role=="admin"){
+                res.redirect('/admin')
+            }else if(req.cookies.role=="user"){
+                res.redirect('/dashboard')
+            }else {
+                return handle(req, res);
+            }
 
+        })
 
         server.use('/admin', (req, res, next) => {
             console.log(req.cookies.token);
