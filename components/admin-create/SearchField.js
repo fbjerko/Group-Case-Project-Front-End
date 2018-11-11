@@ -40,6 +40,8 @@ class SearchField extends Component {
               name: dataElement[1]
             });
           }
+
+          console.log(data);
           console.log("Data loaded");
           this.setState({ data: data, filteredData: data });
           data.forEach(element => {
@@ -82,7 +84,7 @@ class SearchField extends Component {
         url = process.env.API_URL + "/api/owner/all";
         break;
       case "goalType":
-        url = process.env.API_URL + "/api/matchGoal/goalType";
+        url = process.env.API_URL + "/api/matchGoal/goalType/all";
         break;
     }
     return url;
