@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import MatchGoalForm from "../forms/matchgoalForm";
+import PlayerInfo from "./PlayerInfo";
+import TeamInfo from "./TeamInfo";
 
 class MatchInfo extends Component {
   constructor(props) {
@@ -14,9 +16,13 @@ class MatchInfo extends Component {
       status: "Nothing",
       showPop: false,
       showPopDelete: false,
+      content: "",
+      contentId: ""
     };
 
     this.addGoal = this.addGoal.bind(this);
+    this.showContent = this.showContent.bind(this);
+    this.closeContent = this.closeContent.bind(this);
   }
 
   async componentWillMount() {
@@ -139,11 +145,34 @@ class MatchInfo extends Component {
         }
     };
     xhttp.send(null);
-    
 }
+
+  showContent(id, type) {
+    this.setState({
+      contentId: id,
+      content: type
+    })
+    console.log(this.state.contentId + this.state.content);
+  }
+
+  closeContent() {
+    this.setState({
+      content: ""
+    })
+  }
   
 
   render() {
+    if(this.state.content === "Player") {
+      return (
+        <PlayerInfo id={this.state.contentId} canEdit={this.props.canEdit} close={this.closeContent}/>
+      )
+    }
+    if(this.state.content === "Team") {
+      return (
+        <TeamInfo id={this.state.contentId} canEdit={this.props.canEdit} close={this.closeContent}/>
+      )
+    }
     if (this.state.showPop) {
       setTimeout(
         function() {
@@ -220,7 +249,7 @@ class MatchInfo extends Component {
      
 
       this.state.matchGoals.map(goal => {
-        if(this.state.canEdit === true) {
+        if(this.props.canEdit === true) {
           edit = (
             <td className="td-admin-get-one-match-smaller"
             onClick={() => this.removeGoal(goal[0])}
@@ -235,12 +264,23 @@ class MatchInfo extends Component {
           goal[4] ===
           this.state.matchInfo.footballMatchId
         ) {
+          let teamId = goal[6];
           goals.push(
             <tr key={goal[0]} className="tr-admin-get-one">
-              <td className="td-admin-get-one-match">
+              <td id={goal[6]} className="td-admin-get-one-match"
+              onClick={() => this.setState({
+                contentId: goal[6],
+                content: "Team"
+              })}
+              >
                 {goal[7]}
               </td>
-              <td className="td-admin-get-one-match">
+              <td className="td-admin-get-one-match"
+              onClick={() => this.setState({
+                contentId: goal[8],
+                content: "Player"
+              })}
+              >
               {goal[9]}
               </td>
               <td className="td-admin-get-one-match-small">
@@ -267,7 +307,7 @@ class MatchInfo extends Component {
       let deleteGoal;
       let addGoal;
 
-      if(this.state.canEdit === true) {
+      if(this.props.canEdit === true) {
         deleteGoal = (
           <th className="th-admin-get-one-match-small">Delete</th>
         );
@@ -298,9 +338,19 @@ class MatchInfo extends Component {
                 <th className="th-admin-get-one-match-header"> Away Team</th>
               </tr>
               <tr className="tr-admin-get-one">
-                <th className="th-admin-get-one-match-header"> {match.homeTeam.name}</th>
+              <th className="th-admin-get-one-match-header-team"
+                onClick={() => this.setState({
+                  contentId: match.homeTeam.teamId,
+                  content: "Team"
+                })}
+                > {match.homeTeam.name}</th>
                 <th className="th-admin-get-one-match-small"> {result}</th>
-                <th className="th-admin-get-one-match-header"> {match.awayTeam.name}</th>
+                <th className="th-admin-get-one-match-header-team"
+                onClick={() => this.setState({
+                  contentId: match.awayTeam.teamId,
+                  content: "Team"
+                })}
+                > {match.awayTeam.name}</th>
               </tr>
             </tbody>
           </table>

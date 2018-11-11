@@ -14,8 +14,8 @@ class Stadiums extends Component {
       ready: false,
       createStadium: false,
       currentPage: 0,
-      content: ["Stadium", "Team", "Address"], // Attribute variable names
-      contentFields: ["Name", "Team", "Address"], // Names/Values of variables
+      content: ["Stadium", "Teams", "Address"], // Attribute variable names
+      contentFields: ["Name", "Teams", "Address"], // Names/Values of variables
       canEdit: true // Names/Values of variables
     };
 

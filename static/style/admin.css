@@ -241,6 +241,15 @@ td.td-admin-get-one-match {
   font-size: 120%;
 }
 
+td.td-admin-get-one-match:hover {
+  background-color: rgb(99, 97, 97);
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+
+
+
 th.th-admin-get-one-match {
   width: 40%;
   font-size: 120%;
@@ -252,6 +261,24 @@ th.th-admin-get-one-match-header {
   font-size: 150%;
   height: 5rem;
   text-align:center;
+}
+th.th-admin-get-one-match-header-team {
+  width: 40%;
+  font-size: 150%;
+  height: 5rem;
+  text-align:center;
+}
+th.th-admin-get-one-match-header-team:hover {
+  background-color: rgb(99, 97, 97);
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+
+td.td-admin-get-one-match-header:hover {
+  background-color: rgb(99, 97, 97);
+  opacity: 0.8;
+  cursor: pointer;
 }
 
 th.th-admin-get-one-match-small {
