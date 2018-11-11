@@ -82,7 +82,7 @@ class TeamForm extends React.Component {
         return(<Popupp text={this.state.status}/>);
     }
         return(
-          <div className="info-container">
+          <div className="create-match-container">
       
       <div className="seasons-container">
       <div className="top">

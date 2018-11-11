@@ -13,7 +13,7 @@
 
 div.info-container {
 
-  display: block;
+  display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -482,6 +482,8 @@ button.btn-create {
 .create-match-container {
   display: flex;
   justify-content: center;
+  align-items: center;
+  
 
 }
 

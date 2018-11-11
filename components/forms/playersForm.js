@@ -151,7 +151,7 @@ class PlayersForm extends Component {
     if (this.state.ready === true) {
       return (
           <div>
-        <div className="info-container">
+        <div className="create-match-container">
           <div >
             {this.state.loading}
             <div className="top">

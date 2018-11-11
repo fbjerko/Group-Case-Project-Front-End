@@ -131,7 +131,7 @@ class SearchField extends Component {
     });
     let searchResult = filteredData.map(element => {
       return (
-        <option
+        <option style={{zIndex:"1",position:'relative',left:"0rem"}}
           onDoubleClick={this.handleClick}
           key={element.id}
           id={element.id}
@@ -153,7 +153,7 @@ class SearchField extends Component {
           />
           <br />
           <select
-            
+            style={{position:"absolute"}}
             onBlur={this.disable}
             size={filteredData.length > 10 ? 10 : filteredData.length + 1}
             
