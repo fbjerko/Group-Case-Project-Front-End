@@ -142,6 +142,9 @@ class MatchesForm extends React.Component {
        <br></br>
        <input className="btn-index" type="button" value="Submit" onClick={this.sendMatch}></input>
 
+        <button className="btn-dashboard-back" onClick={this.props.close}>
+          Back
+        </button>
         </div>
                 <div style={{width:'300px',marginLeft:'50px'}}>
                     <h2>Home team:</h2>
