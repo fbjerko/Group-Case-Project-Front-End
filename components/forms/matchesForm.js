@@ -122,6 +122,7 @@ class MatchesForm extends React.Component {
             <div className="create-match-container">
 
 
+
                 <div style={{marginRight: '50px'}}>
 
                     <h2>Create new match</h2>
@@ -149,6 +150,7 @@ class MatchesForm extends React.Component {
 
                 </div>
                 <div style={{width: '300px', marginLeft: '50px'}}>
+
                     <h2>Home team:</h2>
                     <table>
                         <tbody>
