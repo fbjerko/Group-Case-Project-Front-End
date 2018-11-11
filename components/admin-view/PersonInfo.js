@@ -54,6 +54,31 @@ class PersonInfo extends Component {
     }
   }
 
+  deletePlayer = () => {
+    console.log(process.env.API_URL + "/api/person/" + this.props.id);
+    let xhttp = new XMLHttpRequest();
+    xhttp.open(
+      "DELETE",
+      process.env.API_URL + "/api/person/" + this.props.id +"/delete",
+      true
+    );
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.withCredentials = true;
+    xhttp.onreadystatechange = () => {
+      if (xhttp.readyState == XMLHttpRequest.DONE) {
+        console.log("DONE");
+        if (xhttp.status === 200) {
+          this.setState({ success: true, failed: false });
+          console.log("Yay");
+        } else if (xhttp.status == 403) {
+          this.setState({ failed: true, success: false });
+          console.log("Damn");
+        }
+      }
+    };
+    xhttp.send(null);
+  };
+
     _create() {
         this.setState({
             create: !this.state.create
@@ -147,7 +172,7 @@ class PersonInfo extends Component {
                                     </td>
                                     <td
                                         className="td-admin-but"
-                                        onClick={this.props.previousPage}
+                                        onClick={this.deletePlayer}
                                     >
                                         DELETE
                                     </td>
