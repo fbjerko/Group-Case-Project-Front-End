@@ -198,6 +198,11 @@ table.table-admin-get-all-matches {
   font-size: 130%;
 }
 
+table.table-admin-get-all-matches-front-page {
+  width: 60rem;
+  font-size: 130%;
+}
+
 
 
 table.table-admin-get-all-persons {
@@ -222,6 +227,18 @@ td.td-admin-get-all-matches {
 
 th.th-admin-get-all-matches-result {
   width: 8rem;
+  text-align: center;
+}
+th.th-admin-get-all-matches-result-small {
+  width: 40%;
+  text-align: center;
+}
+th.th-admin-get-all-matches-result-smaller {
+  width: 20%;
+  text-align: center;
+}
+td.td-admin-get-all-matches-result-small {
+  width: 40%;
   text-align: center;
 }
 

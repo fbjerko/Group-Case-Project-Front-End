@@ -230,7 +230,7 @@ class MatchGoal extends React.Component {
         <div>
           <h1>Create New MatchGoal</h1>
           <br />
-          <h2>{this.state.activePlayerName} scored a goal!</h2>
+          <h2>{this.state.activePlayerName} scored a goal for {this.state.activeName}!</h2>
           <br />
           <h2>Please specify the goal type:</h2>
 
@@ -244,7 +244,7 @@ class MatchGoal extends React.Component {
           <p>Description</p>
           <input
             onChange={this.updateInput}
-            value={this.state.desc}
+            
             type="text"
             placeholder="Write a description"
             id="description"

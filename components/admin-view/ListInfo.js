@@ -114,6 +114,7 @@ class ListInfo extends Component {
               </td>
             );
           } else {
+              
             columns.push(
               <td
                 key={data[i * 2] + data[3] + i}
@@ -124,7 +125,34 @@ class ListInfo extends Component {
               </td>
             );
           }
-        } else {
+        } else if (this.props.contentFields.length === 3) {
+          if (i === 1) {
+          
+            let score = data[i * 2 + 1];
+            columns.push(
+              <td
+                key={data[i * 2] + data[3] + i}
+                className="td-admin-get-all-matches-result"
+                onClick={() => this.showFirst(id, action, score)}
+              >
+                {data[i * 2 + 1]}
+              </td>
+            );
+          } else {
+            
+            let score = data[i * 2 + 1];
+            columns.push(
+              <td
+                key={data[i * 2] + data[3] + i}
+                className="td-admin-get-all-matches-result"
+                onClick={() => this.showFirst(id, action, score)}
+              >
+                {data[i * 2 + 1]} 
+              </td>
+            );
+
+          }} else {
+        
           columns.push(
             <td
               key={data[i * 2] + data[3] + i}
@@ -159,6 +187,19 @@ class ListInfo extends Component {
         }
         return (
           <th key={field} className="th-admin-get-all-matches">
+            {field}{" "}
+          </th>
+        );
+      } else if (this.props.contentFields.length === 3) {
+        if (field === "Result") {
+          return (
+            <th key={field} className="th-admin-get-all-matches-result-smaller">
+              {field}{" "}
+            </th>
+          );
+        }
+        return (
+          <th key={field} className="th-admin-get-all-matches-result-small">
             {field}{" "}
           </th>
         );
@@ -228,7 +269,18 @@ class ListInfo extends Component {
             </tbody>
           </table>
         );
-      } else if (this.props.contentFields.length === 1 && this.state.display === 99) {
+      } else if (this.props.contentFields.length === 3 && this.state.display === 99) {
+        table = (
+          <table key="table" className="table-admin-get-all-matches-front-page">
+            <tbody key="tbody">
+              <tr key="Attri" className="tr-admin-get-all">
+                {fields}
+              </tr>
+              {rows}
+            </tbody>
+          </table>
+        );
+        } else if (this.props.contentFields.length === 1 && this.state.display === 99) {
         table = ( <table key="table" className="table-admin-get-all-persons">
         <tbody key="tbody">
           <tr key="Attri" className="tr-admin-get-all">
