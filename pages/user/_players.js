@@ -43,7 +43,7 @@ class Players extends Component {
     }
     if (command === 3) {
       this.setState({
-        currentPage: Math.floor(this.state.players.length / 10)
+        currentPage: Math.floor((this.state.players.length-1) / 10)
       });
     }
   }
@@ -68,10 +68,7 @@ class Players extends Component {
 
   render() {
     if (this.state.ready === true) {
-      const players = this.state.players.slice(
-        this.state.currentPage * 10,
-        (this.state.currentPage + 1) * 10
-      );
+      const players = this.state.players;
       if (this.state.display === 1) {
         return (
           <div>
@@ -84,7 +81,7 @@ class Players extends Component {
                 close={this.close}
                 canEdit={false}
                 userId={this.props.userId}
-                updateWatchList={this.updateWatchlist}
+                updateWatchList={this.props.updateWatchList}
               />
             </div>
           </div>
@@ -100,6 +97,7 @@ class Players extends Component {
                 close={this.close}
                 canEdit={false}
                 userId={this.props.userId}
+                updateWatchList={this.props.updateWatchList}
               />
             </div>
           </div>
@@ -130,15 +128,13 @@ class Players extends Component {
           </div>
         );
       } else {
+
         return (
           <div>
             <LayoutGlobal />
             <NavbarDash/>
             <div className="container">
-              <WatchList
-                showWatchlist={this.showWatchlist}
-                close={this.close}
-              />
+
 
               <ListInfo
                 data={players}
@@ -151,6 +147,7 @@ class Players extends Component {
                 userId={this.props.userId}
                 currentPage={this.state.currentPage}
                 close={this.props.close}
+                updateWatchList={this.props.updateWatchList}
               />
 
               {this.state.createPlayer ? <CreateUser /> : null}

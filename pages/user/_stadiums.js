@@ -40,7 +40,7 @@ class Stadiums extends Component {
     }
     if (command === 3) {
       this.setState({
-        currentPage: Math.floor(this.state.stadiums.length / 5)
+        currentPage: (Math.floor((this.state.stadiums.length-1) / 10))
       });
     }
   }
@@ -69,10 +69,7 @@ class Stadiums extends Component {
 
   render() {
     if (this.state.ready === true) {
-      const stadiums = this.state.stadiums.slice(
-        this.state.currentPage * 5,
-        (this.state.currentPage + 1) * 5
-      );
+      const stadiums = this.state.stadiums;
       if (this.state.createStadium === true) {
         return (
           <div>

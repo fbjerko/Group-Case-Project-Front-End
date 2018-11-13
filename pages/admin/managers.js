@@ -52,7 +52,7 @@ class Managers extends Component {
         }
         if (command === 3) {
             this.setState({
-                currentPage: Math.floor(this.state.managers.length / 10)
+                currentPage: Math.floor((this.state.managers.length-1) / 10)
             });
         }
     }
@@ -79,10 +79,7 @@ class Managers extends Component {
 
     render() {
         if (this.state.ready === true) {
-            const managers = this.state.managers.slice(
-                this.state.currentPage * 10,
-                (this.state.currentPage + 1) * 10
-            );
+            const managers = this.state.managers;
             if (this.state.createManager === true) {
                 return (
                     <div>

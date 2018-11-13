@@ -44,13 +44,13 @@ class Teams extends Component {
                 }));
         }
         if (command === 2) {
-            if (this.state.currentPage + 1 < this.state.teams.length / 8) {
+            if (this.state.currentPage + 1 < this.state.teams.length / 10) {
                 this.setState({currentPage: this.state.currentPage + 1});
             }
         }
         if (command === 3) {
             this.setState({
-                currentPage: Math.floor(this.state.teams.length / 8)
+                currentPage: Math.floor((this.state.teams.length-1) / 10)
             });
         }
     }
@@ -84,10 +84,7 @@ class Teams extends Component {
 
     render() {
 
-        const teams = this.state.teams.slice(
-            this.state.currentPage * 8,
-            (this.state.currentPage + 1) * 8
-        );
+        const teams = this.state.teams;
         if (this.state.createTeam === true) {
             return (
                 <div>

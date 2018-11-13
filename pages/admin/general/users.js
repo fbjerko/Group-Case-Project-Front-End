@@ -39,7 +39,7 @@ class users extends Component {
     }
     if (command === 3) {
       this.setState({
-        currentPage: Math.floor(this.state.user.length / 10)
+        currentPage: Math.floor((this.state.user.length-1) / 10)
       });
     }
   }
@@ -71,10 +71,7 @@ class users extends Component {
   }
 
   render() {
-    const users = this.state.users.slice(
-      this.state.currentPage * 10,
-      (this.state.currentPage + 1) * 10
-    );
+    const users = this.state.users;
     if (this.state.createUser === true) {
       return (
         <div>

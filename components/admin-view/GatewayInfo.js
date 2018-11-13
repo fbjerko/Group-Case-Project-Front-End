@@ -35,7 +35,13 @@ onLanguageChanged = (lng) => {
     if (this.props.content === i18n.t("PLAYERS", this.state.lng)) {
       return (
         <div>
-          <PlayerInfo editPlayer={this.props.edit} id={this.props.id} close={this.props.close} canEdit={this.props.canEdit} userId={this.props.userId}/>
+          <PlayerInfo
+              editPlayer={this.props.edit}
+              id={this.props.id} close={this.props.close}
+              canEdit={this.props.canEdit}
+              userId={this.props.userId}
+              updateWatchList={this.props.updateWatchList}
+          />
         </div>
       );
     }
@@ -52,7 +58,7 @@ onLanguageChanged = (lng) => {
           
       return (
         <div>
-          <TeamInfo id={this.props.id} close={this.props.close} canEdit={this.props.canEdit} userId={this.props.userId}/>
+          <TeamInfo id={this.props.id} close={this.props.close} canEdit={this.props.canEdit} userId={this.props.userId} updateWatchList={this.props.updateWatchList}/>
         </div>
       );
     }

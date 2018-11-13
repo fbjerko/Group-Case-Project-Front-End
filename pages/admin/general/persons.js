@@ -59,7 +59,7 @@ class Person extends Component {
     }
     if (command === 3) {
       this.setState({
-        currentPage: Math.floor(this.state.persons.length / 10)
+        currentPage: Math.floor((this.state.persons.length-1) / 10)
       });
     }
   }
@@ -86,10 +86,7 @@ class Person extends Component {
 
   render() {
     if (this.state.ready === true) {
-      const persons = this.state.persons.slice(
-        this.state.currentPage * 10,
-        (this.state.currentPage + 1) * 10
-      );
+      const persons = this.state.persons;
       if (this.state.create === true) {
         return (
           <div>

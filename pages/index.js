@@ -38,7 +38,7 @@ class Index extends Component {
         this._onRegisterClick = this._onRegisterClick.bind(this);
         this._matches = this._matches.bind(this);
         this._players = this._players.bind(this);
-        this.changePage = this.changePage.bind(this);
+
     }
 
     onLanguageChanged = lng => {
@@ -81,7 +81,7 @@ class Index extends Component {
 
     }
 
-    changePage(command) {
+    changePagePlayer=(command)=> {
         if (command === 0) {
             this.setState({currentPage: 0});
         }
@@ -98,7 +98,29 @@ class Index extends Component {
         }
         if (command === 3) {
             this.setState({
-                currentPage: Math.floor(this.state.playersArray.length / 10)
+                currentPage: Math.floor((this.state.playersArray.length-1) / 10)
+            });
+        }
+    }
+
+    changePageMatch=(command)=> {
+        if (command === 0) {
+            this.setState({currentPage: 0});
+        }
+        if (command === 1) {
+            if (this.state.currentPage !== 0)
+                this.setState(prevState => ({
+                    currentPage: prevState.currentPage - 1
+                }));
+        }
+        if (command === 2) {
+            if (this.state.currentPage + 1 < this.state.matchesArray.length / 10) {
+                this.setState({currentPage: this.state.currentPage + 1});
+            }
+        }
+        if (command === 3) {
+            this.setState({
+                currentPage: Math.floor((this.state.matchesArray.length-1) / 10)
             });
         }
     }
@@ -269,7 +291,7 @@ class Index extends Component {
               
               ]}
               ready={this.state.ready}
-              changePage={this.changePage}
+              changePage={this.changePageMatch}
               canEdit={this.state.canEdit}
               userId={0}
               currentPage={this.state.currentPage}
@@ -283,7 +305,7 @@ class Index extends Component {
               content={[i18n.t("PLAYERS", lng), i18n.t("TEAMS", lng)]}
               contentFields={[i18n.t("NAME", lng), i18n.t("TEAM", lng)]}
               ready={this.state.ready}
-              changePage={this.changePage}
+              changePage={this.changePagePlayer}
               canEdit={this.state.canEdit}
               userId={0}
               currentPage={this.state.currentPage}

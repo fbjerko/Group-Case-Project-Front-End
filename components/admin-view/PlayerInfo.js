@@ -85,6 +85,7 @@ class PlayerInfo extends Component {
         xhttp.onreadystatechange = () => {
             if (xhttp.readyState == XMLHttpRequest.DONE) {
                 console.log("DONE");
+
                 if (xhttp.status === 200) {
                     this.setState({success: true, failed: false});
                     console.log("Yay");
@@ -135,7 +136,8 @@ class PlayerInfo extends Component {
         xhttp.onreadystatechange = () => {
             if (xhttp.readyState == XMLHttpRequest.DONE) {
                 if (xhttp.status === 200 || xhttp.status === 201) {
-                    console.log("Watchlist updated");
+                    this.props.updateWatchList();
+
 
                     if (this.state.inWatchList === true) {
                         this.setState({
@@ -145,9 +147,10 @@ class PlayerInfo extends Component {
                         this.setState({
                             watchListText: name + " Added to Watchlist"
                         });
-                        this.props.updateWatchList;
+
                         setTimeout(
                             function () {
+
                                 this.setState({
                                     watchListText: "Remove from Watchlist"
                                 });

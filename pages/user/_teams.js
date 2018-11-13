@@ -40,13 +40,13 @@ class Teams extends Component {
         }));
     }
     if (command === 2) {
-      if (this.state.currentPage + 1 < this.state.teams.length / 8) {
+      if (this.state.currentPage + 1 < this.state.teams.length / 10) {
         this.setState({ currentPage: this.state.currentPage + 1 });
       }
     }
     if (command === 3) {
       this.setState({
-        currentPage: Math.floor(this.state.teams.length / 8)
+        currentPage: Math.floor((this.state.teams.length-1) / 10)
       });
     }
   }
@@ -77,10 +77,8 @@ class Teams extends Component {
   
 
   render() {
-    const teams = this.state.teams.slice(
-      this.state.currentPage * 8,
-      (this.state.currentPage + 1) * 8
-    );
+      console.log(this.state.teams.length)
+    const teams = this.state.teams;
     if (this.state.display === 1) {
       return (
         <div>
@@ -94,7 +92,7 @@ class Teams extends Component {
               close={this.close}
               canEdit={false}
               userId={this.state.userId}
-              updateWatchList={this.props.updateWatchlist}
+              updateWatchList={this.props.updateWatchList}
 
             />
           </div>
@@ -112,6 +110,7 @@ class Teams extends Component {
               close={this.close}
               canEdit={false}
               userId={this.state.userId}
+              updateWatchList={this.props.updateWatchList}
             />
           </div>
         </div>
@@ -136,6 +135,7 @@ class Teams extends Component {
                   userId={this.state.userId}
                   currentPage={this.state.currentPage}
                   close={this.props.close}
+                  updateWatchList={this.props.updateWatchList}
               />
 
             {this.state.createTeam ? <CreateUser /> : null}

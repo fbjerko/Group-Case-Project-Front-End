@@ -78,7 +78,7 @@ class Matches extends Component {
     }
     if (command === 3) {
       this.setState({
-        currentPage: Math.floor(this.state.matches.length / 10)
+        currentPage: Math.floor((this.state.matches.length-1) / 10)
       });
     }
   }
@@ -204,10 +204,7 @@ class Matches extends Component {
 
 
     if (this.state.ready === true) {
-      const matches = this.state.matches.slice(
-        this.state.currentPage * 10,
-        (this.state.currentPage + 1) * 10
-      );
+      const matches = this.state.matches;
 
       if (this.state.createMatch) {
         return (

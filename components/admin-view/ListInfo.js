@@ -50,6 +50,7 @@ class ListInfo extends Component {
   }
 
   render() {
+
     /* Code for checking wether even values are number/id, pretty weak as for now as it just checks one row ahead for a number value */
     const rows = [];
     let lng = this.state.lng;
@@ -91,7 +92,7 @@ class ListInfo extends Component {
 
     let filtered = this.state.filteredPlayers.slice(
       this.props.currentPage * 10,
-      (this.props.currentPage + 1) * 10
+      (this.props.currentPage+1) * 10
     );
 
 
@@ -157,7 +158,7 @@ class ListInfo extends Component {
                 className="td-admin-get-all-matches"
                 onClick={() => this.showFirst(id, action)}
               >
-                {data[i * 2 + 1]}
+                {data[i * 2+1]}
               </td>
             );
           }
@@ -195,7 +196,7 @@ class ListInfo extends Component {
               className="td-admin-get-all"
               onClick={() => this.showFirst(id, action)}
             >
-              {data[i * 2 + 1]}
+              {data[i * 2+1]}
             </td>
           );
         }
@@ -266,6 +267,7 @@ class ListInfo extends Component {
             canEdit={this.props.canEdit}
             userId={this.props.userId}
             edit={this.props.edit}
+            updateWatchList={this.props.updateWatchList}
           />
         </div>
       );
@@ -278,6 +280,7 @@ class ListInfo extends Component {
             content={this.props.content[1]}
             canEdit={this.props.canEdit}
             userId={this.props.userId}
+            updateWatchList={this.props.updateWatchList}
           />
         </div>
       );
@@ -290,6 +293,7 @@ class ListInfo extends Component {
             content={this.props.content[2]}
             canEdit={this.props.canEdit}
             score={this.state.score}
+            updateWatchList={this.props.updateWatchList}
           />
         </div>
       );
@@ -349,6 +353,7 @@ class ListInfo extends Component {
               content={this.props.content[0]}
               canEdit={this.props.canEdit}
               userId={this.props.userId}
+              updateWatchList={this.props.updateWatchList}
             />
           </div>
         );
@@ -361,6 +366,7 @@ class ListInfo extends Component {
               content={this.props.content[1]}
               canEdit={this.props.canEdit}
               userId={this.props.userId}
+              updateWatchList={this.props.updateWatchList}
             />
           </div>
         );
@@ -373,6 +379,7 @@ class ListInfo extends Component {
               content={this.props.content[2]}
               canEdit={this.props.canEdit}
               score={this.state.score}
+              updateWatchList={this.props.updateWatchList}
             />
           </div>
         );
@@ -384,6 +391,7 @@ class ListInfo extends Component {
               close={this.close}
               content={this.props.content[3]}
               canEdit={this.props.canEdit}
+              updateWatchList={this.props.updateWatchList}
             />
           </div>
         );
@@ -395,6 +403,7 @@ class ListInfo extends Component {
               close={this.close}
               content={this.props.content[4]}
               canEdit={this.props.canEdit}
+              updateWatchList={this.props.updateWatchList}
             />
           </div>
         );

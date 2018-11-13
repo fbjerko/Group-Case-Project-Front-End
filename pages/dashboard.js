@@ -26,7 +26,8 @@ class Dashboard extends Component {
             display: 99,
             ready: false,
             showContent: "",
-            lng: i18n.language
+            lng: i18n.language,
+            updateWatchListProp:false
 
         };
 
@@ -127,7 +128,7 @@ class Dashboard extends Component {
                 }
             );
             const json = await response.json();
-
+            console.log("updated watchlist111")
             this.setState({
                 watchList: json,
                 ready: true
@@ -140,18 +141,21 @@ class Dashboard extends Component {
     async componentDidMount() {
         await this.setState({
             userId: this.getCookie(),
+            ready:true
 
         });
 
-        this.getWatchList();
+
         i18n.on('languageChanged', this.onLanguageChanged)
 
     }
 
     updateWatchList() {
-        this.getWatchList();
-        console.log("Watchlist update");
+    this.setState({updateWatchListProp:!this.updateWatchListProp});
+    console.log("WhatchList")
     }
+
+
 
     changeContent(contentType) {
         this.setState({
@@ -172,13 +176,14 @@ class Dashboard extends Component {
                   <WatchList
                     watchList={this.state.watchList}
                     showWatchlist={this.showWatchlist}
+                    update={this.state.updateWatchListProp}
                   />
                   <PlayerInfo
                     id={this.state.activeId}
                     close={this.close}
                     canEdit={false}
                     userId={this.state.userId}
-                    updateWatchList={this.updateWatchlist}
+                    updateWatchList={this.updateWatchList}
                   />
                 </div>
               </div>
@@ -192,12 +197,14 @@ class Dashboard extends Component {
                   <WatchList
                     watchList={this.state.watchList}
                     showWatchlist={this.showWatchlist}
+                    update={this.state.updateWatchListProp}
                   />
                   <TeamInfo
                     id={this.state.activeId}
                     close={this.close}
                     canEdit={false}
                     userId={this.state.userId}
+                    updateWatchList={this.updateWatchList}
                   />
                 </div>
               </div>
@@ -211,11 +218,14 @@ class Dashboard extends Component {
                         <WatchList
                             watchList={this.state.watchList}
                             showWatchlist={this.showWatchlist}
+                            update={this.state.updateWatchListProp}
                         />
                         <Players
                         userId={this.state.userId}
                         updateWatchList={this.updateWatchList}
-                        close={this.changeContent}/>
+                        close={this.changeContent}
+                        />
+
                     </div>
                 );
             } else if (this.state.showContent === "Managers") {
@@ -225,9 +235,10 @@ class Dashboard extends Component {
                         <WatchList
                             watchList={this.state.watchList}
                             showWatchlist={this.showWatchlist}
+                            update={this.state.updateWatchListProp}
                           
                         />
-                        <Managers close={this.changeContent}/>
+                        <Managers close={this.changeContent} updateWatchList={this.updateWatchList}/>
                     </div>
                 );
             } else if (this.state.showContent === "Teams") {
@@ -237,6 +248,7 @@ class Dashboard extends Component {
                         <WatchList
                             watchList={this.state.watchList}
                             showWatchlist={this.showWatchlist}
+                            update={this.state.updateWatchListProp}
                         />
                         <Teams
                             userId={this.state.userId}
@@ -252,8 +264,9 @@ class Dashboard extends Component {
                         <WatchList
                             watchList={this.state.watchList}
                             showWatchlist={this.showWatchlist}
+                            update={this.state.updateWatchListProp}
                         />
-                        <Matches close={this.changeContent}/>
+                        <Matches close={this.changeContent} updateWatchList={this.updateWatchList}/>
                     </div>
                 );
             } else if (this.state.showContent === "Stadiums") {
@@ -263,8 +276,9 @@ class Dashboard extends Component {
                         <WatchList
                             watchList={this.state.watchList}
                             showWatchlist={this.showWatchlist}
+                            update={this.state.updateWatchListProp}
                         />
-                        <Stadiums close={this.changeContent}/>
+                        <Stadiums close={this.changeContent} updateWatchList={this.updateWatchList}/>
                     </div>
                 );
             } else {
@@ -276,6 +290,7 @@ class Dashboard extends Component {
                             <WatchList
                                 watchList={this.state.watchList}
                                 showWatchlist={this.showWatchlist}
+                                update={this.state.updateWatchListProp}
                             />
                             <div className="btn-admin-nav">
                                 <button
