@@ -114,7 +114,10 @@ i18next
                     DOCUMENTATION: "Documentation",
                     SHOW_ALL:"Show all",
                     HOME:"Home",
-                    USER_NAME:"User name"
+                    USER_NAME:"User name",
+                    HOMETEAM: "Home Team",
+                    AWAYTEAM: "Away Team",
+                    RESULT: "Result"
                 
 
                 },
@@ -196,7 +199,10 @@ i18next
                     DOCUMENTATION: "Dokumentasjon",
                     SHOW_ALL:"Vis alle",
                     HOME:"Hjem",
-                    USER_NAME:"Brukernavn"
+                    USER_NAME:"Brukernavn",
+                    HOMETEAM: "Hjemmelag",
+                    AWAYTEAM: "Bortelag",
+                    RESULT: "Resultat"
 
 
                 },

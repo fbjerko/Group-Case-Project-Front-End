@@ -25,7 +25,9 @@ class Index extends Component {
       matchesArray: [],
       canEdit: false,
       ready: false,
-      currentPage: 0
+      currentPage: 0,
+      lng: i18n.language
+
     };
 
     this._onLoginClick = this._onLoginClick.bind(this);
@@ -215,6 +217,7 @@ class Index extends Component {
   }
 
   render() {
+    let lng = this.state.lng;
     const players = this.state.playersArray.slice(
       this.state.currentPage * 10,
       (this.state.currentPage + 1) * 10
@@ -240,13 +243,10 @@ class Index extends Component {
           {this.state.matches ? (
             <ListInfo
               data={matches}
-              name={"Matches"}
-              content={["Teams", "Matches", "Teams"]}
+              name={i18n.t("MATCHES", lng)}
+              content={[i18n.t("TEAMS", lng), i18n.t("MATCHES", lng), i18n.t("TEAMS", lng)]}
               contentFields={[
-        
-                "Home Team",
-                "Result",
-                "Away Team"
+                i18n.t("HOMETEAM", lng), i18n.t("RESULT", lng), i18n.t("AWAYTEAM", lng)
               
               ]}
               ready={this.state.ready}
@@ -260,9 +260,9 @@ class Index extends Component {
           {this.state.players ? (
             <ListInfo
               data={players}
-              name={"Players"}
-              content={["Players", "Teams"]}
-              contentFields={["Name", "Team"]}
+              name={i18n.t("PLAYERS", lng)}
+              content={[i18n.t("PLAYERS", lng), i18n.t("TEAMS", lng)]}
+              contentFields={[i18n.t("NAME", lng), i18n.t("TEAM", lng)]}
               ready={this.state.ready}
               changePage={this.changePage}
               canEdit={this.state.canEdit}
