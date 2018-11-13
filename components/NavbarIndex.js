@@ -32,6 +32,16 @@ class NavbarIndex extends Component {
         return (
             <div>
                 <div className="nav-bar-index">
+                <div style={{width:"121rem"}} className="nav-bar-options">
+                <div className="dropdown">
+                            <option className="btn-lng"
+                                    onClick={this.props.playersBut}>{i18n.t("PLAYERS", {lng})}</option>
+                    </div>
+                    <div className="dropdown">
+                            <option className="btn-lng"
+                                    onClick={this.props.matchesBut}>{i18n.t("MATCHES", {lng})}</option>
+                    </div>
+                    </div>
                     <option className="btn-lng" onClick={this.props.onLoginClick}>
                         {i18n.t("LOG_IN", {lng})}
                     </option>

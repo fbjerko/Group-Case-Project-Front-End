@@ -121,7 +121,7 @@ input{
 }
 
 select{
-  display:absolute;
+  
   width: 20rem;
   height: 4rem;
   background: #f1f0f0;
@@ -138,6 +138,7 @@ select option:hover {
 
   background: #d1cece;
 }
+
 
 .tooltip{
   visibility: visible;
@@ -172,4 +173,8 @@ select option:hover {
   border-width: 5px;
   border-style: solid;
   border-color: black transparent transparent transparent;
+
+b{
+  color: white;
+
 }
