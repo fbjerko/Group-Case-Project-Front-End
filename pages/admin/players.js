@@ -22,7 +22,8 @@ class Players extends Component {
       contentFields: [i18n.t("NAME", lng), i18n.t("TEAM", lng)],
       canEdit: true, // Names/Values of variables,
       playerId: -1,
-      lng: lng
+      lng: lng,
+      search: ''
     };
 
     this._createPlayer = this._createPlayer.bind(this);
@@ -134,15 +135,15 @@ class Players extends Component {
     });
   }
 
+
+
   render() {
 
 
     if (this.state.ready === true) {
 
-      const players = this.state.players.slice(
-        this.state.currentPage * 10,
-        (this.state.currentPage + 1) * 10
-      );
+
+      
 
       if (this.state.crudOption === 1) {
         return (
@@ -163,9 +164,8 @@ class Players extends Component {
 
             <div className="container">
 
-
               <ListInfo
-                data={players}
+                data={this.state.players}
                 name={this.state.content[0]}
                 content={this.state.content}
                 contentFields={this.state.contentFields}

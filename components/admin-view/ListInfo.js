@@ -11,7 +11,9 @@ class ListInfo extends Component {
       display: 99,
       userId: "",
       lng: i18n.language, 
-      score: ""
+      score: "",
+      search: '',
+      filteredPlayers: ''
     };
 
     this.showFirst = this.showFirst.bind(this);
@@ -43,6 +45,10 @@ class ListInfo extends Component {
     });
   }
 
+  updateSearch(event){
+    this.setState({search: event.target.value.substr(0,20)});
+  }
+
   render() {
     /* Code for checking wether even values are number/id, pretty weak as for now as it just checks one row ahead for a number value */
     const rows = [];
@@ -61,7 +67,35 @@ class ListInfo extends Component {
       backButton = (<br/>);
     }
 
-    this.props.data.map(data => {
+    if(this.props.content.length === 3){
+      this.state.filteredPlayers = this.props.data.filter((match) =>{
+        
+        return match[1].toLowerCase().includes(this.state.search.toLowerCase()) + match[3].toLowerCase().includes(this.state.search.toLowerCase()) +match[5].toLowerCase().includes(this.state.search.toLowerCase());
+      });
+
+    } else if(this.props.content.length === 2){
+      this.state.filteredPlayers = this.props.data.filter((player) =>{
+        return player[1].toLowerCase().includes(this.state.search.toLowerCase()) + player[3].toLowerCase().includes(this.state.search.toLowerCase());
+      });
+    } else if(this.props.content.length === 1){
+      this.state.filteredPlayers = this.props.data.filter((player) =>{
+        return player[1].toLowerCase().includes(this.state.search.toLowerCase());
+      });
+    } else if(this.props.content.length === 5){
+      this.state.filteredPlayers = this.props.data.filter((player) =>{
+        return player[1].toLowerCase().includes(this.state.search.toLowerCase()) + player[3].toLowerCase().includes(this.state.search.toLowerCase()) + 
+        player[5].toLowerCase().includes(this.state.search.toLowerCase()) + player[7].toLowerCase().includes(this.state.search.toLowerCase()) + 
+        player[9].toLowerCase().includes(this.state.search.toLowerCase());
+      });
+    }
+
+    let filtered = this.state.filteredPlayers.slice(
+      this.props.currentPage * 10,
+      (this.props.currentPage + 1) * 10
+    );
+
+
+    filtered.map(data => {
       var i = 0;
       var temp = 0;
 
@@ -79,6 +113,8 @@ class ListInfo extends Component {
         }
         i++;
       }
+
+     
 
       /* Creating columns with rows */
 
@@ -365,8 +401,13 @@ class ListInfo extends Component {
       } else {
         return (
           <div>
-            
+            <div style={{display:"flex",justifyContent:"center",alignItems:"flex-end"}}>
             <h1>{this.props.name}</h1>
+
+            <input style={{height:"32px",margin:"1rem"}} type="text" className="" value={this.state.search} onChange={this.updateSearch.bind(this)} placeholder="Search"></input>
+
+            </div>
+
            
             <div className="div-admin-get-all">
               {table}

@@ -26,7 +26,10 @@ class Index extends Component {
       canEdit: false,
       ready: false,
       currentPage: 0,
-      lng: i18n.language
+      lng: i18n.language,
+      search: '',
+      filteredMatches: '',
+      filteredPlayers: ''
 
     };
 
@@ -170,8 +173,13 @@ class Index extends Component {
     } catch (error) {
       console.log(error);
     }
+    console.log(this.state.playersArray);
 
     await this.createMatchesArray();
+  }
+
+  updateSearch(event){
+      this.setState({search: event.target.value.substr(0,20)});
   }
 
   createMatchesArray() {
@@ -217,16 +225,22 @@ class Index extends Component {
   }
 
   render() {
-    let lng = this.state.lng;
-    const players = this.state.playersArray.slice(
-      this.state.currentPage * 10,
-      (this.state.currentPage + 1) * 10
-    );
 
-    const matches = this.state.matchesArray.slice(
-      this.state.currentPage * 10,
-      (this.state.currentPage + 1) * 10
-    );
+    if(this.state.matches){
+      this.state.filteredMatches = this.state.matchesArray.filter((match) =>{
+        
+        return match[1].toLowerCase().includes(this.state.search.toLowerCase()) + match[5].toLowerCase().includes(this.state.search.toLowerCase());
+      });
+
+    } else if(this.state.players){
+      this.state.filteredPlayers = this.state.playersArray.filter((player) =>{
+        return player[1].toLowerCase().includes(this.state.search.toLowerCase()) + player[3].toLowerCase().includes(this.state.search.toLowerCase());
+      });
+    }
+
+    let lng = this.state.lng;
+    
+  
 
     return (
       <LayoutGlobal>
@@ -238,11 +252,12 @@ class Index extends Component {
         />
 
         <div className="btn-group-index-toggle-info">
+        
 
 
           {this.state.matches ? (
             <ListInfo
-              data={matches}
+              data={this.state.matchesArray}
               name={i18n.t("MATCHES", lng)}
               content={[i18n.t("TEAMS", lng), i18n.t("MATCHES", lng), i18n.t("TEAMS", lng)]}
               contentFields={[
@@ -259,7 +274,7 @@ class Index extends Component {
           ) : null}
           {this.state.players ? (
             <ListInfo
-              data={players}
+              data={this.state.playersArray}
               name={i18n.t("PLAYERS", lng)}
               content={[i18n.t("PLAYERS", lng), i18n.t("TEAMS", lng)]}
               contentFields={[i18n.t("NAME", lng), i18n.t("TEAM", lng)]}
