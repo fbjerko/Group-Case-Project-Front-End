@@ -11,23 +11,26 @@ import NavbarIndex from "../components/NavbarIndex";
 const context = React.createContext();
 
 class Index extends Component {
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
 
-        this.state = {
-            showLogin: false,
-            showRegister: false,
-            players: false,
-            matches: true,
-            playersArray: [],
-            homeTeams: [],
-            awayTeam: [],
-            matchesArray: [],
-            canEdit: false,
-            ready: false,
-            currentPage: 0,
-            lng: i18n.language,
-            loading:<Loading icon={false} text={i18n.t("WELCOME",i18n.language)}/>
+    this.state = {
+      showLogin: false,
+      showRegister: false,
+      players: false,
+      matches: true,
+      playersArray: [],
+      homeTeams: [],
+      awayTeam: [],
+      matchesArray: [],
+      canEdit: false,
+      ready: false,
+      currentPage: 0,
+      lng: i18n.language,
+      search: '',
+      filteredMatches: '',
+      filteredPlayers: '',
+      loading:<Loading icon={false} text={i18n.t("WELCOME",i18n.language)}/>
 
         };
 
@@ -180,113 +183,120 @@ class Index extends Component {
 
         await this.createMatchesArray();
     }
+  
 
-    createMatchesArray() {
-        const homeTeams = this.state.homeTeams;
-        const awayTeams = this.state.awayTeams;
 
-        console.log(homeTeams.length + " is Length");
-        const matches = [];
-        for (let i = 0; i < homeTeams.length; i++) {
-            console.log("IN LOOP");
+  createMatchesArray() {
+    const homeTeams = this.state.homeTeams;
+    const awayTeams = this.state.awayTeams;
 
-            if (homeTeams[i][7] === "draw") {
-                matches.push([
+    console.log(homeTeams.length + " is Length");
+    const matches = [];
+    for (let i = 0; i < homeTeams.length; i++) {
+      console.log("IN LOOP");
 
-                    i,
-                    homeTeams[i][3],
-                    i,
-                    "draw",
-                    i,
-                    awayTeams[i][3],
-
-                ]);
-            } else {
-                matches.push([
-
-                    i,
-                    homeTeams[i][3],
-                    i,
-                    homeTeams[i][7] + " - " + awayTeams[i][7],
-                    i,
-                    awayTeams[i][3],
-
-                ]);
-                //  -- Date --     -- HomeTeam --   -- Win/Loss --   -- Win/Loss --   -- AwayTeam --    -- Arena --
-            }
-        }
-
-        this.setState({
-            matchesArray: matches
-        });
-
-        console.log(this.state.matchesArray);
+      if (homeTeams[i][7] === "draw") {
+        matches.push([
+     
+          i,
+          homeTeams[i][3],
+          i,
+          "draw",
+          i,
+          awayTeams[i][3],
+        
+        ]);
+      } else {
+        matches.push([
+        
+          i,
+          homeTeams[i][3],
+          i,
+          homeTeams[i][7] + " - " + awayTeams[i][7],
+          i,
+          awayTeams[i][3],
+       
+        ]);
+        //  -- Date --     -- HomeTeam --   -- Win/Loss --   -- Win/Loss --   -- AwayTeam --    -- Arena --
+      }
     }
 
-    render() {
+    this.setState({
+      matchesArray: matches
+    });
 
-        let lng = this.state.lng;
-        const players = this.state.playersArray.slice(
-            this.state.currentPage * 10,
-            (this.state.currentPage + 1) * 10
-        );
+    console.log(this.state.matchesArray);
+  }
 
-        const matches = this.state.matchesArray.slice(
-            this.state.currentPage * 10,
-            (this.state.currentPage + 1) * 10
-        );
+  render() {
 
-        return (
-            <LayoutGlobal>
+    if(this.state.matches){
+      this.state.filteredMatches = this.state.matchesArray.filter((match) =>{
+        
+        return match[1].toLowerCase().includes(this.state.search.toLowerCase()) + match[5].toLowerCase().includes(this.state.search.toLowerCase());
+      });
 
-                <NavbarIndex
-                    onLoginClick={this._onLoginClick}
-                    onRegisterClick={this._onRegisterClick}
-                    matchesBut={this._matches}
-                    playersBut={this._players}
-                />
-                {this.state.loading}
-                <div className="btn-group-index-toggle-info">
-
-
-                    {this.state.matches ? (
-                        <ListInfo
-                            data={matches}
-                            name={i18n.t("MATCHES", lng)}
-                            content={[i18n.t("TEAMS", lng), i18n.t("MATCHES", lng), i18n.t("TEAMS", lng)]}
-                            contentFields={[
-                                i18n.t("HOMETEAM", lng), i18n.t("RESULT", lng), i18n.t("AWAYTEAM", lng)
-
-                            ]}
-                            ready={this.state.ready}
-                            changePage={this.changePage}
-                            canEdit={this.state.canEdit}
-                            userId={0}
-                            currentPage={this.state.currentPage}
-                            canLoad={false}
-                        />
-                    ) : null}
-                    {this.state.players ? (
-                        <ListInfo
-                            data={players}
-                            name={i18n.t("PLAYERS", lng)}
-                            content={[i18n.t("PLAYERS", lng), i18n.t("TEAMS", lng)]}
-                            contentFields={[i18n.t("NAME", lng), i18n.t("TEAM", lng)]}
-                            ready={this.state.ready}
-                            changePage={this.changePage}
-                            canEdit={this.state.canEdit}
-                            userId={0}
-                            currentPage={this.state.currentPage}
-                            canLoad={false}
-                        />
-                    ) : null}
-                </div>
-
-                {this.state.showLogin ? <Login close={this._onLoginClick}/> : null}
-                {this.state.showRegister ? <Register close={this.registeredUser}/> : null}
-            </LayoutGlobal>
-        );
+    } else if(this.state.players){
+      this.state.filteredPlayers = this.state.playersArray.filter((player) =>{
+        return player[1].toLowerCase().includes(this.state.search.toLowerCase()) + player[3].toLowerCase().includes(this.state.search.toLowerCase());
+      });
     }
+
+    let lng = this.state.lng;
+    
+  
+
+    return (
+      <LayoutGlobal>
+        <NavbarIndex
+          onLoginClick={this._onLoginClick}
+          onRegisterClick={this._onRegisterClick}
+          matchesBut = {this._matches}
+          playersBut = {this._players}
+        />
+
+        <div className="btn-group-index-toggle-info">
+        
+
+
+          {this.state.matches ? (
+            <ListInfo
+              data={this.state.matchesArray}
+              name={i18n.t("MATCHES", lng)}
+              content={[i18n.t("TEAMS", lng), i18n.t("MATCHES", lng), i18n.t("TEAMS", lng)]}
+              contentFields={[
+                i18n.t("HOMETEAM", lng), i18n.t("RESULT", lng), i18n.t("AWAYTEAM", lng)
+              
+              ]}
+              ready={this.state.ready}
+              changePage={this.changePage}
+              canEdit={this.state.canEdit}
+              userId={0}
+              currentPage={this.state.currentPage}
+              canLoad={false}
+            />
+          ) : null}
+          {this.state.players ? (
+            <ListInfo
+              data={this.state.playersArray}
+              name={i18n.t("PLAYERS", lng)}
+              content={[i18n.t("PLAYERS", lng), i18n.t("TEAMS", lng)]}
+              contentFields={[i18n.t("NAME", lng), i18n.t("TEAM", lng)]}
+              ready={this.state.ready}
+              changePage={this.changePage}
+              canEdit={this.state.canEdit}
+              userId={0}
+              currentPage={this.state.currentPage}
+              canLoad={false}
+            />
+          ) : null}
+        </div>
+
+        {this.state.showLogin ? <Login close={this._onLoginClick} /> : null}
+        {this.state.showRegister ? <Register close={this.registeredUser} /> : null}
+      </LayoutGlobal>
+    );
+  }
 }
 
 export default Index;
