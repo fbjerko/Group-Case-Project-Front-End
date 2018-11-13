@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import LayoutGlobal from "../components/LayoutGlobal";
 import Login from "../components/Login";
 import Register from "../components/Register";
@@ -29,158 +29,162 @@ class Index extends Component {
       lng: i18n.language,
       search: '',
       filteredMatches: '',
-      filteredPlayers: ''
+      filteredPlayers: '',
+      loading:<Loading icon={false} text={i18n.t("WELCOME",i18n.language)}/>
 
+        };
+
+        this._onLoginClick = this._onLoginClick.bind(this);
+        this._onRegisterClick = this._onRegisterClick.bind(this);
+        this._matches = this._matches.bind(this);
+        this._players = this._players.bind(this);
+        this.changePage = this.changePage.bind(this);
+    }
+
+    onLanguageChanged = lng => {
+        this.setState({lng: lng});
     };
 
-    this._onLoginClick = this._onLoginClick.bind(this);
-    this._onRegisterClick = this._onRegisterClick.bind(this);
-    this._matches = this._matches.bind(this);
-    this._players = this._players.bind(this);
-    this.changePage = this.changePage.bind(this);
-  }
-
-  onLanguageChanged = lng => {
-    this.setState({ lng: lng });
-  };
-
-  _onLoginClick() {
-    this.setState({
-      showLogin: !this.state.showLogin,
-      showRegister: false
-    });
-  }
-
-  _onRegisterClick() {
-    this.setState({
-      showRegister: !this.state.showRegister,
-      showLogin: false
-    });
-  }
-
-  _matches() {
-    this.setState({
-      currentPage: 0,
-      matches: !this.state.matches,
-      players: false
-    });
-  }
-
-  _players() {
-    this.setState({
-      currentPage: 0,
-      players: !this.state.players,
-      matches: false
-    });
-  }
-
-  changePage(command) {
-    if (command === 0) {
-      this.setState({ currentPage: 0 });
-    }
-    if (command === 1) {
-      if (this.state.currentPage !== 0)
-        this.setState(prevState => ({
-          currentPage: prevState.currentPage - 1
-        }));
-    }
-    if (command === 2) {
-      if (this.state.currentPage + 1 < this.state.playersArray.length / 10) {
-        this.setState({ currentPage: this.state.currentPage + 1 });
-      }
-    }
-    if (command === 3) {
-      this.setState({
-        currentPage: Math.floor(this.state.playersArray.length / 10)
-      });
-    }
-  }
-
-  _onLoginClick() {
-    this.setState({
-      showLogin: !this.state.showLogin,
-      showRegister: false
-    });
-  }
-
-  _onRegisterClick() {
-    this.setState({
-      showRegister: !this.state.showRegister,
-      showLogin: false
-    });
-  }
-
-  _matches() {
-    this.setState({
-      currentPage: 0,
-      matches: !this.state.matches,
-      players: false
-    });
-  }
-
-  _players() {
-    this.setState({
-      currentPage: 0,
-      players: !this.state.players,
-      matches: false
-    });
-  }
-
-  async componentDidMount() {
-    i18n.on("languageChanged", this.onLanguageChanged);
-
-    try {
-      const response = await fetch(process.env.API_URL + "/api/player/all", {
-        credentials: "include",
-        headers: { Authorization: "Bearer " + localStorage.getItem("token") }
-      });
-      const json = await response.json();
-      this.setState({
-        playersArray: json
-      });
-    } catch (error) {
-      console.log(error);
+    _onLoginClick() {
+        this.setState({
+            showLogin: !this.state.showLogin,
+            showRegister: false
+        });
     }
 
-    try {
-      const response = await fetch(
-        process.env.API_URL + "/api/teamResult/homeTeam",
-        {
-          credentials: "include",
-          headers: { Authorization: "Bearer " + localStorage.getItem("token") }
+    _onRegisterClick() {
+        this.setState({
+            showRegister: !this.state.showRegister,
+            showLogin: false
+        });
+    }
+
+    _matches() {
+        this.setState({
+            currentPage: 0,
+            matches: !this.state.matches,
+            players: false
+        });
+    }
+
+    _players() {
+        this.setState({
+            currentPage: 0,
+            players: !this.state.players,
+            matches: false
+        });
+    }
+
+    registeredUser = (userName) => {
+        let loading = <Loading icon={false} text={i18n.t("USER_CREATED",this.state.lng)}/>;
+        this.setState({showRegister: false,loading});
+
+    }
+
+    changePage(command) {
+        if (command === 0) {
+            this.setState({currentPage: 0});
         }
-      );
-      const json = await response.json();
-      this.setState({
-        homeTeams: json
-      });
-    } catch (error) {
-      console.log(error);
-    }
-    try {
-      const response = await fetch(
-        process.env.API_URL + "/api/teamResult/awayTeam",
-        {
-          credentials: "include",
-          headers: { Authorization: "Bearer " + localStorage.getItem("token") }
+        if (command === 1) {
+            if (this.state.currentPage !== 0)
+                this.setState(prevState => ({
+                    currentPage: prevState.currentPage - 1
+                }));
         }
-      );
-      const json = await response.json();
-      this.setState({
-        awayTeams: json,
-        ready: true
-      });
-    } catch (error) {
-      console.log(error);
+        if (command === 2) {
+            if (this.state.currentPage + 1 < this.state.playersArray.length / 10) {
+                this.setState({currentPage: this.state.currentPage + 1});
+            }
+        }
+        if (command === 3) {
+            this.setState({
+                currentPage: Math.floor(this.state.playersArray.length / 10)
+            });
+        }
     }
-    console.log(this.state.playersArray);
 
-    await this.createMatchesArray();
-  }
+    _onLoginClick() {
+        this.setState({
+            showLogin: !this.state.showLogin,
+            showRegister: false
+        });
+    }
 
-  updateSearch(event){
-      this.setState({search: event.target.value.substr(0,20)});
-  }
+    _onRegisterClick() {
+        this.setState({
+            showRegister: !this.state.showRegister,
+            showLogin: false
+        });
+    }
+
+    _matches() {
+        this.setState({
+            currentPage: 0,
+            matches: !this.state.matches,
+            players: false
+        });
+    }
+
+    _players() {
+        this.setState({
+            currentPage: 0,
+            players: !this.state.players,
+            matches: false
+        });
+    }
+
+    async componentDidMount() {
+        i18n.on("languageChanged", this.onLanguageChanged);
+
+        try {
+            const response = await fetch(process.env.API_URL + "/api/player/all", {
+                credentials: "include",
+                headers: {Authorization: "Bearer " + localStorage.getItem("token")}
+            });
+            const json = await response.json();
+            this.setState({
+                playersArray: json
+            });
+        } catch (error) {
+            console.log(error);
+        }
+
+        try {
+            const response = await fetch(
+                process.env.API_URL + "/api/teamResult/homeTeam",
+                {
+                    credentials: "include",
+                    headers: {Authorization: "Bearer " + localStorage.getItem("token")}
+                }
+            );
+            const json = await response.json();
+            this.setState({
+                homeTeams: json
+            });
+        } catch (error) {
+            console.log(error);
+        }
+        try {
+            const response = await fetch(
+                process.env.API_URL + "/api/teamResult/awayTeam",
+                {
+                    credentials: "include",
+                    headers: {Authorization: "Bearer " + localStorage.getItem("token")}
+                }
+            );
+            const json = await response.json();
+            this.setState({
+                awayTeams: json,
+                ready: true
+            });
+        } catch (error) {
+            console.log(error);
+        }
+
+        await this.createMatchesArray();
+    }
+  
+
 
   createMatchesArray() {
     const homeTeams = this.state.homeTeams;
@@ -289,7 +293,7 @@ class Index extends Component {
         </div>
 
         {this.state.showLogin ? <Login close={this._onLoginClick} /> : null}
-        {this.state.showRegister ? <Register /> : null}
+        {this.state.showRegister ? <Register close={this.registeredUser} /> : null}
       </LayoutGlobal>
     );
   }

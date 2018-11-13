@@ -5,10 +5,10 @@ import lngDetect from 'i18next-browser-languagedetector';
 i18next
     .use(lngDetect)
     .init({
-        debug:false,
-        detection:{
+        debug: false,
+        detection: {
             // order and from where user language should be detected
-            order: ['localStorage','cookie','querystring', 'navigator', 'htmlTag', 'path', 'subdomain'],
+            order: ['localStorage', 'cookie', 'querystring', 'navigator', 'htmlTag', 'path', 'subdomain'],
 
             // keys or params to lookup language from
             lookupQuerystring: 'lng',
@@ -18,7 +18,7 @@ i18next
             lookupFromSubdomainIndex: 0,
 
             // cache user language on
-            caches: ['cookie','localStorage'],
+            caches: ['cookie', 'localStorage'],
             excludeCacheFor: ['cimode'], // languages to not persist (cookie, localStorage)
 
             // optional expire and domain for set cookie
@@ -34,7 +34,7 @@ i18next
             escapeValue: false,
         },
         //lng: 'no', // 'en' | 'es'
-        fallbackLng: [ 'en' ],
+        fallbackLng: ['en'],
         resources: {
             en: {
                 translation: {
@@ -112,13 +112,18 @@ i18next
                     PREV: "Previous",
                     INFO: "Information",
                     DOCUMENTATION: "Documentation",
-                    SHOW_ALL:"Show all",
-                    HOME:"Home",
-                    USER_NAME:"User name",
+                    SHOW_ALL: "Show all",
+                    HOME: "Home",
+                    USER_NAME: "User name",
+                    USER_NAME_INFO: "Create a unique user name",
+                    PASSWORD_INFO: "Password must contain 8 characters and at least contain one capital letter and one number",
+                    EMAIL_INFO: "Must be a valid email",
+                    CREATE_USER_INFO: "Create new user",
                     HOMETEAM: "Home Team",
                     AWAYTEAM: "Away Team",
-                    RESULT: "Result"
-                
+                    RESULT: "Result",
+                    WELCOME:"Welcome!"
+
 
                 },
             },
@@ -197,9 +202,14 @@ i18next
                     RET_DASH: "Tilbake til hovedsiden",
                     INFO: "Informasjon",
                     DOCUMENTATION: "Dokumentasjon",
-                    SHOW_ALL:"Vis alle",
-                    HOME:"Hjem",
-                    USER_NAME:"Brukernavn",
+                    SHOW_ALL: "Vis alle",
+                    HOME: "Hjem",
+                    USER_NAME: "Brukernavn",
+                    WELCOME:"Velkommen!",
+                    USER_NAME_INFO: "Lag et unikt brukernavn",
+                    PASSWORD_INFO: "Passordet må være 8 karakterer langt og inneholde minst en stor bokstav og et tall",
+                    EMAIL_INFO: "Må være en gyldig e-post",
+                    CREATE_USER_INFO: "Lag ny bruker",
                     HOMETEAM: "Hjemmelag",
                     AWAYTEAM: "Bortelag",
                     RESULT: "Resultat"

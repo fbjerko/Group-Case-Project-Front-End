@@ -24,6 +24,7 @@ class Login extends React.Component {
     }
 
     render() {
+        console.log(this.state.loading)
         let lng = this.state.lng;
         let loading;
         if(this.state.loading){
@@ -55,11 +56,12 @@ class Login extends React.Component {
                     />
 
                     <button
+                        style={{display:"flex",justifyContent:"center"}}
                         type="button"
                         className="btn-"
                         onClick={() => {
 
-                            console.log("sending")
+
                             this.setState({loading:true});
 
                             var xhttp = new XMLHttpRequest();
@@ -67,7 +69,7 @@ class Login extends React.Component {
                                 password: document.getElementById('psw').value,
                                 userName: document.getElementById('username').value
                             });
-                            console.log(body);
+
                             xhttp.open("POST", process.env.FRONT_END_URL + "/login", true);
                             xhttp.setRequestHeader("Content-type", "application/json");
                             xhttp.send(body);
@@ -100,7 +102,7 @@ class Login extends React.Component {
                         }
                         }
                     >
-                        {i18n.t("LOG_IN", {lng})}
+                        {this.state.loading?<div className="loadingIcon"/>:i18n.t("LOG_IN", {lng})}
                     </button>
 
                 </form>
