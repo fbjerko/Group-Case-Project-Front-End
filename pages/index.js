@@ -230,16 +230,12 @@ class Index extends Component {
         <NavbarIndex
           onLoginClick={this._onLoginClick}
           onRegisterClick={this._onRegisterClick}
+          matchesBut = {this._matches}
+          playersBut = {this._players}
         />
 
         <div className="btn-group-index-toggle-info">
-          <button className="btn-index-toggle" onClick={this._matches}>
-            {i18n.t("MATCHES", this.state.lng)}
-          </button>
 
-          <button className="btn-index-toggle" onClick={this._players}>
-            {i18n.t("PLAYERS", this.state.lng)}
-          </button>
 
           {this.state.matches ? (
             <ListInfo
