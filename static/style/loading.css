@@ -1,7 +1,7 @@
 .loadingIcon {
-    border: .6rem solid #f3f3f3;
+    border: .6rem solid rgb(194, 204, 224);
     border-radius: 50%;
-    border-top: .6rem solid rgb(194, 204, 224);
+    border-top: .6rem solid darkslategrey;
     width: 20px;
     height: 20px;
     -webkit-animation: spin 2s linear infinite; /* Safari */

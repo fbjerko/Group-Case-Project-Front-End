@@ -10,6 +10,7 @@ class Register extends React.Component {
         this.state = {
             status: "Fill out user information",
             lng: i18n.language,
+            loading:false,
             pwValid:false,
             userNameValid:false,
             emailValid:false,
@@ -75,9 +76,10 @@ class Register extends React.Component {
 
     validate = (event) => {
         event.preventDefault();
-
+        this.setState({loading:true});
         var userName = document.getElementById("userName").value;
         if (userName === "") {
+            this.setState({loading:false});
             return this.loginFailed();
         }
 
@@ -111,11 +113,11 @@ class Register extends React.Component {
             // "Enter a valid Email and psw";
             this.loginFailed();
         }
+
     }
 
     newUserSuccess = (userName) => {
-        window.reload();
-        //User has been added
+        this.props.close(userName)
     }
 
     newUserFailed = () => {
@@ -130,6 +132,7 @@ class Register extends React.Component {
     loginFailed = () => {
         document.getElementById("psw").value = "";
         document.getElementById("psw-rep").value = "";
+        this.setState({loading:false});
         this.checkAll();
     }
     registerUser = () => {
@@ -150,15 +153,14 @@ class Register extends React.Component {
         xhttp.onreadystatechange = () => {
             if (xhttp.readyState == XMLHttpRequest.DONE) {
                 let body=JSON.parse(xhttp.responseText);
-
+                this.setState({loading:false});
                 console.log(body);
                 if (xhttp.status == 200) {
                     console.log("Registered User");
-                    this.setState({infoText: body.message,infoPosition:"38rem"});
-                    this.newUserSuccess("")
+                    this.newUserSuccess(document.getElementById("userName").value)
                 } else if (xhttp.status == 400) {
                     console.log("authFailed");
-                    this.setState({infoText: body.message,infoPosition:"38rem"});
+                    this.setState({infoText: body.message,infoPosition:"38rem",status:"Failed creating user"});
                     if(body.item=="userName"){
                         this.setState({userNameValid:false})
                     }else if(body.item=="email"){
@@ -175,17 +177,17 @@ class Register extends React.Component {
     }
 
     onLanguageChanged = (lng) => {
-        this.setState({lng: lng});
+        this.setState({lng: lng,infoText:i18n.t("CREATE_USER_INFO",this.state.language),infoPosition:"5rem"});
     }
 
     changeInfoText=(event)=>{
         console.log(event.target.id);
         if(event.target.id=="userName"){
-            this.setState({infoText:i18n.t("USER_NAME_INFO",this.state.language),infoPosition:"9rem"})
+            this.setState({infoText:i18n.t("USER_NAME_INFO",this.state.language),infoPosition:"8.0rem"})
         }else if(event.target.id=="email"){
-            this.setState({infoText:i18n.t("EMAIL_INFO",this.state.language),infoPosition:"17rem"})
+            this.setState({infoText:i18n.t("EMAIL_INFO",this.state.language),infoPosition:"16.2rem"})
         }else if(event.target.id=="psw" || event.target.id=="psw-rep"){
-            this.setState({infoText:i18n.t("PASSWORD_INFO",this.state.language),infoPosition:"26rem"})
+            this.setState({infoText:i18n.t("PASSWORD_INFO",this.state.language),infoPosition:"24.5rem"})
         }
     }
 
@@ -198,11 +200,11 @@ class Register extends React.Component {
             loading = <Loading icon={true} text={i18n.t("CREATING_USER", {lng})}/>;
         }else if (this.state.status == "User created!") {
             loading = <Loading icon={false} text={i18n.t("USER_CREATED", {lng})}/>;
-        } else{
+        } else if(this.state.status == "Failed creating user"){
             loading = <Loading icon={false} text={i18n.t("CREATED_FAILED",lng)}/>;
         }
         return (<div className="form-div" id="myForm">
-            <p style={{opacity:"0.5",fontSize:"1rem",width:"10rem",position:"relative",top:this.state.infoPosition}}>{this.state.infoText}</p>
+            <p style={{marginRight:"1rem",opacity:"0.5",fontSize:"1.2rem",width:"10rem",position:"relative",top:this.state.infoPosition}}>{this.state.infoText}</p>
             <form className="form-container">
                 {loading}
                 <h2>{i18n.t("REGISTER", {lng})}</h2>
@@ -244,9 +246,14 @@ class Register extends React.Component {
                     onInput={this.checkPassword}
                 />
 
-                <button type="button" className="btn-" onClick={this.validate}>
-                    {i18n.t("REGISTER", {lng})}
-                </button>
+
+
+
+                    <button type="button" className="btn-" onClick={this.validate} style={{display:"flex",justifyContent:"center"}}>
+                        {this.state.loading?<div className="loadingIcon"/>:i18n.t("REGISTER", {lng})}
+                    </button>
+
+
             </form>
         </div>)
     }
