@@ -86,9 +86,8 @@ form {
   top: 15vh;
   right: 1vw;
   display: flex;
-  flex-direction: grid;
+  flex-direction: row;
   justify-content: center;
-  align-items: center;
   text-align: center;
   margin-top: 5vh;
 
@@ -101,7 +100,7 @@ form {
   border: solid;
   border-width: 0.1rem;
   border-color: black;
-  border-radius: 6px;
+  border-radius: 2px;
 
 }
 
@@ -147,6 +146,8 @@ body {
   justify-content: center;
   margin: auto;
 }
+
+
 
 
 

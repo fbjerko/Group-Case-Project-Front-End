@@ -114,7 +114,11 @@ i18next
                     DOCUMENTATION: "Documentation",
                     SHOW_ALL:"Show all",
                     HOME:"Home",
-                    USER_NAME:"User name"
+                    USER_NAME:"User name",
+                    USER_NAME_INFO:"Create a unique user name",
+                    PASSWORD_INFO:"Password must contain 8 characters and at least contain one capital letter and one number",
+                    EMAIL_INFO:"Must be a valid email",
+                    CREATE_USER_INFO:"Create new user"
                 
 
                 },
@@ -196,7 +200,11 @@ i18next
                     DOCUMENTATION: "Dokumentasjon",
                     SHOW_ALL:"Vis alle",
                     HOME:"Hjem",
-                    USER_NAME:"Brukernavn"
+                    USER_NAME:"Brukernavn",
+                    USER_NAME_INFO:"Lag et unikt brukernavn",
+                    PASSWORD_INFO:"Passordet må være 8 karakterer langt og inneholde minst en stor bokstav og et tall",
+                    EMAIL_INFO:"Må være en gyldig e-post",
+                    CREATE_USER_INFO:"Lag ny bruker"
 
 
                 },
