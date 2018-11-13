@@ -40,6 +40,8 @@ class SearchField extends Component {
               name: dataElement[1]
             });
           }
+
+          console.log(data);
           console.log("Data loaded");
           this.setState({ data: data, filteredData: data });
           data.forEach(element => {
@@ -82,7 +84,7 @@ class SearchField extends Component {
         url = process.env.API_URL + "/api/owner/all";
         break;
       case "goalType":
-        url = process.env.API_URL + "/api/matchGoal/goalType";
+        url = process.env.API_URL + "/api/matchGoal/goalType/all";
         break;
     }
     return url;
@@ -131,7 +133,7 @@ class SearchField extends Component {
     });
     let searchResult = filteredData.map(element => {
       return (
-        <option
+        <option style={{zIndex:"1",position:'relative',left:"0rem"}}
           onDoubleClick={this.handleClick}
           key={element.id}
           id={element.id}
@@ -153,7 +155,7 @@ class SearchField extends Component {
           />
           <br />
           <select
-            
+            style={{position:"absolute"}}
             onBlur={this.disable}
             size={filteredData.length > 10 ? 10 : filteredData.length + 1}
             

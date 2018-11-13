@@ -3,6 +3,7 @@ import LayoutGlobal from "../../components/LayoutGlobal";
 import UserReturn from "../../components/buttons/UserReturn";
 import ListInfo from "../../components/admin-view/ListInfo";
 import Loading from "../../components/buttons/loading";
+import NavbarDash from "../../components/NavbarDash";
 
 class Managers extends Component {
   constructor(props) {
@@ -94,7 +95,7 @@ class Managers extends Component {
         return (
           <div>
             <LayoutGlobal />
-
+  <NavbarDash/>
             <div className="container">
               <ListInfo
                 data={managers}
@@ -117,7 +118,8 @@ class Managers extends Component {
       return (
         <div>
           <LayoutGlobal />
-          <Loading icon={true} text={"Loading players..."} />
+          <NavbarDash/>
+          <Loading icon={true} text={"Loading..."} />
         </div>
       );
     }

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import LayoutGlobal from "../../../components/LayoutGlobal";
 import SeasonsForm from "../../../components/forms/seasonsForm";
 import { Router } from "../../../routes";
+import NavbarUser from "../../../components/NavbarUser";
 
 class Seasons extends Component {
   constructor(props) {
@@ -13,17 +14,32 @@ class Seasons extends Component {
     this._create = this._create.bind(this);
   }
 
+    componentWillReceiveProps(nextProps) {
+
+        if (nextProps.url!=undefined &&nextProps.url.query.create == "true") {
+            this.setState({create: true});
+        } else {
+            this.setState({create: false});
+        }
+    }
+
   _create() {
     this.setState({
       create: !this.state.create
     });
   }
+    componentWillMount(){
+        if(this.props.url.query.create=="true"){
+            this.setState({create:true});
+        }
+    }
 
   render() {
     if (this.state.create === true) {
       return (
         <div className="container">
           <LayoutGlobal />
+            <NavbarUser/>
           <SeasonsForm close={this._create}/>
          
         
@@ -34,22 +50,13 @@ class Seasons extends Component {
       return (
         <div>
           <LayoutGlobal />
+          <NavbarUser/>
 
           <div className="container">
             <h1>Seasons</h1>
 
-            <div className="btn-admin-create-top">
-              <button className="btn-create" onClick={this._create}>
-                Create Season
-              </button>
-            </div>
+
          
-            <button
-                className="btn-dashboard-back"
-                onClick={() => this.props.close("")}
-              >
-                Back
-              </button>
           </div>
         </div>
       );

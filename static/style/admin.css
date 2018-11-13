@@ -13,11 +13,11 @@
 
 div.info-container {
 
-  display: block;
+  display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  margin-top: 10vh; 
+  margin-top: 10vh;
 }
 
 .container-general {
@@ -39,10 +39,17 @@ div.btn-admin-create-top {
   margin-top: 6vh;
 }
 
+div.admin-config {
+  position: absolute;
+  top: 6rem;
+  right: 22rem;
+  display: grid;
+}
+
 div.btn-admin-config {
   position: absolute;
-  top: 4vh;
-  right: 3vw;
+  top: 6rem;
+  right: 8rem;
   display: grid;
 }
 
@@ -155,8 +162,19 @@ table.table-admin-but {
   width: 50rem;
   margin: auto;
   margin-top: 2rem;
- 
-  
+}
+
+table.table-admin-matchgoal-but {
+  font-size: 120%;
+  width: 40rem;
+  margin: auto;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+td.td-admin-matchgoal:hover {
+  background-color: rgb(99, 97, 97);
+  cursor: pointer;
+  opacity: 0.8;
 }
 
 td.td-admin-but {
@@ -177,6 +195,11 @@ td.td-admin-but:hover {
 
 table.table-admin-get-all-matches {
   width: 110rem;
+  font-size: 130%;
+}
+
+table.table-admin-get-all-matches-front-page {
+  width: 60rem;
   font-size: 130%;
 }
 
@@ -206,6 +229,18 @@ th.th-admin-get-all-matches-result {
   width: 8rem;
   text-align: center;
 }
+th.th-admin-get-all-matches-result-small {
+  width: 40%;
+  text-align: center;
+}
+th.th-admin-get-all-matches-result-smaller {
+  width: 20%;
+  text-align: center;
+}
+td.td-admin-get-all-matches-result-small {
+  width: 40%;
+  text-align: center;
+}
 
 td.td-admin-get-all-matches-result {
   width: 12rem;
@@ -213,38 +248,106 @@ td.td-admin-get-all-matches-result {
 }
 
 table.table-admin-get-one-match {
-  width: 40rem;
+  width: 60rem;
   font-size: 120%;
-
   margin: auto;
-  margin-top: 2rem;
 }
 
 td.td-admin-get-one-match {
-  width: 12rem;
+  width: 40%;
   font-size: 120%;
 }
 
+td.td-admin-get-one-match:hover {
+  background-color: rgb(99, 97, 97);
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+
+
+
 th.th-admin-get-one-match {
-  width: 12rem;
+  width: 40%;
+  font-size: 120%;
+  height: 5rem;
+}
+
+th.th-admin-get-one-match-header {
+  width: 40%;
+  font-size: 150%;
+  height: 5rem;
+  text-align:center;
+}
+th.th-admin-get-one-match-header-team {
+  width: 40%;
+  font-size: 150%;
+  height: 5rem;
+  text-align:center;
+}
+th.th-admin-get-one-match-header-team:hover {
+  background-color: rgb(99, 97, 97);
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+
+td.td-admin-get-one-match-header:hover {
+  background-color: rgb(99, 97, 97);
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+th.th-admin-get-one-match-small {
+  width: 20%;
+  text-align: center;
+  font-size: 120%;
+  height: 5rem;
+}
+td.td-admin-get-one-match-small {
+  text-align: center;
+  width: 20%;
   font-size: 120%;
 }
+td.td-admin-get-one-match-smaller {
+  text-align: center;
+  width: 5rem;
+  font-size: 120%;
+}
+td.td-admin-get-one-match-smaller:hover {
+  background-color: rgb(99, 97, 97);
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+td.first { display: none; }
 
 table.table-admin-get-one-match-header {
   width: 60rem;
   font-size: 120%;
-  margin-bottom: 2rem;
   margin: auto;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  
 }
 
-th.th-admin-get-one-match-small {
-  width: 5rem;
+table.table-admin-get-one-match-small-header {
+  width: 20rem;
   font-size: 120%;
+  
+  margin: auto;
+  margin-top: 2rem;
+  margin-bottom: -0.1rem;
 }
-td.td-admin-get-one-match-small {
-  width: 5rem;
+
+th.th-admin-get-one-match-small-header {
+  width: 20%;
   font-size: 120%;
+  height: 5rem;
+  text-align: center;
 }
+
+
 
 
 
@@ -482,6 +585,13 @@ button.btn-create {
 .create-match-container {
   display: flex;
   justify-content: center;
+  align-items: center;
+  
+
+}
+
+.create-match-container table{
+  font-size: 1.5rem;
 
 }
 .create-match-container ul{
@@ -498,7 +608,11 @@ button.btn-create {
 }
 .create-match-container td{
   cursor: pointer;
-  padding-left: 10px;
+  padding-left: 0px;
+  border-style: hidden;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-right: 1rem;
 }
 
 

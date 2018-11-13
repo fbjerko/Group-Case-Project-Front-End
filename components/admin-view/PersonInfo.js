@@ -99,19 +99,17 @@ class PersonInfo extends Component {
             const person = this.state.personInfo;
             let contact = this.state.contactInfo;
             let contactRows = [];
-            let loading;
+            if(contact.length>0){
+                contact.forEach(element => {
+                    contactRows.push(
+                        <tr className="tr-admin-get-one">
+                            <th className="th-admin-get-one"> {element[1]} </th>
 
-            if(contact.status != 403){
-              contact.forEach(element => {
-                contactRows.push(
-                  <tr className="tr-admin-get-one">
-                  <th className="th-admin-get-one"> {element[1]} </th>
-                  
-           
-                  <td className="td-admin-get-one">{element[2]}</td>
-                  </tr>  
-                );         
-              });
+
+                            <td className="td-admin-get-one">{element[2]}</td>
+                        </tr>
+                    );
+                });
 
             }
 

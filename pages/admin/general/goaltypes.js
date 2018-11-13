@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import LayoutGlobal from "../../../components/LayoutGlobal";
 import GoalsForm from "../../../components/forms/goalsForm";
 import { Router } from "../../../routes";
+import NavbarUser from "../../../components/NavbarUser";
 
 class Goals extends Component {
   constructor(props) {
@@ -13,23 +14,34 @@ class Goals extends Component {
     this._createGoal = this._createGoal.bind(this);
   }
 
+    componentWillReceiveProps(nextProps) {
+
+        if (nextProps.url!=undefined &&nextProps.url.query.create == "true") {
+            this.setState({createGoal: true});
+        } else {
+            this.setState({createGoal: false});
+        }
+    }
+
   _createGoal() {
     this.setState({
       createGoal: !this.state.createGoal
     });
   }
+    componentWillMount(){
+        if(this.props.url.query.create=="true"){
+            this.setState({createGoal:true});
+        }
+    }
 
   render() {
     if (this.state.createGoal === true) {
       return (
         <div>
           <LayoutGlobal />
+            <NavbarUser/>
           <GoalsForm />
-          <div className="btn-admin-create-bottom">
-            <button className="btn-create" onClick={this._createGoal}>
-              Back
-            </button>
-          </div>
+
         </div>
       );
     } else {
@@ -37,6 +49,7 @@ class Goals extends Component {
       return (
         <div>
           <LayoutGlobal />
+            <NavbarUser/>
 
           <div className="container">
             <h1>Goal Types</h1>
@@ -46,12 +59,7 @@ class Goals extends Component {
                 Create Goal Type
               </button>
             </div>
-            <button
-                className="btn-dashboard-back"
-                onClick={() => this.props.close("")}
-              >
-                Back
-              </button>
+
           </div>
         </div>
       );

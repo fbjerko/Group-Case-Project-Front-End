@@ -10,6 +10,7 @@ import Persons from "./general/persons";
 import Seasons from "./general/season";
 import Users from "./general/users";
 import Players from "../admin/players";
+import NavbarUser from "../../components/NavbarUser";
 
 
 class General extends Component {
@@ -100,6 +101,7 @@ class General extends Component {
     return (
       <div>
         <LayoutGlobal />
+        <NavbarUser/>
 
         <div className="container-general">
           <h1>{i18n.t("GENERAL", { lng })}</h1>
@@ -108,7 +110,7 @@ class General extends Component {
             <button
               className="btn-nav-general"
               id="btn-address"
-              onClick={() => this.changeContent("Address")}
+              onClick={() => Router.pushRoute("admin/general/address")}
             >
               {i18n.t("ADDRESSES", { lng })}
             </button>
@@ -116,7 +118,7 @@ class General extends Component {
             <button
               className="btn-nav-general"
               id="btn-goaltype"
-              onClick={() => this.changeContent("GoalType")}
+              onClick={() => Router.pushRoute("/admin/general/goaltypes")}
             >
               {i18n.t("GOAL_TYPES", { lng })}
             </button>
@@ -124,7 +126,7 @@ class General extends Component {
             <button
               className="btn-nav-general"
               id="btn-owner"
-              onClick={() => this.changeContent("Owners")}
+              onClick={() => Router.pushRoute("/admin/general/owners")}
             >
               {i18n.t("OWNERS", { lng })}
             </button>
@@ -134,7 +136,7 @@ class General extends Component {
             <button
               className="btn-nav-general"
               id="btn-season"
-              onClick={() => this.changeContent("Seasons")}
+              onClick={() => Router.pushRoute("/admin/general/season")}
             >
               {i18n.t("SEASONS", { lng })}
             </button>
@@ -142,7 +144,7 @@ class General extends Component {
             <button
               className="btn-nav-general"
               id="btn-association"
-              onClick={() => this.changeContent("Associations")}
+              onClick={() => Router.pushRoute("/admin/general/associations")}
             >
               {i18n.t("ASSOCIATIONS", { lng })}
             </button>
@@ -150,7 +152,7 @@ class General extends Component {
             <button
               className="btn-nav-general"
               id="btn-persons"
-              onClick={() => this.changeContent("Persons")}
+              onClick={() => Router.pushRoute("/admin/general/persons")}
             >
               {i18n.t("PERSONS", { lng })}
             </button>
@@ -158,18 +160,13 @@ class General extends Component {
             <button
               className="btn-nav-general"
               id="btn-users"
-              onClick={() => this.changeContent("Users")}
+              onClick={() => Router.pushRoute("/admin/general/users")}
             >
               {i18n.t("USERS", { lng })}
             </button>
           </div>
 
-          <button
-            className="btn-admin-player"
-            onClick={() => this.props.close("")}
-          >
-            Back
-          </button>
+
         </div>
       </div>
     );

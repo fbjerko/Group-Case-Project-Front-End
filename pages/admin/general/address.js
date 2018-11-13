@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import LayoutGlobal from "../../../components/LayoutGlobal";
 import AddressForm from "../../../components/forms/addressForm";
 import { Router } from "../../../routes";
+import NavbarUser from "../../../components/NavbarUser";
 
 class Address extends Component {
   constructor(props) {
@@ -13,10 +14,25 @@ class Address extends Component {
     this._createAddress = this._createAddress.bind(this);
   }
 
+    componentWillReceiveProps(nextProps) {
+
+        if (nextProps.url!=undefined &&nextProps.url.query.create == "true") {
+            this.setState({createAddress: true});
+        } else {
+            this.setState({createAddress: false});
+        }
+    }
+
   _createAddress() {
     this.setState({
       createAddress: !this.state.createAddress
     });
+  }
+
+  componentWillMount(){
+      if(this.props.url.query.create=="true"){
+          this.setState({createAddress:true});
+      }
   }
 
   render() {
@@ -24,12 +40,9 @@ class Address extends Component {
       return (
         <div>
           <LayoutGlobal />
+          <NavbarUser/>
           <AddressForm />
-          <div className="btn-admin-create-bottom">
-            <button className="btn-create" onClick={this._createAddress}>
-              Back
-            </button>
-          </div>
+
         </div>
       );
     } else {
@@ -37,15 +50,11 @@ class Address extends Component {
       return (
         <div>
           <LayoutGlobal />
-
+            <NavbarUser/>
           <div className="container">
             <h1>Address</h1>
 
-            <div className="btn-admin-create-top">
-              <button className="btn-create" onClick={this._createAddress}>
-                Create Address
-              </button>
-            </div>
+
             <button
               className="btn-dashboard-back"
               onClick={() => this.props.close("")}

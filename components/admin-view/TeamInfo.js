@@ -146,6 +146,7 @@ class TeamInfo extends Component {
     }
     if (this.state.ready === true) {
       const team = this.state.teamInfo;
+
       this.name = team.name;
         return (
           <div>
@@ -171,7 +172,6 @@ class TeamInfo extends Component {
                   <tr className="tr-admin-get-one">
                     <th className="th-admin-get-one"> Country</th>
                     <td className="td-admin-get-one">
-                      {" "}
                       {team.location.address.country}
                     </td>
                   </tr>

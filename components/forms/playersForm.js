@@ -140,7 +140,7 @@ class PlayersForm extends Component {
 
     let backButton; 
     if(this.props.edit === "edit") {
-        console.log("AJJAJAJAJA");
+
         backButton=(<button
             className="btn-dashboard-back"
             onClick={() => this.props.close("0")}
@@ -151,7 +151,7 @@ class PlayersForm extends Component {
     if (this.state.ready === true) {
       return (
           <div>
-        <div className="info-container">
+        <div className="create-match-container">
           <div >
             {this.state.loading}
             <div className="top">
@@ -204,9 +204,9 @@ class PlayersForm extends Component {
             />
             
           </div>
-         
+
           </div>
-          {backButton}
+              {backButton}
         </div>
       );
     } else {

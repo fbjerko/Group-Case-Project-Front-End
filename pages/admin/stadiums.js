@@ -4,6 +4,7 @@ import AdminReturn from "../../components/buttons/AdminReturn";
 import ListInfo from "../../components/admin-view/ListInfo";
 import LocationsForm from "../../components/forms/locationsForm";
 import Loading from "../../components/buttons/loading";
+import NavbarUser from "../../components/NavbarUser";
 
 class Stadiums extends Component {
   constructor(props) {
@@ -13,14 +14,23 @@ class Stadiums extends Component {
       ready: false,
       createStadium: false,
       currentPage: 0,
-      content: ["Stadium", "Team", "Address"], // Attribute variable names
-      contentFields: ["Name", "Team", "Address"], // Names/Values of variables
+      content: ["Stadium", "Teams", "Address"], // Attribute variable names
+      contentFields: ["Name", "Teams", "Address"], // Names/Values of variables
       canEdit: true // Names/Values of variables
     };
 
-    this._createStadium = this._createStadium.bind(this);
+
     this.changePage = this.changePage.bind(this);
   }
+
+    componentWillReceiveProps(nextProps) {
+
+        if (nextProps.url!=undefined && nextProps.url.query.create == "true") {
+            this.setState({createStadium: true});
+        } else {
+            this.setState({createStadium: false});
+        }
+    }
 
   changePage(command) {
     if (command === 0) {
@@ -44,13 +54,12 @@ class Stadiums extends Component {
     }
   }
 
-  _createStadium() {
-    this.setState({
-      createStadium: !this.state.createStadium
-    });
-  }
+
 
   async componentDidMount() {
+      if(this.props.url.query.create=="true"){
+          this.setState({createStadium:true});
+      }
     console.log("Hey");
     try {
       const response = await fetch(process.env.API_URL + "/api/location/all",{
@@ -77,26 +86,18 @@ class Stadiums extends Component {
         return (
           <div>
             <LayoutGlobal />
+            <NavbarUser/>
             <LocationsForm />
-            <div className="btn-admin-create-bottom">
-              <button className="btn-create" onClick={this._createStadium}>
-                Back
-              </button>
-            </div>
+
           </div>
         );
       } else {
         return (
           <div>
             <LayoutGlobal />
-
+              <NavbarUser/>
             <div className="container">
-              <div className="btn-admin-config">
-                <button className="btn-create" onClick={this._createStadium}>
-                  Create location
-                </button>
-                
-              </div>
+
 
               <ListInfo
                 data={stadiums}
@@ -109,7 +110,7 @@ class Stadiums extends Component {
                 close={this.props.close}
               />
 
-              {this.state.createPlayer ? <CreateUser /> : null}
+
             </div>
           </div>
         );
@@ -118,7 +119,8 @@ class Stadiums extends Component {
       return (
         <div>
           <LayoutGlobal />
-          <Loading icon={true} text={"Loading players..."} />
+            <NavbarUser/>
+          <Loading icon={true} text={"Loading..."} />
         </div>
       );
     }

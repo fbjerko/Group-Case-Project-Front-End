@@ -10,7 +10,8 @@ class ListInfo extends Component {
       activeId: "",
       display: 99,
       userId: "",
-      lng: i18n.language
+      lng: i18n.language, 
+      score: ""
     };
 
     this.showFirst = this.showFirst.bind(this);
@@ -24,11 +25,13 @@ class ListInfo extends Component {
     this.setState({ lng: lng });
   };
 
-  async showFirst(id, action) {
+  async showFirst(id, action, score) {
     if (this.props.canLoad === undefined) {
       await this.setState({
         activeId: id,
-        display: action
+        display: action,
+        score: score
+
       });
     }
   }
@@ -100,16 +103,18 @@ class ListInfo extends Component {
           );
         } else if (this.props.contentFields.length === 5) {
           if (i === 2) {
+            let score = data[i * 2 + 1];
             columns.push(
               <td
                 key={data[i * 2] + data[3] + i}
                 className="td-admin-get-all-matches-result"
-                onClick={() => this.showFirst(id, action)}
+                onClick={() => this.showFirst(id, action, score)}
               >
                 {data[i * 2 + 1]}
               </td>
             );
           } else {
+              
             columns.push(
               <td
                 key={data[i * 2] + data[3] + i}
@@ -120,7 +125,34 @@ class ListInfo extends Component {
               </td>
             );
           }
-        } else {
+        } else if (this.props.contentFields.length === 3) {
+          if (i === 1) {
+          
+            let score = data[i * 2 + 1];
+            columns.push(
+              <td
+                key={data[i * 2] + data[3] + i}
+                className="td-admin-get-all-matches-result"
+                onClick={() => this.showFirst(id, action, score)}
+              >
+                {data[i * 2 + 1]}
+              </td>
+            );
+          } else {
+            
+            let score = data[i * 2 + 1];
+            columns.push(
+              <td
+                key={data[i * 2] + data[3] + i}
+                className="td-admin-get-all-matches-result"
+                onClick={() => this.showFirst(id, action, score)}
+              >
+                {data[i * 2 + 1]} 
+              </td>
+            );
+
+          }} else {
+        
           columns.push(
             <td
               key={data[i * 2] + data[3] + i}
@@ -155,6 +187,19 @@ class ListInfo extends Component {
         }
         return (
           <th key={field} className="th-admin-get-all-matches">
+            {field}{" "}
+          </th>
+        );
+      } else if (this.props.contentFields.length === 3) {
+        if (field === "Result") {
+          return (
+            <th key={field} className="th-admin-get-all-matches-result-smaller">
+              {field}{" "}
+            </th>
+          );
+        }
+        return (
+          <th key={field} className="th-admin-get-all-matches-result-small">
             {field}{" "}
           </th>
         );
@@ -208,6 +253,7 @@ class ListInfo extends Component {
             close={this.close}
             content={this.props.content[2]}
             canEdit={this.props.canEdit}
+            score={this.state.score}
           />
         </div>
       );
@@ -223,7 +269,18 @@ class ListInfo extends Component {
             </tbody>
           </table>
         );
-      } else if (this.props.contentFields.length === 1 && this.state.display === 99) {
+      } else if (this.props.contentFields.length === 3 && this.state.display === 99) {
+        table = (
+          <table key="table" className="table-admin-get-all-matches-front-page">
+            <tbody key="tbody">
+              <tr key="Attri" className="tr-admin-get-all">
+                {fields}
+              </tr>
+              {rows}
+            </tbody>
+          </table>
+        );
+        } else if (this.props.contentFields.length === 1 && this.state.display === 99) {
         table = ( <table key="table" className="table-admin-get-all-persons">
         <tbody key="tbody">
           <tr key="Attri" className="tr-admin-get-all">
@@ -234,7 +291,7 @@ class ListInfo extends Component {
       </table>
         );
       } else {
-        console.log("DADASDDA");
+
         table = (
           <table key="table" className="table-admin-get-all">
             <tbody key="tbody_1">
@@ -279,6 +336,7 @@ class ListInfo extends Component {
               close={this.close}
               content={this.props.content[2]}
               canEdit={this.props.canEdit}
+              score={this.state.score}
             />
           </div>
         );
@@ -349,7 +407,7 @@ class ListInfo extends Component {
               <h2>
                 {i18n.t("PAGE", { lng })} {this.props.currentPage + 1}
               </h2>
-             {backButton}
+
             </div>
           </div>
         );
