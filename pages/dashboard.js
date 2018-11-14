@@ -184,6 +184,7 @@ class Dashboard extends Component {
                     canEdit={false}
                     userId={this.state.userId}
                     updateWatchList={this.updateWatchList}
+
                   />
                 </div>
               </div>
