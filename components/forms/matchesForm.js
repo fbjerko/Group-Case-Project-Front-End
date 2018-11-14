@@ -69,7 +69,7 @@ class MatchesForm extends React.Component {
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send(
             JSON.stringify({
-                playersId: this.state.selectedPlayers,
+                playersIds: this.state.selectedPlayers,
                 date: this.state.match_date,
                 homeTeamId: this.state.team_1,
                 awayTeamId: this.state.team_2,

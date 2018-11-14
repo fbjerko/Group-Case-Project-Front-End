@@ -112,7 +112,7 @@ class TeamInfo extends Component {
         };
     }
 
-    
+
 
     render() {
 
