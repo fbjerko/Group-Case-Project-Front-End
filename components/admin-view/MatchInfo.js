@@ -119,20 +119,37 @@ class MatchInfo extends Component {
     
   }
 
-  removeGoal(id) {
+  removeGoal(id, matchId, teamId) {
     let xhttp = new XMLHttpRequest();
+
+    let json =   JSON.stringify({
+      matchGoalId: id,
+      footballMatchId: matchId,
+      teamId: teamId,
+     
+    });
+
+    console.log(json)
     xhttp.open(
-        "DELETE",
-        process.env.API_URL + "/api/matchGoal/" + id + "/delete",
+        "POST",
+        process.env.API_URL + "/api/matchGoal/delete",
         true
     );
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.setRequestHeader("Authorization","Bearer "+localStorage.getItem("token"));
     xhttp.withCredentials = true;
+    xhttp.send(
+      JSON.stringify({
+        matchGoalId: id,
+        footballMatchId: matchId,
+        teamId: teamId,
+       
+      })
+    );
     xhttp.onreadystatechange = () => {
         if (xhttp.readyState == XMLHttpRequest.DONE) {
             console.log("DONE");
-            if (xhttp.status === 200) {
+            if (xhttp.status === 200 || xhttp.status === 405) {
               this.setState({ status: "Goal Deleted" });
                 console.log("Yay");
                
@@ -144,7 +161,7 @@ class MatchInfo extends Component {
             this.update();
         }
     };
-    xhttp.send(null);
+    
 }
 
   showContent(id, type) {
@@ -183,6 +200,7 @@ class MatchInfo extends Component {
         }.bind(this),
         3000
       );
+      location.reload();
       return (
         <div className="container">
           <h1>{this.state.status}</h1>
@@ -252,7 +270,7 @@ class MatchInfo extends Component {
         if(this.props.canEdit === true) {
           edit = (
             <td className="td-admin-get-one-match-smaller"
-            onClick={() => this.removeGoal(goal[0])}
+            onClick={() => this.removeGoal(goal[0], goal[4], goal[6])}
             >
              x
             </td>

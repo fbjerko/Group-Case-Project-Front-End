@@ -88,7 +88,11 @@ class PersonInfo extends Component {
 
     render() {
 
+        
+
         if (this.state.ready === true) {
+
+            console.log(this.props.watchListIds);
 
             const person = this.state.personInfo;
             const contact = this.state.contactInfo;

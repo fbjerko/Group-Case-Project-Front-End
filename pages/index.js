@@ -233,13 +233,12 @@ class Index extends Component {
         />
 
         <div className="btn-group-index-toggle-info">
-          <button className="btn-index-toggle" onClick={this._matches}>
-            {i18n.t("MATCHES", this.state.lng)}
-          </button>
 
-          <button className="btn-index-toggle" onClick={this._players}>
-            {i18n.t("PLAYERS", this.state.lng)}
-          </button>
+         <img style={{marginTop: "1rem", marginBottom: "3rem" ,  display: "inline-block", marginRight: "7rem"}} src="../static/images/_players.png" alt="" className="logo"
+                     onClick={this._players}/>
+                      <img style={{marginTop: "1rem", marginBottom: "3rem",  display: "inline-block"}} src="../static/images/_teams.png" alt="" className="logo"
+                     onClick={this._matches}/>
+         
 
           {this.state.matches ? (
             <ListInfo

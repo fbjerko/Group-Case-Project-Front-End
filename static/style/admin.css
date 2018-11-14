@@ -164,6 +164,37 @@ table.table-admin-but {
   margin-top: 2rem;
 }
 
+
+
+div.div-table-matches-players {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+
+ 
+  
+}
+table.table-matches-form {
+  font-size: 130%;
+  width: 35rem;
+  margin: auto;
+  margin-top: 2rem;
+  
+}
+
+
+
+table.table-matches-form-players {
+  display: inline-block;
+  font-size: 130%;
+  width: 50rem;
+ 
+  margin-top: 2rem;
+ 
+  
+  
+}
+
 table.table-admin-matchgoal-but {
   font-size: 120%;
   width: 40rem;
@@ -186,6 +217,15 @@ td.td-admin-but {
   text-align: center;
 
 }
+td.td-admin-but-1 {
+ 
+  border: 0.1rem solid rgb(255, 255, 255);
+  padding: 0.5rem;
+  cursor: pointer;
+  width: 50%;
+  text-align: center;
+
+}
 
 td.td-admin-but:hover {
   background-color: rgb(99, 97, 97);
@@ -194,7 +234,7 @@ td.td-admin-but:hover {
 /***********************************/
 
 table.table-admin-get-all-matches {
-  width: 110rem;
+  width: 100rem;
   font-size: 130%;
 }
 
@@ -537,9 +577,17 @@ button.btn-nav-general {
 
 
 button.btn-create {
-  margin-top: 10rem;
+  margin-top: 18.5rem;
+  margin-right: 12rem;
   margin-bottom: 0.5rem;
   height: 10vh;
+}
+
+button.btn-matches {
+  margin-top: 10rem;
+  margin-left: 4rem;
+  margin-right: 4rem;
+  font-size:125%;
 }
 
 .btn-ret-admin {

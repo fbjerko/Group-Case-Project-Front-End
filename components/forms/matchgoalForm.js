@@ -78,22 +78,21 @@ class MatchGoal extends React.Component {
   sendMatchGoal = () => {
     var xhttp = new XMLHttpRequest();
 
-    let json = (
-      JSON.stringify({
-        description: this.state.desc,
-        goalTypeId: this.state.goalType,
-        playerId: this.state.activePlayer,
-        footballMatchId: this.props.matchId,
-        
-        
-      })
-    );
+    let json = JSON.stringify({
+      description: this.state.desc,
+      goalTypeId: this.state.goalType,
+      playerId: this.state.activePlayer,
+      footballMatchId: this.props.matchId
+    });
 
     console.log(json);
 
     xhttp.open("POST", process.env.API_URL + "/api/matchGoal", true);
     xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.setRequestHeader("Authorization","Bearer " + localStorage.getItem("token"));
+    xhttp.setRequestHeader(
+      "Authorization",
+      "Bearer " + localStorage.getItem("token")
+    );
     xhttp.withCredentials = true;
     xhttp.send(
       JSON.stringify({
@@ -132,162 +131,165 @@ class MatchGoal extends React.Component {
   render() {
     let output;
 
-    console.log(this.state.step + " is step");
+    if (this.state.ready) {
+      console.log(this.state.step + " is step");
 
-    if (this.state.step === 1) {
-      output = (
-        <div>
-          <h1>Create New MatchGoal</h1>
+      if (this.state.step === 1) {
+        output = (
+          <div>
+            <h1>Create New MatchGoal</h1>
 
-          <h2>Select team</h2>
+            <h2>Select team</h2>
 
-          <table className="table-admin-matchgoal-but">
-            <tbody>
-              <tr>
-                <td
-                  className="td-admin-but"
-                  onClick={() =>
-                    this.setState({
-                      step: 2,
-                      activeId: this.props.team_1_id,
-                      activeName: this.props.team_1_name,
-                      homeOrAway: "Home"
-                    })
-                  }
-                >
-                  <h2>{this.props.team_1_name}</h2>
-                </td>
-                <td
-                  className="td-admin-but"
-                  onClick={() =>
-                    this.setState({
-                      step: 2,
-                      activeId: this.props.team_2_id,
-                      activeName: this.props.team_2_name,
-                      homeOrAway: "Away"
-                    })
-                  }
-                >
-                  <h2>{this.props.team_2_name}</h2>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      );
-    } else if (this.state.step === 2) {
-      let players;
-      if (this.state.homeOrAway === "Home") {
-        players = this.state.team_1_players;
-      } else if (this.state.homeOrAway === "Away") {
-        players = this.state.team_2_players;
-      } else {
-        this.setState({
-          step: 1
-        });
-      }
-
-      output = (
-        <div>
-          <h1>Create New MatchGoal</h1>
-          <h2>Select Player</h2>
-
-          <h2>{this.state.activeName}:</h2>
-          <div className="div-admin-get-all">
-            <table>
+            <table className="table-admin-matchgoal-but">
               <tbody>
                 <tr>
-                  <th>Player</th>
-                  <th>Position</th>
+                  <td
+                    className="td-admin-but"
+                    onClick={() =>
+                      this.setState({
+                        step: 2,
+                        activeId: this.props.team_1_id,
+                        activeName: this.props.team_1_name,
+                        homeOrAway: "Home"
+                      })
+                    }
+                  >
+                    <h2>{this.props.team_1_name}</h2>
+                  </td>
+                  <td
+                    className="td-admin-but"
+                    onClick={() =>
+                      this.setState({
+                        step: 2,
+                        activeId: this.props.team_2_id,
+                        activeName: this.props.team_2_name,
+                        homeOrAway: "Away"
+                      })
+                    }
+                  >
+                    <h2>{this.props.team_2_name}</h2>
+                  </td>
                 </tr>
-                {players.map(player => {
-                  return (
-                    <tr onClick={this.selectPlayer}>
-                      <td
-                        className="td-admin-matchgoal"
-                        id={player[0]}
-                        onClick={() =>
-                          this.setState({
-                            step: 3,
-                            activePlayer: player[0],
-                            activePlayerName: player[1]
-                          })
-                        }
-                      >
-                        {player[1]}
-                      </td>
-                      <td id={player[0] + "p"}>{player[2]}</td>
-                    </tr>
-                  );
-                })}
               </tbody>
             </table>
           </div>
-        </div>
-      );
-    } else if (this.state.step === 3) {
-      output = (
-        <div>
-          <h1>Create New MatchGoal</h1>
-          <br />
-          <h2>{this.state.activePlayerName} scored a goal for {this.state.activeName}!</h2>
-          <br />
-          <h2>Please specify the goal type:</h2>
-
-          <p>Goal type</p>
-          <SearchField
-            type={"goalType"}
-            handleChange={this.updateSearchFieldGoal}
-          />
-          <br />
-          <br />
-          <p>Description</p>
-          <input
-            onChange={this.updateInput}
-            
-            type="text"
-            placeholder="Write a description"
-            id="description"
-          />
-          <br />
-          <br />
-          <input
-            className="btn-index"
-            type="button"
-            value="Submit"
-            onClick={this.sendMatchGoal}
-          />
-        </div>
-      );
-    }
-
-    if (this.state.showPop) {
-      setTimeout(
-        function() {
+        );
+      } else if (this.state.step === 2) {
+        let players;
+        if (this.state.homeOrAway === "Home") {
+          players = this.state.team_1_players;
+        } else if (this.state.homeOrAway === "Away") {
+          players = this.state.team_2_players;
+        } else {
           this.setState({
-            showPop: false
+            step: 1
           });
-          this.props.close();
-        }.bind(this),
-        3000
-      );
-      return (
-        <div className="container">
-          <h1>{this.state.status}</h1>
-        </div>
-      );
-    }
+        }
 
-    if (this.state.ready) {
-      return (
-        <div className="container">
-          <div>{output}</div>
+        output = (
+          <div>
+            <h1>Create New MatchGoal</h1>
+            <h2>Select Player</h2>
 
-          <button className="btn-dashboard-back" onClick={this.props.close}>
-            Back
-          </button>
-        </div>
-      );
+            <h2>{this.state.activeName}:</h2>
+            <div className="div-admin-get-all">
+              <table>
+                <tbody>
+                  <tr>
+                    <th>Player</th>
+                    <th>Position</th>
+                  </tr>
+                  {players.map(player => {
+                    return (
+                      <tr onClick={this.selectPlayer}>
+                        <td
+                          className="td-admin-matchgoal"
+                          id={player[0]}
+                          onClick={() =>
+                            this.setState({
+                              step: 3,
+                              activePlayer: player[0],
+                              activePlayerName: player[1]
+                            })
+                          }
+                        >
+                          {player[1]}
+                        </td>
+                        <td id={player[0] + "p"}>{player[2]}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        );
+      } else if (this.state.step === 3) {
+        output = (
+          <div>
+            <h1>Create New MatchGoal</h1>
+            <br />
+            <h2>
+              {this.state.activePlayerName} scored a goal for{" "}
+              {this.state.activeName}!
+            </h2>
+            <br />
+            <h2>Please specify the goal type:</h2>
+
+            <p>Goal type</p>
+            <SearchField
+              type={"goalType"}
+              handleChange={this.updateSearchFieldGoal}
+            />
+            <br />
+            <br />
+            <p>Description</p>
+            <input
+              onChange={this.updateInput}
+              type="text"
+              placeholder="Write a description"
+              id="description"
+            />
+            <br />
+            <br />
+            <input
+              className="btn-index"
+              type="button"
+              value="Submit"
+              onClick={this.sendMatchGoal}
+            />
+          </div>
+        );
+      }
+
+      if (this.state.showPop) {
+        setTimeout(
+          function() {
+            this.setState({
+              showPop: false
+            });
+            this.props.close();
+          }.bind(this),
+          3000
+        );
+        location.reload();
+        return (
+          <div className="container">
+            <h1>{this.state.status}</h1>
+          </div>
+        );
+      } else {
+        return (
+          <div className="container">
+            <div>{output}</div>
+
+            <button className="btn-dashboard-back" onClick={this.props.close}>
+              Back
+            </button>
+          </div>
+        );
+      }
     } else {
       return <div>Loading</div>;
     }

@@ -10,6 +10,8 @@ class PlayerInfo extends Component {
         this.state = {
             playerId: "0",
             playerInfo: [],
+            tempWatchList: [],
+            watchListIds: [],
             playerName: "",
             edit: "0",
             ready: false,
@@ -34,9 +36,74 @@ class PlayerInfo extends Component {
         this.setState({lng: lng});
     };
 
+    watchListIds = [];
+
+    async getWatchList() {
+        try {
+            const response = await fetch(
+                process.env.API_URL +
+                "/api/favouriteList/" +
+                this.props.userId +
+                "/byUserId",{
+                    credentials: 'include',headers:{Authorization:"Bearer "+localStorage.getItem("token")}
+                }
+            );
+            const json = await response.json();
+
+            console.log(json);
+            this.setState({
+                tempWatchList: json,
+               
+            });
+        } catch (error) {
+            console.log(error);
+        }
+
+        this.state.tempWatchList.map( item => {
+
+            let list = item;
+            list[1].map( id => {
+                this.watchListIds.push(id)
+            });
+
+            list[3].map( id => {
+                this.watchListIds.push(id)
+            });
+        });
+
+    
+    }
+
 
     async componentDidMount() {
         console.log("ID player: " + this.props.id);
+
+        let inWatchList = false;
+
+        if(!this.props.canEdit) {
+            await this.getWatchList();
+            console.log("HAHAHAHHA" + this.watchListIds);
+            await this.setState({
+                watchListIds: this.watchListIds
+            })
+            console.log("STATE " + this.state.watchListIds);
+            for(let i = 0; i<this.state.watchListIds.length; i ++) {
+
+                console.log("ID: " + this.props.id + " = " + this.state.watchListIds[i]);
+                if(this.props.id === this.state.watchListIds[i]) {
+
+                    console.log("poudhsapduhasuidphasiudhuashudi");
+                    await this.setState({
+                        inWatchList: true
+                    })
+                    
+                    console.log(this.state.inWatchList);
+                }
+            }
+        }
+        
+
+       
 
         try {
             const response = await fetch(
@@ -51,7 +118,7 @@ class PlayerInfo extends Component {
             );
             const json = await response.json();
 
-            console.log(json);
+          
             await this.setState({
                 playerInfo: json,
                 ready: true
@@ -69,10 +136,11 @@ class PlayerInfo extends Component {
                 watchListText: "Add to Watchlist"
             });
         }
+ 
     }
 
     deletePlayer = () => {
-        console.log(process.env.API_URL + "/api/player/" + this.props.id);
+       
         let xhttp = new XMLHttpRequest();
         xhttp.open(
             "DELETE",
@@ -86,8 +154,11 @@ class PlayerInfo extends Component {
             if (xhttp.readyState == XMLHttpRequest.DONE) {
                 console.log("DONE");
                 if (xhttp.status === 200) {
+                    
                     this.setState({success: true, failed: false});
                     console.log("Yay");
+                    
+
                 } else if (xhttp.status == 403) {
                     this.setState({failed: true, success: false});
                     console.log("Damn");
@@ -95,6 +166,7 @@ class PlayerInfo extends Component {
             }
         };
         xhttp.send(null);
+        
     };
 
     addToWatchList(name) {
@@ -109,15 +181,7 @@ class PlayerInfo extends Component {
         }
         console.log(this.props.id + " ID FROM");
         var xhttp = new XMLHttpRequest();
-
-        var json = JSON.stringify({
-            playerId: this.props.id,
-            playerName: name,
-            userId: this.props.userId
-        });
-
-        console.log(json);
-
+     
         xhttp.open("PUT", process.env.API_URL + "/api/favouriteList", true);
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.setRequestHeader("Authorization","Bearer "+localStorage.getItem("token"));
@@ -135,8 +199,9 @@ class PlayerInfo extends Component {
         xhttp.onreadystatechange = () => {
             if (xhttp.readyState == XMLHttpRequest.DONE) {
                 if (xhttp.status === 200 || xhttp.status === 201) {
+                 
                     console.log("Watchlist updated");
-
+                        this.props.getWatchList;
                     if (this.state.inWatchList === true) {
                         this.setState({
                             watchListText: name + " Removed from Watchlist"
@@ -145,7 +210,7 @@ class PlayerInfo extends Component {
                         this.setState({
                             watchListText: name + " Added to Watchlist"
                         });
-                        this.props.updateWatchList;
+                      
                         setTimeout(
                             function () {
                                 this.setState({
@@ -218,7 +283,7 @@ class PlayerInfo extends Component {
                 <table className="table-admin-but">
                     <tbody>
                     <tr>
-                        <td
+                        <td key={"aspuhdu"}
                             className="td-admin-but"
                             onClick={() => this.addToWatchList(name)}
                         >
@@ -231,6 +296,8 @@ class PlayerInfo extends Component {
         }
 
         if (this.state.ready === true) {
+
+            console.log(this.state.watchListIds);
             const player = this.state.playerInfo;
 
             name = player.person.firstName + " " + player.person.lastName;

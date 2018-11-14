@@ -36,6 +36,7 @@ class Dashboard extends Component {
         this.updateWatchList = this.updateWatchList.bind(this);
         this.close = this.close.bind(this);
         this.changeContent = this.changeContent.bind(this);
+        this.getWatchList = this.getWatchList.bind(this);
     }
 
     _onEditClick() {
@@ -116,19 +117,27 @@ class Dashboard extends Component {
         });
     }
 
+    watchListIds = [];
+
     async getWatchList() {
+        console.log("HENTER WATCHLIST");
         try {
             const response = await fetch(
                 process.env.API_URL +
                 "/api/favouriteList/" +
                 this.state.userId +
                 "/byUserId",{
-                    credentials: 'include',headers:{Authorization:"Bearer "+localStorage.getItem("token")}
+                    credentials: 'include',headers:{Authorization:"Bearer " + localStorage.getItem("token")}
                 }
             );
             const json = await response.json();
 
-            this.setState({
+            await this.setState({
+                watchList: [],
+                ready: false
+            });
+
+            await this.setState({
                 watchList: json,
                 ready: true
             });
@@ -167,6 +176,7 @@ class Dashboard extends Component {
             return (
               <div>
                 <LayoutGlobal />
+                <NavbarDash/>
     
                 <div className="container">
                   <WatchList
@@ -175,10 +185,11 @@ class Dashboard extends Component {
                   />
                   <PlayerInfo
                     id={this.state.activeId}
+                    userId={this.state.userId}
                     close={this.close}
                     canEdit={false}
-                    userId={this.state.userId}
-                    updateWatchList={this.updateWatchlist}
+                    getWatchList={() => this.getWatchList}
+                    
                   />
                 </div>
               </div>
@@ -186,6 +197,7 @@ class Dashboard extends Component {
           } else if (this.state.display === 2) {
             return (
               <div>
+                  <NavbarDash/>
                 <LayoutGlobal />
     
                 <div className="container">
@@ -198,6 +210,7 @@ class Dashboard extends Component {
                     close={this.close}
                     canEdit={false}
                     userId={this.state.userId}
+                   
                   />
                 </div>
               </div>
@@ -215,7 +228,8 @@ class Dashboard extends Component {
                         <Players
                         userId={this.state.userId}
                         updateWatchList={this.updateWatchList}
-                        close={this.changeContent}/>
+                        close={this.changeContent}
+                        />
                     </div>
                 );
             } else if (this.state.showContent === "Managers") {
@@ -242,6 +256,7 @@ class Dashboard extends Component {
                             userId={this.state.userId}
                             updateWatchList={this.updateWatchList}
                             close={this.changeContent}
+                            
                         />
                     </div>
                 );

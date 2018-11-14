@@ -21,8 +21,6 @@ class Admin extends Component {
             showContent: "",
             lng: i18n.language
         };
-
-
         this.changeContent = this.changeContent.bind(this);
     }
 
@@ -33,9 +31,6 @@ class Admin extends Component {
     onLanguageChanged = lng => {
         this.setState({lng: lng});
     };
-
-
-
 
     changeContent(contentType) {
         this.setState({
@@ -51,49 +46,36 @@ class Admin extends Component {
         if (this.state.showContent === "Players") {
             return (
                 <div>
-
-
                     <Players close={this.changeContent}/>
                 </div>
             );
         } else if (this.state.showContent === "Managers") {
             return (
                 <div>
-
-
                     <Managers close={this.changeContent}/>
-
-
                 </div>
             );
         } else if (this.state.showContent === "Teams") {
             return (
                 <div>
-
-
                     <Teams close={this.changeContent}/>
                 </div>
             );
         } else if (this.state.showContent === "Matches") {
             return (
                 <div>
-
-
                     <Matches close={this.changeContent}/>
                 </div>
             );
         } else if (this.state.showContent === "General") {
             return (
                 <div>
-
-
                     <General close={this.changeContent}/>
                 </div>
             );
         } else if (this.state.showContent === "Stadiums") {
             return (
                 <div>
-
                     <Stadiums close={this.changeContent}/>
                 </div>
             );
@@ -152,8 +134,6 @@ class Admin extends Component {
                                 {i18n.t("GENERAL", {lng})}
                             </button>
                         </div>
-
-
                     </div>
                 </div>
             );
