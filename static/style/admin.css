@@ -1,7 +1,5 @@
 .container {
   display: block;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
   text-align: center;
   margin: auto;
@@ -415,6 +413,8 @@ button.btn-dashboard-back {
   margin: auto;
   margin-top: 2rem;
 }
+
+
 
 button.btn-nav {
   margin: 0.5rem;

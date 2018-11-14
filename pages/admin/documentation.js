@@ -78,46 +78,15 @@ class Documentation extends React.Component {
             allowFullScreen/>
                 </div>
             );
-        } else  if (this.state.showContent === "PDF4") {
-
-            return(
-                <div>
-    
-    <Iframe url="../static/UseCase.pdf"
-            width="115rem"
-            height="95rem"
-            id="myId"
-            className="myClassname"
-            display="initial"
-            position="relative"
-            allowFullScreen/>
-                </div>
-            );
-        } else  if (this.state.showContent === "PDF5") {
-
-            return(
-                <div>
-    
-    <Iframe url="../static/UseCase.pdf"
-            width="115rem"
-            height="95rem"
-            id="myId"
-            className="myClassname"
-            display="initial"
-            position="relative"
-            allowFullScreen/>
-                </div>
-            );
+        
         } else {
             return (
             <LayoutGlobal>
                 <NavbarIndex/>
                 <div className="doc-div">
-                    <option style={{cursor:"pointer"}} className="btn-doc" onClick= {() => this.changeContent("UseCase")}>User Case</option>
+                    <option style={{cursor:"pointer"}} className="btn-doc" onClick= {() => this.changeContent("UseCase")}>Use Case</option>
                     <option style={{cursor:"pointer"}} className="btn-doc" onClick= {() => this.changeContent("PDF2")}>API Architecture</option>
                     <option style={{cursor:"pointer"}} className="btn-doc" onClick= {() => this.changeContent("PDF3")}>API-Documentation</option>
-                    <option style={{cursor:"pointer"}} className="btn-doc" onClick= {() => this.changeContent("PDF4")}>PDF4</option>
-                    <option style={{cursor:"pointer"}} className="btn-doc" onClick= {() => this.changeContent("PDF5")}>PDF5</option>
                 </div>
 
             </LayoutGlobal>

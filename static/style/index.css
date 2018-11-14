@@ -105,9 +105,8 @@ form {
   top: 15vh;
   right: 1vw;
   display: flex;
-  flex-direction: grid;
+  flex-direction: row;
   justify-content: center;
-  align-items: center;
   text-align: center;
   margin-top: 5vh;
 
@@ -115,12 +114,15 @@ form {
 
 .form-container {
   padding: 1rem;
-  background-color: rgb(194, 204, 224);
   width: 27rem;
   border: solid;
   border-width: 0.1rem;
-  border-color: black;
-  border-radius: 6px;
+  border-color: white;
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
 }
 
@@ -131,7 +133,7 @@ form {
   height: 4rem;
   margin: 10px 2px 10px 2px;
   background: #f1f1f1;
-  border-radius: 6px;
+  border-radius: 2px;
 }
 
 
@@ -149,6 +151,8 @@ form {
   margin: 1%;
   margin-bottom: 10px;
   opacity: 0.8;
+  display:flex;
+  justify-content: center;
 }
 
 /* Add some hover effects to buttons */
@@ -166,6 +170,15 @@ body {
   justify-content: center;
   margin: auto;
 }
+
+.btn-search{
+  position: relative;
+  right: 220px;
+  top: 55px;
+  height: 30px;
+}
+
+
 
 
 
