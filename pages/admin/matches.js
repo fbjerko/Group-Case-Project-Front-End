@@ -15,6 +15,7 @@ class Matches extends Component {
       homeTeams: [],
       awayTeams: [],
       filteredData: [],
+      teams: [],
       search: "a",
       ready: false,
       createMatch: false,
@@ -146,13 +147,26 @@ class Matches extends Component {
       console.log(error);
     }
 
-    
-
     await this.checkIfPlayed();
 
     this.setState({
       ready: true
     });
+
+    try {
+      const response = await fetch(process.env.API_URL + "/api/team/all", {
+        credentials: "include",
+        headers: { Authorization: "Bearer " + localStorage.getItem("token") }
+      });
+      const json = await response.json();
+      console.log(json);
+      this.setState({
+        teams: json,
+        ready: true
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
 
@@ -206,12 +220,13 @@ class Matches extends Component {
     if (this.state.ready === true) {
       const matches = this.state.matches;
 
+
       if (this.state.createMatch) {
         return (
           <div>
             <LayoutGlobal />
               <NavbarUser/>
-            <MatchesForm close={this.createMatch} edit={"create"} />
+            <MatchesForm  teams={this.state.teams} close={this.createMatch} edit={"create"} />
           </div>
         );
       } else {

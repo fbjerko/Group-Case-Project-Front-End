@@ -278,7 +278,7 @@ class Index extends Component {
         />
 
         <div className="btn-group-index-toggle-info">
-        
+
 
 
           {this.state.matches ? (

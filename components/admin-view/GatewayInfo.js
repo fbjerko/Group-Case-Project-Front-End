@@ -79,7 +79,7 @@ onLanguageChanged = (lng) => {
     if (this.props.content === "Matches") {
       return (
         <div>
-          <MatchInfo score={this.props.score} id={this.props.id} close={this.props.close} canEdit={this.props.canEdit}/>
+          <MatchInfo score={this.props.result} id={this.props.id} close={this.props.close} canEdit={this.props.canEdit}/>
         </div>
       );
     }  if (this.props.content === "Persons") {

@@ -94,7 +94,11 @@ class PersonInfo extends Component {
 
     render() {
 
+        
+
         if (this.state.ready === true) {
+
+            console.log(this.props.watchListIds);
 
             const person = this.state.personInfo;
             let contact = this.state.contactInfo;

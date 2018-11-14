@@ -285,6 +285,7 @@ class ListInfo extends Component {
         </div>
       );
     } else if (this.state.display === 2) {
+      console.log("ListInfo score: " + this.state.score);
       return (
         <div>
           <GatewayInfo
@@ -294,6 +295,8 @@ class ListInfo extends Component {
             canEdit={this.props.canEdit}
             score={this.state.score}
             updateWatchList={this.props.updateWatchList}
+            result={this.state.score}
+
           />
         </div>
       );
@@ -380,6 +383,7 @@ class ListInfo extends Component {
               canEdit={this.props.canEdit}
               score={this.state.score}
               updateWatchList={this.props.updateWatchList}
+              result={this.state.score}
             />
           </div>
         );

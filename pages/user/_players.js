@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import LayoutGlobal from "../../components/LayoutGlobal";
 import ListInfo from "../../components/admin-view/ListInfo";
 import PlayerInfo from "../../components/admin-view/PlayerInfo";
@@ -12,6 +12,7 @@ class Players extends Component {
     super(props);
     this.state = {
       players: [],
+   
       ready: false,
       createPlayer: false,
       currentPage: 0,
@@ -52,31 +53,40 @@ class Players extends Component {
 
   async componentDidMount() {
     try {
-      const response = await fetch(process.env.API_URL + "/api/player/all",{
-          credentials: 'include',headers:{Authorization:"Bearer "+localStorage.getItem("token")}
+      const response = await fetch(process.env.API_URL + "/api/player/all", {
+        credentials: "include",
+        headers: { Authorization: "Bearer " + localStorage.getItem("token") }
       });
       const json = await response.json();
       console.log(json);
+   
       this.setState({
         players: json,
-        ready: true
+        ready: true,
+        
       });
     } catch (error) {
       console.log(error);
     }
+   
+    
   }
 
   render() {
+  
     if (this.state.ready === true) {
       const players = this.state.players;
+
       if (this.state.display === 1) {
+       
         return (
           <div>
             <LayoutGlobal />
-            <NavbarDash/>
+            <NavbarDash />
 
             <div className="container">
               <PlayerInfo
+               userId={this.state.userId}
                 id={this.state.activeId}
                 close={this.close}
                 canEdit={false}
@@ -90,7 +100,7 @@ class Players extends Component {
         return (
           <div>
             <LayoutGlobal />
-            <NavbarDash/>
+            <NavbarDash />
             <div className="container">
               <TeamInfo
                 id={this.state.activeId}
@@ -132,9 +142,8 @@ class Players extends Component {
         return (
           <div>
             <LayoutGlobal />
-            <NavbarDash/>
+            <NavbarDash />
             <div className="container">
-
 
               <ListInfo
                 data={players}
@@ -159,7 +168,7 @@ class Players extends Component {
       return (
         <div>
           <LayoutGlobal />
-          <NavbarDash/>
+          <NavbarDash />
           <Loading icon={true} text={"Loading..."} />
         </div>
       );
