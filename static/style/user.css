@@ -97,30 +97,38 @@
     position: absolute;
     top: 20rem;
     left: 3rem;
-    
   }
+
 
   table.dashboard-watchlist-user {
     border-collapse: collapse;
-    width: 20rem;
+    width: 34rem;
     
   }
-  
+  table.dashboard-watchlist-user-small {
+    border-collapse: collapse;
+    float: left;
+    width: 17rem;
+
+  }
+
   /* Table for displaying all info about entities admin */
 
 th.th-dashboard-watchlist-user {
-  font-size: 150%;
+  font-size: 120%;
   padding-top: 0.5rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  text-align: left;
+  padding-left: 0.8rem;
+  padding-right: 0.8rem;
+  text-align: center;
+  width: 50%;
   border: 0.1rem solid rgb(255, 255, 255);
 }
 td.td-dashboard-watchlist-user {
+  font-size: 90%;
   border: 0.1rem solid rgb(255, 255, 255);
-  padding: 1rem;
+  padding: 0.5rem;
   text-align: left;
-  width: 33%;
+  width: 50%;
   cursor: pointer;
 }
 

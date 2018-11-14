@@ -76,6 +76,25 @@ button.btn-index-toggle-info {
   border-radius: 6px
 }
 
+#_teams {
+  background: url(../images/_teams.png);
+  background-size: cover;
+  font-family: Verdana;
+
+  text-shadow: 2px 2px 2px #000000;
+  font-size: 50px;
+  color: yellow;
+}
+
+#_players {
+  background: url(../images/_players.png);
+  background-size: cover;
+  font-family: Verdana;
+  text-shadow: 2px 2px 2px #000000;
+  font-size: 50px;
+  color: yellow;
+}
+
 form {
   border-width: 1rem;
   border-color: rgb(253, 194, 194);
