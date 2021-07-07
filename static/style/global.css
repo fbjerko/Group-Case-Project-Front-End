@@ -1,0 +1,154 @@
+body {
+  background: url(../images/background.jpg) no-repeat center center fixed;
+  background-size: cover;
+  height: 100vh;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+}
+
+button {
+
+  display: inline-block;
+	padding: 10px 14px;
+  color: #FFF;
+  height: 10rem;
+  width: 12rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  
+
+	border: 1px solid #FFF;
+	text-decoration: none;
+	font-size: 14px;
+  line-height: 120%;
+
+  font-family: Verdana;
+  font-weight: bold;
+  font-size: 120%;
+	background-color: rgba(255,255,255, 0);
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	-webkit-transition: background-color 300ms ease;
+	-moz-transition: background-color 300ms ease;
+	transition: background-color 300ms ease;
+	cursor: pointer;
+}
+
+img:hover{
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: rgba(255,255,255, 0.3);
+	color: #FFF;
+}
+
+button.btn-ret {
+  position: absolute;
+  top: 7rem;
+  right: 5vw;
+
+  /* Må fikses posisjonen her*/
+}
+
+button.btn-edit {
+  position: absolute;
+  top: 13rem;
+  right: 5vw;
+
+  /* Må fikses posisjonen her*/
+}
+
+.logo {
+  display: grid;
+  height: 100%;
+  margin: auto;
+  margin-top: 3rem;
+}
+
+h1,
+h2 {
+  color: white;
+  font-family: Verdana;
+  font-weight: bold;
+  margin-bottom: 1rem;
+ 
+}
+
+p {
+  color: white;
+  font-size: 150%;
+  font-family: Verdana;
+  margin-top: 2rem;
+}
+
+input{
+  width: 17rem;
+  height: 4rem;
+  background: #f1f1f1;
+}
+
+select{
+
+  width: 20rem;
+  height: 4rem;
+  background: #f1f0f0;
+  border-radius: 6px;
+  padding: 3px;
+  z-Index: 1;
+}
+select option {
+  margin: 7px;
+  font-family: Verdana;
+}
+
+select option:hover {
+
+  background: #d1cece;
+}
+
+
+.tooltip{
+  visibility: visible;
+}
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .toolTipText {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 150%;
+  left: 50%;
+  margin-left: -60px;
+}
+
+.tooltip .toolTipText::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+
+}
+
+b{
+  color: white;
+
+}

@@ -1,0 +1,138 @@
+import React, { Component } from "react";
+import LayoutGlobal from "../../../components/LayoutGlobal";
+import PersonForm from "../../../components/forms/personsForm";
+import { Router } from "../../../routes";
+import ListInfo from "../../../components/admin-view/ListInfo";
+import Loading from "../../../components/buttons/loading";
+import AdminReturn from "../../../components/buttons/AdminReturn";
+import NavbarUser from "../../../components/NavbarUser";
+
+class Person extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      persons: [],
+      filteredData: [],
+      search: "a",
+      ready: false,
+      currentPage: 0,
+      content: ["Persons"], // Attribute variable names
+      contentFields: ["Name"], // Names/Values of variables
+      create: false,
+      canEdit: true
+    };
+
+    this._create = this._create.bind(this);
+    this.changePage = this.changePage.bind(this);
+  }
+
+    componentWillReceiveProps(nextProps) {
+
+        if (nextProps.url!=undefined &&nextProps.url.query.create == "true") {
+            this.setState({create: true});
+        } else {
+            this.setState({create: false});
+        }
+    }
+
+  _create() {
+    this.setState({
+      create: !this.state.create
+    });
+    console.log(this.state.create);
+  }
+
+  changePage(command) {
+    if (command === 0) {
+      this.setState({ currentPage: 0 });
+    }
+    if (command === 1) {
+      if (this.state.currentPage !== 0)
+        this.setState(prevState => ({
+          currentPage: prevState.currentPage - 1
+        }));
+    }
+    if (command === 2) {
+      if (this.state.currentPage + 1 < this.state.persons.length / 10) {
+        this.setState({ currentPage: this.state.currentPage + 1 });
+      }
+    }
+    if (command === 3) {
+      this.setState({
+        currentPage: Math.floor((this.state.persons.length-1) / 10)
+      });
+    }
+  }
+
+  async componentDidMount() {
+
+          if(this.props.url.query.create=="true"){
+              this.setState({create:true});
+          }
+
+    try {
+      const response = await fetch(process.env.API_URL + "/api/person/all",{
+          credentials: 'include',headers:{Authorization:"Bearer "+localStorage.getItem("token")}
+      });
+      const json = await response.json();
+      this.setState({
+        persons: json,
+        ready: true
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  render() {
+    if (this.state.ready === true) {
+      const persons = this.state.persons;
+      if (this.state.create === true) {
+        return (
+          <div>
+            <LayoutGlobal />
+            <NavbarUser/>
+            <PersonForm close = {this._create} />
+           
+              
+         
+          </div>
+        );
+      } else {
+        //This return is going to display a list of addresses and a create address button
+        return (
+          <div>
+            <LayoutGlobal path = {"General"} />
+            <NavbarUser/>
+
+            <div className="container">
+          
+      
+              <ListInfo
+                data={persons}
+                name={this.state.content[0]}
+                content={this.state.content}
+                contentFields={this.state.contentFields}
+                ready={this.state.ready}
+                changePage={this.changePage}
+                canEdit={this.state.canEdit}
+                currentPage={this.state.currentPage}
+                close={this.props.close}
+              />
+            </div>
+          </div>
+        );
+      }
+    } else {
+      return (
+        <div>
+          <LayoutGlobal />
+          <NavbarUser/>
+          <Loading icon={true} text={"Loading persons..."} />
+        </div>
+      );
+    }
+  }
+}
+
+export default Person;

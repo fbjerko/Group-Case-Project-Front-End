@@ -1,0 +1,139 @@
+
+
+
+.logoutUser {
+    
+    display: column;
+    flex-direction: column;
+    justify-content: left;
+    align-items: left;
+    text-align: center;
+    min-height: 50vh;
+    margin: auto;
+    margin-top: 1rem;
+    float: left;
+     
+ }
+
+ .editUser {
+    display: column;
+    flex-direction: column;
+    justify-content: left;
+    align-items: left;
+    text-align: center;
+    min-height: 50vh;
+    margin: auto;
+    margin-top: 1rem;
+    float: right; 
+    font-weight: bold;
+    font-family: Verdana;
+    font-size: 14px;
+ }
+
+ .editform-div {
+
+    position: absolute;
+    right: 0vh;
+    z-index: 1;
+ }
+ .showTeams {
+    position: absolute;
+    right: 20vh;
+    border:2px solid black;
+    float: right;
+    height: 30vh;
+    width: 10vw;
+ }
+
+ div.dashboard-info1 {
+    float: left;
+    height: 50vh;
+    width: 25vw;
+    border:2px solid black;
+    margin-left: 1vw;
+  }
+
+  div.dashboard-info2 {   
+    float: right;
+    height: 50vh;
+    width: 25vw;
+    border:2px solid black;
+    margin-left: 1vw;
+  }
+
+  div.info-container {
+    position: relative;
+    display: flex;
+    flex-direction: grid;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 1rem;
+
+    
+  }
+
+  .btnDisplay {
+      width: 40rem;
+  }
+
+  .div-ret-user{
+
+    position: absolute;
+    top: 7rem;
+    right: 0vw;
+  
+  }
+
+  .div-edituser{
+
+    position: absolute;
+    top: 18rem;
+    right: 0.5vw;
+  
+  }
+
+  div.dashboard-watchlist-container {
+    position: absolute;
+    top: 20rem;
+    left: 3rem;
+  }
+
+
+  table.dashboard-watchlist-user {
+    border-collapse: collapse;
+    width: 34rem;
+    
+  }
+  table.dashboard-watchlist-user-small {
+    border-collapse: collapse;
+    float: left;
+    width: 17rem;
+
+  }
+
+  /* Table for displaying all info about entities admin */
+
+th.th-dashboard-watchlist-user {
+  font-size: 120%;
+  padding-top: 0.5rem;
+  padding-left: 0.8rem;
+  padding-right: 0.8rem;
+  text-align: center;
+  width: 50%;
+  border: 0.1rem solid rgb(255, 255, 255);
+}
+td.td-dashboard-watchlist-user {
+  font-size: 90%;
+  border: 0.1rem solid rgb(255, 255, 255);
+  padding: 0.5rem;
+  text-align: left;
+  width: 50%;
+  cursor: pointer;
+}
+
+td.td-dashboard-watchlist-user:hover {
+  
+  background-color: rgb(99, 97, 97);
+  opacity: 0.8;
+}

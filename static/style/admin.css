@@ -1,0 +1,669 @@
+.container {
+  display: block;
+  align-items: center;
+  text-align: center;
+  margin: auto;
+  width: 100%;
+  min-height: 100vh;
+
+  margin-top: 1vh;
+}
+
+div.info-container {
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 10vh;
+}
+
+.container-general {
+  display: column;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: auto;
+  width: 100%;
+  min-height: 100vh;
+
+  margin-top: 1vh;
+
+}
+
+div.btn-admin-create-top {
+  width: 100%;
+  margin-top: 6vh;
+}
+
+div.admin-config {
+  position: absolute;
+  top: 6rem;
+  right: 22rem;
+  display: grid;
+}
+
+div.btn-admin-config {
+  position: absolute;
+  top: 6rem;
+  right: 8rem;
+  display: grid;
+}
+
+div.btn-admin-config-create{
+  position: absolute;
+  top: 0.1rem;
+  right: 3vw;
+  display: grid;
+}
+
+button.btn-admin-back {
+  position: absolute;
+  bottom: 3vh;
+   margin-top: 1rem;
+  align-items: center;
+}
+
+div.btn-admin-nav {
+  width: 100%;
+  margin-top: 5rem;
+}
+div.btn-admin-nav-bottom {
+  width: 100%;
+}
+
+div.btn-admin-nav-general {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+div.btn-admin-nav-bottom-general {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+div.div-admin-get-all {
+  display: grid;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: auto;
+  margin-top: 3vh;
+
+}
+
+table {
+  font-size: 150%;
+  color: white;
+  font-family: Verdana;
+  border-collapse: collapse;
+  
+}
+
+/* Table for displaying all info about entities admin */
+
+table.table-admin-get-all {
+
+  width: 70rem;
+}
+
+th {
+  font-size: 150%;
+  padding-top: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  text-align: left;
+  border: 0.1rem solid rgb(255, 255, 255);
+}
+
+td {
+  border: 0.1rem solid rgb(255, 255, 255);
+  padding: 1rem;
+  text-align: left;
+}
+
+th.th-admin-get-all {
+ 
+}
+td.td-admin-get-all {
+
+  width: 33%;
+  cursor: pointer;
+}
+
+td.td-admin-get-all:hover {
+  
+  background-color: rgb(99, 97, 97);
+  opacity: 0.8;
+}
+
+
+/* Table for displaying info about single entity */
+/*************************************************************/
+
+table.table-admin-get-one {
+  
+  width: 60rem;
+}
+
+td.td-admin-get-one {
+  width: 50%;
+}
+
+/* Buttons for admin listing info*/
+/***********************************************************************/
+
+table.table-admin-but {
+  font-size: 130%;
+  width: 50rem;
+  margin: auto;
+  margin-top: 2rem;
+}
+
+
+
+div.div-table-matches-players {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+
+ 
+  
+}
+table.table-matches-form {
+  font-size: 130%;
+  width: 35rem;
+  margin: auto;
+  margin-top: 2rem;
+  
+}
+
+
+
+table.table-matches-form-players {
+  display: inline-block;
+  font-size: 130%;
+  width: 50rem;
+ 
+  margin-top: 2rem;
+ 
+  
+  
+}
+
+table.table-admin-matchgoal-but {
+  font-size: 120%;
+  width: 40rem;
+  margin: auto;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+td.td-admin-matchgoal:hover {
+  background-color: rgb(99, 97, 97);
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+td.td-admin-but {
+ 
+  border: 0.1rem solid rgb(255, 255, 255);
+  padding: 1rem;
+  cursor: pointer;
+  width: 25%;
+  text-align: center;
+
+}
+td.td-admin-but-1 {
+ 
+  border: 0.1rem solid rgb(255, 255, 255);
+  padding: 0.5rem;
+  cursor: pointer;
+  width: 50%;
+  text-align: center;
+
+}
+
+td.td-admin-but:hover {
+  background-color: rgb(99, 97, 97);
+  opacity: 0.8;
+}
+/***********************************/
+
+table.table-admin-get-all-matches {
+  width: 100rem;
+  font-size: 130%;
+}
+
+table.table-admin-get-all-matches-front-page {
+  width: 60rem;
+  font-size: 130%;
+}
+
+
+
+table.table-admin-get-all-persons {
+  width: 30rem;
+  font-size: 130%;
+  margin: auto;
+ 
+}
+td.td-admin-get-all-persons:hover {
+  background-color: rgb(99, 97, 97);
+  opacity: 0.8;
+}
+
+th.th-admin-get-all-matches {
+  width: 25rem;
+  text-align: center;
+}
+
+td.td-admin-get-all-matches {
+  text-align: center;
+}
+
+th.th-admin-get-all-matches-result {
+  width: 8rem;
+  text-align: center;
+}
+th.th-admin-get-all-matches-result-small {
+  width: 40%;
+  text-align: center;
+}
+th.th-admin-get-all-matches-result-smaller {
+  width: 20%;
+  text-align: center;
+}
+td.td-admin-get-all-matches-result-small {
+  width: 40%;
+  text-align: center;
+}
+
+td.td-admin-get-all-matches-result {
+  width: 12rem;
+  text-align: center;
+}
+
+table.table-admin-get-one-match {
+  width: 60rem;
+  font-size: 120%;
+  margin: auto;
+}
+
+td.td-admin-get-one-match {
+  width: 40%;
+  font-size: 120%;
+}
+
+td.td-admin-get-one-match:hover {
+  background-color: rgb(99, 97, 97);
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+
+
+
+th.th-admin-get-one-match {
+  width: 40%;
+  font-size: 120%;
+  height: 5rem;
+}
+
+th.th-admin-get-one-match-header {
+  width: 40%;
+  font-size: 150%;
+  height: 5rem;
+  text-align:center;
+}
+th.th-admin-get-one-match-header-team {
+  width: 40%;
+  font-size: 150%;
+  height: 5rem;
+  text-align:center;
+}
+th.th-admin-get-one-match-header-team:hover {
+  background-color: rgb(99, 97, 97);
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+
+td.td-admin-get-one-match-header:hover {
+  background-color: rgb(99, 97, 97);
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+th.th-admin-get-one-match-small {
+  width: 20%;
+  text-align: center;
+  font-size: 120%;
+  height: 5rem;
+}
+td.td-admin-get-one-match-small {
+  text-align: center;
+  width: 20%;
+  font-size: 120%;
+}
+td.td-admin-get-one-match-smaller {
+  text-align: center;
+  width: 5rem;
+  font-size: 120%;
+}
+td.td-admin-get-one-match-smaller:hover {
+  background-color: rgb(99, 97, 97);
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+td.first { display: none; }
+
+table.table-admin-get-one-match-header {
+  width: 60rem;
+  font-size: 120%;
+  margin: auto;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  
+}
+
+table.table-admin-get-one-match-small-header {
+  width: 20rem;
+  font-size: 120%;
+  
+  margin: auto;
+  margin-top: 2rem;
+  margin-bottom: -0.1rem;
+}
+
+th.th-admin-get-one-match-small-header {
+  width: 20%;
+  font-size: 120%;
+  height: 5rem;
+  text-align: center;
+}
+
+
+
+
+
+td.td-admin-get-all-matches-result:hover {
+  background-color: rgb(99, 97, 97);
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+td.td-admin-get-all-matches:hover {
+  background-color: rgb(99, 97, 97);
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+
+button.btn-admin-get-users {
+}
+
+button.btn-admin-get-players {
+  width: 30rem;
+}
+
+button.btn-dashboard-back {
+  margin: auto;
+  margin-top: 2rem;
+}
+
+
+
+button.btn-nav {
+  margin: 0.5rem;
+  min-width: 25rem;
+  min-height: 18.75rem;
+  width: 400px;
+  height: 300px;
+}
+
+button.btn-nav-general {
+  margin: 0.5rem;
+  margin-top: 1rem;
+  min-width: 25rem;
+  min-height: 18.75rem;
+  width: 33rem;
+  height: 24.75rem;
+}
+
+#btn-stadium {
+  background: url(../images/stadium.jpg);
+  background-size: 400px 300px;
+  font-family: Verdana;
+  text-shadow: 2px 2px 2px #000000;
+  font-size: 50px;
+  color: yellow;
+}
+
+#btn-players {
+  background: url(../images/players.jpg);
+  background-size: contain;
+  font-family: Verdana;
+  text-shadow: 2px 2px 2px #000000;
+  font-size: 50px;
+  color: yellow;
+}
+
+#btn-teams {
+  background: url(../images/teams.jpg);
+  background-size: 400px 370px;
+  font-family: Verdana;
+  text-shadow: 2px 2px 2px #000000;
+  font-size: 50px;
+  color: yellow;
+}
+
+#btn-managers {
+  background: url(../images/managers.jpg);
+  background-size: 400px 300px;
+  font-family: Verdana;
+  text-shadow: 2px 2px 2px #000000;
+  font-size: 50px;
+  color: yellow;
+}
+
+
+#btn-users {
+  background: url(../images/users.png);
+
+  background-size: 33rem 24.75rem;
+  font-family: Verdana;
+  text-shadow: 2px 2px 2px #000000;
+  font-size: 50px;
+  color: yellow;
+}
+
+#btn-general {
+  background: url(../images/general.png);
+  background-size: 400px 300px;
+  font-family: Verdana;
+  text-shadow: 2px 2px 2px #000000;
+  font-size: 50px;
+  color: yellow;
+}
+
+#btn-address {
+  background: url(../images/address.png);
+
+  background-size: 33rem 24.75rem;
+
+  font-family: Verdana;
+  text-shadow: 2px 2px 2px #000000;
+  font-size: 50px;
+  color: yellow;
+}
+
+#btn-matches {
+  background: url(../images/matches.png);
+  background-size: 33rem 24.75rem;
+  font-family: Verdana;
+  text-shadow: 2px 2px 2px #000000;
+  font-size: 50px;
+  color: yellow;
+}
+
+#btn-goaltype {
+  background: url(../images/goaltypes.png);
+
+  background-size: 33rem 24.75rem;
+
+  font-family: Verdana;
+  text-shadow: 2px 2px 2px #000000;
+  font-size: 50px;
+  color: yellow;
+}
+
+#btn-locations {
+  background: url(../images/locations.png);
+
+  background-size: 33rem 24.75rem;
+
+  font-family: Verdana;
+  text-shadow: 2px 2px 2px #000000;
+  font-size: 50px;
+  color: yellow;
+}
+
+#btn-season {
+  background: url(../images/seasons.png);
+
+  background-size: 33rem 24.75rem;
+
+  font-family: Verdana;
+  text-shadow: 2px 2px 2px #000000;
+  font-size: 50px;
+  color: yellow;
+}
+
+#btn-association {
+  background: url(../images/association.png);
+
+  background-size: 33rem 24.75rem;
+
+  font-family: Verdana;
+  text-shadow: 2px 2px 2px #000000;
+  font-size: 50px;
+  color: yellow;
+}
+
+#btn-owner {
+  background: url(../images/owners.png);
+
+  background-size: 33rem 24.75rem;
+
+  font-family: Verdana;
+  text-shadow: 2px 2px 2px #000000;
+  font-size: 50px;
+  color: yellow;
+}
+
+#btn-persons {
+  background: url(../images/persons.png);
+
+  background-size: 33rem 24.75rem;
+
+  font-family: Verdana;
+  text-shadow: 2px 2px 2px #000000;
+  font-size: 50px;
+  color: yellow;
+}
+
+
+button.btn-create {
+  margin-top: 18.5rem;
+  margin-right: 12rem;
+  margin-bottom: 0.5rem;
+  height: 10vh;
+}
+
+button.btn-matches {
+  margin-top: 10rem;
+  margin-left: 4rem;
+  margin-right: 4rem;
+  font-size:125%;
+}
+
+.btn-ret-admin {
+  margin-top: 0.1rem;
+  /* Må fikses posisjonen her*/
+
+}
+
+.doc-div {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 10vh;
+  padding: 3rem;
+}
+
+.btn-doc{
+  font-family: Verdana;
+  text-shadow: 2px 2px 2px #000000;
+  font-size: 40px;
+  color: white;
+  padding: 3rem;
+}
+
+.div-ret-general{
+
+  position: absolute;
+  top: 7rem;
+  right: 1vw;
+
+}
+
+  .seasons-container {
+    position: relative;
+    height: 50vh;
+    width: 25vw;
+    margin-left: 1vw;
+  }
+
+
+.create-match-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+
+}
+
+.create-match-container table{
+  font-size: 1.5rem;
+
+}
+.create-match-container ul{
+  color:white;
+  opacity: 100%;
+  display: block;
+  list-style-type: none;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0px;
+
+}
+.create-match-container td{
+  cursor: pointer;
+  padding-left: 0px;
+  border-style: hidden;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-right: 1rem;
+}
+
+
+
+
+
